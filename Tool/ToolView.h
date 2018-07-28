@@ -55,8 +55,8 @@ public:
 	bool	m_bOnSubTileTool;
 	bool	m_bOnObjectTool;
 	bool	m_bOnTriggerTool;
-	bool	m_bMonsterTool;
-	bool	m_BossTool;
+	bool	m_bOnMonsterTool;
+	bool	m_bOnBossTool;
 };
 
 #ifndef _DEBUG  // ToolView.cpp의 디버그 버전
