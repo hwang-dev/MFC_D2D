@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="00.MainFrm">
+      <UniqueIdentifier>{ada936e7-a6c0-43cf-a169-a9b0866431d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98.Device">
+      <UniqueIdentifier>{925330c3-2094-4aa1-8323-992df9b47a2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Default">
+      <UniqueIdentifier>{5c3620d8-c5b2-40fd-80a1-36f01ca65ced}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Document">
+      <UniqueIdentifier>{5a555ab8-caa6-4a01-99bf-e04b531cf50b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.View">
+      <UniqueIdentifier>{eb7b7336-afbf-469f-bf11-0150f36c7be7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Resource">
+      <UniqueIdentifier>{4396ce94-c867-48e7-ab59-2384c625bc97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Resource\00.TextureMgr">
+      <UniqueIdentifier>{35a36b83-c91c-4469-b4bb-f22b15d78619}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Resource\00.TextureMgr\00.Texture">
+      <UniqueIdentifier>{52315f80-a21f-4cea-b551-87ba4f02a706}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Resource\00.TextureMgr\00.Texture\00.SingleTexture">
+      <UniqueIdentifier>{e455882e-a57e-4bc5-8f16-3c4f429ad8c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Resource\00.TextureMgr\00.Texture\01.MultiTexture">
+      <UniqueIdentifier>{94127a9b-83ce-4dd4-a963-dc25feef561a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Dialog">
+      <UniqueIdentifier>{eebc6675-fbe8-444d-b65f-1641fe8a6e7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.FormView">
+      <UniqueIdentifier>{205a6210-e525-44a5-b7af-0b12a743cd0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.View\00.MiniView">
+      <UniqueIdentifier>{bb71dd17-a51b-4797-aee8-36c0349e2aad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Dialog\00.MapTool">
+      <UniqueIdentifier>{f02021d6-5454-4385-b254-b6cf49e0f6f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Terrain">
+      <UniqueIdentifier>{08202e62-93ea-4bb6-b8f6-0a80af573f49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.FileInfo">
+      <UniqueIdentifier>{61a93ea8-6adb-4c5d-be18-a981911d5f46}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MainFrm.h">
+      <Filter>00.MainFrm</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolDoc.h">
+      <Filter>01.Document</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolView.h">
+      <Filter>02.View</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool.h">
+      <Filter>99.Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Device.h">
+      <Filter>98.Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>97.Resource\00.TextureMgr\00.Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleTexture.h">
+      <Filter>97.Resource\00.TextureMgr\00.Texture\00.SingleTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiTexture.h">
+      <Filter>97.Resource\00.TextureMgr\00.Texture\01.MultiTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureMgr.h">
+      <Filter>97.Resource\00.TextureMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniView.h">
+      <Filter>02.View\00.MiniView</Filter>
+    </ClInclude>
+    <ClInclude Include="MyForm.h">
+      <Filter>03.FormView</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>05.Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="MapTool.h">
+      <Filter>04.Dialog\00.MapTool</Filter>
+    </ClInclude>
+    <ClInclude Include="FileInfo.h">
+      <Filter>96.FileInfo</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>00.MainFrm</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolDoc.cpp">
+      <Filter>01.Document</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolView.cpp">
+      <Filter>02.View</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>99.Default</Filter>
+    </ClCompile>
+    <ClCompile Include="Tool.cpp">
+      <Filter>99.Default</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp">
+      <Filter>98.Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>97.Resource\00.TextureMgr\00.Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleTexture.cpp">
+      <Filter>97.Resource\00.TextureMgr\00.Texture\00.SingleTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiTexture.cpp">
+      <Filter>97.Resource\00.TextureMgr\00.Texture\01.MultiTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureMgr.cpp">
+      <Filter>97.Resource\00.TextureMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniView.cpp">
+      <Filter>02.View\00.MiniView</Filter>
+    </ClCompile>
+    <ClCompile Include="MyForm.cpp">
+      <Filter>03.FormView</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>05.Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="MapTool.cpp">
+      <Filter>04.Dialog\00.MapTool</Filter>
+    </ClCompile>
+    <ClCompile Include="FileInfo.cpp">
+      <Filter>96.FileInfo</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Tool.ico">
+      <Filter>99.Default</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>99.Default</Filter>
+    </Image>
+    <Image Include="res\ToolDoc.ico">
+      <Filter>99.Default</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt">
+      <Filter>99.Default</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Tool.rc">
+      <Filter>99.Default</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Tool.rc2">
+      <Filter>99.Default</Filter>
+    </None>
+  </ItemGroup>
+</Project>
