@@ -127,7 +127,7 @@ void CTerrain::Release()
 	m_vecTile.shrink_to_fit();
 }
 
-void CTerrain::TileChange(const D3DXVECTOR3 & vPos, const int & iDrawID)
+void CTerrain::TileChange(const D3DXVECTOR3 & vPos, const int & iDrawID, const BYTE& byOption)
 {
 	int iIndex = GetTileIndex(vPos);
 
@@ -135,7 +135,7 @@ void CTerrain::TileChange(const D3DXVECTOR3 & vPos, const int & iDrawID)
 		return;
 
 	m_vecTile[iIndex]->byDrawID = iDrawID;
-	m_vecTile[iIndex]->byOption = 1;
+	m_vecTile[iIndex]->byOption = byOption;
 }
 
 int CTerrain::GetTileIndex(const D3DXVECTOR3 & vPos)

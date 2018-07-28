@@ -174,12 +174,19 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 	if (m_bIsMapTool)
 	{
 		int iDrawID = pMyForm->m_MapTool.m_iDrawID;
+		BYTE byOption = 0;
+
+		if (pMyForm->m_MapTool.m_CheckMove.GetCheck() == true)
+			byOption = 1;
+		else
+			byOption = 0;
+
 
 		// GetScrollPos: CScrollView의 멤버함수.
 		point.x += GetScrollPos(0);
 		point.y += GetScrollPos(1);
 
-		CTerrain::GetInstance()->TileChange(D3DXVECTOR3((float)point.x, (float)point.y, 0.f), iDrawID);
+		CTerrain::GetInstance()->TileChange(D3DXVECTOR3((float)point.x, (float)point.y, 0.f), iDrawID, byOption);
 
 		// Invalidate: WM_PAINT와 WM_ERASEBKGND 메시지를 발생.
 		Invalidate(FALSE);

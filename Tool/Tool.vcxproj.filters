@@ -49,6 +49,21 @@
     <Filter Include="96.FileInfo">
       <UniqueIdentifier>{61a93ea8-6adb-4c5d-be18-a981911d5f46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04.Dialog\01.SubTileTool">
+      <UniqueIdentifier>{77fc9ae6-9c33-4a8d-9abe-af3a7dd596d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Dialog\02.ObjectTool">
+      <UniqueIdentifier>{c23a811c-eb9c-4bd9-bba1-224b907f7e3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Dialog\03.TriggerTool">
+      <UniqueIdentifier>{2b7c8db9-7e5f-4ef0-8847-1196875c1d4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Dialog\04.MonsterTool">
+      <UniqueIdentifier>{166649a9-4c55-4ce0-9c4b-7c82cdd2b832}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Dialog\05.BossTool">
+      <UniqueIdentifier>{ff273a32-9185-4d29-8b95-8c3089c92fdc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainFrm.h">

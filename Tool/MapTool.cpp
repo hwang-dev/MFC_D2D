@@ -15,13 +15,14 @@
 IMPLEMENT_DYNAMIC(CMapTool, CDialog)
 
 CMapTool::CMapTool(CWnd* pParent /*=NULL*/)
-	: CDialog(IDD_MAPTOOL, pParent), m_iDrawID(0)
+	: CDialog(IDD_MAPTOOL, pParent), m_iDrawID(0), m_pImage(nullptr)
 {
 
 }
 
 CMapTool::~CMapTool()
 {
+	Release();
 }
 
 void CMapTool::DoDataExchange(CDataExchange* pDX)
@@ -29,6 +30,7 @@ void CMapTool::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_LIST1, m_TileBox);
 	DDX_Control(pDX, IDC_PICTURE, m_PictureCtrl);
+	DDX_Control(pDX, IDC_CHECK1, m_CheckMove);
 }
 
 
@@ -39,6 +41,8 @@ BEGIN_MESSAGE_MAP(CMapTool, CDialog)
 	ON_WM_SYSCOMMAND()
 	ON_BN_CLICKED(IDC_BUTTON1, &CMapTool::OnBnClickedSaveTile)
 	ON_BN_CLICKED(IDC_BUTTON2, &CMapTool::OnBnClickedLoadTile)
+	ON_BN_CLICKED(IDC_BUTTON3, &CMapTool::OnBnClickedTileListSave)
+	ON_BN_CLICKED(IDC_BUTTON4, &CMapTool::OnBnClickedTileListLoad)
 END_MESSAGE_MAP()
 
 
@@ -47,14 +51,56 @@ END_MESSAGE_MAP()
 
 void CMapTool::Release()
 {
-	for_each(m_MapImg.begin(), m_MapImg.end(),
-		[](auto& MyPair)
+	if (m_pImage)
 	{
-		MyPair.second->Destroy();
-		SafeDelete(MyPair.second);
-	});
+		m_pImage->Destroy();
 
-	m_MapImg.clear();
+		delete m_pImage;
+		m_pImage = nullptr;
+	}
+}
+
+void CMapTool::TileListLoad()
+{
+	// 리스트 박스 자동 로드
+	HANDLE hFile = CreateFile(L"../Data/TileList.dat", GENERIC_READ, 0, 0,
+		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+
+	if (INVALID_HANDLE_VALUE == hFile)
+	{
+		AfxMessageBox(L"TileList Load Failed!!");
+		/*return;*/
+	}
+
+	DWORD dwByte = 0;
+	TCHAR* pKey = L"";
+	TCHAR* pPath = L"";
+	int iLength = 0;
+
+	while (true)
+	{
+		ReadFile(hFile, &iLength, sizeof(int), &dwByte, nullptr);
+		pKey = new TCHAR[iLength];
+		ReadFile(hFile, pKey, sizeof(TCHAR) * iLength, &dwByte, nullptr);
+
+		ReadFile(hFile, &iLength, sizeof(int), &dwByte, nullptr);
+		pPath = new TCHAR[iLength];
+		ReadFile(hFile, pPath, sizeof(TCHAR) * iLength, &dwByte, nullptr);
+
+		if (dwByte == 0)
+		{
+			delete pKey;
+			pKey = nullptr;
+
+			delete pPath;
+			pPath = nullptr;
+
+			break;
+		}
+
+		m_mapTilePath.insert({ pKey, pPath });
+		m_TileBox.AddString(pKey);
+	}
 }
 
 BOOL CMapTool::OnInitDialog()
@@ -63,15 +109,14 @@ BOOL CMapTool::OnInitDialog()
 
 	// TODO:  여기에 추가 초기화 작업을 추가합니다.
 
+	// 기본적으로 이동가능
+	m_CheckMove.SetCheck(FALSE);
+
+
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
-
-
-
-
-
-
 
 
 void CMapTool::OnDropFiles(HDROP hDropInfo)
@@ -82,7 +127,7 @@ void CMapTool::OnDropFiles(HDROP hDropInfo)
 
 	UpdateData(TRUE);
 
-	m_TileBox.ResetContent();
+	//m_TileBox.ResetContent();
 	TCHAR szFilePath[MAX_STR] = L"";
 
 	int iFileCnt = DragQueryFile(hDropInfo, -1, nullptr, 0);
@@ -96,22 +141,22 @@ void CMapTool::OnDropFiles(HDROP hDropInfo)
 
 		CString strFileName = PathFindFileName(strRelativePath.GetString());
 
-		lstrcpy(szFileName, strFileName.GetString());
-		PathRemoveExtension(szFileName);
+		lstrcpy(szFileName, strFileName.GetString());	// 상대 경로
+		PathRemoveExtension(szFileName);	// 파일명
 
 		strFileName = szFileName;
 
-		auto iter_find = m_MapImg.find(strFileName);
+		auto iter_find = m_mapTilePath.find(strFileName);
 
-		if (m_MapImg.end() == iter_find)
+		if (m_mapTilePath.end() == iter_find)
 		{
-			CImage* pImage = new CImage;
-			pImage->Load(strRelativePath);
-
-			m_MapImg.insert({ strFileName, pImage });
+			m_mapTilePath.insert({ strFileName, szFilePath });
 			m_TileBox.AddString(szFileName);
 		}
 	}
+
+	// 맵에 이미지 이름, 상대 경로 저장
+
 
 	UpdateData(FALSE);
 }
@@ -130,13 +175,22 @@ void CMapTool::OnLbnSelectTileBox()
 	CString strSelectName;
 	m_TileBox.GetText(iSelect, strSelectName);
 
-	auto iter_find = m_MapImg.find(strSelectName);
 
-	if (m_MapImg.end() == iter_find)
-		return;
+	// 이미지 띄우기
+	auto& iter_find = m_mapTilePath.find(strSelectName);
 
-	m_PictureCtrl.SetBitmap(*(iter_find->second));
+	if (m_pImage)
+	{
+		m_pImage->Destroy();
+		delete m_pImage;
+		m_pImage = nullptr;
+	}
 
+	m_pImage = new CImage;
+	m_pImage->Load(iter_find->second);
+	m_PictureCtrl.SetBitmap(*m_pImage);
+
+	// DrawID 변경
 	int i = 0;
 
 	for (; i < strSelectName.GetLength(); ++i)
@@ -179,6 +233,7 @@ void CMapTool::OnBnClickedSaveTile()
 	TCHAR szPath[MAX_STR] = L"";
 
 	GetCurrentDirectory(MAX_STR, szPath);
+	CFileInfo::ConvertRelativePath(szPath);
 	PathRemoveFileSpec(szPath);
 	lstrcat(szPath, L"\\Data");
 
@@ -262,4 +317,67 @@ void CMapTool::OnBnClickedLoadTile()
 	}
 
 	UpdateData(FALSE);
+}
+
+
+void CMapTool::OnBnClickedTileListSave()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	CFileDialog Dlg(FALSE, L"dat", L"*.dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+		L"Data Files(*.dat)|*.dat||", this);
+
+	TCHAR szPath[MAX_STR] = L"";
+
+	GetCurrentDirectory(MAX_STR, szPath);
+
+	CFileInfo::ConvertRelativePath(szPath);
+
+	PathRemoveFileSpec(szPath);
+
+	lstrcat(szPath, L"\\Data");
+	Dlg.m_ofn.lpstrInitialDir = szPath;
+	if (IDOK == Dlg.DoModal())
+	{
+		CString strGetPath = Dlg.GetPathName();
+		const TCHAR* pGetPath = strGetPath.GetString();
+
+		HANDLE hFile = CreateFile(pGetPath, GENERIC_WRITE, 0, 0,
+			CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+
+		if (INVALID_HANDLE_VALUE == hFile)
+		{
+			AfxMessageBox(L"TileList Save Failed!!");
+			return;
+		}
+
+		DWORD dwByte = 0;
+
+		for (auto& MyPair : m_mapTilePath)
+		{
+			const TCHAR* pKey = MyPair.first.GetString();
+			int iKeyLength = MyPair.first.GetLength() + 1;
+			const TCHAR* pPath = MyPair.second.GetString();
+			int iPathLength = MyPair.second.GetLength() + 1;
+
+
+			WriteFile(hFile, &iKeyLength, sizeof(int), &dwByte, nullptr);
+			WriteFile(hFile, pKey, sizeof(TCHAR) * iKeyLength, &dwByte, nullptr);
+			WriteFile(hFile, &iPathLength, sizeof(int), &dwByte, nullptr);
+			WriteFile(hFile, pPath, sizeof(TCHAR) * iPathLength, &dwByte, nullptr);
+		}
+
+		CloseHandle(hFile);
+	}
+
+	AfxMessageBox(L"TileList Save Success");
+	UpdateData(FALSE);
+}
+
+
+void CMapTool::OnBnClickedTileListLoad()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	// 타일 리스트 불러오기
+	TileListLoad();
 }

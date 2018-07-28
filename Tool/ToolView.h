@@ -52,6 +52,11 @@ public:
 
 	/////////////////////
 	bool	m_bIsMapTool;
+	bool	m_bOnSubTileTool;
+	bool	m_bOnObjectTool;
+	bool	m_bOnTriggerTool;
+	bool	m_bMonsterTool;
+	bool	m_BossTool;
 };
 
 #ifndef _DEBUG  // ToolView.cpp의 디버그 버전

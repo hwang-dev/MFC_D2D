@@ -29,6 +29,11 @@ void CMyForm::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CMyForm, CFormView)
 	ON_BN_CLICKED(IDC_BUTTON1, &CMyForm::OnBnClickedMapTool)
+	ON_BN_CLICKED(IDC_BUTTON2, &CMyForm::OnBnClickedMapTool)
+	ON_BN_CLICKED(IDC_BUTTON3, &CMyForm::OnBnClickedMapTool)
+	ON_BN_CLICKED(IDC_BUTTON4, &CMyForm::OnBnClickedMapTool)
+	ON_BN_CLICKED(IDC_BUTTON5, &CMyForm::OnBnClickedMapTool)
+	ON_BN_CLICKED(IDC_BUTTON6, &CMyForm::OnBnClickedMapTool)
 END_MESSAGE_MAP()
 
 
@@ -57,8 +62,12 @@ void CMyForm::OnInitialUpdate()
 	CFormView::OnInitialUpdate();
 
 	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
-	m_Font.CreatePointFont(100, L"Lucida Console");
+	m_Font.CreatePointFont(100, L"Consolas");
 
+	GetDlgItem(IDC_BUTTON1)->SetFont(&m_Font);
+	GetDlgItem(IDC_BUTTON1)->SetFont(&m_Font);
+	GetDlgItem(IDC_BUTTON1)->SetFont(&m_Font);
+	GetDlgItem(IDC_BUTTON1)->SetFont(&m_Font);
 	GetDlgItem(IDC_BUTTON1)->SetFont(&m_Font);
 }
 
@@ -76,4 +85,5 @@ void CMyForm::OnBnClickedMapTool()
 	pMainView->m_bIsMapTool = true;
 	m_MapTool.ShowWindow(SW_SHOW);
 }
+
 

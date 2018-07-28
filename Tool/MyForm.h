@@ -30,11 +30,12 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public:
+	virtual void OnInitialUpdate();
+	afx_msg void OnBnClickedMapTool();
 	CFont		m_Font;
 	CMapTool	m_MapTool;
 
-	afx_msg void OnBnClickedMapTool();
-	virtual void OnInitialUpdate();
+	
 };
 
 
