@@ -72,6 +72,8 @@ void CMapTool::TileListLoad()
 		/*return;*/
 	}
 
+	int i = 0;
+
 	DWORD dwByte = 0;
 	TCHAR* pKey = L"";
 	TCHAR* pPath = L"";
