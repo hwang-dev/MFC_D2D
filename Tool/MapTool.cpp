@@ -16,6 +16,7 @@ IMPLEMENT_DYNAMIC(CMapTool, CDialog)
 
 CMapTool::CMapTool(CWnd* pParent /*=NULL*/)
 	: CDialog(IDD_MAPTOOL, pParent), m_iDrawID(0), m_pImage(nullptr)
+	, m_strTileNum(_T(""))
 {
 
 }
@@ -31,6 +32,7 @@ void CMapTool::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_LIST1, m_TileBox);
 	DDX_Control(pDX, IDC_PICTURE, m_PictureCtrl);
 	DDX_Control(pDX, IDC_CHECK1, m_CheckMove);
+	DDX_Text(pDX, IDC_EDIT1, m_strTileNum);
 }
 
 
@@ -43,6 +45,7 @@ BEGIN_MESSAGE_MAP(CMapTool, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON2, &CMapTool::OnBnClickedLoadTile)
 	ON_BN_CLICKED(IDC_BUTTON3, &CMapTool::OnBnClickedTileListSave)
 	ON_BN_CLICKED(IDC_BUTTON4, &CMapTool::OnBnClickedTileListLoad)
+	ON_EN_CHANGE(IDC_EDIT1, &CMapTool::OnEnChangeFindTileNum)
 END_MESSAGE_MAP()
 
 
@@ -382,4 +385,37 @@ void CMapTool::OnBnClickedTileListLoad()
 
 	// 타일 리스트 불러오기
 	TileListLoad();
+}
+
+
+void CMapTool::OnEnChangeFindTileNum()
+{
+	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
+	// CDialog::OnInitDialog() 함수를 재지정 
+	//하고 마스크에 OR 연산하여 설정된 ENM_CHANGE 플래그를 지정하여 CRichEditCtrl().SetEventMask()를 호출하지 않으면
+	// 이 알림 메시지를 보내지 않습니다.
+
+	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	UpdateData(TRUE);
+
+	// Tile + 입력된 Num
+
+	CString strTile = L"Tile" + m_strTileNum;
+
+	auto& iter_find = m_mapTilePath.find(strTile);
+
+	// 없으면 종료
+	if (iter_find == m_mapTilePath.end())
+		return;
+
+	// 있으면 검색
+	int iFindIndex = m_TileBox.FindString(0, strTile);
+
+	// 탐색에 실패하면
+	if (iFindIndex == LB_ERR)
+		return;
+
+	m_TileBox.SetCurSel(iFindIndex);
+
+	UpdateData(FALSE);
 }

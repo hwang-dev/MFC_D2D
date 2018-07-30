@@ -34,12 +34,13 @@ public:
 	afx_msg void OnBnClickedLoadTile();
 	afx_msg void OnBnClickedTileListSave();
 	afx_msg void OnBnClickedTileListLoad();
-
+	afx_msg void OnEnChangeFindTileNum();
 
 	/////////////////////////////////////
 	CListBox m_TileBox;
 	CStatic m_PictureCtrl;
 	CButton m_CheckMove;
+	CString m_strTileNum;
 
 	/////////////////////////////////////
 	map<CString, CImage*>	m_MapImg;
@@ -47,5 +48,6 @@ public:
 	CImage*					m_pImage;
 
 	int		m_iDrawID;
+	
 	
 };
