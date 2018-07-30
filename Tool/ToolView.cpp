@@ -34,6 +34,7 @@ BEGIN_MESSAGE_MAP(CToolView, CScrollView)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CScrollView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CScrollView::OnFilePrintPreview)
 	ON_WM_LBUTTONDOWN()
+	ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
 
 // CToolView 생성/소멸
@@ -173,27 +174,77 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 
 	if (m_bIsMapTool)
 	{
-		int iDrawID = pMyForm->m_MapTool.m_iDrawID;
-		BYTE byOption = 0;
+		// 타일정보 불러오기 X
+		if(pMyForm->m_MapTool.m_CheckTileInfo.GetCheck() == FALSE)
+		{
+			int iDrawID = pMyForm->m_MapTool.m_iDrawID;
+			BYTE byOption = 0;
 
-		if (pMyForm->m_MapTool.m_CheckMove.GetCheck() == true)
-			byOption = 1;
-		else
-			byOption = 0;
-
-
-		// GetScrollPos: CScrollView의 멤버함수.
-		point.x += GetScrollPos(0);
-		point.y += GetScrollPos(1);
-
-		CTerrain::GetInstance()->TileChange(D3DXVECTOR3((float)point.x, (float)point.y, 0.f), iDrawID, byOption);
-
-		// Invalidate: WM_PAINT와 WM_ERASEBKGND 메시지를 발생.
-		Invalidate(FALSE);
+			if (pMyForm->m_MapTool.m_CheckMove.GetCheck() == TRUE)
+				byOption = 1;
+			else
+				byOption = 0;
 
 
-		CMiniView* pMiniView = dynamic_cast<CMiniView*>(pMainFrm->m_SecondSplit.GetPane(0, 0));
-		pMiniView->Invalidate(FALSE);
+			// GetScrollPos: CScrollView의 멤버함수.
+			point.x += GetScrollPos(0);
+			point.y += GetScrollPos(1);
+
+			CTerrain::GetInstance()->TileChange(D3DXVECTOR3((float)point.x, (float)point.y, 0.f), iDrawID, byOption);
+
+			// Invalidate: WM_PAINT와 WM_ERASEBKGND 메시지를 발생.
+			Invalidate(FALSE);
+
+
+			CMiniView* pMiniView = dynamic_cast<CMiniView*>(pMainFrm->m_SecondSplit.GetPane(0, 0));
+			pMiniView->Invalidate(FALSE);
+		}
 	}
 
+}
+
+
+void CToolView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+
+	
+
+	UpdateData(TRUE);
+	
+	CMainFrame* pMainFrm = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
+	CMyForm* pMyForm = dynamic_cast<CMyForm*>(pMainFrm->m_SecondSplit.GetPane(1, 0));
+
+	CScrollView::OnMouseMove(nFlags, point);
+
+	if (m_bIsMapTool)
+	{
+		if (pMyForm->m_MapTool.m_CheckTileInfo.GetCheck() == TRUE)
+		{
+			// 마우스에 스크롤값 추가
+			point.x += GetScrollPos(0);
+			point.y += GetScrollPos(1);
+
+			int iTileIndex = 0;
+
+			iTileIndex = CTerrain::GetInstance()->GetTileIndex(D3DXVECTOR3((float)point.x, (float)point.y, 0.f));
+			
+			vector<TILE*>& vecTile = CTerrain::GetInstance()->GetVecTile();
+
+			// 인덱스가 범위에서 벗어나면 return
+			if (iTileIndex < 0 || (size_t)iTileIndex > vecTile.size())
+				return;
+
+			pMyForm->m_MapTool.UpdateData(TRUE);
+			pMyForm->m_MapTool.m_byCursorIndex = iTileIndex;
+			pMyForm->m_MapTool.m_byCursorDrawID = vecTile[iTileIndex]->byDrawID;
+			pMyForm->m_MapTool.m_byTileOption = vecTile[iTileIndex]->byOption;
+			pMyForm->m_MapTool.m_ByRoomNum = vecTile[iTileIndex]->byOption;
+			pMyForm->m_MapTool.UpdateData(FALSE);
+
+		}
+	}
+
+	UpdateData(FALSE);
+	
 }

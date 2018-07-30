@@ -37,6 +37,7 @@ void CTerrain::Initialize()
 			pTile->vSize = D3DXVECTOR3((float)TILECX, (float)TILECY, 0.f);
 			pTile->byOption = 0;
 			pTile->byDrawID = 0;
+			pTile->byRoomNum = 0;
 
 			m_vecTile.push_back(pTile);
 		}

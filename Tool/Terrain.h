@@ -23,9 +23,9 @@ public:
 
 public:
 	void TileChange(const D3DXVECTOR3& vPos, const int& iDrawID, const BYTE& byOption);
+	int GetTileIndex(const D3DXVECTOR3& vPos);
 
 private:
-	int GetTileIndex(const D3DXVECTOR3& vPos);
 	bool Picking(const D3DXVECTOR3& vPos, const int& iIndex);
 
 private:

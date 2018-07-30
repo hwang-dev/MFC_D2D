@@ -15,6 +15,7 @@ typedef struct tagTile
 	D3DXVECTOR3	vSize;	// 타일의 크기.
 	BYTE byOption;		// 타일의 옵션.
 	BYTE byDrawID;		// 렌더링 옵션.
+	BYTE byRoomNum;		//
 }TILE;
 
 typedef struct tagInfo

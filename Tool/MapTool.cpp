@@ -17,6 +17,11 @@ IMPLEMENT_DYNAMIC(CMapTool, CDialog)
 CMapTool::CMapTool(CWnd* pParent /*=NULL*/)
 	: CDialog(IDD_MAPTOOL, pParent), m_iDrawID(0), m_pImage(nullptr)
 	, m_strTileNum(_T(""))
+	, m_iRoomNum(0)
+	, m_byCursorIndex(0)
+	, m_byCursorDrawID(0)
+	, m_ByRoomNum(0)
+	, m_byTileOption(0)
 {
 
 }
@@ -33,6 +38,12 @@ void CMapTool::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_PICTURE, m_PictureCtrl);
 	DDX_Control(pDX, IDC_CHECK1, m_CheckMove);
 	DDX_Text(pDX, IDC_EDIT1, m_strTileNum);
+	DDX_Text(pDX, IDC_EDIT2, m_iRoomNum);
+	DDX_Control(pDX, IDC_CHECK2, m_CheckTileInfo);
+	DDX_Text(pDX, IDC_EDIT3, m_byCursorIndex);
+	DDX_Text(pDX, IDC_EDIT4, m_byCursorDrawID);
+	DDX_Text(pDX, IDC_EDIT5, m_ByRoomNum);
+	DDX_Text(pDX, IDC_EDIT6, m_byTileOption);
 }
 
 
@@ -116,7 +127,10 @@ BOOL CMapTool::OnInitDialog()
 
 	// 기본적으로 이동가능
 	m_CheckMove.SetCheck(FALSE);
-
+	
+	//
+	m_CheckTileInfo.SetCheck(FALSE);
+	
 
 
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -417,5 +431,21 @@ void CMapTool::OnEnChangeFindTileNum()
 
 	m_TileBox.SetCurSel(iFindIndex);
 
+	// DrawID 변경
+	m_iDrawID = _wtoi(m_strTileNum);
+
+	// 이미지 변경
+	if (m_pImage)
+	{
+		m_pImage->Destroy();
+		delete m_pImage;
+		m_pImage = nullptr;
+	}
+
+	m_pImage = new CImage;
+	m_pImage->Load(iter_find->second);
+	m_PictureCtrl.SetBitmap(*m_pImage);
+
 	UpdateData(FALSE);
 }
+
