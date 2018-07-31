@@ -38,7 +38,6 @@ void CMapTool::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_PICTURE, m_PictureCtrl);
 	DDX_Control(pDX, IDC_CHECK1, m_CheckMove);
 	DDX_Text(pDX, IDC_EDIT1, m_strTileNum);
-	DDX_Control(pDX, IDC_CHECK2, m_CheckTileInfo);
 	DDX_Text(pDX, IDC_EDIT3, m_byCursorIndex);
 	DDX_Text(pDX, IDC_EDIT4, m_byCursorDrawID);
 	DDX_Text(pDX, IDC_EDIT6, m_byTileOption);
@@ -129,11 +128,6 @@ BOOL CMapTool::OnInitDialog()
 	// 기본적으로 이동가능
 	m_CheckMove.SetCheck(FALSE);
 	
-	//
-	m_CheckTileInfo.SetCheck(FALSE);
-	
-
-
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }

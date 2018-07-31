@@ -42,7 +42,6 @@ public:
 	CStatic m_PictureCtrl;
 	CButton m_CheckMove;
 	CString m_strTileNum;
-	CButton m_CheckTileInfo;
 
 	/////////////////////////////////////
 	map<CString, CImage*>	m_MapImg;
@@ -54,6 +53,6 @@ public:
 	BYTE	m_SelectTileDrawID;
 	BYTE	m_byCursorDrawID;
 	BYTE	m_byTileOption;
-	BYTE m_byCursorRoomNum;
-	BYTE m_byTileRoomNum;
+	BYTE	m_byCursorRoomNum;
+	BYTE	m_byTileRoomNum;
 };

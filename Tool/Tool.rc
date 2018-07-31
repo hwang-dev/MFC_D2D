@@ -210,7 +210,6 @@ BEGIN
     PUSHBUTTON      "TileList Load",IDC_BUTTON4,166,14,56,16
     EDITTEXT        IDC_EDIT1,35,133,40,12,ES_AUTOHSCROLL
     LTEXT           "Tile No.",IDC_STATIC,7,134,25,8
-    CONTROL         "Tile Info",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,157,36,10
     LTEXT           "Room No.",IDC_STATIC,102,100,32,8
     EDITTEXT        IDC_EDIT2,135,98,40,12,ES_AUTOHSCROLL
     LTEXT           "Tile Index:",IDC_STATIC,7,170,34,8
@@ -221,6 +220,7 @@ BEGIN
     LTEXT           "Tile Option",IDC_STATIC,94,182,35,8
     EDITTEXT        IDC_EDIT5,132,167,40,12,ES_AUTOHSCROLL | ES_READONLY
     EDITTEXT        IDC_EDIT6,132,180,40,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "-----------------------------------TILE INFO-----------------------------",IDC_STATIC,7,157,179,8
 END
 
 

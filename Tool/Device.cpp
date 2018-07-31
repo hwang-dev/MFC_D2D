@@ -79,8 +79,8 @@ HRESULT CDevice::InitDevice()
 	// D3DXFONT_DESCW: 출력할 폰트의 속성을 설정.
 	D3DXFONT_DESCW	tFontInfo;
 	
-	tFontInfo.Height = 8;	// 높이
-	tFontInfo.Width = 2;	// 너비
+	tFontInfo.Height = 12;	// 높이
+	tFontInfo.Width = 4;	// 너비
 	tFontInfo.Weight = FW_DONTCARE; // 두께
 	tFontInfo.CharSet = HANGEUL_CHARSET; // 한글
 	lstrcpy(tFontInfo.FaceName, L"Lucida Console"); // 글씨체
