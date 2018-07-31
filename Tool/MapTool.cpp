@@ -17,11 +17,11 @@ IMPLEMENT_DYNAMIC(CMapTool, CDialog)
 CMapTool::CMapTool(CWnd* pParent /*=NULL*/)
 	: CDialog(IDD_MAPTOOL, pParent), m_iDrawID(0), m_pImage(nullptr)
 	, m_strTileNum(_T(""))
-	, m_iRoomNum(0)
 	, m_byCursorIndex(0)
 	, m_byCursorDrawID(0)
-	, m_ByRoomNum(0)
 	, m_byTileOption(0)
+	, m_byCursorRoomNum(0)
+	, m_byTileRoomNum(0)
 {
 
 }
@@ -38,12 +38,12 @@ void CMapTool::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_PICTURE, m_PictureCtrl);
 	DDX_Control(pDX, IDC_CHECK1, m_CheckMove);
 	DDX_Text(pDX, IDC_EDIT1, m_strTileNum);
-	DDX_Text(pDX, IDC_EDIT2, m_iRoomNum);
 	DDX_Control(pDX, IDC_CHECK2, m_CheckTileInfo);
 	DDX_Text(pDX, IDC_EDIT3, m_byCursorIndex);
 	DDX_Text(pDX, IDC_EDIT4, m_byCursorDrawID);
-	DDX_Text(pDX, IDC_EDIT5, m_ByRoomNum);
 	DDX_Text(pDX, IDC_EDIT6, m_byTileOption);
+	DDX_Text(pDX, IDC_EDIT5, m_byCursorRoomNum);
+	DDX_Text(pDX, IDC_EDIT2, m_byTileRoomNum);
 }
 
 
@@ -57,6 +57,7 @@ BEGIN_MESSAGE_MAP(CMapTool, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON3, &CMapTool::OnBnClickedTileListSave)
 	ON_BN_CLICKED(IDC_BUTTON4, &CMapTool::OnBnClickedTileListLoad)
 	ON_EN_CHANGE(IDC_EDIT1, &CMapTool::OnEnChangeFindTileNum)
+	ON_EN_CHANGE(IDC_EDIT2, &CMapTool::OnEnChangeRoomNumber)
 END_MESSAGE_MAP()
 
 
@@ -449,3 +450,19 @@ void CMapTool::OnEnChangeFindTileNum()
 	UpdateData(FALSE);
 }
 
+
+
+void CMapTool::OnEnChangeRoomNumber()
+{
+	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
+	// CDialog::OnInitDialog() 함수를 재지정 
+	//하고 마스크에 OR 연산하여 설정된 ENM_CHANGE 플래그를 지정하여 CRichEditCtrl().SetEventMask()를 호출하지 않으면
+	// 이 알림 메시지를 보내지 않습니다.
+
+	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	UpdateData(TRUE);
+
+
+	UpdateData(FALSE);
+}

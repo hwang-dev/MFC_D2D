@@ -35,6 +35,7 @@ public:
 	afx_msg void OnBnClickedTileListSave();
 	afx_msg void OnBnClickedTileListLoad();
 	afx_msg void OnEnChangeFindTileNum();
+	afx_msg void OnEnChangeRoomNumber();
 
 	/////////////////////////////////////
 	CListBox m_TileBox;
@@ -48,11 +49,11 @@ public:
 	map<CString, CString>	m_mapTilePath;
 	CImage*					m_pImage;
 
-	int		m_iDrawID;
-	int		m_iRoomNum;
-	BYTE m_SelectTileDrawID;
 	int		m_byCursorIndex;
+	int		m_iDrawID;
+	BYTE	m_SelectTileDrawID;
 	BYTE	m_byCursorDrawID;
-	BYTE m_ByRoomNum;
-	BYTE m_byTileOption;
+	BYTE	m_byTileOption;
+	BYTE m_byCursorRoomNum;
+	BYTE m_byTileRoomNum;
 };

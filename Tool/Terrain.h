@@ -22,7 +22,7 @@ public:
 	vector<TILE*>& GetVecTile() { return m_vecTile; }
 
 public:
-	void TileChange(const D3DXVECTOR3& vPos, const int& iDrawID, const BYTE& byOption);
+	void TileChange(const D3DXVECTOR3& vPos, const int& iDrawID, const BYTE& byOption, const BYTE& byRoomNum);
 	int GetTileIndex(const D3DXVECTOR3& vPos);
 
 private:

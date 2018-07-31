@@ -177,7 +177,11 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 		// 타일정보 불러오기 X
 		if(pMyForm->m_MapTool.m_CheckTileInfo.GetCheck() == FALSE)
 		{
+			// 타일 DrawID 저장
+
 			int iDrawID = pMyForm->m_MapTool.m_iDrawID;
+
+			/* 타일옵션 저장(이동불가 유무) */
 			BYTE byOption = 0;
 
 			if (pMyForm->m_MapTool.m_CheckMove.GetCheck() == TRUE)
@@ -185,12 +189,16 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 			else
 				byOption = 0;
 
+			/* Room Number 저장 */
+			BYTE byRoomNum = 0;
+			byRoomNum = pMyForm->m_MapTool.m_byTileRoomNum;
+
 
 			// GetScrollPos: CScrollView의 멤버함수.
 			point.x += GetScrollPos(0);
 			point.y += GetScrollPos(1);
 
-			CTerrain::GetInstance()->TileChange(D3DXVECTOR3((float)point.x, (float)point.y, 0.f), iDrawID, byOption);
+			CTerrain::GetInstance()->TileChange(D3DXVECTOR3((float)point.x, (float)point.y, 0.f), iDrawID, byOption, byRoomNum);
 
 			// Invalidate: WM_PAINT와 WM_ERASEBKGND 메시지를 발생.
 			Invalidate(FALSE);
@@ -208,14 +216,15 @@ void CToolView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
-	
+	CScrollView::OnMouseMove(nFlags, point);
+
+	/* 마우스 움직일 때 타일정보 출력하는 함수 */
 
 	UpdateData(TRUE);
 	
 	CMainFrame* pMainFrm = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
 	CMyForm* pMyForm = dynamic_cast<CMyForm*>(pMainFrm->m_SecondSplit.GetPane(1, 0));
 
-	CScrollView::OnMouseMove(nFlags, point);
 
 	if (m_bIsMapTool)
 	{
@@ -237,14 +246,13 @@ void CToolView::OnMouseMove(UINT nFlags, CPoint point)
 
 			pMyForm->m_MapTool.UpdateData(TRUE);
 			pMyForm->m_MapTool.m_byCursorIndex = iTileIndex;
-			pMyForm->m_MapTool.m_byCursorDrawID = vecTile[iTileIndex]->byDrawID;
-			pMyForm->m_MapTool.m_byTileOption = vecTile[iTileIndex]->byOption;
-			pMyForm->m_MapTool.m_ByRoomNum = vecTile[iTileIndex]->byOption;
+			pMyForm->m_MapTool.m_byCursorDrawID		= vecTile[iTileIndex]->byDrawID;
+			pMyForm->m_MapTool.m_byTileOption		= vecTile[iTileIndex]->byOption;
+			pMyForm->m_MapTool.m_byCursorRoomNum		= vecTile[iTileIndex]->byRoomNum;
 			pMyForm->m_MapTool.UpdateData(FALSE);
 
 		}
 	}
 
 	UpdateData(FALSE);
-	
 }
