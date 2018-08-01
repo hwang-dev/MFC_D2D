@@ -64,6 +64,9 @@
     <Filter Include="04.Dialog\05.BossTool">
       <UniqueIdentifier>{ff273a32-9185-4d29-8b95-8c3089c92fdc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04.Dialog\06.TilePath">
+      <UniqueIdentifier>{607e475c-1868-4804-90cb-c0246e213ac3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainFrm.h">
@@ -117,6 +120,12 @@
     <ClInclude Include="FileInfo.h">
       <Filter>96.FileInfo</Filter>
     </ClInclude>
+    <ClInclude Include="SubTileTool.h">
+      <Filter>04.Dialog\01.SubTileTool</Filter>
+    </ClInclude>
+    <ClInclude Include="FilePath.h">
+      <Filter>04.Dialog\06.TilePath</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -163,6 +172,12 @@
     </ClCompile>
     <ClCompile Include="FileInfo.cpp">
       <Filter>96.FileInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="SubTileTool.cpp">
+      <Filter>04.Dialog\01.SubTileTool</Filter>
+    </ClCompile>
+    <ClCompile Include="FilePath.cpp">
+      <Filter>04.Dialog\06.TilePath</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

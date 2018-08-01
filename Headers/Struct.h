@@ -15,7 +15,7 @@ typedef struct tagTile
 	D3DXVECTOR3	vSize;	// 鸥老狼 农扁.
 	BYTE byOption;		// 鸥老狼 可记.
 	BYTE byDrawID;		// 坊歹傅 可记.
-	BYTE byRoomNum;		//
+	BYTE byRoomNum;		// 
 }TILE;
 
 typedef struct tagInfo
@@ -29,3 +29,11 @@ typedef struct tagInfo
 	BYTE byOption;		// 鸥老狼 可记.
 	BYTE byDrawID;		// 坊歹傅 可记.
 }INFO;
+
+typedef struct tagTexturePath
+{
+	wstring wstrObjKey = L"";
+	wstring wstrStateKey = L"";
+	wstring wstrPath = L"";
+	int iCount = 0;
+}IMGPATH;

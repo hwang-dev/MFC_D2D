@@ -1,0 +1,1 @@
+TERRAIN|TILE|59|..\Texture\TERRAIN\TILE\Tile%d.png

@@ -4,6 +4,8 @@
 
 // CMyForm Æû ºäÀÔ´Ï´Ù.
 #include "MapTool.h"
+#include "SubTileTool.h"
+#include "FilePath.h"
 
 class CMyForm : public CFormView
 {
@@ -32,10 +34,14 @@ protected:
 public:
 	virtual void OnInitialUpdate();
 	afx_msg void OnBnClickedMapTool();
-	CFont		m_Font;
-	CMapTool	m_MapTool;
+	afx_msg void OnBnClickedFilePath();
+	afx_msg void OnBnClickedSubTileTool();
 
-	
+	CFont			m_Font;
+	CMapTool		m_MapTool;
+	CSubTileTool	m_SubTileTool;
+	CFilePath		m_FilePath;
+
 };
 
 

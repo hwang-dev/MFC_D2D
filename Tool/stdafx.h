@@ -62,9 +62,13 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <iostream>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
+/* Header */
 #include "Extern.h"
 #include "Define.h"
 #include "Typedef.h"
@@ -73,6 +77,7 @@ using namespace std;
 #include "Function.h"
 #include "Functor.h"
 
+/* Manager */
 #include "Device.h"
 #include "TextureMgr.h"
 #include "Terrain.h"
