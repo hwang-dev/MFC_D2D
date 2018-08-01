@@ -65,6 +65,8 @@ HRESULT CTextureMgr::InsertTexture(const TCHAR * pFilePath, const TCHAR * pObjKe
 
 		m_MapTexture.insert({ pObjKey, pTexture });
 	}	
+	else if (TEX_MULTI == eType)
+		iter_find->second->InsertTexture(pFilePath, pStateKey, iCount);
 
 	return S_OK;
 }

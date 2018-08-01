@@ -48,6 +48,9 @@ CToolView::CToolView()
 
 CToolView::~CToolView()
 {
+	CSubTile::GetInstance()->DestroyInstance();
+	CTerrain::GetInstance()->DestroyInstance();
+
 	CTextureMgr::GetInstance()->DestroyInstance();
 	CDevice::GetInstance()->DestroyInstance();
 }
@@ -71,8 +74,10 @@ void CToolView::OnDraw(CDC* /*pDC*/)
 
 	CDevice::GetInstance()->Render_Begin();
 
+	
 	CTerrain::GetInstance()->Render();
-
+	CSubTile::GetInstance()->Render();
+	
 	CDevice::GetInstance()->Render_End();
 
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
@@ -158,6 +163,10 @@ void CToolView::OnInitialUpdate()
 	// 터레인 초기화
 	CTerrain::GetInstance()->Initialize();
 	CTerrain::GetInstance()->SetMainView(this);
+
+	// 서브 타일 초기화
+	CSubTile::GetInstance()->Initialize();
+	CSubTile::GetInstance()->SetMainView(this);
 }
 
 
@@ -167,16 +176,22 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 
 	CScrollView::OnLButtonDown(nFlags, point);
 
+	UpdateData(TRUE);
+
 	// 미니뷰를 갱신
 	//CMainFrame* pMainFrm = dynamic_cast<CMainFrame*>(AfxGetMainWnd());
 	CMainFrame* pMainFrm = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
 	CMyForm* pMyForm = dynamic_cast<CMyForm*>(pMainFrm->m_SecondSplit.GetPane(1, 0));
 
+	// GetScrollPos: CScrollView의 멤버함수.
+	point.x += GetScrollPos(0);
+	point.y += GetScrollPos(1);
+
+	/* OnTileTool */
 	if (m_bIsMapTool)
 	{
 
 		// 타일 DrawID 저장
-
 		int iDrawID = pMyForm->m_MapTool.m_iDrawID;
 
 		/* 타일옵션 저장(이동불가 유무) */
@@ -191,11 +206,6 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 		BYTE byRoomNum = 0;
 		byRoomNum = pMyForm->m_MapTool.m_byTileRoomNum;
 
-
-		// GetScrollPos: CScrollView의 멤버함수.
-		point.x += GetScrollPos(0);
-		point.y += GetScrollPos(1);
-
 		CTerrain::GetInstance()->TileChange(D3DXVECTOR3((float)point.x, (float)point.y, 0.f), iDrawID, byOption, byRoomNum);
 
 		// Invalidate: WM_PAINT와 WM_ERASEBKGND 메시지를 발생.
@@ -206,7 +216,21 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 		pMiniView->Invalidate(FALSE);
 
 	}
+	else if (m_bOnSubTileTool)
+	{
+		int iIndex = CTerrain::GetInstance()->GetTileIndex(D3DXVECTOR3((float)point.x, (float)point.y, 0.f));
 
+		// 타일 인덱스에서 벗어나면
+		if (iIndex < 0 || (size_t)iIndex > CTerrain::GetInstance()->GetVecTile().size())
+			return;
+
+		D3DXVECTOR3 vPos = CTerrain::GetInstance()->GetTilePos(iIndex);
+
+		int iDrawID = pMyForm->m_SubTileTool.m_iDrawID;
+		CSubTile::GetInstance()->AddSubTile(vPos, iDrawID);
+	}
+
+	UpdateData(FALSE);
 }
 
 

@@ -82,3 +82,4 @@ using namespace std;
 #include "TextureMgr.h"
 #include "Terrain.h"
 #include "FileInfo.h"
+#include "SubTile.h"

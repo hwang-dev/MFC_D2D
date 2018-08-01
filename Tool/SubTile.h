@@ -1,4 +1,6 @@
 #pragma once
+
+class ToolView;
 class CSubTile
 {
 	DECLARE_SINGLETON(CSubTile)
@@ -12,7 +14,12 @@ public:
 	void Render();
 	void Release();
 
+public:
+	void SetMainView(CToolView* pView) { m_pMainView = pView; }
+	void AddSubTile(D3DXVECTOR3& vPos, int& iDrawID);
+
 private:
-	vector<TILE*> m_vecSubTile;
+	vector<TILE*>	m_vecSubTile;
+	CToolView*		m_pMainView;
 };
 
