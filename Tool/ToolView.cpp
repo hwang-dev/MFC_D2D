@@ -35,6 +35,7 @@ BEGIN_MESSAGE_MAP(CToolView, CScrollView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CScrollView::OnFilePrintPreview)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_MOUSEMOVE()
+	ON_WM_RBUTTONDOWN()
 END_MESSAGE_MAP()
 
 // CToolView 생성/소멸
@@ -174,7 +175,6 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
-	CScrollView::OnLButtonDown(nFlags, point);
 
 	UpdateData(TRUE);
 
@@ -183,7 +183,7 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 	CMainFrame* pMainFrm = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
 	CMyForm* pMyForm = dynamic_cast<CMyForm*>(pMainFrm->m_SecondSplit.GetPane(1, 0));
 
-	// GetScrollPos: CScrollView의 멤버함수.
+	// 마우스에 스크롤값 추가
 	point.x += GetScrollPos(0);
 	point.y += GetScrollPos(1);
 
@@ -220,7 +220,7 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 	{
 		int iIndex = CTerrain::GetInstance()->GetTileIndex(D3DXVECTOR3((float)point.x, (float)point.y, 0.f));
 
-		// 타일 인덱스에서 벗어나면
+		// 타일 인덱스에서 벗어나면 종료
 		if (iIndex < 0 || (size_t)iIndex > CTerrain::GetInstance()->GetVecTile().size())
 			return;
 
@@ -228,9 +228,13 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 
 		int iDrawID = pMyForm->m_SubTileTool.m_iDrawID;
 		CSubTile::GetInstance()->AddSubTile(vPos, iDrawID);
+		Invalidate(FALSE);
 	}
 
 	UpdateData(FALSE);
+
+	CScrollView::OnLButtonDown(nFlags, point);
+
 }
 
 
@@ -274,4 +278,43 @@ void CToolView::OnMouseMove(UINT nFlags, CPoint point)
 	}
 
 	UpdateData(FALSE);
+}
+
+
+void CToolView::OnRButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+
+	UpdateData(TRUE);
+
+	if (m_bOnSubTileTool)
+	{
+		int iIndex = CTerrain::GetInstance()->GetTileIndex(D3DXVECTOR3((float)point.x, (float)point.y, 0.f));
+
+		// 타일 인덱스에서 벗어나면 종료
+		if (iIndex < 0 || (size_t)iIndex > CTerrain::GetInstance()->GetVecTile().size())
+			return;
+
+		// 타일 인덱스의 벡터를 받아온다.
+		D3DXVECTOR3 vTilePos = CTerrain::GetInstance()->GetTilePos(iIndex);
+
+		vector<TILE*> vecTile = CSubTile::GetInstance()->GetSubTile();
+
+		auto& iter_find = vecTile.begin();
+
+		for (; iter_find != vecTile.end();)
+		{
+			if ((*iter_find)->vPos == vTilePos)
+			{
+				SafeDelete(*iter_find);
+				iter_find = vecTile.erase(iter_find);
+				Invalidate(FALSE);
+			}
+			else
+				++iter_find;
+		}
+	}
+	UpdateData(FALSE);
+
+	CScrollView::OnRButtonDown(nFlags, point);
 }

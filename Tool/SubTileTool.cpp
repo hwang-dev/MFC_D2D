@@ -38,6 +38,9 @@ BEGIN_MESSAGE_MAP(CSubTileTool, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON5, &CSubTileTool::OnBnClickedSubTileListSave)
 	ON_BN_CLICKED(IDC_BUTTON2, &CSubTileTool::OnBnClickedSubTileListLoad)
 	ON_LBN_SELCHANGE(IDC_LIST1, &CSubTileTool::OnLbnSelectSubTileBox)
+	ON_BN_CLICKED(IDC_BUTTON1, &CSubTileTool::OnBnClickedCancel)
+	ON_BN_CLICKED(IDC_BUTTON3, &CSubTileTool::OnBnClickedSubTileSave)
+	ON_BN_CLICKED(IDC_BUTTON4, &CSubTileTool::OnBnClickedSubTileLoad)
 END_MESSAGE_MAP()
 
 
@@ -158,7 +161,6 @@ void CSubTileTool::OnBnClickedSubTileListSave()
 		CloseHandle(hFile);
 	}
 
-	AfxMessageBox(L"TileList Save Success");
 	UpdateData(FALSE);
 }
 
@@ -248,6 +250,125 @@ void CSubTileTool::OnLbnSelectSubTileBox()
 
 	strSelectName.Delete(0, i);
 	m_iDrawID = _tstoi(strSelectName);
+
+	UpdateData(FALSE);
+}
+
+
+void CSubTileTool::OnBnClickedCancel()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	UpdateData(TRUE);
+
+	CMainFrame* pMainFrm = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
+	CToolView* pMainView = dynamic_cast<CToolView*>(pMainFrm->m_MainSplit.GetPane(0, 1));
+
+	if(!CSubTile::GetInstance()->GetSubTile().empty())
+	{
+		CSubTile::GetInstance()->GetSubTile().pop_back();
+		pMainView->Invalidate(FALSE);
+	}
+
+	UpdateData(FALSE);
+
+}
+
+
+void CSubTileTool::OnBnClickedSubTileSave()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	UpdateData(TRUE);
+
+	CFileDialog Dlg(FALSE, L"dat", L"*.dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+		L"Data Files(*.dat)|*.dat||", this);
+
+	TCHAR szPath[MAX_STR] = L"";
+
+	GetCurrentDirectory(MAX_STR, szPath);
+	CFileInfo::ConvertRelativePath(szPath);
+	PathRemoveFileSpec(szPath);
+	lstrcat(szPath, L"\\Data");
+
+	Dlg.m_ofn.lpstrInitialDir = szPath;
+
+	if (IDOK == Dlg.DoModal())
+	{
+		HANDLE hFile = CreateFile(Dlg.GetPathName().GetString(), GENERIC_WRITE, 0, 0,
+			CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+
+		if (INVALID_HANDLE_VALUE == hFile)
+		{
+			AfxMessageBox(L"Tile Save Failed!!");
+			return;
+		}
+
+		vector<TILE*>& vecSubTile = CSubTile::GetInstance()->GetSubTile();
+
+		DWORD dwByte = 0;
+
+		for (auto& pTile : vecSubTile)
+			WriteFile(hFile, pTile, sizeof(TILE), &dwByte, nullptr);
+
+		CloseHandle(hFile);
+	}
+
+	UpdateData(FALSE);
+}
+
+
+void CSubTileTool::OnBnClickedSubTileLoad()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	UpdateData(TRUE);
+
+	CFileDialog Dlg(TRUE, L"dat", L"*.dat", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+		L"Data Files(*.dat)|*.dat||", this);
+
+	TCHAR szPath[MAX_STR] = L"";
+
+	GetCurrentDirectory(MAX_STR, szPath);
+	PathRemoveFileSpec(szPath);
+	lstrcat(szPath, L"\\Data");
+
+	Dlg.m_ofn.lpstrInitialDir = szPath;
+
+	if (IDOK == Dlg.DoModal())
+	{
+		HANDLE hFile = CreateFile(Dlg.GetPathName().GetString(), GENERIC_READ, 0, 0,
+			OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+
+		if (INVALID_HANDLE_VALUE == hFile)
+		{
+			AfxMessageBox(L"Tile Load Failed!!");
+			return;
+		}
+
+		CMainFrame* pMainFrm = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
+		CToolView* pMainView = dynamic_cast<CToolView*>(pMainFrm->m_MainSplit.GetPane(0, 1));
+
+
+		CSubTile::GetInstance()->Release();
+		vector<TILE*>& vecSubTile = CSubTile::GetInstance()->GetSubTile();
+
+		TILE tTile = {};
+		DWORD dwByte = 0;
+
+		while (true)
+		{
+			ReadFile(hFile, &tTile, sizeof(TILE), &dwByte, nullptr);
+
+			if (0 == dwByte)
+				break;
+
+			TILE* pTile = new TILE(tTile);
+			vecSubTile.push_back(pTile);
+		}
+
+		CloseHandle(hFile);
+		pMainView->Invalidate(FALSE);
+	}
 
 	UpdateData(FALSE);
 }

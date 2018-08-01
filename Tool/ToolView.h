@@ -58,6 +58,7 @@ public:
 	bool	m_bOnTriggerTool;
 	bool	m_bOnMonsterTool;
 	bool	m_bOnBossTool;
+	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // ToolView.cpp의 디버그 버전
