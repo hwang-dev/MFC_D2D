@@ -164,7 +164,7 @@ void CMapTool::OnDropFiles(HDROP hDropInfo)
 
 		if (m_mapTilePath.end() == iter_find)
 		{
-			m_mapTilePath.insert({ strFileName, szFilePath });
+			m_mapTilePath.insert({ strFileName, strRelativePath });
 			m_TileBox.AddString(szFileName);
 		}
 	}

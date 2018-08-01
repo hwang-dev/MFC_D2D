@@ -88,16 +88,11 @@ void CSubTileTool::OnDropFiles(HDROP hDropInfo)
 
 		if (m_mapTilePath.end() == iter_find)
 		{
-			m_mapTilePath.insert({ strFileName, szFilePath });
+			m_mapTilePath.insert({ strFileName, strRelativePath });
 			m_SubTileBox.AddString(szFileName);
 		}
 	}
-
-	// 맵에 이미지 이름, 상대 경로 저장
-
-
 	UpdateData(FALSE);
-
 
 	CDialog::OnDropFiles(hDropInfo);
 }
