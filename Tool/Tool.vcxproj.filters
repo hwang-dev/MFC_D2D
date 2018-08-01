@@ -67,6 +67,12 @@
     <Filter Include="04.Dialog\06.TilePath">
       <UniqueIdentifier>{607e475c-1868-4804-90cb-c0246e213ac3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.Terrain\00.Tile">
+      <UniqueIdentifier>{86bcff55-9336-43de-880a-dd5e0a870f67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Terrain\01.SubTile">
+      <UniqueIdentifier>{12aa4dbc-7f84-45fa-927b-6556979cc9fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainFrm.h">
@@ -111,9 +117,6 @@
     <ClInclude Include="MyForm.h">
       <Filter>03.FormView</Filter>
     </ClInclude>
-    <ClInclude Include="Terrain.h">
-      <Filter>05.Terrain</Filter>
-    </ClInclude>
     <ClInclude Include="MapTool.h">
       <Filter>04.Dialog\00.MapTool</Filter>
     </ClInclude>
@@ -125,6 +128,12 @@
     </ClInclude>
     <ClInclude Include="FilePath.h">
       <Filter>04.Dialog\06.TilePath</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>05.Terrain\00.Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="SubTile.h">
+      <Filter>05.Terrain\01.SubTile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -164,9 +173,6 @@
     <ClCompile Include="MyForm.cpp">
       <Filter>03.FormView</Filter>
     </ClCompile>
-    <ClCompile Include="Terrain.cpp">
-      <Filter>05.Terrain</Filter>
-    </ClCompile>
     <ClCompile Include="MapTool.cpp">
       <Filter>04.Dialog\00.MapTool</Filter>
     </ClCompile>
@@ -178,6 +184,12 @@
     </ClCompile>
     <ClCompile Include="FilePath.cpp">
       <Filter>04.Dialog\06.TilePath</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>05.Terrain\00.Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="SubTile.cpp">
+      <Filter>05.Terrain\01.SubTile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
