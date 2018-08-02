@@ -36,6 +36,7 @@ public:
 	virtual BOOL OnInitDialog();
 
 	/* User */
+	int i = 0;
 
 	/* User Func */
 	void Release();
