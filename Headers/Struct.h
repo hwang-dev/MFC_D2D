@@ -36,4 +36,5 @@ typedef struct tagTexturePath
 	wstring wstrStateKey = L"";
 	wstring wstrPath = L"";
 	int iCount = 0;
+
 }IMGPATH;

@@ -22,10 +22,11 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
+	/* User Func */
 	void Release();
 	void TileListLoad();
 
-	/////////////////////////////////////
+	/* MFC Func */
 	virtual BOOL OnInitDialog();
 	afx_msg void OnDropFiles(HDROP hDropInfo);
 	afx_msg void OnLbnSelectTileBox();
@@ -36,17 +37,22 @@ public:
 	afx_msg void OnBnClickedTileListLoad();
 	afx_msg void OnEnChangeFindTileNum();
 	afx_msg void OnEnChangeRoomNumber();
+	afx_msg void OnBnClickedMapSet();
 
-	/////////////////////////////////////
+	/* MFC Ctrl */
 	CListBox m_TileBox;
 	CStatic m_PictureCtrl;
 	CButton m_CheckMove;
 	CString m_strTileNum;
+	CImage*					m_pImage;
 
-	/////////////////////////////////////
+	int m_iTileX;
+	int m_iTileY;
+	CListBox m_StageListBox;
+
+	/* User */
 	map<CString, CImage*>	m_MapImg;
 	map<CString, CString>	m_mapTilePath;
-	CImage*					m_pImage;
 
 	int		m_byCursorIndex;
 	int		m_iDrawID;
@@ -55,4 +61,6 @@ public:
 	BYTE	m_byTileOption;
 	BYTE	m_byCursorRoomNum;
 	BYTE	m_byTileRoomNum;
+
+	CString m_strStageName;
 };

@@ -17,7 +17,7 @@ public:
 	void Render();
 	void MiniRender(float fRatio);
 	void Release();
-
+	
 	void SetMainView(CToolView* pView) { m_pMainView = pView; }
 	vector<TILE*>& GetVecTile() { return m_vecTile; }
 

@@ -30,13 +30,12 @@ public:
 	float m_fBulletSpd;
 
 	/* MFC Func */
+	virtual BOOL OnInitDialog();
 	afx_msg void OnBnClickedSetBtn();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnDropFiles(HDROP hDropInfo);
-	virtual BOOL OnInitDialog();
 
 	/* User */
-	int i = 0;
 
 	/* User Func */
 	void Release();

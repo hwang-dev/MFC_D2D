@@ -22,6 +22,9 @@ CMapTool::CMapTool(CWnd* pParent /*=NULL*/)
 	, m_byTileOption(0)
 	, m_byCursorRoomNum(0)
 	, m_byTileRoomNum(0)
+	, m_iTileX(0)
+	, m_iTileY(0)
+	, m_strStageName(_T(""))
 {
 
 }
@@ -43,6 +46,10 @@ void CMapTool::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT6, m_byTileOption);
 	DDX_Text(pDX, IDC_EDIT5, m_byCursorRoomNum);
 	DDX_Text(pDX, IDC_EDIT2, m_byTileRoomNum);
+	DDX_Text(pDX, IDC_EDIT7, m_iTileX);
+	DDX_Text(pDX, IDC_EDIT9, m_iTileY);
+	DDX_Control(pDX, IDC_LIST3, m_StageListBox);
+	DDX_Text(pDX, IDC_EDIT10, m_strStageName);
 }
 
 
@@ -57,6 +64,7 @@ BEGIN_MESSAGE_MAP(CMapTool, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON4, &CMapTool::OnBnClickedTileListLoad)
 	ON_EN_CHANGE(IDC_EDIT1, &CMapTool::OnEnChangeFindTileNum)
 	ON_EN_CHANGE(IDC_EDIT2, &CMapTool::OnEnChangeRoomNumber)
+	ON_BN_CLICKED(IDC_BUTTON9, &CMapTool::OnBnClickedMapSet)
 END_MESSAGE_MAP()
 
 
@@ -457,6 +465,17 @@ void CMapTool::OnEnChangeRoomNumber()
 
 	UpdateData(TRUE);
 
+
+	UpdateData(FALSE);
+}
+
+
+void CMapTool::OnBnClickedMapSet()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	UpdateData(TRUE);
+
+	//m_StageListBox.AddString(m_strStageName);
 
 	UpdateData(FALSE);
 }

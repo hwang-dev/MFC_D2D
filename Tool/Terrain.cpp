@@ -128,6 +128,8 @@ void CTerrain::Release()
 	m_vecTile.shrink_to_fit();
 }
 
+
+
 void CTerrain::TileChange(const D3DXVECTOR3 & vPos, const int & iDrawID, const BYTE& byOption, const BYTE& byRoomNum)
 {
 	int iIndex = GetTileIndex(vPos);

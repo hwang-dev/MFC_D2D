@@ -47,3 +47,12 @@ private:									\
 
 #define IMPLEMENT_SINGLETON(ClassName)		\
 	ClassName*	ClassName::m_pInstance = nullptr;
+
+#define TILEX_INTRO 40;
+#define TILEY_INTRO 40;
+
+#define TILEX_NORMAL 40;
+#define TILEY_NORMAL 40;
+
+#define TILEX_BOSS 40;
+#define TILEY_BOSS 40;

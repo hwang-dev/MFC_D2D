@@ -15,7 +15,7 @@ CTileMgr::~CTileMgr()
 
 HRESULT CTileMgr::Initialize()
 {
-	if (FAILED(CTextureMgr::GetInstance()->InsertTexture(L"../Texture/Tile/Tile%d.png", L"Terrain",
+	if (FAILED(CTextureMgr::GetInstance()->InsertTexture(L"../Texture/TERRAIN/TILE/Tile%d.png", L"Terrain",
 		TEX_MULTI, L"Tile", 59)))
 	{
 		ERR_MSG(L"Terrain Image Insert Failed");
