@@ -31,6 +31,10 @@ BEGIN_MESSAGE_MAP(CMyForm, CFormView)
 	ON_BN_CLICKED(IDC_BUTTON1, &CMyForm::OnBnClickedMapTool)
 	ON_BN_CLICKED(IDC_BUTTON7, &CMyForm::OnBnClickedFilePath)
 	ON_BN_CLICKED(IDC_BUTTON5, &CMyForm::OnBnClickedSubTileTool)
+	ON_BN_CLICKED(IDC_BUTTON2, &CMyForm::OnBnClickedMonsterTool)
+	ON_BN_CLICKED(IDC_BUTTON3, &CMyForm::OnBnClickedObjectTool)
+	ON_BN_CLICKED(IDC_BUTTON4, &CMyForm::OnBnClickedTriggerTool)
+	ON_BN_CLICKED(IDC_BUTTON6, &CMyForm::OnBnClickedBossTool)
 END_MESSAGE_MAP()
 
 
@@ -112,4 +116,64 @@ void CMyForm::OnBnClickedSubTileTool()
 	pMainView->m_bOnSubTileTool = true;
 	m_SubTileTool.ShowWindow(SW_SHOW);
 	
+}
+
+
+void CMyForm::OnBnClickedMonsterTool()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
+	CToolView*	pMainView = dynamic_cast<CToolView*>(pMainFrame->m_MainSplit.GetPane(0, 1));
+
+	if (m_MonsterTool.GetSafeHwnd() == nullptr)
+		m_MonsterTool.Create(IDD_MONSTERTOOL);
+
+	pMainView->m_bOnMonsterTool = true;
+	m_MonsterTool.ShowWindow(SW_SHOW);
+}
+
+
+void CMyForm::OnBnClickedObjectTool()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
+	CToolView*	pMainView = dynamic_cast<CToolView*>(pMainFrame->m_MainSplit.GetPane(0, 1));
+
+	if (m_ObjectTool.GetSafeHwnd() == nullptr)
+		m_ObjectTool.Create(IDD_OBJECTTOOL);
+
+	pMainView->m_bOnObjectTool = true;
+	m_ObjectTool.ShowWindow(SW_SHOW);
+}
+
+
+void CMyForm::OnBnClickedTriggerTool()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
+	CToolView*	pMainView = dynamic_cast<CToolView*>(pMainFrame->m_MainSplit.GetPane(0, 1));
+
+	if (m_TriggerTool.GetSafeHwnd() == nullptr)
+		m_TriggerTool.Create(IDD_TRIGGERTOOL);
+
+	pMainView->m_bOnTriggerTool = true;
+	m_TriggerTool.ShowWindow(SW_SHOW);
+}
+
+
+void CMyForm::OnBnClickedBossTool()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
+	CToolView*	pMainView = dynamic_cast<CToolView*>(pMainFrame->m_MainSplit.GetPane(0, 1));
+
+	if (m_BossTool.GetSafeHwnd() == nullptr)
+		m_BossTool.Create(IDD_BOSSTOOL);
+
+	pMainView->m_bOnBossTool = true;
+	m_BossTool.ShowWindow(SW_SHOW);
 }

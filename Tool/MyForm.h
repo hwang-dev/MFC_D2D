@@ -6,6 +6,11 @@
 #include "MapTool.h"
 #include "SubTileTool.h"
 #include "FilePath.h"
+#include "MonsterTool.h"
+#include "ObjectTool.h"
+#include "BossTool.h"
+#include "TriggerTool.h"
+
 
 class CMyForm : public CFormView
 {
@@ -36,11 +41,19 @@ public:
 	afx_msg void OnBnClickedMapTool();
 	afx_msg void OnBnClickedFilePath();
 	afx_msg void OnBnClickedSubTileTool();
+	afx_msg void OnBnClickedMonsterTool();
+	afx_msg void OnBnClickedObjectTool();
+	afx_msg void OnBnClickedTriggerTool();
+	afx_msg void OnBnClickedBossTool();
 
 	CFont			m_Font;
 	CMapTool		m_MapTool;
 	CSubTileTool	m_SubTileTool;
 	CFilePath		m_FilePath;
+	CMonsterTool	m_MonsterTool;
+	CTriggerTool	m_TriggerTool;
+	CBossTool		m_BossTool;
+	CObjectTool		m_ObjectTool;
 
 };
 

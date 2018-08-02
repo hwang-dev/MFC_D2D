@@ -29,6 +29,8 @@ public:
 	afx_msg void OnBnClickedSubTileListLoad();
 	afx_msg void OnLbnSelectSubTileBox();
 	afx_msg void OnBnClickedCancel();
+	afx_msg void OnBnClickedSubTileSave();
+	afx_msg void OnBnClickedSubTileLoad();
 
 	/* Ctrl */
 	CStatic		m_PictureCtrl;
@@ -42,6 +44,4 @@ public:
 	CImage*					m_pImage;
 	int						m_iDrawID;
 	
-	afx_msg void OnBnClickedSubTileSave();
-	afx_msg void OnBnClickedSubTileLoad();
 };

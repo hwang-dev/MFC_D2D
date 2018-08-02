@@ -83,3 +83,4 @@ using namespace std;
 #include "Terrain.h"
 #include "FileInfo.h"
 #include "SubTile.h"
+#include <afxdlgs.h>

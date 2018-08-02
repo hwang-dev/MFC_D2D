@@ -135,6 +135,18 @@
     <ClInclude Include="SubTile.h">
       <Filter>05.Terrain\01.SubTile</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterTool.h">
+      <Filter>04.Dialog\04.MonsterTool</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectTool.h">
+      <Filter>04.Dialog\02.ObjectTool</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerTool.h">
+      <Filter>04.Dialog\03.TriggerTool</Filter>
+    </ClInclude>
+    <ClInclude Include="BossTool.h">
+      <Filter>04.Dialog\05.BossTool</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -190,6 +202,18 @@
     </ClCompile>
     <ClCompile Include="SubTile.cpp">
       <Filter>05.Terrain\01.SubTile</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterTool.cpp">
+      <Filter>04.Dialog\04.MonsterTool</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectTool.cpp">
+      <Filter>04.Dialog\02.ObjectTool</Filter>
+    </ClCompile>
+    <ClCompile Include="TriggerTool.cpp">
+      <Filter>04.Dialog\03.TriggerTool</Filter>
+    </ClCompile>
+    <ClCompile Include="BossTool.cpp">
+      <Filter>04.Dialog\05.BossTool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
