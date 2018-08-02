@@ -24,24 +24,24 @@ void CTerrain::Initialize()
 		return;
 	}
 
-	for (int i = 0; i < TILEY; ++i)
-	{
-		for (int j = 0; j < TILEX; ++j)
-		{
-			TILE* pTile = new TILE;
+	//for (int i = 0; i < TILEY; ++i)
+	//{
+	//	for (int j = 0; j < TILEX; ++j)
+	//	{
+	//		TILE* pTile = new TILE;
 
-			float fX = float((j * (TILECX)) + TILECX);
-			float fY = float((i * (TILECY)) + TILECY);
+	//		float fX = float((j * (TILECX)) + TILECX);
+	//		float fY = float((i * (TILECY)) + TILECY);
 
-			pTile->vPos = D3DXVECTOR3(fX, fY, 0.f);
-			pTile->vSize = D3DXVECTOR3((float)TILECX, (float)TILECY, 0.f);
-			pTile->byOption = 0;
-			pTile->byDrawID = 0;
-			pTile->byRoomNum = 0;
+	//		pTile->vPos = D3DXVECTOR3(fX, fY, 0.f);
+	//		pTile->vSize = D3DXVECTOR3((float)TILECX, (float)TILECY, 0.f);
+	//		pTile->byOption = 0;
+	//		pTile->byDrawID = 0;
+	//		pTile->byRoomNum = 0;
 
-			m_vecTile.push_back(pTile);
-		}
-	}
+	//		m_vecTile.push_back(pTile);
+	//	}
+	//}
 }
 
 void CTerrain::Update()
@@ -129,6 +129,29 @@ void CTerrain::Release()
 }
 
 
+
+void CTerrain::SetTile(int iTileX, int iTileY)
+{
+	for (int i = 0; i < iTileY; ++i)
+	{
+		for (int j = 0; j < iTileX; ++j)
+		{
+			TILE* pTile = new TILE;
+
+			float fX = float((j * (TILECX) + (TILECX * 0.5f)));
+			float fY = float((i * (TILECY) + (TILECY * 0.5f)));
+
+			pTile->vPos = D3DXVECTOR3(fX, fY, 0.f);
+			pTile->vSize = D3DXVECTOR3((float)TILECX, (float)TILECY, 0.f);
+			pTile->byOption = 0;
+			pTile->byDrawID = 0;
+			pTile->byRoomNum = 0;
+
+			m_vecTile.push_back(pTile);
+		}
+	}
+
+}
 
 void CTerrain::TileChange(const D3DXVECTOR3 & vPos, const int & iDrawID, const BYTE& byOption, const BYTE& byRoomNum)
 {

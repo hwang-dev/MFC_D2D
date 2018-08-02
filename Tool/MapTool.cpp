@@ -65,6 +65,7 @@ BEGIN_MESSAGE_MAP(CMapTool, CDialog)
 	ON_EN_CHANGE(IDC_EDIT1, &CMapTool::OnEnChangeFindTileNum)
 	ON_EN_CHANGE(IDC_EDIT2, &CMapTool::OnEnChangeRoomNumber)
 	ON_BN_CLICKED(IDC_BUTTON9, &CMapTool::OnBnClickedMapSet)
+	ON_BN_CLICKED(IDC_BUTTON10, &CMapTool::OnBnClickedInit)
 END_MESSAGE_MAP()
 
 
@@ -475,7 +476,24 @@ void CMapTool::OnBnClickedMapSet()
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	UpdateData(TRUE);
 
-	//m_StageListBox.AddString(m_strStageName);
+	CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
+	CToolView*	pMainView = dynamic_cast<CToolView*>(pMainFrame->m_MainSplit.GetPane(0, 1));
+
+	CTerrain::GetInstance()->SetTile(m_iTileX, m_iTileY);
+	pMainView->Invalidate(FALSE);
 
 	UpdateData(FALSE);
+}
+
+
+void CMapTool::OnBnClickedInit()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	CMainFrame* pMainFrame = dynamic_cast<CMainFrame*>(AfxGetApp()->GetMainWnd());
+	CToolView*	pMainView = dynamic_cast<CToolView*>(pMainFrame->m_MainSplit.GetPane(0, 1));
+
+	CTerrain::GetInstance()->Release();
+
+	pMainView->Invalidate(FALSE);
 }

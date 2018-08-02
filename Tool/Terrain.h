@@ -20,6 +20,7 @@ public:
 	
 	void SetMainView(CToolView* pView) { m_pMainView = pView; }
 	vector<TILE*>& GetVecTile() { return m_vecTile; }
+	void SetTile(int iTileX, int iTileY);
 
 public:
 	void TileChange(const D3DXVECTOR3& vPos, const int& iDrawID, const BYTE& byOption, const BYTE& byRoomNum);

@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "ScrollMgr.h"
 
-float CScrollMgr::m_fScrollX = 0.f;
-float CScrollMgr::m_fScrollY = 0.f;
+D3DXVECTOR3 CScrollMgr::m_vScroll = {};
 
 CScrollMgr::CScrollMgr()
 {
@@ -15,6 +14,6 @@ CScrollMgr::~CScrollMgr()
 
 void CScrollMgr::SetScroll(float x, float y)
 {
-	m_fScrollX += x;
-	m_fScrollY += y;
+	m_vScroll.x += x;
+	m_vScroll.y += y;
 }

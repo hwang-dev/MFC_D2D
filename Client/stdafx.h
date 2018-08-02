@@ -39,6 +39,7 @@ using namespace std;
 #include "Functor.h"
 
 // managers
+#include "Mouse.h"
 #include "TimeMgr.h"
 #include "Device.h"
 #include "TextureMgr.h"

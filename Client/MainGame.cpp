@@ -41,6 +41,7 @@ void CMainGame::Update()
 
 void CMainGame::LateUpdate()
 {
+	CTileMgr::GetInstance()->LateUpdate();
 }
 
 void CMainGame::Render()
@@ -56,6 +57,7 @@ void CMainGame::Release()
 {
 
 	CTileMgr::GetInstance()->DestroyInstance();
+
 	///// Manager Destory
 	CTextureMgr::GetInstance()->DestroyInstance();
 	CDevice::GetInstance()->DestroyInstance();

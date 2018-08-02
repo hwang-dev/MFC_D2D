@@ -49,6 +49,9 @@
     <Filter Include="98.Managers\05.ScrollMgr">
       <UniqueIdentifier>{fc04c48f-6015-4159-a999-96e6d89a2f08}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Object\03.Mouse">
+      <UniqueIdentifier>{53a301c8-eb31-43ba-b13d-b1b56c1c6009}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -96,6 +99,9 @@
     <ClInclude Include="ScrollMgr.h">
       <Filter>98.Managers\05.ScrollMgr</Filter>
     </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>01.Object\03.Mouse</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -136,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="ScrollMgr.cpp">
       <Filter>98.Managers\05.ScrollMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>01.Object\03.Mouse</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -34,18 +34,34 @@ void CTileMgr::Update()
 
 void CTileMgr::LateUpdate()
 {
+	float fTime = CTimeMgr::GetInstance()->GetTime();
+
+	if (CMouse::GetMousePos().x < 0)
+	{
+		CScrollMgr::SetScroll(250.f * fTime, 0.f);
+	}
+	if (CMouse::GetMousePos().x > WINCX)
+	{
+		CScrollMgr::SetScroll(-250.f * fTime, 0.f);
+	}
+	if (CMouse::GetMousePos().y < 0)
+	{
+		CScrollMgr::SetScroll(0.f, 250.f * fTime);
+	}
+	if (CMouse::GetMousePos().y > WINCY)
+	{
+		CScrollMgr::SetScroll(0, -250.f * fTime);
+	}
 }
 
 void CTileMgr::Render()
 {
 	D3DXMATRIX matWorld, matScale, matTrans;
 
+	D3DXVECTOR3 vScroll = CScrollMgr::GetScroll();
 
-	float fScrollX = CScrollMgr::GetScrollX();
-	float fScrollY = CScrollMgr::GetScrollY();
-
-	int iCullX = -(int)fScrollX / TILECX;
-	int iCullY = -(int)fScrollY / TILECY;
+	int iCullX = -(int)vScroll.x / TILECX;
+	int iCullY = -(int)vScroll.y / TILECY;
 
 	int iCullEndX = iCullX + WINCX / TILECX;
 	int iCullEndY = iCullY + WINCY / TILECY;
@@ -54,7 +70,7 @@ void CTileMgr::Render()
 	{
 		for (int j = iCullX; j < iCullEndX + 2; ++j)
 		{
-			int iIndex = j + (TILEX * i);
+			int iIndex = j + (40 * i);
 
 			if (0 > iIndex || m_vecTile.size() <= (size_t)iIndex)
 				continue;
@@ -62,8 +78,8 @@ void CTileMgr::Render()
 			D3DXMatrixIdentity(&matWorld);
 			D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);
 			D3DXMatrixTranslation(&matTrans,
-				(m_vecTile[iIndex]->vPos.x ) + fScrollX,
-				(m_vecTile[iIndex]->vPos.y ) + fScrollY,
+				(m_vecTile[iIndex]->vPos.x ) + CScrollMgr::GetScroll().x,
+				(m_vecTile[iIndex]->vPos.y ) + CScrollMgr::GetScroll().y,
 				m_vecTile[iIndex]->vPos.z);
 
 			matWorld = matScale * matTrans;

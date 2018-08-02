@@ -63,4 +63,5 @@ public:
 	BYTE	m_byTileRoomNum;
 
 	CString m_strStageName;
+	afx_msg void OnBnClickedInit();
 };

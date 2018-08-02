@@ -6,14 +6,12 @@ public:
 	~CScrollMgr();
 
 public:
-	static const float& GetScrollX() { return m_fScrollX; }
-	static const float& GetScrollY() { return m_fScrollY; }
+	static const D3DXVECTOR3& GetScroll() { return m_vScroll; }
 
 public:
 	static void SetScroll(float x, float y);
 
 private:
-	static float m_fScrollX;
-	static float m_fScrollY;
+	static D3DXVECTOR3 m_vScroll;
 };
 
