@@ -39,10 +39,11 @@ using namespace std;
 #include "Functor.h"
 
 // managers
-#include "Mouse.h"
 #include "TimeMgr.h"
 #include "Device.h"
+#include "Mouse.h"
 #include "TextureMgr.h"
 #include "ObjMgr.h"
 #include "ScrollMgr.h"
 #include "TileMgr.h"
+#include "SceneMgr.h"

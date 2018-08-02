@@ -16,6 +16,7 @@ typedef struct tagTile
 	BYTE byOption;		// 鸥老狼 可记.
 	BYTE byDrawID;		// 坊歹傅 可记.
 	BYTE byRoomNum;		// 
+
 }TILE;
 
 typedef struct tagInfo
@@ -28,7 +29,7 @@ typedef struct tagInfo
 
 	BYTE byOption;		// 鸥老狼 可记.
 	BYTE byDrawID;		// 坊歹傅 可记.
-}INFO;
+} INFO;
 
 typedef struct tagTexturePath
 {
@@ -37,4 +38,4 @@ typedef struct tagTexturePath
 	wstring wstrPath = L"";
 	int iCount = 0;
 
-}IMGPATH;
+} IMGPATH;

@@ -52,6 +52,24 @@
     <Filter Include="01.Object\03.Mouse">
       <UniqueIdentifier>{53a301c8-eb31-43ba-b13d-b1b56c1c6009}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.Scene">
+      <UniqueIdentifier>{95bf33a7-5aa4-42e8-8b11-32d0708fe71f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Scene\00.Scene">
+      <UniqueIdentifier>{6b31cffb-42e6-4157-b2c7-b427adabb8f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Scene\00.Scene\00.Logo">
+      <UniqueIdentifier>{64f1ba51-59a1-4b28-85a1-d093c1bc01ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Scene\00.Scene\01.Lobby">
+      <UniqueIdentifier>{2433669e-40b0-4882-8718-879579be58b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Scene\00.Scene\02.Normal">
+      <UniqueIdentifier>{54d34fc8-6c1b-4e65-bb0b-d47fa20baa62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Scene\00.Scene\03.Boss">
+      <UniqueIdentifier>{0ed768aa-60d8-423b-be46-1777c06f7c2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -102,6 +120,24 @@
     <ClInclude Include="Mouse.h">
       <Filter>01.Object\03.Mouse</Filter>
     </ClInclude>
+    <ClInclude Include="SceneMgr.h">
+      <Filter>02.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Lobby.h">
+      <Filter>02.Scene\00.Scene\01.Lobby</Filter>
+    </ClInclude>
+    <ClInclude Include="Logo.h">
+      <Filter>02.Scene\00.Scene\00.Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>02.Scene\00.Scene\03.Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>02.Scene\00.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Normal.h">
+      <Filter>02.Scene\00.Scene\02.Normal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -145,6 +181,24 @@
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
       <Filter>01.Object\03.Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMgr.cpp">
+      <Filter>02.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Lobby.cpp">
+      <Filter>02.Scene\00.Scene\01.Lobby</Filter>
+    </ClCompile>
+    <ClCompile Include="Logo.cpp">
+      <Filter>02.Scene\00.Scene\00.Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>02.Scene\00.Scene\03.Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>02.Scene\00.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Normal.cpp">
+      <Filter>02.Scene\00.Scene\02.Normal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
