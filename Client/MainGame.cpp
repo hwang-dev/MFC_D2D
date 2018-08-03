@@ -14,6 +14,8 @@ CMainGame::~CMainGame()
 
 HRESULT CMainGame::Initialize()
 {
+	ShowCursor(false);
+
 	// TImeMgr 초기화
 	CTimeMgr::GetInstance()->InitTime();
 
@@ -24,20 +26,18 @@ HRESULT CMainGame::Initialize()
 		return E_FAIL;
 	}
 
+	// Texture 불러오기
+	if (FAILED(CTextureMgr::GetInstance()->ReadImgPath(L"../Data/ImgPath.txt")))
+		return E_FAIL;
 
+	////////////////////////////////////////////////////////////////////////////////////
+
+	// SceneMgr
 	if (FAILED(CSceneMgr::GetInstance()->SceneChange(CSceneMgr::LOBBY)))
 	{
 		ERR_MSG(L"Scene Change Failed");
 		return E_FAIL;
 	}
-
-	// Tile Init
-	if (FAILED(CTileMgr::GetInstance()->Initialize()))
-	{
-		ERR_MSG(L"Tile Init Failed");
-		return E_FAIL;
-	}
-
 
 	return S_OK;
 }
@@ -52,7 +52,7 @@ void CMainGame::Update()
 
 void CMainGame::LateUpdate()
 {
-	CTileMgr::GetInstance()->LateUpdate();
+	CSceneMgr::GetInstance()->LateUpdate();
 }
 
 void CMainGame::Render()
@@ -66,8 +66,6 @@ void CMainGame::Render()
 
 void CMainGame::Release()
 {
-
-
 	///// Manager Destory
 	CTextureMgr::GetInstance()->DestroyInstance();
 	CDevice::GetInstance()->DestroyInstance();
@@ -75,4 +73,7 @@ void CMainGame::Release()
 	CTileMgr::GetInstance()->DestroyInstance();
 	CTimeMgr::GetInstance()->DestroyInstance();
 	CSceneMgr::GetInstance()->DestroyInstance();
+	CMouse::GetInstance()->DestroyInstance();
+	CObjMgr::GetInstance()->DestroyInstance();
+	CKeyMgr::GetInstance()->DestroyInstance();
 }

@@ -1,10 +1,19 @@
 #pragma once
 class CMouse
 {
-public:
+	DECLARE_SINGLETON(CMouse)
+
+private:
 	CMouse();
 	~CMouse();
 
-	static D3DXVECTOR3 GetMousePos();
+public:
+	void Update();
+	void Render();
+	D3DXVECTOR3& GetMousePos();
+
+private:
+	D3DXVECTOR3 m_vMouse;
+
 };
 

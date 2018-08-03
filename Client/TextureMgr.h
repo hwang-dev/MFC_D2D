@@ -14,6 +14,7 @@ public:
 		const int& iIndex = 0 );
 
 public:
+	HRESULT ReadImgPath(const wstring& wstrPath);
 	HRESULT InsertTexture(const TCHAR* pFilePath , const TCHAR* pObjKey, TEXTYPE eType, 
 		const TCHAR* pStateKey = L"" ,	const int& iCount = 0 );
 	void Release();

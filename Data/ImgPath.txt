@@ -1,3 +1,4 @@
+MOUSE|CURSOR|1|..\Texture\MOUSE\CURSOR\%d.png
 DODGE|Down|9|..\Texture\PLAYER\DODGE\Down\%d.png
 DODGE|Down_Left|9|..\Texture\PLAYER\DODGE\Down_Left\%d.png
 DODGE|Down_Right|9|..\Texture\PLAYER\DODGE\Down_Right\%d.png

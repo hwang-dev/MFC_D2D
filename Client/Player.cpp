@@ -18,7 +18,7 @@ HRESULT CPlayer::Initialize()
 
 int CPlayer::Update()
 {
-	return S_OK
+	return S_OK;
 }
 
 void CPlayer::LateUpdate()

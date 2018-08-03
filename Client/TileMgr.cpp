@@ -15,16 +15,6 @@ CTileMgr::~CTileMgr()
 
 HRESULT CTileMgr::Initialize()
 {
-	if (FAILED(CTextureMgr::GetInstance()->InsertTexture(L"../Texture/TERRAIN/TILE/Tile%d.png", L"Terrain",
-		TEX_MULTI, L"Tile", 59)))
-	{
-		ERR_MSG(L"Terrain Image Insert Failed");
-		return E_FAIL;
-	}
-
-	if (FAILED(LoadTile()))
-		return E_FAIL;
-
 	return S_OK;
 }
 
@@ -36,19 +26,19 @@ void CTileMgr::LateUpdate()
 {
 	float fTime = CTimeMgr::GetInstance()->GetTime();
 
-	if (CMouse::GetMousePos().x < 0)
+	if (CMouse::GetInstance()->GetMousePos().x < 0)
 	{
 		CScrollMgr::SetScroll(250.f * fTime, 0.f);
 	}
-	if (CMouse::GetMousePos().x > WINCX)
+	if (CMouse::GetInstance()->GetMousePos().x > WINCX)
 	{
 		CScrollMgr::SetScroll(-250.f * fTime, 0.f);
 	}
-	if (CMouse::GetMousePos().y < 0)
+	if (CMouse::GetInstance()->GetMousePos().y < 0)
 	{
 		CScrollMgr::SetScroll(0.f, 250.f * fTime);
 	}
-	if (CMouse::GetMousePos().y > WINCY)
+	if (CMouse::GetInstance()->GetMousePos().y > WINCY)
 	{
 		CScrollMgr::SetScroll(0, -250.f * fTime);
 	}
@@ -87,7 +77,7 @@ void CTileMgr::Render()
 			CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
 
 			const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(
-				L"Terrain", L"Tile", m_vecTile[iIndex]->byDrawID);
+				L"TERRAIN", L"TILE", m_vecTile[iIndex]->byDrawID);
 
 			if (nullptr == pTexInfo)
 				continue;

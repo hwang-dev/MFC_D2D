@@ -73,6 +73,9 @@
     <Filter Include="98.Managers\06.KeyMgr">
       <UniqueIdentifier>{abe69b7c-6f28-4450-bec4-1e5ec589c007}</UniqueIdentifier>
     </Filter>
+    <Filter Include="97.DesignPattern">
+      <UniqueIdentifier>{14e4587b-6b18-4671-a7eb-bac651501e03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -233,8 +236,5 @@
     <Text Include="ReadMe.txt">
       <Filter>99.Default</Filter>
     </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

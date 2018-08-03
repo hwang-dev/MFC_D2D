@@ -31,6 +31,47 @@ const TEXINFO* CTextureMgr::GetTexture(const TCHAR* pObjKey, const TCHAR* pState
 	return iter_find->second->GetTexture(pStateKey, iIndex);
 }
 
+HRESULT CTextureMgr::ReadImgPath(const wstring & wstrPath)
+{
+	wifstream fin;
+
+	TCHAR szObjKey[MAX_STR] = L"";
+	TCHAR szStateKey[MAX_STR] = L"";
+	TCHAR szCount[MIN_STR] = L"";
+	TCHAR szPath[MAX_STR] = L"";
+
+	fin.open(wstrPath);
+
+	if (fin.fail())
+	{
+		ERR_MSG(L"ImgPath Load Fail");
+		return E_FAIL;
+	}
+
+	while (true)
+	{
+		fin.getline(szObjKey, MAX_STR, '|');
+		fin.getline(szStateKey, MAX_STR, '|');
+		fin.getline(szCount, MIN_STR, '|');
+		fin.getline(szPath, MAX_STR);
+
+		if (fin.eof())
+			break;
+
+		int iCount = _ttoi(szCount);
+
+		if (FAILED(InsertTexture(szPath, szObjKey, TEX_MULTI, szStateKey, iCount)))
+		{
+			fin.close();
+
+			ERR_MSG(L"Multi Texture Load Failed");
+			return E_FAIL;
+		}
+	}
+
+	return S_OK;
+}
+
 HRESULT CTextureMgr::InsertTexture(const TCHAR * pFilePath, const TCHAR * pObjKey, TEXTYPE eType,
 	const TCHAR * pStateKey, const int & iCount)
 {

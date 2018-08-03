@@ -1,7 +1,7 @@
 #pragma once
 
-#define WINCX 800
-#define WINCY 600
+#define WINCX 1280
+#define WINCY 720
 
 #define TILEX	20
 #define TILEY	20
@@ -16,6 +16,7 @@
 #define NO_EVENT 0
 #define DEAD_OBJ 1
 
+#define NULL_CHECK(ptr) if(nullptr == (ptr)) return;
 
 #define ERR_MSG(message)	\
 	MessageBox(g_hWnd, message, L"Error!", MB_OK)

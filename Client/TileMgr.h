@@ -13,8 +13,6 @@ public:
 	void LateUpdate();
 	void Render();
 	void Release();
-
-private:
 	HRESULT LoadTile();
 
 private:
