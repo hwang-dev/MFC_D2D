@@ -7,6 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tool", "Tool\Tool.vcxproj",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Headers", "Headers", "{8AF85AD7-6CB5-4F8D-80F9-CC3D9F00868C}"
 	ProjectSection(SolutionItems) = preProject
+		Headers\Constant.h = Headers\Constant.h
 		Headers\Define.h = Headers\Define.h
 		Headers\Enum.h = Headers\Enum.h
 		Headers\Extern.h = Headers\Extern.h

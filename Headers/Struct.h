@@ -39,3 +39,18 @@ typedef struct tagTexturePath
 	int iCount = 0;
 
 } IMGPATH;
+
+typedef struct tagFrame
+{
+	tagFrame()
+		: fFrame(0.f), fMax(0.f)
+	{}
+
+	tagFrame(float frame, float max)
+		: fFrame(frame), fMax(max)
+	{}
+
+	float fFrame; // 현재 애니메이션 재생 구간.
+	float fMax;	// 최대 재생 길이.
+
+} FRAME;

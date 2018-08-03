@@ -37,6 +37,7 @@ using namespace std;
 #include "Struct.h"
 #include "Function.h"
 #include "Functor.h"
+#include "Constant.h"
 
 // managers
 #include "TimeMgr.h"
@@ -47,3 +48,4 @@ using namespace std;
 #include "ScrollMgr.h"
 #include "TileMgr.h"
 #include "SceneMgr.h"
+#include "KeyMgr.h"

@@ -152,6 +152,7 @@
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Device.h" />
+    <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Lobby.h" />
     <ClInclude Include="Logo.h" />
     <ClInclude Include="MainGame.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Normal.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="ObjMgr.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr.h" />
@@ -176,6 +178,7 @@
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Device.cpp" />
+    <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="Lobby.cpp" />
     <ClCompile Include="Logo.cpp" />
     <ClCompile Include="MainGame.cpp" />
@@ -184,6 +187,7 @@
     <ClCompile Include="Normal.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="ObjMgr.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="ScrollMgr.cpp" />

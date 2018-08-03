@@ -6,6 +6,9 @@ public:
 	virtual ~CObj();
 
 public:
+	const INFO& GetInfo() const { return m_tInfo; }
+	const wstring& GetObjKey() { return m_wstrObjKey; }
+public:
 	virtual HRESULT Initialize() PURE;
 	virtual void LateInit();
 	virtual int Update() PURE;
@@ -14,7 +17,13 @@ public:
 	virtual void Release() PURE;
 
 protected:
-	INFO m_tInfo;
-	bool m_bIsInit;
+	void MoveFrame();
+
+protected:
+	INFO	m_tInfo;
+	FRAME	m_tFrame;
+
+	bool	m_bIsInit;
+	wstring	m_wstrObjKey;
 };
 

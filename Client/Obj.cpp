@@ -6,7 +6,9 @@ CObj::CObj()
 	: m_bIsInit(false)
 {
 	ZeroMemory(&m_tInfo, sizeof(INFO));
+	ZeroMemory(&m_tFrame, sizeof(FRAME));
 	D3DXMatrixIdentity(&m_tInfo.matWorld);
+	m_tInfo.vLook = { 1.f, 0.f, 0.f };
 }
 
 
@@ -21,4 +23,12 @@ void CObj::LateInit()
 		this->LateInit();
 		m_bIsInit = true;
 	}
+}
+
+void CObj::MoveFrame()
+{
+	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime();
+
+	if (m_tFrame.fFrame > m_tFrame.fMax)
+		m_tFrame.fFrame = 0.f;
 }

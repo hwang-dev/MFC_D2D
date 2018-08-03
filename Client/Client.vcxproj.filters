@@ -70,6 +70,9 @@
     <Filter Include="02.Scene\00.Scene\03.Boss">
       <UniqueIdentifier>{0ed768aa-60d8-423b-be46-1777c06f7c2b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="98.Managers\06.KeyMgr">
+      <UniqueIdentifier>{abe69b7c-6f28-4450-bec4-1e5ec589c007}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -138,6 +141,12 @@
     <ClInclude Include="Normal.h">
       <Filter>02.Scene\00.Scene\02.Normal</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>01.Object\00.Player</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMgr.h">
+      <Filter>98.Managers\06.KeyMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -199,6 +208,12 @@
     </ClCompile>
     <ClCompile Include="Normal.cpp">
       <Filter>02.Scene\00.Scene\02.Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>01.Object\00.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyMgr.cpp">
+      <Filter>98.Managers\06.KeyMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
