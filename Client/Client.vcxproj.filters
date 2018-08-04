@@ -76,6 +76,15 @@
     <Filter Include="97.DesignPattern">
       <UniqueIdentifier>{14e4587b-6b18-4671-a7eb-bac651501e03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Object\00.Player\01.Implementor">
+      <UniqueIdentifier>{1411c249-3399-4cbc-94e0-77e29a7b7ecd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\00.Player\00.Abstraction">
+      <UniqueIdentifier>{537b4556-2c54-493e-a880-d69e00964bea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\00.Player\01.Implementor\00.MoveIMP">
+      <UniqueIdentifier>{399b491f-a874-4a0b-9916-8c92c58e54aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -144,11 +153,17 @@
     <ClInclude Include="Normal.h">
       <Filter>02.Scene\00.Scene\02.Normal</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>01.Object\00.Player</Filter>
-    </ClInclude>
     <ClInclude Include="KeyMgr.h">
       <Filter>98.Managers\06.KeyMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>01.Object\00.Player\00.Abstraction</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerIMP.h">
+      <Filter>01.Object\00.Player\01.Implementor</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMoveIMP.h">
+      <Filter>01.Object\00.Player\01.Implementor\00.MoveIMP</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -212,11 +227,17 @@
     <ClCompile Include="Normal.cpp">
       <Filter>02.Scene\00.Scene\02.Normal</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>01.Object\00.Player</Filter>
-    </ClCompile>
     <ClCompile Include="KeyMgr.cpp">
       <Filter>98.Managers\06.KeyMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>01.Object\00.Player\00.Abstraction</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerIMP.cpp">
+      <Filter>01.Object\00.Player\01.Implementor</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMoveIMP.cpp">
+      <Filter>01.Object\00.Player\01.Implementor\00.MoveIMP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
