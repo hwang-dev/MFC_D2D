@@ -40,17 +40,11 @@
     <Filter Include="01.Object\01.Monster">
       <UniqueIdentifier>{7524fc25-a4c4-4716-819b-d5db1ca130e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Object\02.Tile">
-      <UniqueIdentifier>{408b5ea7-b455-442c-852c-71c37435ebc0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="98.Managers\04.TileMgr">
       <UniqueIdentifier>{2e271e48-28af-4abf-aca4-4df5490c41d4}</UniqueIdentifier>
     </Filter>
     <Filter Include="98.Managers\05.ScrollMgr">
       <UniqueIdentifier>{fc04c48f-6015-4159-a999-96e6d89a2f08}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01.Object\03.Mouse">
-      <UniqueIdentifier>{53a301c8-eb31-43ba-b13d-b1b56c1c6009}</UniqueIdentifier>
     </Filter>
     <Filter Include="98.Managers\06.KeyMgr">
       <UniqueIdentifier>{abe69b7c-6f28-4450-bec4-1e5ec589c007}</UniqueIdentifier>
@@ -93,6 +87,15 @@
     </Filter>
     <Filter Include="96.Scene\00.Scene\03.Boss">
       <UniqueIdentifier>{0ed768aa-60d8-423b-be46-1777c06f7c2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Mouse">
+      <UniqueIdentifier>{53a301c8-eb31-43ba-b13d-b1b56c1c6009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\02.Weapon">
+      <UniqueIdentifier>{48ba4a2f-928d-4f19-8b47-0479b7895b06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\02.Weapon\00.Revolver">
+      <UniqueIdentifier>{ee25cdc8-11a0-490d-8568-1d0e2de30a73}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -142,7 +145,7 @@
       <Filter>98.Managers\05.ScrollMgr</Filter>
     </ClInclude>
     <ClInclude Include="Mouse.h">
-      <Filter>01.Object\03.Mouse</Filter>
+      <Filter>02.Mouse</Filter>
     </ClInclude>
     <ClInclude Include="SceneMgr.h">
       <Filter>96.Scene</Filter>
@@ -182,6 +185,12 @@
     </ClInclude>
     <ClInclude Include="PlayerDodgeIMP.h">
       <Filter>01.Object\00.Player\01.Implementor\02.DodgeIMP</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>01.Object\02.Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Revolver.h">
+      <Filter>01.Object\02.Weapon\00.Revolver</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -225,7 +234,7 @@
       <Filter>98.Managers\05.ScrollMgr</Filter>
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
-      <Filter>01.Object\03.Mouse</Filter>
+      <Filter>02.Mouse</Filter>
     </ClCompile>
     <ClCompile Include="SceneMgr.cpp">
       <Filter>96.Scene</Filter>
@@ -262,6 +271,12 @@
     </ClCompile>
     <ClCompile Include="PlayerDodgeIMP.cpp">
       <Filter>01.Object\00.Player\01.Implementor\02.DodgeIMP</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>01.Object\02.Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Revolver.cpp">
+      <Filter>01.Object\02.Weapon\00.Revolver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
