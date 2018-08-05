@@ -27,5 +27,6 @@ private:
 	
 private:
 	CPlayerIMP* m_pBridge;
+	PLAYER_DIR	m_ePlayerDir = DOWN;
 };
 

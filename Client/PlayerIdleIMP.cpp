@@ -19,6 +19,7 @@ HRESULT CPlayerIdleIMP::Initialize()
 
 void CPlayerIdleIMP::LateInit()
 {
+	m_fAnimAcc = 1.5f;
 	m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_pObj->GetObjKey().c_str(), m_wstrStateKey.c_str());
 
 	if (m_tFrame.fMax == 0.f)
@@ -27,9 +28,10 @@ void CPlayerIdleIMP::LateInit()
 
 int CPlayerIdleIMP::Update()
 {
-	LateInit(); 
+	CPlayerIMP::LateInit(); 
 
-	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime();
+	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime() *
+		m_fAnimAcc;
 
 	// 애니메이션 이펙트는 애니메이션 재생이 끝나면 소멸.
 	if (m_tFrame.fFrame > m_tFrame.fMax)
@@ -45,7 +47,7 @@ void CPlayerIdleIMP::LateUpdate()
 void CPlayerIdleIMP::Render()
 {
  	const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(
-		m_pObj->GetObjKey().c_str(), m_wstrStateKey.c_str(), (int)m_tFrame.fMax);
+		m_pObj->GetObjKey().c_str(), m_wstrStateKey.c_str(), (int)m_tFrame.fFrame);
 
 	NULL_CHECK(pTexInfo);
 

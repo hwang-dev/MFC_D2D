@@ -24,24 +24,24 @@ void CTileMgr::Update()
 
 void CTileMgr::LateUpdate()
 {
-	float fTime = CTimeMgr::GetInstance()->GetTime();
+	//float fTime = CTimeMgr::GetInstance()->GetTime();
 
-	if (CMouse::GetInstance()->GetMousePos().x < 0)
-	{
-		CScrollMgr::SetScroll(250.f * fTime, 0.f);
-	}
-	if (CMouse::GetInstance()->GetMousePos().x > WINCX)
-	{
-		CScrollMgr::SetScroll(-250.f * fTime, 0.f);
-	}
-	if (CMouse::GetInstance()->GetMousePos().y < 0)
-	{
-		CScrollMgr::SetScroll(0.f, 250.f * fTime);
-	}
-	if (CMouse::GetInstance()->GetMousePos().y > WINCY)
-	{
-		CScrollMgr::SetScroll(0, -250.f * fTime);
-	}
+	//if (CMouse::GetInstance()->GetMousePos().x < 0)
+	//{
+	//	CScrollMgr::SetScroll(250.f * fTime, 0.f);
+	//}
+	//if (CMouse::GetInstance()->GetMousePos().x > WINCX)
+	//{
+	//	CScrollMgr::SetScroll(-250.f * fTime, 0.f);
+	//}
+	//if (CMouse::GetInstance()->GetMousePos().y < 0)
+	//{
+	//	CScrollMgr::SetScroll(0.f, 250.f * fTime);
+	//}
+	//if (CMouse::GetInstance()->GetMousePos().y > WINCY)
+	//{
+	//	CScrollMgr::SetScroll(0, -250.f * fTime);
+	//}
 }
 
 void CTileMgr::Render()

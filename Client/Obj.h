@@ -27,7 +27,7 @@ protected:
 	INFO	m_tInfo;
 	RECT	m_tRect;
 	FRAME	m_tFrame;
-
+	float	m_fSpeed;
 	bool	m_bIsInit;
 	wstring	m_wstrObjKey;
 };

@@ -3,6 +3,7 @@
 /* Player ±¸ÇöÃþ */
 class CObj;
 class CPlayerIMP
+
 {
 public:
 	CPlayerIMP();
@@ -24,5 +25,6 @@ protected:
 	FRAME		m_tFrame;
 	wstring		m_wstrStateKey;
 	bool		m_bIsInit;
+	float		m_fAnimAcc;
 };
 

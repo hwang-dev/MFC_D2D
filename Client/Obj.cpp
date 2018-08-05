@@ -3,7 +3,8 @@
 
 
 CObj::CObj()
-	: m_bIsInit(false)
+	: m_bIsInit(false),
+	m_fSpeed(0.f)
 {
 	ZeroMemory(&m_tInfo, sizeof(INFO));
 	ZeroMemory(&m_tFrame, sizeof(FRAME));

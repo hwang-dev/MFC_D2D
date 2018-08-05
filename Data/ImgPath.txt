@@ -8,6 +8,8 @@ Dodge|Up_Right|7|..\Texture\Player\Dodge\Up_Right\%d.png
 Idle|Down|4|..\Texture\Player\Idle\Down\%d.png
 Idle|Down_Left|4|..\Texture\Player\Idle\Down_Left\%d.png
 Idle|Down_Right|4|..\Texture\Player\Idle\Down_Right\%d.png
+Idle|Left|4|..\Texture\Player\Idle\Left\%d.png
+Idle|Right|4|..\Texture\Player\Idle\Right\%d.png
 Idle|Up|4|..\Texture\Player\Idle\Up\%d.png
 Idle|Up_Left|4|..\Texture\Player\Idle\Up_Left\%d.png
 Idle|Up_Right|4|..\Texture\Player\Idle\Up_Right\%d.png

@@ -16,6 +16,8 @@ public:
 	void Render();
 	void Release();
 
+	CObj* GetPlayer() { return m_ObjLst[OBJ_PLAYER].front(); }
+
 private:
 	OBJLIST	m_ObjLst[OBJ_END];
 };
