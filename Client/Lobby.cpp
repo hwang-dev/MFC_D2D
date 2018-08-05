@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Lobby.h"
 
+#include "Player.h"
 
 CLobby::CLobby()
 {
@@ -19,6 +20,8 @@ HRESULT CLobby::Initialize()
 	{
 		return E_FAIL;
 	}
+
+	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CPlayer>::CreateObj(), OBJ_PLAYER);
 
 	return S_OK;
 }

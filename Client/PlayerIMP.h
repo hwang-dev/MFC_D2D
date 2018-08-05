@@ -1,11 +1,15 @@
 #pragma once
 
+/* Player ±¸ÇöÃþ */
 class CObj;
 class CPlayerIMP
 {
 public:
 	CPlayerIMP();
 	virtual ~CPlayerIMP();
+
+	void SetObj(CObj* pObj) { m_pObj = pObj; }
+	void SetStateKey(wstring wstrStateKey) { m_wstrStateKey = wstrStateKey; }
 
 public:
 	virtual HRESULT Initialize() PURE;

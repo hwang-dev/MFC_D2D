@@ -52,24 +52,6 @@
     <Filter Include="01.Object\03.Mouse">
       <UniqueIdentifier>{53a301c8-eb31-43ba-b13d-b1b56c1c6009}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.Scene">
-      <UniqueIdentifier>{95bf33a7-5aa4-42e8-8b11-32d0708fe71f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.Scene\00.Scene">
-      <UniqueIdentifier>{6b31cffb-42e6-4157-b2c7-b427adabb8f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.Scene\00.Scene\00.Logo">
-      <UniqueIdentifier>{64f1ba51-59a1-4b28-85a1-d093c1bc01ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.Scene\00.Scene\01.Lobby">
-      <UniqueIdentifier>{2433669e-40b0-4882-8718-879579be58b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.Scene\00.Scene\02.Normal">
-      <UniqueIdentifier>{54d34fc8-6c1b-4e65-bb0b-d47fa20baa62}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.Scene\00.Scene\03.Boss">
-      <UniqueIdentifier>{0ed768aa-60d8-423b-be46-1777c06f7c2b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="98.Managers\06.KeyMgr">
       <UniqueIdentifier>{abe69b7c-6f28-4450-bec4-1e5ec589c007}</UniqueIdentifier>
     </Filter>
@@ -82,8 +64,35 @@
     <Filter Include="01.Object\00.Player\00.Abstraction">
       <UniqueIdentifier>{537b4556-2c54-493e-a880-d69e00964bea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Object\00.Player\01.Implementor\00.MoveIMP">
+    <Filter Include="98.Managers\07.AbstractFactory">
+      <UniqueIdentifier>{0627292e-0453-4378-beb4-21662a33d67c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\00.Player\01.Implementor\01.MoveIMP">
       <UniqueIdentifier>{399b491f-a874-4a0b-9916-8c92c58e54aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\00.Player\01.Implementor\00.IdleIMP">
+      <UniqueIdentifier>{f13fece9-5ffb-4a4b-9990-e78707e75164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\00.Player\01.Implementor\02.DodgeIMP">
+      <UniqueIdentifier>{a3625f06-fac5-47a0-8143-04e937ca7e12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Scene">
+      <UniqueIdentifier>{95bf33a7-5aa4-42e8-8b11-32d0708fe71f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Scene\00.Scene">
+      <UniqueIdentifier>{6b31cffb-42e6-4157-b2c7-b427adabb8f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Scene\00.Scene\00.Logo">
+      <UniqueIdentifier>{64f1ba51-59a1-4b28-85a1-d093c1bc01ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Scene\00.Scene\01.Lobby">
+      <UniqueIdentifier>{2433669e-40b0-4882-8718-879579be58b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Scene\00.Scene\02.Normal">
+      <UniqueIdentifier>{54d34fc8-6c1b-4e65-bb0b-d47fa20baa62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Scene\00.Scene\03.Boss">
+      <UniqueIdentifier>{0ed768aa-60d8-423b-be46-1777c06f7c2b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -136,22 +145,22 @@
       <Filter>01.Object\03.Mouse</Filter>
     </ClInclude>
     <ClInclude Include="SceneMgr.h">
-      <Filter>02.Scene</Filter>
+      <Filter>96.Scene</Filter>
     </ClInclude>
     <ClInclude Include="Lobby.h">
-      <Filter>02.Scene\00.Scene\01.Lobby</Filter>
+      <Filter>96.Scene\00.Scene\01.Lobby</Filter>
     </ClInclude>
     <ClInclude Include="Logo.h">
-      <Filter>02.Scene\00.Scene\00.Logo</Filter>
+      <Filter>96.Scene\00.Scene\00.Logo</Filter>
     </ClInclude>
     <ClInclude Include="Boss.h">
-      <Filter>02.Scene\00.Scene\03.Boss</Filter>
+      <Filter>96.Scene\00.Scene\03.Boss</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>02.Scene\00.Scene</Filter>
+      <Filter>96.Scene\00.Scene</Filter>
     </ClInclude>
     <ClInclude Include="Normal.h">
-      <Filter>02.Scene\00.Scene\02.Normal</Filter>
+      <Filter>96.Scene\00.Scene\02.Normal</Filter>
     </ClInclude>
     <ClInclude Include="KeyMgr.h">
       <Filter>98.Managers\06.KeyMgr</Filter>
@@ -163,7 +172,16 @@
       <Filter>01.Object\00.Player\01.Implementor</Filter>
     </ClInclude>
     <ClInclude Include="PlayerMoveIMP.h">
-      <Filter>01.Object\00.Player\01.Implementor\00.MoveIMP</Filter>
+      <Filter>01.Object\00.Player\01.Implementor\01.MoveIMP</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractFactory.h">
+      <Filter>98.Managers\07.AbstractFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerIdleIMP.h">
+      <Filter>01.Object\00.Player\01.Implementor\00.IdleIMP</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDodgeIMP.h">
+      <Filter>01.Object\00.Player\01.Implementor\02.DodgeIMP</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -210,22 +228,22 @@
       <Filter>01.Object\03.Mouse</Filter>
     </ClCompile>
     <ClCompile Include="SceneMgr.cpp">
-      <Filter>02.Scene</Filter>
+      <Filter>96.Scene</Filter>
     </ClCompile>
     <ClCompile Include="Lobby.cpp">
-      <Filter>02.Scene\00.Scene\01.Lobby</Filter>
+      <Filter>96.Scene\00.Scene\01.Lobby</Filter>
     </ClCompile>
     <ClCompile Include="Logo.cpp">
-      <Filter>02.Scene\00.Scene\00.Logo</Filter>
+      <Filter>96.Scene\00.Scene\00.Logo</Filter>
     </ClCompile>
     <ClCompile Include="Boss.cpp">
-      <Filter>02.Scene\00.Scene\03.Boss</Filter>
+      <Filter>96.Scene\00.Scene\03.Boss</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
-      <Filter>02.Scene\00.Scene</Filter>
+      <Filter>96.Scene\00.Scene</Filter>
     </ClCompile>
     <ClCompile Include="Normal.cpp">
-      <Filter>02.Scene\00.Scene\02.Normal</Filter>
+      <Filter>96.Scene\00.Scene\02.Normal</Filter>
     </ClCompile>
     <ClCompile Include="KeyMgr.cpp">
       <Filter>98.Managers\06.KeyMgr</Filter>
@@ -237,7 +255,13 @@
       <Filter>01.Object\00.Player\01.Implementor</Filter>
     </ClCompile>
     <ClCompile Include="PlayerMoveIMP.cpp">
-      <Filter>01.Object\00.Player\01.Implementor\00.MoveIMP</Filter>
+      <Filter>01.Object\00.Player\01.Implementor\01.MoveIMP</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerIdleIMP.cpp">
+      <Filter>01.Object\00.Player\01.Implementor\00.IdleIMP</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDodgeIMP.cpp">
+      <Filter>01.Object\00.Player\01.Implementor\02.DodgeIMP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

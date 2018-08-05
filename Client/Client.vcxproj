@@ -76,6 +76,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -149,6 +151,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractFactory.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Device.h" />
@@ -162,6 +165,8 @@
     <ClInclude Include="Obj.h" />
     <ClInclude Include="ObjMgr.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerDodgeIMP.h" />
+    <ClInclude Include="PlayerIdleIMP.h" />
     <ClInclude Include="PlayerIMP.h" />
     <ClInclude Include="PlayerMoveIMP.h" />
     <ClInclude Include="Resource.h" />
@@ -190,6 +195,8 @@
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="ObjMgr.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerDodgeIMP.cpp" />
+    <ClCompile Include="PlayerIdleIMP.cpp" />
     <ClCompile Include="PlayerIMP.cpp" />
     <ClCompile Include="PlayerMoveIMP.cpp" />
     <ClCompile Include="Scene.cpp" />

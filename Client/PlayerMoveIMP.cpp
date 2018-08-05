@@ -23,6 +23,7 @@ void CPlayerMoveIMP::LateInit()
 
 int CPlayerMoveIMP::Update()
 {
+	LateInit();
 	return 0;
 }
 

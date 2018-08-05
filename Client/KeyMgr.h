@@ -11,6 +11,7 @@ public:
 	void KeyCheck();
 	bool KeyUp(DWORD dwKey);
 	bool KeyDown(DWORD dwKey);
+	bool KeyPressing(DWORD dwKey);
 	bool KeyCombine(DWORD dwFirstKey, DWORD dwSecondKey);
 
 private:

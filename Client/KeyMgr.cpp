@@ -70,6 +70,14 @@ bool CKeyMgr::KeyDown(DWORD dwKey)
 	return false;
 }
 
+bool CKeyMgr::KeyPressing(DWORD dwKey)
+{
+	if (m_dwKey & dwKey)
+		return true;
+	else
+		return false;
+}
+
 bool CKeyMgr::KeyCombine(DWORD dwFirstKey, DWORD dwSecondKey)
 {
 	if (KeyDown(dwSecondKey) && (m_dwKey & dwFirstKey))

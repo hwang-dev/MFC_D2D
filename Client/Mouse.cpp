@@ -29,7 +29,7 @@ void CMouse::Render()
 	D3DXMATRIX matWorld, matScale, matTrans;
 
 	D3DXMatrixIdentity(&matWorld);
-	D3DXMatrixScaling(&matScale, 2.f, 2.f, 1.f);
+	D3DXMatrixScaling(&matScale, 1.5f, 1.5f, 1.f);
 	D3DXMatrixTranslation(&matTrans, m_vMouse.x, m_vMouse.y, m_vMouse.z);
 
 	matWorld = matScale * matTrans;
