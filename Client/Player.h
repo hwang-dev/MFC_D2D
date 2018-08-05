@@ -23,6 +23,9 @@ public:
 	virtual void Release() override;
 
 private:
+	void PlayerMove();
+	
+private:
 	CPlayerIMP* m_pBridge;
 };
 

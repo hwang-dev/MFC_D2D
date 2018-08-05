@@ -23,7 +23,7 @@ const TEXINFO * CMultiTexture::GetTexture(const TCHAR * pStateKey/* = L""*/, con
 	if(m_MapMultiTex.end() == iter_find)
 		return nullptr;
 
-	if (0 > iIndex || iter_find->second.size() <= (size_t)iIndex)
+	if ((size_t)iIndex < 0 || (size_t)iIndex >= iter_find->second.size())
 		return nullptr;
 
 	return iter_find->second[iIndex];
@@ -88,4 +88,16 @@ void CMultiTexture::Release()
 	}
 
 	m_MapMultiTex.clear();	
+}
+
+int CMultiTexture::GetFrameCount(const TCHAR * pStateKey)
+{
+	auto& iter_find = m_MapMultiTex.find(pStateKey);
+
+	// 없으면
+	if (iter_find == m_MapMultiTex.end())
+		return 0;
+
+	// 있으면
+	return iter_find->second.size();
 }

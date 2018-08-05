@@ -19,8 +19,9 @@ public:
 	virtual void Render() PURE;
 	virtual void Release() PURE;
 
-private:
+protected:
 	CObj*		m_pObj;
+	FRAME		m_tFrame;
 	wstring		m_wstrStateKey;
 	bool		m_bIsInit;
 };

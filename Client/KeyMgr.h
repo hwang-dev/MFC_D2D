@@ -13,6 +13,7 @@ public:
 	bool KeyDown(DWORD dwKey);
 	bool KeyPressing(DWORD dwKey);
 	bool KeyCombine(DWORD dwFirstKey, DWORD dwSecondKey);
+	bool KeyCombinePressing(DWORD dwFirstKey, DWORD dwSecondKey);
 
 private:
 	DWORD m_dwKey;

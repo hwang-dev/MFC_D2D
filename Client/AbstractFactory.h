@@ -13,7 +13,6 @@ public:
 		{
 			SafeDelete(pObj);
 		}
-
 		return pObj;
 	}
 
@@ -27,7 +26,6 @@ public:
 		}
 
 		pObj->SetPos(vPos);
-
 		return pObj;
 	}
 };

@@ -46,6 +46,7 @@ void CMainGame::Update()
 {
 	// 시간 갱신은 Update 최상단에서 호출.
 	CTimeMgr::GetInstance()->UpdateTime();
+	CKeyMgr::GetInstance()->KeyCheck();
 
 	CSceneMgr::GetInstance()->Update();
 }

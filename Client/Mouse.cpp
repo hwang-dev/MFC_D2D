@@ -29,7 +29,7 @@ void CMouse::Render()
 	D3DXMATRIX matWorld, matScale, matTrans;
 
 	D3DXMatrixIdentity(&matWorld);
-	D3DXMatrixScaling(&matScale, 1.5f, 1.5f, 1.f);
+	D3DXMatrixScaling(&matScale, 0.07f, 0.07f, 1.f);
 	D3DXMatrixTranslation(&matTrans, m_vMouse.x, m_vMouse.y, m_vMouse.z);
 
 	matWorld = matScale * matTrans;
@@ -37,7 +37,7 @@ void CMouse::Render()
 	CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
 
 	const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(
-		L"MOUSE", L"CURSOR", 0);
+		L"Mouse", L"Cursor", 0);
 
 	NULL_CHECK(pTexInfo);
 

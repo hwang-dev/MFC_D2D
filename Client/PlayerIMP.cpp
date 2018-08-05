@@ -7,6 +7,7 @@ CPlayerIMP::CPlayerIMP()
 	m_bIsInit(false),
 	m_wstrStateKey(L"")
 {
+	ZeroMemory(&m_tFrame, sizeof(FRAME));
 }
 
 

@@ -122,3 +122,13 @@ void CTextureMgr::Release()
 
 	m_MapTexture.clear();
 }
+
+float CTextureMgr::GetTextureCount(const TCHAR * pObjKey, const TCHAR * pStateKey)
+{
+	auto& iter_find = m_MapTexture.find(pObjKey);
+
+	if (iter_find == m_MapTexture.end())
+		return 0;
+
+	return (float)dynamic_cast<CMultiTexture*>(iter_find->second)->GetFrameCount(pStateKey);
+}
