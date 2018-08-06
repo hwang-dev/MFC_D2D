@@ -109,6 +109,9 @@
     <Filter Include="98.Managers\08.CollisionMgr">
       <UniqueIdentifier>{1f007829-eaec-4359-a209-99ac93bba357}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Object\02.Weapon\01.AK">
+      <UniqueIdentifier>{c3a3edde-5116-4c1f-8c3b-641bdb003e1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -210,6 +213,9 @@
     <ClInclude Include="CollisionMgr.h">
       <Filter>98.Managers\08.CollisionMgr</Filter>
     </ClInclude>
+    <ClInclude Include="AK.h">
+      <Filter>01.Object\02.Weapon\01.AK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -301,6 +307,9 @@
     </ClCompile>
     <ClCompile Include="CollisionMgr.cpp">
       <Filter>98.Managers\08.CollisionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="AK.cpp">
+      <Filter>01.Object\02.Weapon\01.AK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

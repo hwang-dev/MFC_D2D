@@ -10,8 +10,6 @@ public:
 	CPlayer();
 	virtual ~CPlayer();
 
-public:
-	void SetBridge(CPlayerIMP* pBridge) { m_pBridge = pBridge; }
 
 public:
 	// CObj을(를) 통해 상속됨
@@ -25,9 +23,15 @@ public:
 private:
 	void PlayerMove();
 	void IsOffSet();
-	
+	void StanceChange();
+	void PlayAnimation();
+
 private:
-	CPlayerIMP* m_pBridge;
-	PLAYER_DIR	m_ePlayerDir;
+	PLAYER_DIR		m_ePlayerDir;
+	PLAYER_STANCE	m_eCurStance;
+	PLAYER_STANCE	m_ePreStance;
+	wstring			m_wstrStateKey;
+	float			m_fAnimSpeed;
+	float			m_fDodgePow;
 };
 

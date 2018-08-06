@@ -61,9 +61,6 @@ void CTileMgr::Render()
 
 			CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
 
-			//const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(
-			//	L"Terrain", L"Tile", m_vecTile[iIndex]->byDrawID);
-
 			const TEXINFO* pTexInfo = m_vecTileTexInfo[m_vecTile[iIndex]->byDrawID];
 
 			if (nullptr == pTexInfo)

@@ -46,7 +46,6 @@ void CMouse::Render()
 
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
-
 }
 
 D3DXVECTOR3& CMouse::GetMousePos()

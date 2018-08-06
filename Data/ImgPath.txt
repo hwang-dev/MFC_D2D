@@ -21,5 +21,8 @@ Move|Right|6|..\Texture\Player\Move\Right\%d.png
 Move|Up|6|..\Texture\Player\Move\Up\%d.png
 Move|Up_Left|6|..\Texture\Player\Move\Up_Left\%d.png
 Move|Up_Right|6|..\Texture\Player\Move\Up_Right\%d.png
+Revolver|Attack|3|..\Texture\Revolver\Attack\%d.png
+Revolver|Reload|3|..\Texture\Revolver\Reload\%d.png
+Revolver|Stance|1|..\Texture\Revolver\Stance\%d.png
 Terrain|SubTile|64|..\Texture\Terrain\SubTile\SubTile%d.png
 Terrain|Tile|59|..\Texture\Terrain\Tile\Tile%d.png

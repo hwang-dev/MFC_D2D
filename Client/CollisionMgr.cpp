@@ -21,5 +21,6 @@ void CCollisionMgr::CollisionRectEX(OBJLIST & dstLst, OBJLIST & srcLst)
 
 bool CCollisionMgr::CheckRect(CObj * pDst, CObj * pSrc, float * pMoveX, float * pMoveY)
 {
+
 	return false;
 }
