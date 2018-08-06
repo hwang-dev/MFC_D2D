@@ -8,7 +8,8 @@
 #include "PlayerDodgeIMP.h"
 
 CPlayer::CPlayer()
-	: m_pBridge(nullptr)
+	: m_pBridge(nullptr),
+	m_ePlayerDir(DOWN)
 {
 }
 
@@ -20,13 +21,7 @@ CPlayer::~CPlayer()
 
 HRESULT CPlayer::Initialize()
 {
-	/* 처음 상태 */
-	m_wstrObjKey = L"Idle";
-	m_pBridge = new CPlayerIdleIMP;
-	m_pBridge->SetStateKey(L"Down");
-	m_pBridge->SetObj(this);
-
-	m_fSpeed = 100.f;
+	m_fSpeed = 150.f;
 
 	return S_OK;
 }
@@ -39,21 +34,17 @@ int CPlayer::Update()
 {
 	PlayerMove();
 
-	// 플레이어 스크롤 적용
-	m_tInfo.vPos += CScrollMgr::GetScroll();
-
 	D3DXMATRIX matScale, matRotZ, matTrnas;
 
 	D3DXMatrixScaling(&matScale, 2.f, 2.f, 1.f);
 	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(0.f));
 	D3DXMatrixTranslation(&matTrnas,
-		m_tInfo.vPos.x,
-		m_tInfo.vPos.y,
+		m_tInfo.vPos.x + CScrollMgr::GetScroll().x,
+		m_tInfo.vPos.y + CScrollMgr::GetScroll().y,
 		m_tInfo.vPos.z);
 
 	m_tInfo.matWorld = matScale * matRotZ * matTrnas;
 
-	///* 방향 벡터 구하기 */
 	//D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
 
 	m_pBridge->Update();
@@ -63,7 +54,18 @@ int CPlayer::Update()
 
 void CPlayer::LateUpdate()
 {
+	IsOffSet();
 	m_pBridge->LateUpdate();
+	// 콘솔에 위치, 스크롤 출력
+//#ifdef _DEBUG
+//	system("cls");
+//	cout << "Player X: " << m_tInfo.vPos.x << endl;
+//	cout << "Player Y: " << m_tInfo.vPos.y << endl;
+//	cout << endl;
+//	cout << "Scroll X: " << CScrollMgr::GetScroll().x << endl;
+//	cout << "Scroll Y: " << CScrollMgr::GetScroll().y << endl;
+//	
+//#endif // DEBUG
 }
 
 void CPlayer::Render()
@@ -86,9 +88,8 @@ void CPlayer::PlayerMove()
 		SafeDelete(m_pBridge);
 		m_wstrObjKey = L"Move";
 		m_pBridge = new CPlayerMoveIMP;
-		m_pBridge->SetObj(this);
 		m_pBridge->SetStateKey(L"Up");
-		
+	
 		m_tInfo.vPos += D3DXVECTOR3(0.f, -1.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
 		m_ePlayerDir = UP;
 	}
@@ -98,7 +99,6 @@ void CPlayer::PlayerMove()
 		SafeDelete(m_pBridge);
 		m_wstrObjKey = L"Move";
 		m_pBridge = new CPlayerMoveIMP;
-		m_pBridge->SetObj(this);
 		m_pBridge->SetStateKey(L"Down");
 
 		m_tInfo.vPos += D3DXVECTOR3(0.f, 1.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
@@ -110,10 +110,10 @@ void CPlayer::PlayerMove()
 		SafeDelete(m_pBridge);
 		m_wstrObjKey = L"Move";
 		m_pBridge = new CPlayerMoveIMP;
-		m_pBridge->SetObj(this);
 		m_pBridge->SetStateKey(L"Left");
 
 		m_tInfo.vPos += D3DXVECTOR3(-1.f, 0.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+
 		m_ePlayerDir = LEFT;
 	}
 	/* 우 */
@@ -122,11 +122,9 @@ void CPlayer::PlayerMove()
 		SafeDelete(m_pBridge);
 		m_wstrObjKey = L"Move";
 		m_pBridge = new CPlayerMoveIMP;
-		m_pBridge->SetObj(this);
 		m_pBridge->SetStateKey(L"Right");
 
 		m_tInfo.vPos += D3DXVECTOR3(1.f, 0.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
-
 		m_ePlayerDir = RIGHT;
 	}
 	else
@@ -134,7 +132,6 @@ void CPlayer::PlayerMove()
 		SafeDelete(m_pBridge);
 		m_wstrObjKey = L"Idle";
 		m_pBridge = new CPlayerMoveIMP;
-		m_pBridge->SetObj(this);
 		
 		switch (m_ePlayerDir)
 		{
@@ -155,4 +152,28 @@ void CPlayer::PlayerMove()
 		}
 		
 	}
+}
+
+void CPlayer::IsOffSet()
+{
+	D3DXVECTOR3 vScroll = CScrollMgr::GetScroll();
+	float fTime = CTimeMgr::GetInstance()->GetTime();
+
+	/* 우 */
+	if (float(m_tInfo.vPos.x + vScroll.x) > WINCX * 0.5f + 150.f) {
+		CScrollMgr::SetScroll(-m_fSpeed * fTime, 0.f);
+	}
+	/* 좌 */
+	if (float(m_tInfo.vPos.x + vScroll.x) < WINCX * 0.5f - 150.f) {
+		CScrollMgr::SetScroll(m_fSpeed * fTime, 0.f);
+	}
+	/* 하 */
+	if (float(m_tInfo.vPos.y + vScroll.y) > WINCY * 0.5f + 100.f) {
+		CScrollMgr::SetScroll(0.f, -m_fSpeed * fTime);
+	}
+	/* 상 */
+	if (float(m_tInfo.vPos.y + vScroll.y) < WINCY * 0.5f - 100.f) {
+		CScrollMgr::SetScroll(0.f, m_fSpeed * fTime);
+	}
+
 }

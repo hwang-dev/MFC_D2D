@@ -14,15 +14,17 @@ CPlayerIdleIMP::~CPlayerIdleIMP()
 
 HRESULT CPlayerIdleIMP::Initialize()
 {
+	m_fAnimAcc = 1.5f;
+
 	return S_OK;
 }
 
 void CPlayerIdleIMP::LateInit()
 {
-	m_fAnimAcc = 1.5f;
+	
 	m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_pObj->GetObjKey().c_str(), m_wstrStateKey.c_str());
 
-	if (m_tFrame.fMax == 0.f)
+	if (m_tFrame.fMax < 0.f)
 		return;
 }
 

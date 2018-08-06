@@ -101,3 +101,11 @@ int CMultiTexture::GetFrameCount(const TCHAR * pStateKey)
 	// ÀÖÀ¸¸é
 	return iter_find->second.size();
 }
+
+vector<TEXINFO*>& CMultiTexture::GetVecTexInfo(const TCHAR * pStateKey)
+{
+	auto& iter_find = m_MapMultiTex.find(pStateKey);
+
+		return iter_find->second;
+}
+

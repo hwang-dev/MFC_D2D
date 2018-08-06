@@ -97,6 +97,18 @@
     <Filter Include="01.Object\02.Weapon\00.Revolver">
       <UniqueIdentifier>{ee25cdc8-11a0-490d-8568-1d0e2de30a73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Object\03.Bullet">
+      <UniqueIdentifier>{a27c6587-e2e1-426e-a095-3820651054f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Default\00.stdafx">
+      <UniqueIdentifier>{24fd3375-007c-49c2-b020-ae5c8236d1b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Default\00.etc">
+      <UniqueIdentifier>{4148bfc1-4458-4b72-9376-8b347f6fd222}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98.Managers\08.CollisionMgr">
+      <UniqueIdentifier>{1f007829-eaec-4359-a209-99ac93bba357}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -119,18 +131,6 @@
     </ClInclude>
     <ClInclude Include="MainGame.h">
       <Filter>00.MainGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Client.h">
-      <Filter>99.Default</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>99.Default</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>99.Default</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>99.Default</Filter>
     </ClInclude>
     <ClInclude Include="Obj.h">
       <Filter>01.Object</Filter>
@@ -192,6 +192,24 @@
     <ClInclude Include="Revolver.h">
       <Filter>01.Object\02.Weapon\00.Revolver</Filter>
     </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>01.Object\03.Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>99.Default\00.stdafx</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>99.Default\00.etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>99.Default\00.etc</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>99.Default\00.etc</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionMgr.h">
+      <Filter>98.Managers\08.CollisionMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -214,12 +232,6 @@
     </ClCompile>
     <ClCompile Include="MainGame.cpp">
       <Filter>00.MainGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Client.cpp">
-      <Filter>99.Default</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>99.Default</Filter>
     </ClCompile>
     <ClCompile Include="Obj.cpp">
       <Filter>01.Object</Filter>
@@ -278,23 +290,35 @@
     <ClCompile Include="Revolver.cpp">
       <Filter>01.Object\02.Weapon\00.Revolver</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>01.Object\03.Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>99.Default\00.etc</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>99.Default\00.etc</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionMgr.cpp">
+      <Filter>98.Managers\08.CollisionMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
-      <Filter>99.Default</Filter>
+      <Filter>99.Default\00.etc</Filter>
     </Image>
     <Image Include="small.ico">
-      <Filter>99.Default</Filter>
+      <Filter>99.Default\00.etc</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
-      <Filter>99.Default</Filter>
+      <Filter>99.Default\00.etc</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt">
-      <Filter>99.Default</Filter>
+      <Filter>99.Default\00.etc</Filter>
     </Text>
   </ItemGroup>
 </Project>

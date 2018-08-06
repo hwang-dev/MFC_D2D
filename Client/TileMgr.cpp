@@ -15,6 +15,9 @@ CTileMgr::~CTileMgr()
 
 HRESULT CTileMgr::Initialize()
 {
+	/* Tile TexInfo Load */
+	m_vecTileTexInfo = CTextureMgr::GetInstance()->GetVecTexInfo(L"Terrain", L"Tile");
+
 	return S_OK;
 }
 
@@ -24,24 +27,6 @@ void CTileMgr::Update()
 
 void CTileMgr::LateUpdate()
 {
-	//float fTime = CTimeMgr::GetInstance()->GetTime();
-
-	//if (CMouse::GetInstance()->GetMousePos().x < 0)
-	//{
-	//	CScrollMgr::SetScroll(250.f * fTime, 0.f);
-	//}
-	//if (CMouse::GetInstance()->GetMousePos().x > WINCX)
-	//{
-	//	CScrollMgr::SetScroll(-250.f * fTime, 0.f);
-	//}
-	//if (CMouse::GetInstance()->GetMousePos().y < 0)
-	//{
-	//	CScrollMgr::SetScroll(0.f, 250.f * fTime);
-	//}
-	//if (CMouse::GetInstance()->GetMousePos().y > WINCY)
-	//{
-	//	CScrollMgr::SetScroll(0, -250.f * fTime);
-	//}
 }
 
 void CTileMgr::Render()
@@ -76,8 +61,10 @@ void CTileMgr::Render()
 
 			CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
 
-			const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(
-				L"Terrain", L"Tile", m_vecTile[iIndex]->byDrawID);
+			//const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(
+			//	L"Terrain", L"Tile", m_vecTile[iIndex]->byDrawID);
+
+			const TEXINFO* pTexInfo = m_vecTileTexInfo[m_vecTile[iIndex]->byDrawID];
 
 			if (nullptr == pTexInfo)
 				continue;

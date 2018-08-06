@@ -9,6 +9,7 @@ CPlayerIMP::CPlayerIMP()
 	m_fAnimAcc(1.f)
 {
 	ZeroMemory(&m_tFrame, sizeof(FRAME));
+	m_pObj = CObjMgr::GetInstance()->GetPlayer();
 }
 
 

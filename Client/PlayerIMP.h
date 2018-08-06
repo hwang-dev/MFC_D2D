@@ -11,6 +11,7 @@ public:
 
 	void SetObj(CObj* pObj) { m_pObj = pObj; }
 	void SetStateKey(wstring wstrStateKey) { m_wstrStateKey = wstrStateKey; }
+	const wstring& GetStateKey() { return m_wstrStateKey; }
 
 public:
 	virtual HRESULT Initialize() PURE;

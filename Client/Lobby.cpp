@@ -40,6 +40,8 @@ void CLobby::LateUpdate()
 {
 	CTileMgr::GetInstance()->LateUpdate();
 	CObjMgr::GetInstance()->LateUpdate();
+
+	//CScrollMgr::ScrollLock();
 }
 
 void CLobby::Render()

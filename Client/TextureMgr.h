@@ -10,6 +10,7 @@ private:
 	~CTextureMgr();
 
 public:
+	HRESULT Initialize();
 	const TEXINFO* GetTexture(const TCHAR* pObjKey, const TCHAR* pStateKey = L"" ,
 		const int& iIndex = 0 );
 
@@ -19,6 +20,9 @@ public:
 		const TCHAR* pStateKey = L"" ,	const int& iCount = 0 );
 	void Release();
 	float GetTextureCount(const TCHAR* pObjKey, const TCHAR* pStateKey);
+	
+public:
+	vector<TEXINFO*>& GetVecTexInfo(const TCHAR* pObjKey, const TCHAR* pStateKey);
 
 private:
 	map<wstring, CTexture*>		m_MapTexture;

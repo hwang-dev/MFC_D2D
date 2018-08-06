@@ -9,13 +9,17 @@ CTextureMgr::CTextureMgr()
 {
 }
 
-
 CTextureMgr::~CTextureMgr()
 {
 	Release();
 }
 
-const TEXINFO* CTextureMgr::GetTexture(const TCHAR* pObjKey, const TCHAR* pStateKey, 
+HRESULT CTextureMgr::Initialize()
+{
+	return S_OK;
+}
+
+const TEXINFO* CTextureMgr::GetTexture(const TCHAR* pObjKey, const TCHAR* pStateKey,
 	const int & iIndex)
 {
 	// 우선 ObjKey로 CTexture를 탐색
@@ -132,3 +136,12 @@ float CTextureMgr::GetTextureCount(const TCHAR * pObjKey, const TCHAR * pStateKe
 
 	return (float)dynamic_cast<CMultiTexture*>(iter_find->second)->GetFrameCount(pStateKey);
 }
+
+vector<TEXINFO*>& CTextureMgr::GetVecTexInfo(const TCHAR * pObjKey, const TCHAR * pStateKey)
+{
+	auto& iter_find = m_MapTexture.find(pObjKey);
+
+	return dynamic_cast<CMultiTexture*>(iter_find->second)->GetVecTexInfo(pStateKey);
+}
+
+

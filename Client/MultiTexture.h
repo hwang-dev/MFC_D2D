@@ -13,7 +13,11 @@ public:
 	virtual HRESULT InsertTexture(const TCHAR * pFilePath, const TCHAR * pStateKey = L"", 
 		const int & iCount = 0) override;
 	virtual void Release() override;
+
+public:
 	int GetFrameCount(const TCHAR* pStateKey);
+	vector<TEXINFO*>& GetVecTexInfo(const TCHAR* pStateKey);
+
 private:
 	map<wstring, vector<TEXINFO*>>	m_MapMultiTex;
 };

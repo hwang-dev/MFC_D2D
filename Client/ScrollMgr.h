@@ -10,6 +10,7 @@ public:
 
 public:
 	static void SetScroll(float x, float y);
+	static void ScrollLock();
 
 private:
 	static D3DXVECTOR3 m_vScroll;

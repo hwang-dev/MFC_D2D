@@ -16,6 +16,7 @@ public:
 	HRESULT LoadTile();
 
 private:
-	vector<TILE*> m_vecTile;
+	vector<TILE*>		m_vecTile;
+	vector<TEXINFO*>	m_vecTileTexInfo;
 };
 

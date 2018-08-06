@@ -153,7 +153,9 @@
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h" />
     <ClInclude Include="Boss.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Lobby.h" />
@@ -185,7 +187,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="Lobby.cpp" />
