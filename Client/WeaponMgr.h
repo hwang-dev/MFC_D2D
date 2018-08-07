@@ -8,6 +8,12 @@ private:
 	~CWeaponMgr();
 
 public:
+	HRESULT Initialize();
 	void Render();
+	void AddWeapon(CObj* pObj);
+
+private:
+	vector<CObj*>	m_vecWeapon;
+	CObj*			m_pTarget;
 };
 

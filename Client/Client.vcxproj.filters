@@ -94,23 +94,32 @@
     <Filter Include="01.Object\02.Weapon">
       <UniqueIdentifier>{48ba4a2f-928d-4f19-8b47-0479b7895b06}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Object\02.Weapon\00.Revolver">
-      <UniqueIdentifier>{ee25cdc8-11a0-490d-8568-1d0e2de30a73}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01.Object\03.Bullet">
       <UniqueIdentifier>{a27c6587-e2e1-426e-a095-3820651054f9}</UniqueIdentifier>
     </Filter>
     <Filter Include="98.Managers\08.CollisionMgr">
       <UniqueIdentifier>{1f007829-eaec-4359-a209-99ac93bba357}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Object\02.Weapon\01.AK">
-      <UniqueIdentifier>{c3a3edde-5116-4c1f-8c3b-641bdb003e1e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="99.Default\01.etc">
       <UniqueIdentifier>{4148bfc1-4458-4b72-9376-8b347f6fd222}</UniqueIdentifier>
     </Filter>
     <Filter Include="99.Default\00.stdafx">
       <UniqueIdentifier>{24fd3375-007c-49c2-b020-ae5c8236d1b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\02.Weapon\01.WeaponIMP">
+      <UniqueIdentifier>{b7738aed-8509-4d92-8cdd-aacf5fa57a51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\02.Weapon\01.WeaponIMP\00. ShootIMP">
+      <UniqueIdentifier>{db27faa3-7001-4ec2-bf5e-b5e5e572f1bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\02.Weapon\00.WeaponBody">
+      <UniqueIdentifier>{d6893a32-247b-45fa-8fcd-ecae7563c43b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\02.Weapon\00.WeaponBody\00.Revolver">
+      <UniqueIdentifier>{ee25cdc8-11a0-490d-8568-1d0e2de30a73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\02.Weapon\00.WeaponBody\01.AK">
+      <UniqueIdentifier>{c3a3edde-5116-4c1f-8c3b-641bdb003e1e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -189,12 +198,6 @@
     <ClInclude Include="PlayerDodgeIMP.h">
       <Filter>01.Object\00.Player\01.Implementor\02.DodgeIMP</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>01.Object\02.Weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="Revolver.h">
-      <Filter>01.Object\02.Weapon\00.Revolver</Filter>
-    </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>01.Object\03.Bullet</Filter>
     </ClInclude>
@@ -214,10 +217,22 @@
       <Filter>98.Managers\08.CollisionMgr</Filter>
     </ClInclude>
     <ClInclude Include="AK.h">
-      <Filter>01.Object\02.Weapon\01.AK</Filter>
+      <Filter>01.Object\02.Weapon\00.WeaponBody\01.AK</Filter>
     </ClInclude>
     <ClInclude Include="WeaponMgr.h">
       <Filter>01.Object\02.Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponIMP.h">
+      <Filter>01.Object\02.Weapon\01.WeaponIMP</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>01.Object\02.Weapon\00.WeaponBody</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootIMP.h">
+      <Filter>01.Object\02.Weapon\01.WeaponIMP\00. ShootIMP</Filter>
+    </ClInclude>
+    <ClInclude Include="Revolver.h">
+      <Filter>01.Object\02.Weapon\00.WeaponBody\00.Revolver</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -293,11 +308,8 @@
     <ClCompile Include="PlayerDodgeIMP.cpp">
       <Filter>01.Object\00.Player\01.Implementor\02.DodgeIMP</Filter>
     </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>01.Object\02.Weapon</Filter>
-    </ClCompile>
     <ClCompile Include="Revolver.cpp">
-      <Filter>01.Object\02.Weapon\00.Revolver</Filter>
+      <Filter>01.Object\02.Weapon\00.WeaponBody\00.Revolver</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>01.Object\03.Bullet</Filter>
@@ -312,10 +324,19 @@
       <Filter>98.Managers\08.CollisionMgr</Filter>
     </ClCompile>
     <ClCompile Include="AK.cpp">
-      <Filter>01.Object\02.Weapon\01.AK</Filter>
+      <Filter>01.Object\02.Weapon\00.WeaponBody\01.AK</Filter>
     </ClCompile>
     <ClCompile Include="WeaponMgr.cpp">
       <Filter>01.Object\02.Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponIMP.cpp">
+      <Filter>01.Object\02.Weapon\01.WeaponIMP</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>01.Object\02.Weapon\00.WeaponBody</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootIMP.cpp">
+      <Filter>01.Object\02.Weapon\01.WeaponIMP\00. ShootIMP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

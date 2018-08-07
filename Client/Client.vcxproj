@@ -177,6 +177,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="ScrollMgr.h" />
+    <ClInclude Include="ShootIMP.h" />
     <ClInclude Include="SingleTexture.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -185,6 +186,7 @@
     <ClInclude Include="TileMgr.h" />
     <ClInclude Include="TimeMgr.h" />
     <ClInclude Include="Weapon.h" />
+    <ClInclude Include="WeaponIMP.h" />
     <ClInclude Include="WeaponMgr.h" />
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +214,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="ScrollMgr.cpp" />
+    <ClCompile Include="ShootIMP.cpp" />
     <ClCompile Include="SingleTexture.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -224,6 +227,7 @@
     <ClCompile Include="TileMgr.cpp" />
     <ClCompile Include="TimeMgr.cpp" />
     <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="WeaponIMP.cpp" />
     <ClCompile Include="WeaponMgr.cpp" />
   </ItemGroup>
   <ItemGroup>

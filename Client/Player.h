@@ -2,7 +2,6 @@
 #include "Obj.h"
 
 /* Player Ãß»óÃþ */
-class CPlayerIMP;
 class CPlayer :
 	public CObj
 {
@@ -26,6 +25,7 @@ private:
 	void StanceChange();
 	void PlayAnimation();
 	void PlayerDodge();
+	void MakeBullet();
 
 private:
 	PLAYER_DIR		m_ePlayerDir;

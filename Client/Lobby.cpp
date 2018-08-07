@@ -25,6 +25,12 @@ HRESULT CLobby::Initialize()
 	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CPlayer>::CreateObj(D3DXVECTOR3{ WINCX * 0.5f, WINCY * 0.5, 0.f }),
 		OBJ_PLAYER);
 
+	//	WeaponMgr Init
+	if (FAILED(CWeaponMgr::GetInstance()->Initialize())) {
+		ERR_MSG(L"WeaponMgr Init Fail");
+		return E_FAIL;
+	}
+
 	return S_OK;
 }
 
@@ -40,7 +46,7 @@ void CLobby::LateUpdate()
 {
 	CTileMgr::GetInstance()->LateUpdate();
 	CObjMgr::GetInstance()->LateUpdate();
-
+	CWeaponMgr::GetInstance()->Render();
 	//CScrollMgr::ScrollLock();
 }
 

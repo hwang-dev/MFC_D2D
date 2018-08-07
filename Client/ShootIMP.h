@@ -1,15 +1,14 @@
 #pragma once
-#include "Weapon.h"
-class CAK :
-	public CWeapon
+#include "WeaponIMP.h"
+class CShootIMP :
+	public CWeaponIMP
 {
 public:
-	CAK();
-	virtual ~CAK();
+	CShootIMP();
+	virtual ~CShootIMP();
 
-	// CWeapon을(를) 통해 상속됨
+	// CWeaponIMP을(를) 통해 상속됨
 	virtual HRESULT Initialize() override;
-	virtual int Update() override;
 	virtual void LateUpdate() override;
 	virtual void Render() override;
 	virtual void Release() override;

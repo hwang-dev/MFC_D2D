@@ -7,6 +7,9 @@
 #include "PlayerIdleIMP.h"
 #include "PlayerDodgeIMP.h"
 
+/* Weapon */
+#include "Revolver.h"
+
 CPlayer::CPlayer()
 	: m_ePlayerDir(DOWN),
 	m_eCurStance(STANCE_END),
@@ -44,10 +47,13 @@ HRESULT CPlayer::Initialize()
 
 void CPlayer::LateInit()
 {
+	/* 플레이어 기본 무기 */
+	CWeaponMgr::GetInstance()->AddWeapon(CAbstractFactory<CRevolver>::CreateObj());
 }
 
 int CPlayer::Update()
 {
+	CObj::LateInit();
 	PlayerMove();
 
 	/* 플레이어 좌표 */
@@ -311,6 +317,7 @@ void CPlayer::StanceChange()
 
 void CPlayer::PlayAnimation()
 {
+	/* 상태에 따른 애니메이션 속도 조절 */
 	if(m_bIsDodge) {
 		m_fAnimSpeed = 5.f;
 	}

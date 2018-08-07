@@ -13,6 +13,9 @@ CRevolver::~CRevolver()
 
 HRESULT CRevolver::Initialize()
 {
+	m_wstrObjKey = L"Revolver";
+	m_wstrStateKey = L"Stance";
+
 	return S_OK;
 }
 

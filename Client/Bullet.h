@@ -6,5 +6,8 @@ class CBullet :
 public:
 	CBullet();
 	virtual ~CBullet();
+
+protected:
+
 };
 
