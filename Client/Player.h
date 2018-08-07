@@ -19,6 +19,10 @@ public:
 	virtual void Render() override;
 	virtual void Release() override;
 
+public:
+	PLAYER_DIR GetPlayerDir() { return m_ePlayerDir; }
+	PLAYER_STANCE GetPlayerStance() { return m_eCurStance; }
+
 private:
 	void PlayerMove();
 	void IsOffSet();

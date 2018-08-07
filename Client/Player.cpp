@@ -97,6 +97,9 @@ void CPlayer::Render()
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
 
+	/* 플레이어 방향 벡터 */
+	D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
+
 	/* 플레이어 애니메이션 */
 	PlayAnimation();
 	PlayerDodge();
@@ -319,7 +322,7 @@ void CPlayer::PlayAnimation()
 {
 	/* 상태에 따른 애니메이션 속도 조절 */
 	if(m_bIsDodge) {
-		m_fAnimSpeed = 5.f;
+		m_fAnimSpeed = 2.f;
 	}
 	else {
 		m_fAnimSpeed = 2.f;
@@ -334,7 +337,7 @@ void CPlayer::PlayAnimation()
 void CPlayer::PlayerDodge()
 {
 	if (m_bIsDodge) {
-		m_eCurStance = IDLE;
+		m_eCurStance = DODGE;
 		m_wstrObjKey = L"Dodge";
 
 		D3DXVECTOR3 vDodge = {};
