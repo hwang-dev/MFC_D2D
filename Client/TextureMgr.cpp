@@ -141,7 +141,12 @@ vector<TEXINFO*>& CTextureMgr::GetVecTexInfo(const TCHAR * pObjKey, const TCHAR 
 {
 	auto& iter_find = m_MapTexture.find(pObjKey);
 
-	return dynamic_cast<CMultiTexture*>(iter_find->second)->GetVecTexInfo(pStateKey);
+	if (iter_find == m_MapTexture.end()) {
+		return vector<TEXINFO*>();
+	}
+	else {
+		return dynamic_cast<CMultiTexture*>(iter_find->second)->GetVecTexInfo(pStateKey);
+	}
 }
 
 

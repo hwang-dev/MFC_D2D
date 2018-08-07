@@ -41,11 +41,10 @@ void CTileMgr::Render()
 	int iCullEndX = iCullX + WINCX / TILECX;
 	int iCullEndY = iCullY + WINCY / TILECY;
 
-	for (int i = iCullY; i < iCullEndY + 3; ++i)
-	{
-		for (int j = iCullX; j < iCullEndX + 2; ++j)
-		{
-			int iIndex = j + (40 * i);
+	for (int i = iCullY; i < iCullEndY + 3; ++i) {
+		for (int j = iCullX; j < iCullEndX + 2; ++j) {
+
+			int iIndex = j + (80 * i);
 
 			if (0 > iIndex || m_vecTile.size() <= (size_t)iIndex)
 				continue;
@@ -87,8 +86,7 @@ HRESULT CTileMgr::LoadTile()
 	HANDLE hFile = CreateFile(L"../Data/TileData.dat", GENERIC_READ, 0, 0,
 		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 
-	if (INVALID_HANDLE_VALUE == hFile)
-	{
+	if (INVALID_HANDLE_VALUE == hFile) {
 		ERR_MSG(L"Tile Load Failed!!");
 		return E_FAIL;
 	}
@@ -98,8 +96,8 @@ HRESULT CTileMgr::LoadTile()
 	TILE tTile = {};
 	DWORD dwByte = 0;
 
-	while (true)
-	{
+	while (true) {
+
 		ReadFile(hFile, &tTile, sizeof(TILE), &dwByte, nullptr);
 
 		if (0 == dwByte)

@@ -14,7 +14,8 @@ CPlayer::CPlayer()
 	m_wstrStateKey(L""),
 	m_fAnimSpeed(0.f),
 	m_fDodgePow(0.f),
-	m_bIsDodge(false)
+	m_bIsDodge(false),
+	m_fDodgeDist(0.f)
 {
 }
 
@@ -36,8 +37,8 @@ HRESULT CPlayer::Initialize()
 	/* 초기 설정 */
 	m_fAnimSpeed = 2.f;
 	m_fSpeed = 150.f;
-	m_fDodgePow = 200.f;
-
+	m_fDodgePow = 10.f;
+	m_fDodgeDist = 50.f;
 
 	return S_OK;
 }

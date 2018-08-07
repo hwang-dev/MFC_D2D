@@ -61,3 +61,4 @@ using namespace std;
 #include "SceneMgr.h"
 #include "KeyMgr.h"
 #include "AbstractFactory.h"
+#include "WeaponMgr.h"

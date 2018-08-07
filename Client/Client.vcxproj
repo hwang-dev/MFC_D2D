@@ -185,6 +185,7 @@
     <ClInclude Include="TileMgr.h" />
     <ClInclude Include="TimeMgr.h" />
     <ClInclude Include="Weapon.h" />
+    <ClInclude Include="WeaponMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AK.cpp" />
@@ -223,6 +224,7 @@
     <ClCompile Include="TileMgr.cpp" />
     <ClCompile Include="TimeMgr.cpp" />
     <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="WeaponMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

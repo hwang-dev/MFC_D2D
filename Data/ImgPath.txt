@@ -1,7 +1,9 @@
-Mouse|Cursor|1|..\Texture\Mouse\Cursor\%d.png
+Mouse|Cursor|1|..\Texture\Mouse\cursor\%d.png
 Dodge|Down|9|..\Texture\Player\Dodge\Down\%d.png
 Dodge|Down_Left|9|..\Texture\Player\Dodge\Down_Left\%d.png
 Dodge|Down_Right|9|..\Texture\Player\Dodge\Down_Right\%d.png
+Dodge|Left|9|..\Texture\Player\Dodge\Left\%d.png
+Dodge|Right|9|..\Texture\Player\Dodge\Right\%d.png
 Dodge|Up|10|..\Texture\Player\Dodge\Up\%d.png
 Dodge|Up_Left|7|..\Texture\Player\Dodge\Up_Left\%d.png
 Dodge|Up_Right|7|..\Texture\Player\Dodge\Up_Right\%d.png
@@ -21,8 +23,8 @@ Move|Right|6|..\Texture\Player\Move\Right\%d.png
 Move|Up|6|..\Texture\Player\Move\Up\%d.png
 Move|Up_Left|6|..\Texture\Player\Move\Up_Left\%d.png
 Move|Up_Right|6|..\Texture\Player\Move\Up_Right\%d.png
-Revolver|Attack|3|..\Texture\Revolver\Attack\%d.png
-Revolver|Reload|3|..\Texture\Revolver\Reload\%d.png
-Revolver|Stance|1|..\Texture\Revolver\Stance\%d.png
 Terrain|SubTile|64|..\Texture\Terrain\SubTile\SubTile%d.png
 Terrain|Tile|59|..\Texture\Terrain\Tile\Tile%d.png
+Revolver|Attack|3|..\Texture\Weapon\Revolver\Attack\%d.png
+Revolver|Reload|3|..\Texture\Weapon\Revolver\Reload\%d.png
+Revolver|Stance|1|..\Texture\Weapon\Revolver\Stance\%d.png
