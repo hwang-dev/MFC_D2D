@@ -25,6 +25,7 @@ private:
 	void IsOffSet();
 	void StanceChange();
 	void PlayAnimation();
+	void PlayerDodge();
 
 private:
 	PLAYER_DIR		m_ePlayerDir;
@@ -33,5 +34,6 @@ private:
 	wstring			m_wstrStateKey;
 	float			m_fAnimSpeed;
 	float			m_fDodgePow;
+	bool			m_bIsDodge;
 };
 

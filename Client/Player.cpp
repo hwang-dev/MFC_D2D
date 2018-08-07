@@ -13,7 +13,8 @@ CPlayer::CPlayer()
 	m_ePreStance(END),
 	m_wstrStateKey(L""),
 	m_fAnimSpeed(0.f),
-	m_fDodgePow(0.f)
+	m_fDodgePow(0.f),
+	m_bIsDodge(false)
 {
 }
 
@@ -90,6 +91,7 @@ void CPlayer::Render()
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
 
+	/* 플레이어 애니메이션 */
 	PlayAnimation();
 
 
@@ -116,40 +118,64 @@ void CPlayer::Release()
 void CPlayer::PlayerMove()
 {
 	/* 좌상 */
-	if (CKeyMgr::GetInstance()->KeyCombinePressing(KEY_W, KEY_A))
-	{
+	if (CKeyMgr::GetInstance()->KeyCombinePressing(KEY_W, KEY_A)) {
 		m_eCurStance = MOVE;
 		m_wstrObjKey = L"Move";
 		m_ePlayerDir = UP_LEFT;
 		m_wstrStateKey = L"Up_Left";
 		m_tInfo.vPos += D3DXVECTOR3(-0.7f, -0.7f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+
+		/* 대쉬 */
+		if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
+			m_eCurStance = DODGE;
+			m_wstrObjKey = L"Dodge";
+			PlayerDodge();
+		}
 	}
 	/* 우상 */
-	else if (CKeyMgr::GetInstance()->KeyCombinePressing(KEY_W, KEY_D))
-	{
+	else if (CKeyMgr::GetInstance()->KeyCombinePressing(KEY_W, KEY_D)) {
 		m_eCurStance = MOVE;
 		m_wstrObjKey = L"Move";
 		m_ePlayerDir = UP_RIGHT;
 		m_wstrStateKey = L"Up_Right";
 		m_tInfo.vPos += D3DXVECTOR3(0.7f, -0.7f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+
+		/* 대쉬 */
+		if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
+			m_eCurStance = DODGE;
+			m_wstrObjKey = L"Dodge";
+			PlayerDodge();
+		}
 	}
 	/* 좌하 */
-	else if (CKeyMgr::GetInstance()->KeyCombinePressing(KEY_A, KEY_S))
-	{
+	else if (CKeyMgr::GetInstance()->KeyCombinePressing(KEY_A, KEY_S)) {
 		m_eCurStance = MOVE;
 		m_wstrObjKey = L"Move";
 		m_ePlayerDir = DOWN_LEFT;
 		m_wstrStateKey = L"Down_Left";
 		m_tInfo.vPos += D3DXVECTOR3(-0.7f, 0.7f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+
+		/* 대쉬 */
+		if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
+			m_eCurStance = DODGE;
+			m_wstrObjKey = L"Dodge";
+			PlayerDodge();
+		}
 	}
 	/* 우하 */
-	else if (CKeyMgr::GetInstance()->KeyCombinePressing(KEY_S, KEY_D))
-	{
+	else if (CKeyMgr::GetInstance()->KeyCombinePressing(KEY_S, KEY_D)) {
 		m_eCurStance = MOVE;
 		m_wstrObjKey = L"Move";
 		m_ePlayerDir = DOWN_RIGHT;
 		m_wstrStateKey = L"Down_Right";
 		m_tInfo.vPos += D3DXVECTOR3(0.7f, 0.7f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+
+		/* 대쉬 */
+		if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
+			m_eCurStance = DODGE;
+			m_wstrObjKey = L"Dodge";
+			PlayerDodge();
+		}
 	}
 	/* 상 */
 	else if (CKeyMgr::GetInstance()->KeyPressing(KEY_W)) {
@@ -159,11 +185,11 @@ void CPlayer::PlayerMove()
 		m_wstrStateKey = L"Up";
 		m_tInfo.vPos += D3DXVECTOR3(0.f, -1.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
 
+		/* 대쉬 */
 		if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
 			m_eCurStance = DODGE;
 			m_wstrObjKey = L"Dodge";
-			m_tInfo.vPos += D3DXVECTOR3(0.f, -1.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed
-				* 200.f;
+			PlayerDodge();
 		}
 	}
 	/* 하 */
@@ -173,6 +199,13 @@ void CPlayer::PlayerMove()
 		m_ePlayerDir = DOWN;
 		m_wstrStateKey = L"Down";
 		m_tInfo.vPos += D3DXVECTOR3(0.f, 1.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+
+		/* 대쉬 */
+		if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
+			m_eCurStance = DODGE;
+			m_wstrObjKey = L"Dodge";
+			PlayerDodge();
+		}
 	}
 	/* 좌 */
 	else if (CKeyMgr::GetInstance()->KeyPressing(KEY_A)) {
@@ -181,6 +214,13 @@ void CPlayer::PlayerMove()
 		m_ePlayerDir = LEFT;
 		m_wstrStateKey = L"Left";
 		m_tInfo.vPos += D3DXVECTOR3(-1.f, 0.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+
+		/* 대쉬 */
+		if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
+			m_eCurStance = DODGE;
+			m_wstrObjKey = L"Dodge";
+			PlayerDodge();
+		}
 	}
 	/* 우 */
 	else if (CKeyMgr::GetInstance()->KeyPressing(KEY_D)) {
@@ -189,6 +229,13 @@ void CPlayer::PlayerMove()
 		m_ePlayerDir = RIGHT;
 		m_wstrStateKey = L"Right";
 		m_tInfo.vPos += D3DXVECTOR3(1.f, 0.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+
+		/* 대쉬 */
+		if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
+			m_eCurStance = DODGE;
+			m_wstrObjKey = L"Dodge";
+			PlayerDodge();
+		}
 	}
 	else {
 		m_eCurStance = IDLE;
@@ -213,10 +260,10 @@ void CPlayer::PlayerMove()
 			m_wstrStateKey = L"Up_Right";
 			break;
 		case DOWN_LEFT:
-			m_wstrObjKey = L"Down_Left";
+			m_wstrStateKey = L"Down_Left";
 			break;
 		case DOWN_RIGHT:
-			m_wstrObjKey = L"Down_Right";
+			m_wstrStateKey = L"Down_Right";
 			break;
 		default:
 			break;
@@ -266,7 +313,9 @@ void CPlayer::StanceChange()
 		}
 
 		/* 상태 변경에 따른 애니메이션 초기화 */
-		m_tFrame.fFrame = 0.f;
+		if(!DODGE) {
+			m_tFrame.fFrame = 0.f;
+		}
 		m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
 			m_wstrStateKey.c_str());
 		m_ePreStance = m_eCurStance;
@@ -278,5 +327,38 @@ void CPlayer::PlayAnimation()
 	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime() * m_fAnimSpeed;
 	if (m_tFrame.fFrame > m_tFrame.fMax) {
 		m_tFrame.fFrame = 0.f;
+	}
+}
+
+void CPlayer::PlayerDodge()
+{
+	switch (m_ePlayerDir)
+	{
+	case UP:
+		m_tInfo.vPos += D3DXVECTOR3(0.f, -1.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed * m_fDodgePow;
+		break;
+	case RIGHT:
+		m_tInfo.vPos += D3DXVECTOR3(1.f, 0.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed * m_fDodgePow;
+		break;
+	case LEFT:
+		m_tInfo.vPos += D3DXVECTOR3(-1.f, 0.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed * m_fDodgePow;
+		break;
+	case DOWN:
+		m_tInfo.vPos += D3DXVECTOR3(0.f, 1.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed * m_fDodgePow;
+		break;
+	case UP_RIGHT:
+		m_tInfo.vPos += D3DXVECTOR3(0.7f, -0.7f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed * m_fDodgePow;
+		break;
+	case UP_LEFT:
+		m_tInfo.vPos += D3DXVECTOR3(-0.7f, -0.7f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed * m_fDodgePow;
+		break;
+	case DOWN_RIGHT:
+		m_tInfo.vPos += D3DXVECTOR3(0.7f, 0.7f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed * m_fDodgePow;
+		break;
+	case DOWN_LEFT:
+		m_tInfo.vPos += D3DXVECTOR3(-0.7f, 0.7f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed * m_fDodgePow;
+		break;
+	default:
+		break;
 	}
 }
