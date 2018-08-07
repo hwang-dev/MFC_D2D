@@ -35,6 +35,6 @@ private:
 	float			m_fAnimSpeed;
 	float			m_fDodgePow;
 	bool			m_bIsDodge;
-	float			m_fDodgeDist;
+	float			m_fDodgeTime;
 };
 

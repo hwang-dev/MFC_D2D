@@ -17,7 +17,7 @@ enum PLAYER_STANCE {
 	IDLE, 
 	MOVE, 
 	DODGE, 
-	END
+	STANCE_END
 };
 
 enum PLAYER_DIR {
@@ -29,13 +29,13 @@ enum PLAYER_DIR {
 	UP_RIGHT, 
 	DOWN_LEFT, 
 	DOWN_RIGHT,
-	END
+	DIR_END
 };
 
 enum MONSTER_TYPE {
 	REVOLVER,
 	SHOTGUN,
 	MAGIC,
-	END
+	TYPE_END
 };
 

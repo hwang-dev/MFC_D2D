@@ -106,11 +106,6 @@ vector<TEXINFO*>& CMultiTexture::GetVecTexInfo(const TCHAR * pStateKey)
 {
 	auto& iter_find = m_MapMultiTex.find(pStateKey);
 
-	if (iter_find == m_MapMultiTex.end()) {
-		return vector<TEXINFO*>();
-	}
-	else {
-		return iter_find->second;
-	}
+	return iter_find->second;
 }
 
