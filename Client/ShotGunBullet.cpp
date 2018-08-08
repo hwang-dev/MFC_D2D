@@ -1,34 +1,27 @@
 #include "stdafx.h"
-#include "NormalBullet.h"
+#include "ShotGunBullet.h"
 
 
-CNormalBullet::CNormalBullet()
-{
-}
-
-
-CNormalBullet::~CNormalBullet()
-{
-}
-
-HRESULT CNormalBullet::Initialize()
+CShotGunBullet::CShotGunBullet()
+	: m_fVanishTime(0.f)
 {
 	m_fSpeed = 200.f;
 	m_iBulletDamage = 2;
 	m_tInfo.vSize = { 5.f, 5.f, 0 };
+	m_fVanishTime = 1.f;
+}
 
+
+CShotGunBullet::~CShotGunBullet()
+{
+}
+
+HRESULT CShotGunBullet::Initialize()
+{
 	return S_OK;
 }
 
-void CNormalBullet::LateInit()
-{
-	// 총알 방향 = 마우스 - 플레이어
-	m_tInfo.vDir = (CMouse::GetInstance()->GetMousePos() - CScrollMgr::GetScroll()) -
-		CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
-	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
-}
-
-int CNormalBullet::Update()
+int CShotGunBullet::Update()
 {
 	CObj::LateInit();
 
@@ -58,11 +51,11 @@ int CNormalBullet::Update()
 	return NO_EVENT;
 }
 
-void CNormalBullet::LateUpdate()
+void CShotGunBullet::LateUpdate()
 {
 }
 
-void CNormalBullet::Render()
+void CShotGunBullet::Render()
 {
 	CObj::UpdateRect();
 
@@ -79,6 +72,6 @@ void CNormalBullet::Render()
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DXCOLOR(255, 255, 255, 255));
 }
 
-void CNormalBullet::Release()
+void CShotGunBullet::Release()
 {
 }

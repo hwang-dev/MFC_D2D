@@ -14,3 +14,4 @@ CWeapon::CWeapon()
 CWeapon::~CWeapon()
 {
 }
+

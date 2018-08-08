@@ -1,5 +1,6 @@
 #pragma once
 #include "Weapon.h"
+
 class CRevolver :
 	public CWeapon
 {
@@ -14,4 +15,9 @@ public:
 	virtual void LateUpdate() override;
 	virtual void Render() override;
 	virtual void Release() override;
+	
+	// CWeapon을(를) 통해 상속됨
+	virtual void CreateBullet() override;
+	virtual void WeaponReload() override;
+
 };

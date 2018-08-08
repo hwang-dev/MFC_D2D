@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Revolver.h"
-
+#include "NormalBullet.h"
 
 CRevolver::CRevolver()
 {
@@ -44,5 +44,16 @@ void CRevolver::Render()
 }
 
 void CRevolver::Release()
+{
+}
+
+void CRevolver::CreateBullet()
+{
+	D3DXVECTOR3 vPos = CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
+	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalBullet>::CreateObj(vPos),
+		OBJ_BULLET);
+}
+
+void CRevolver::WeaponReload()
 {
 }

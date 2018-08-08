@@ -48,3 +48,11 @@ void CShotGun::Render()
 void CShotGun::Release()
 {
 }
+
+void CShotGun::CreateBullet()
+{
+}
+
+void CShotGun::WeaponReload()
+{
+}

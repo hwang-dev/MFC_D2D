@@ -22,7 +22,8 @@ CPlayer::CPlayer()
 	m_fDodgePow(0.f),
 	m_bIsDodge(false),
 	m_fDodgeTime(0.f),
-	m_pCurGun(nullptr)
+	m_pCurGun(nullptr),
+	m_iHp(6)
 {
 }
 
@@ -140,7 +141,10 @@ void CPlayer::PlayerMove()
 {
 	if (!m_bIsDodge) {
 		/* °ø°Ý */
-		if (CKeyMgr::GetInstance()->KeyDown(KEY_LBUTTON)) {
+		if (CKeyMgr::GetInstance()->KeyPressing(KEY_LBUTTON)) {
+			MakeBullet();
+		}
+		else if (CKeyMgr::GetInstance()->KeyDown(KEY_LBUTTON)) {
 			MakeBullet();
 		}
 		/* ÁÂ»ó */
@@ -400,8 +404,9 @@ void CPlayer::PlayerDodge()
 
 void CPlayer::MakeBullet()
 {
-	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalBullet>::CreateObj(m_tInfo.vPos),
-		OBJ_BULLET);
+	dynamic_cast<CWeapon*>(m_pCurGun)->CreateBullet();
+	//CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalBullet>::CreateObj(m_tInfo.vPos),
+	//	OBJ_BULLET);
 }
 
 void CPlayer::ChangeWeapon()
@@ -409,7 +414,6 @@ void CPlayer::ChangeWeapon()
 	//SafeDelete(m_pCurGun);
 	vector<CObj*>& vecWeapon = CWeaponMgr::GetInstance()->GetVecWeapon();
 
-	
 	if (CKeyMgr::GetInstance()->KeyDown(KEY_1)) {
 		m_pCurGun = vecWeapon[0];
 	}

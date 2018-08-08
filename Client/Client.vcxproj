@@ -181,6 +181,7 @@
     <ClInclude Include="ScrollMgr.h" />
     <ClInclude Include="ShootIMP.h" />
     <ClInclude Include="ShotGun.h" />
+    <ClInclude Include="ShotGunBullet.h" />
     <ClInclude Include="SingleTexture.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -220,6 +221,7 @@
     <ClCompile Include="ScrollMgr.cpp" />
     <ClCompile Include="ShootIMP.cpp" />
     <ClCompile Include="ShotGun.cpp" />
+    <ClCompile Include="ShotGunBullet.cpp" />
     <ClCompile Include="SingleTexture.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

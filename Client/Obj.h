@@ -6,7 +6,7 @@ public:
 	virtual ~CObj();
 
 public:
-	const INFO& GetInfo() const { return m_tInfo; }
+	const INFO& GetInfo() { return m_tInfo; }
 	void SetPos(D3DXVECTOR3& vPos) { m_tInfo.vPos = vPos; }
 
 	const wstring& GetObjKey() { return m_wstrObjKey; }

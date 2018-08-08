@@ -24,6 +24,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 #include <d3d9.h>

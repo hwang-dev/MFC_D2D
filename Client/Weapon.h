@@ -7,7 +7,9 @@ public:
 	CWeapon();
 	virtual ~CWeapon();
 
-	wstring& GetStateKey() { return m_wstrObjKey; }
+public:
+	virtual void CreateBullet() PURE;	// 총알 발사
+	virtual void WeaponReload() PURE;	// 재장전
 
 protected:
 	int			m_iMaxBullet;		// 최대 총알

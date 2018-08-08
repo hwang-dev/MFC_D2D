@@ -26,7 +26,7 @@ HRESULT CWeaponMgr::Initialize()
 void CWeaponMgr::Render()
 {
 	float fpos = 12.f;
-	float fScaleY = 1.5f;
+	float fScaleY = 2.f;
 	float fGunPos = 5.f;
 	float fRadian = 0.f;
 
@@ -49,7 +49,7 @@ void CWeaponMgr::Render()
 		if (m_pTarget->GetInfo().vPos.y < CMouse::GetInstance()->GetMousePos().y)
 			fDegree *= -1;
 
-		D3DXMatrixScaling(&matScale, 1.5f, fScaleY, 1.f);
+		D3DXMatrixScaling(&matScale, 2.f, fScaleY, 1.f);
 		D3DXMatrixTranslation(&matTrans, m_pTarget->GetInfo().vPos.x + CScrollMgr::GetScroll().x + fpos,
 			m_pTarget->GetInfo().vPos.y + CScrollMgr::GetScroll().y + 5.f,
 			m_pTarget->GetInfo().vPos.z);
