@@ -18,5 +18,8 @@ public:
 	// CWeapon을(를) 통해 상속됨
 	virtual void CreateBullet() override;
 	virtual void WeaponReload() override;
+
+private:
+	int		m_iShotGunCount;
 };
 

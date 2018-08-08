@@ -3,23 +3,36 @@
 
 
 CShotGunBullet::CShotGunBullet()
-	: m_fVanishTime(0.f)
-{
-	m_fSpeed = 200.f;
-	m_iBulletDamage = 2;
-	m_tInfo.vSize = { 5.f, 5.f, 0 };
-	m_fVanishTime = 1.f;
-}
+	: m_fVanishTime(0.f),
+	m_fVanishTimer(0.f) {}
 
-
-CShotGunBullet::~CShotGunBullet()
-{
-}
+CShotGunBullet::~CShotGunBullet() { Release(); }
 
 HRESULT CShotGunBullet::Initialize()
 {
+	m_fSpeed = 150.f;
+	m_iBulletDamage = 3;
+	m_tInfo.vSize = { 5.f, 5.f, 0 };
+	m_fVanishTime = 3.f;
+
+
+
 	return S_OK;
 }
+
+void CShotGunBullet::LateInit()
+{
+	// 총알 방향 = 마우스 - 플레이어
+	float fRandom = rand() % 100;
+	m_tInfo.vDir = (CMouse::GetInstance()->GetMousePos() - CScrollMgr::GetScroll() - D3DXVECTOR3(fRandom, fRandom,0.f)) -
+		CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
+	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
+
+	/* 샷건 속도 랜덤 조정 */
+	float fRandomSpeed = (rand() % 30) + 1;
+	m_fSpeed -= fRandomSpeed;
+}
+
 
 int CShotGunBullet::Update()
 {
@@ -31,7 +44,7 @@ int CShotGunBullet::Update()
 	/* 총알 행렬 연산 */
 	D3DXMATRIX matScale, matTrans;
 
-	D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
+	D3DXMatrixScaling(&matScale, 1.3f, 1.3f, 1.f);
 	D3DXMatrixTranslation(&matTrans,
 		m_tInfo.vPos.x + CScrollMgr::GetScroll().x,
 		m_tInfo.vPos.y + CScrollMgr::GetScroll().y,
@@ -44,15 +57,18 @@ int CShotGunBullet::Update()
 	if (m_tInfo.vPos.x < (0.f - CScrollMgr::GetScroll().x) ||
 		m_tInfo.vPos.x >float(WINCX - CScrollMgr::GetScroll().x) ||
 		m_tInfo.vPos.y < (0.f - CScrollMgr::GetScroll().y) ||
-		m_tInfo.vPos.y >float(WINCY - CScrollMgr::GetScroll().y)) {
+		m_tInfo.vPos.y >float(WINCY - CScrollMgr::GetScroll().y) ||
+		m_fVanishTimer > m_fVanishTime) {
 		return DEAD_OBJ;
 	}
 
+	//
 	return NO_EVENT;
 }
 
 void CShotGunBullet::LateUpdate()
 {
+	m_fVanishTimer += CTimeMgr::GetInstance()->GetTime();
 }
 
 void CShotGunBullet::Render()

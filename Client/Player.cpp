@@ -144,9 +144,6 @@ void CPlayer::PlayerMove()
 		if (CKeyMgr::GetInstance()->KeyPressing(KEY_LBUTTON)) {
 			MakeBullet();
 		}
-		else if (CKeyMgr::GetInstance()->KeyDown(KEY_LBUTTON)) {
-			MakeBullet();
-		}
 		/* аб╩С */
 		if (CKeyMgr::GetInstance()->KeyCombinePressing(KEY_W, KEY_A)) {
 			m_eCurStance = MOVE;

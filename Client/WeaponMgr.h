@@ -10,6 +10,7 @@ private:
 public:
 	HRESULT Initialize();
 	void Render();
+	void LateUpdate();
 	void AddWeapon(CObj* pObj);
 	vector<CObj*>&	GetVecWeapon() { return m_vecWeapon; }
 

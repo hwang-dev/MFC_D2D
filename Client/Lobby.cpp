@@ -46,7 +46,7 @@ void CLobby::LateUpdate()
 {
 	CTileMgr::GetInstance()->LateUpdate();
 	CObjMgr::GetInstance()->LateUpdate();
-	
+	CWeaponMgr::GetInstance()->LateUpdate();
 	//CScrollMgr::ScrollLock();
 }
 

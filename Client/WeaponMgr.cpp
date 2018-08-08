@@ -75,6 +75,13 @@ void CWeaponMgr::Render()
 	}
 }
 
+void CWeaponMgr::LateUpdate()
+{
+	/* º±≈√µ» √—∏∏ LateUpdate */
+	CObj* pPlayerGun = dynamic_cast<CPlayer*>(CObjMgr::GetInstance()->GetPlayer())->GetCurGun();
+	pPlayerGun->LateUpdate();
+}
+
 void CWeaponMgr::AddWeapon(CObj * pObj)
 {
 	m_vecWeapon.push_back(pObj);

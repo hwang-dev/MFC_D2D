@@ -9,6 +9,7 @@ CNormalBullet::CNormalBullet()
 
 CNormalBullet::~CNormalBullet()
 {
+	Release();
 }
 
 HRESULT CNormalBullet::Initialize()
