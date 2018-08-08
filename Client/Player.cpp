@@ -392,6 +392,6 @@ void CPlayer::PlayerDodge()
 
 void CPlayer::MakeBullet()
 {
-	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalBullet>::CreateObj(m_tInfo.vDir),
+	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalBullet>::CreateObj(m_tInfo.vPos),
 		OBJ_BULLET);
 }

@@ -13,7 +13,7 @@ CNormalBullet::~CNormalBullet()
 
 HRESULT CNormalBullet::Initialize()
 {
-	m_fSpeed = 10.f;
+	m_fSpeed = 200.f;
 	m_iBulletDamage = 2;
 	m_tInfo.vSize = { 5.f, 5.f, 0 };
 
@@ -40,11 +40,20 @@ int CNormalBullet::Update()
 
 	D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
 	D3DXMatrixTranslation(&matTrans,
-		m_tInfo.vDir.x,
-		m_tInfo.vDir.y,
-		m_tInfo.vDir.z);
+		m_tInfo.vPos.x + CScrollMgr::GetScroll().x,
+		m_tInfo.vPos.y + CScrollMgr::GetScroll().y,
+		m_tInfo.vPos.z);
 
 	m_tInfo.matWorld = matScale * matTrans;
+
+
+	/* 화면 밖으로 나가면 소멸*/
+	if (m_tInfo.vPos.x < (0.f - CScrollMgr::GetScroll().x) ||
+		m_tInfo.vPos.x >float(WINCX - CScrollMgr::GetScroll().x) ||
+		m_tInfo.vPos.y < 0.f ||
+		m_tInfo.vPos.y >(float)WINCY) {
+		return DEAD_OBJ;
+	}
 
 	return NO_EVENT;
 }
