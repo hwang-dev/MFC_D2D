@@ -10,6 +10,9 @@
 /* Weapon */
 #include "Revolver.h"
 
+/* Bullet */
+#include "NormalBullet.h"
+
 CPlayer::CPlayer()
 	: m_ePlayerDir(DOWN),
 	m_eCurStance(STANCE_END),
@@ -128,6 +131,10 @@ void CPlayer::Release()
 void CPlayer::PlayerMove()
 {
 	if (!m_bIsDodge) {
+		/* °ø°Ý */
+		if (CKeyMgr::GetInstance()->KeyDown(KEY_LBUTTON)) {
+			MakeBullet();
+		}
 		/* ÁÂ»ó */
 		if (CKeyMgr::GetInstance()->KeyCombinePressing(KEY_W, KEY_A)) {
 			m_eCurStance = MOVE;
@@ -380,6 +387,11 @@ void CPlayer::PlayerDodge()
 			m_fDodgeTime = 0.f;
 			m_bIsDodge = false;
 		}
-
 	}
+}
+
+void CPlayer::MakeBullet()
+{
+	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalBullet>::CreateObj(m_tInfo.vDir),
+		OBJ_BULLET);
 }

@@ -3,6 +3,7 @@
 
 
 CBullet::CBullet()
+	: m_iBulletDamage(0)
 {
 }
 

@@ -1,4 +1,5 @@
-Mouse|Cursor|1|..\Texture\Mouse\cursor\%d.png
+Bullet|Normal|1|..\Texture\Bullet\Normal\%d.png
+Mouse|Cursor|1|..\Texture\Mouse\Cursor\%d.png
 Dodge|Down|9|..\Texture\Player\Dodge\Down\%d.png
 Dodge|Down_Left|9|..\Texture\Player\Dodge\Down_Left\%d.png
 Dodge|Down_Right|9|..\Texture\Player\Dodge\Down_Right\%d.png

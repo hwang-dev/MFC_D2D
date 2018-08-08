@@ -8,6 +8,6 @@ public:
 	virtual ~CBullet();
 
 protected:
-
+	int		m_iBulletDamage;
 };
 
