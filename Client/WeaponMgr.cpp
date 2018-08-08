@@ -27,22 +27,32 @@ void CWeaponMgr::Render()
 {
 	float fpos = 20.f;
 	float fScaleX = 1.5f;
+	float fAngle = 0.f;
+
+	/* 마우스 벡터 - 플레이어 좌표 */
+	D3DXVECTOR3 vDir = CMouse::GetInstance()->GetMousePos() -
+		(m_pTarget->GetInfo().vPos/* + CScrollMgr::GetScroll())*/);
 
 	/* 총구 방향 조정 */
-	if (m_pTarget->GetInfo().vPos.x + CScrollMgr::GetScroll().x > CMouse::GetInstance()->GetMousePos().x) {
-		fpos *= -1;
-		fScaleX *= -1;
-	}
+	//if (m_pTarget->GetInfo().vPos.x + CScrollMgr::GetScroll().x > CMouse::GetInstance()->GetMousePos().x) {
+	//	fpos *= -1;
+	//	fScaleX *= -1;
+	//}
+	D3DXVec3Normalize(&vDir, &vDir);
+	fAngle = D3DXVec3Dot(&vDir, &m_pTarget->GetInfo().vLook);
+
+	if (m_pTarget->GetInfo().vPos.y < CMouse::GetInstance()->GetMousePos().y)
+		fAngle *= -1;
 
 	/* 구르기 상태 아닐때만 Render */
 	if(dynamic_cast<CPlayer*>(m_pTarget)->GetPlayerStance() != DODGE) {
 	D3DXMATRIX matWorld, matScale, matRotZ, matTrans;
 
 	D3DXMatrixScaling(&matScale, fScaleX, 1.5f, 1.f);
-	D3DXMatrixTranslation(&matTrans, m_pTarget->GetInfo().vPos.x + CScrollMgr::GetScroll().x + fpos,
+	D3DXMatrixTranslation(&matTrans, m_pTarget->GetInfo().vPos.x + CScrollMgr::GetScroll().x + 5.f,
 		m_pTarget->GetInfo().vPos.y + CScrollMgr::GetScroll().y + 5.f,
 		m_pTarget->GetInfo().vPos.z);
-	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(0.f));
+	D3DXMatrixRotationZ(&matRotZ, acosf(fAngle));
 
 	matWorld = matScale * matRotZ * matTrans;
 
@@ -55,7 +65,7 @@ void CWeaponMgr::Render()
 
 	CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
-		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+		&D3DXVECTOR3(fCenterX - 10.f, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
 	}
 }
 
