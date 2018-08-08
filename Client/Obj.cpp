@@ -4,7 +4,9 @@
 
 CObj::CObj()
 	: m_bIsInit(false),
-	m_fSpeed(0.f)
+	m_fSpeed(0.f),
+	m_wstrObjKey(L""),
+	m_wstrStateKey(L"")
 {
 	ZeroMemory(&m_tInfo, sizeof(INFO));
 	ZeroMemory(&m_tFrame, sizeof(FRAME));

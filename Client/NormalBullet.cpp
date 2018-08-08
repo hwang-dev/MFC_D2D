@@ -50,8 +50,8 @@ int CNormalBullet::Update()
 	/* 화면 밖으로 나가면 소멸*/
 	if (m_tInfo.vPos.x < (0.f - CScrollMgr::GetScroll().x) ||
 		m_tInfo.vPos.x >float(WINCX - CScrollMgr::GetScroll().x) ||
-		m_tInfo.vPos.y < 0.f ||
-		m_tInfo.vPos.y >(float)WINCY) {
+		m_tInfo.vPos.y < (0.f - CScrollMgr::GetScroll().y) ||
+		m_tInfo.vPos.y >float(WINCY - CScrollMgr::GetScroll().y)) {
 		return DEAD_OBJ;
 	}
 

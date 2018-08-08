@@ -35,7 +35,14 @@ void CKeyMgr::KeyCheck()
 		m_dwKey |= KEY_LBUTTON;
 	if (GetAsyncKeyState(VK_RBUTTON) & 0x8000)
 		m_dwKey |= KEY_RBUTTON;
-
+	if (GetAsyncKeyState('1') & 0x8000)
+		m_dwKey |= KEY_1;
+	if (GetAsyncKeyState('2') & 0x8000)
+		m_dwKey |= KEY_2;
+	if (GetAsyncKeyState('3') & 0x8000)
+		m_dwKey |= KEY_3;
+	if (GetAsyncKeyState('4') & 0x8000)
+		m_dwKey |= KEY_4;
 }
 
 bool CKeyMgr::KeyUp(DWORD dwKey)

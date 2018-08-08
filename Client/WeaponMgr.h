@@ -11,6 +11,7 @@ public:
 	HRESULT Initialize();
 	void Render();
 	void AddWeapon(CObj* pObj);
+	vector<CObj*>&	GetVecWeapon() { return m_vecWeapon; }
 
 private:
 	vector<CObj*>	m_vecWeapon;

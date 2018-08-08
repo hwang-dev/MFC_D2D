@@ -33,7 +33,7 @@ using namespace std;
 #pragma comment(lib, "d3dx9.lib")
 
 // Memory Leak
-//#include "vld.h"
+#include "vld.h"
 
 // Console
 //#ifdef _DEBUG

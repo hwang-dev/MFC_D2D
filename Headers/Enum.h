@@ -8,9 +8,9 @@ enum TEXTYPE {
 
 enum OBJID { 
 	OBJ_TERRAIN, 
+	OBJ_BULLET,
 	OBJ_PLAYER, 
 	OBJ_MONSTER,
-	OBJ_BULLET,
 	OBJ_END 
 };
 

@@ -10,6 +10,7 @@ public:
 	void SetPos(D3DXVECTOR3& vPos) { m_tInfo.vPos = vPos; }
 
 	const wstring& GetObjKey() { return m_wstrObjKey; }
+	const wstring& GetSateKey() { return m_wstrStateKey; }
 
 public:
 	virtual HRESULT Initialize() PURE;
@@ -24,11 +25,12 @@ protected:
 	void UpdateRect();
 
 protected:
-	INFO	m_tInfo;
-	RECT	m_tRect;
-	FRAME	m_tFrame;
-	float	m_fSpeed;
-	bool	m_bIsInit;
-	wstring	m_wstrObjKey;
+	INFO		m_tInfo;
+	RECT		m_tRect;
+	FRAME		m_tFrame;
+	float		m_fSpeed;
+	bool		m_bIsInit;
+	wstring		m_wstrObjKey;
+	wstring		m_wstrStateKey;
 };
 

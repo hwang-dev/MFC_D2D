@@ -37,35 +37,41 @@ void CWeaponMgr::Render()
 	float fDegree = acosf(fRadian);
 
 	/* 구르기 상태 아닐때만 Render */
-	if(dynamic_cast<CPlayer*>(m_pTarget)->GetPlayerStance() != DODGE) {
-	D3DXMATRIX matWorld, matScale, matRotZ, matTrans;
+	if (dynamic_cast<CPlayer*>(m_pTarget)->GetPlayerStance() != DODGE) {
 
-	if (CMouse::GetInstance()->GetMousePos().x - CScrollMgr::GetScroll().x < m_pTarget->GetInfo().vPos.x)
-	{
-		fScaleY *= -1.f;
-		fpos *= -1.f;
-	}
-	if (m_pTarget->GetInfo().vPos.y < CMouse::GetInstance()->GetMousePos().y)
-		fDegree *= -1;
+		D3DXMATRIX matWorld, matScale, matRotZ, matTrans;
 
-	D3DXMatrixScaling(&matScale, 1.5f, fScaleY, 1.f);
-	D3DXMatrixTranslation(&matTrans, m_pTarget->GetInfo().vPos.x + CScrollMgr::GetScroll().x + fpos,
-		m_pTarget->GetInfo().vPos.y + CScrollMgr::GetScroll().y + 5.f,
-		m_pTarget->GetInfo().vPos.z);
-	D3DXMatrixRotationZ(&matRotZ, -fDegree);
+		if (CMouse::GetInstance()->GetMousePos().x - CScrollMgr::GetScroll().x < m_pTarget->GetInfo().vPos.x) {
+			fScaleY *= -1.f;
+			fpos *= -1.f;
+		}
 
-	matWorld = matScale * matRotZ * matTrans;
+		if (m_pTarget->GetInfo().vPos.y < CMouse::GetInstance()->GetMousePos().y)
+			fDegree *= -1;
 
-	const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(L"Revolver", L"Stance", 0);
+		D3DXMatrixScaling(&matScale, 1.5f, fScaleY, 1.f);
+		D3DXMatrixTranslation(&matTrans, m_pTarget->GetInfo().vPos.x + CScrollMgr::GetScroll().x + fpos,
+			m_pTarget->GetInfo().vPos.y + CScrollMgr::GetScroll().y + 5.f,
+			m_pTarget->GetInfo().vPos.z);
+		D3DXMatrixRotationZ(&matRotZ, -fDegree);
 
-	NULL_CHECK(pTexInfo);
+		matWorld = matScale * matRotZ * matTrans;
 
-	float fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
-	float fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
+		/* 현재 플레이어 총 가져오기 */
+		CObj* pPlayerGun = dynamic_cast<CPlayer*>(CObjMgr::GetInstance()->GetPlayer())->GetCurGun();
+		NULL_CHECK(pPlayerGun);
 
-	CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
-	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
-		&D3DXVECTOR3(fCenterX - fGunPos, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+		const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(pPlayerGun->GetObjKey().c_str(),
+			pPlayerGun->GetSateKey().c_str(), 0);
+
+		NULL_CHECK(pTexInfo);
+
+		float fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
+		float fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
+
+		CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
+		CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
+			&D3DXVECTOR3(fCenterX - fGunPos, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
 	}
 }
 

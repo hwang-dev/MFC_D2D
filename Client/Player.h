@@ -22,6 +22,7 @@ public:
 public:
 	PLAYER_DIR GetPlayerDir() { return m_ePlayerDir; }
 	PLAYER_STANCE GetPlayerStance() { return m_eCurStance; }
+	CObj*& GetCurGun() { return m_pCurGun; }
 
 private:
 	void PlayerMove();
@@ -30,15 +31,17 @@ private:
 	void PlayAnimation();
 	void PlayerDodge();
 	void MakeBullet();
+	void ChangeWeapon();
 
 private:
 	PLAYER_DIR		m_ePlayerDir;
 	PLAYER_STANCE	m_eCurStance;
 	PLAYER_STANCE	m_ePreStance;
-	wstring			m_wstrStateKey;
+	
 	float			m_fAnimSpeed;
 	float			m_fDodgePow;
 	bool			m_bIsDodge;
 	float			m_fDodgeTime;
+	CObj*			m_pCurGun;
 };
 

@@ -9,6 +9,7 @@
 
 /* Weapon */
 #include "Revolver.h"
+#include "ShotGun.h"
 
 /* Bullet */
 #include "NormalBullet.h"
@@ -17,22 +18,23 @@ CPlayer::CPlayer()
 	: m_ePlayerDir(DOWN),
 	m_eCurStance(STANCE_END),
 	m_ePreStance(STANCE_END),
-	m_wstrStateKey(L""),
 	m_fAnimSpeed(0.f),
 	m_fDodgePow(0.f),
 	m_bIsDodge(false),
-	m_fDodgeTime(0.f)
+	m_fDodgeTime(0.f),
+	m_pCurGun(nullptr)
 {
 }
 
 
 CPlayer::~CPlayer()
 {
+	Release();
 }
 
 HRESULT CPlayer::Initialize()
 {
-	/* 처음 상태 */
+	/* 최초 상태 */
 	m_eCurStance = IDLE;
 	m_wstrObjKey = L"Idle";
 	m_wstrStateKey = L"Down";
@@ -40,18 +42,22 @@ HRESULT CPlayer::Initialize()
 		m_wstrObjKey.c_str(), m_wstrStateKey.c_str()
 	);
 
-	/* 초기 설정 */
+	/* 최초 설정 */
 	m_fAnimSpeed = 2.f;
 	m_fSpeed = 150.f;
 	m_fDodgePow = 2.f;
+
+	/* 플레이어 기본 무기 */
+	CWeaponMgr::GetInstance()->AddWeapon(CAbstractFactory<CRevolver>::CreateObj());
+	CWeaponMgr::GetInstance()->AddWeapon(CAbstractFactory<CShotGun>::CreateObj());
 
 	return S_OK;
 }
 
 void CPlayer::LateInit()
 {
-	/* 플레이어 기본 무기 */
-	CWeaponMgr::GetInstance()->AddWeapon(CAbstractFactory<CRevolver>::CreateObj());
+	/* 최초 무기*/
+	m_pCurGun = CWeaponMgr::GetInstance()->GetVecWeapon().front();
 }
 
 int CPlayer::Update()
@@ -78,6 +84,7 @@ void CPlayer::LateUpdate()
 {
 	IsOffSet();
 	StanceChange();
+	ChangeWeapon();
 }
 
 void CPlayer::Render()
@@ -126,6 +133,7 @@ void CPlayer::Render()
 
 void CPlayer::Release()
 {
+	SafeDelete(m_pCurGun);
 }
 
 void CPlayer::PlayerMove()
@@ -395,3 +403,19 @@ void CPlayer::MakeBullet()
 	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalBullet>::CreateObj(m_tInfo.vPos),
 		OBJ_BULLET);
 }
+
+void CPlayer::ChangeWeapon()
+{
+	//SafeDelete(m_pCurGun);
+	vector<CObj*>& vecWeapon = CWeaponMgr::GetInstance()->GetVecWeapon();
+
+	
+	if (CKeyMgr::GetInstance()->KeyDown(KEY_1)) {
+		m_pCurGun = vecWeapon[0];
+	}
+	if (CKeyMgr::GetInstance()->KeyDown(KEY_2)) {
+		m_pCurGun = vecWeapon[1];
+	}
+}
+
+

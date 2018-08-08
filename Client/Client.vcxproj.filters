@@ -124,6 +124,9 @@
     <Filter Include="01.Object\03.Bullet\00.NormalBullet">
       <UniqueIdentifier>{d038deba-1412-476f-9c0a-0ec2e9c2e235}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Object\02.Weapon\00.WeaponBody\02.ShotGun">
+      <UniqueIdentifier>{d1e7fc55-289d-4040-9ca1-e1bd1fc7a79e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -241,6 +244,9 @@
     <ClInclude Include="NormalBullet.h">
       <Filter>01.Object\03.Bullet\00.NormalBullet</Filter>
     </ClInclude>
+    <ClInclude Include="ShotGun.h">
+      <Filter>01.Object\02.Weapon\00.WeaponBody\02.ShotGun</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -347,6 +353,9 @@
     </ClCompile>
     <ClCompile Include="NormalBullet.cpp">
       <Filter>01.Object\03.Bullet\00.NormalBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="ShotGun.cpp">
+      <Filter>01.Object\02.Weapon\00.WeaponBody\02.ShotGun</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

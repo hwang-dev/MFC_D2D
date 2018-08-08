@@ -181,8 +181,7 @@ bool CTerrain::Picking(const D3DXVECTOR3 & vPos, const int & iIndex)
 	// 내적을 이용한 픽킹
 
 	// 1. 12시를 기준으로 시계 방향의 마름모 꼭지점을 구한다.
-	D3DXVECTOR3 vPoint[4] =
-	{
+	D3DXVECTOR3 vPoint[4] = {
 		D3DXVECTOR3(m_vecTile[iIndex]->vPos.x - (TILECX * 0.5f), m_vecTile[iIndex]->vPos.y + (TILECY * 0.5f), 0.f),
 		D3DXVECTOR3(m_vecTile[iIndex]->vPos.x + (TILECX * 0.5f), m_vecTile[iIndex]->vPos.y + (TILECY * 0.5f), 0.f),
 		D3DXVECTOR3(m_vecTile[iIndex]->vPos.x + (TILECX * 0.5f), m_vecTile[iIndex]->vPos.y - (TILECY * 0.5f), 0.f),
@@ -199,8 +198,7 @@ bool CTerrain::Picking(const D3DXVECTOR3 & vPos, const int & iIndex)
 	};
 
 	// 3. 각 법선 벡터를 구한다.
-	D3DXVECTOR3 vNormal[4] =
-	{
+	D3DXVECTOR3 vNormal[4] = {
 		D3DXVECTOR3(-vDir[0].y, vDir[0].x, 0.f),
 		D3DXVECTOR3(-vDir[1].y, vDir[1].x, 0.f),
 		D3DXVECTOR3(-vDir[2].y, vDir[2].x, 0.f),
@@ -212,8 +210,7 @@ bool CTerrain::Picking(const D3DXVECTOR3 & vPos, const int & iIndex)
 		D3DXVec3Normalize(&vNormal[i], &vNormal[i]);
 
 	// 5. 각 꼭지점과 마우스 간의 방향벡터를 구한다.
-	D3DXVECTOR3 vMouseDir[4] =
-	{
+	D3DXVECTOR3 vMouseDir[4] = {
 		vPos - vPoint[0],
 		vPos - vPoint[1],
 		vPos - vPoint[2],
@@ -223,13 +220,10 @@ bool CTerrain::Picking(const D3DXVECTOR3 & vPos, const int & iIndex)
 	for (int i = 0; i < 4; ++i)
 		D3DXVec3Normalize(&vMouseDir[i], &vMouseDir[i]);
 
-	// 4면에 대해서 vMouseDir과 vNormal을 내적하여 나온 결과가 둔각(음수)이면 true!
-	for (int i = 0; i < 4; ++i)
-	{
+	for (int i = 0; i < 4; ++i) {
 		// 하나라도 양수가 나오면 false
 		if (0.f < D3DXVec3Dot(&vMouseDir[i], &vNormal[i]))
 			return false;
 	}
-
 	return true;
 }

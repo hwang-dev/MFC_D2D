@@ -15,7 +15,6 @@ protected:
 	float		m_fReloadTime;		// 재장전 시간
 	float		m_fWeaponDelay;		// 연사 속도
 	bool		m_bIsGet;
-	wstring		m_wstrStateKey;
 };
 
 

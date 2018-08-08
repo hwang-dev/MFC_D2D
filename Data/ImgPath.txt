@@ -29,3 +29,5 @@ Terrain|Tile|59|..\Texture\Terrain\Tile\Tile%d.png
 Revolver|Attack|3|..\Texture\Weapon\Revolver\Attack\%d.png
 Revolver|Reload|3|..\Texture\Weapon\Revolver\Reload\%d.png
 Revolver|Stance|1|..\Texture\Weapon\Revolver\Stance\%d.png
+Shotgun|Attack|4|..\Texture\Weapon\Shotgun\Attack\%d.png
+Shotgun|Stance|1|..\Texture\Weapon\Shotgun\Stance\%d.png
