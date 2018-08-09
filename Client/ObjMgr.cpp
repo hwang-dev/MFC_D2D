@@ -48,6 +48,10 @@ void CObjMgr::LateUpdate()
 		for (CObj*& pObj : objLst)
 			pObj->LateUpdate();
 	}
+
+	/* Ãæµ¹ */
+	CCollisionMgr::CollisionTile(CObjMgr::GetInstance()->GetPlayer(), 
+		CTileMgr::GetInstance()->GetVecTile());
 }
 
 void CObjMgr::Render()

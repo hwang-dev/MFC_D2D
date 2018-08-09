@@ -69,40 +69,63 @@ void CCollisionMgr::CollisionTile(CObj * pPlayer, vector<TILE*> dstLst)
 
 	for (auto& pTile : dstLst) {
 		if (pTile->GetTileOption() == 1) {
-			if (CheckRect(pTile, pPlayer, &fMoveX, &fMoveY)) {
+			if (CheckTile(pPlayer, pTile, &fMoveX, &fMoveY)) {
+				/* ±íÀÌ°¡ ÂªÀº ÂÊÀ¸·Î ¹Ð¾î³¿ */
 				if (fMoveX > fMoveY) {
-					float fX = pSrc->GetInfo().vPos.x;
-					float fY = pSrc->GetInfo().vPos.y;
-
-					if (pDst->GetInfo().vPos.y > fY) {
+					float fX = pPlayer->GetInfo().vPos.y;
+					float fY = pPlayer->GetInfo().vPos.y;
+					if (pTile->GetTilePos().y> fY) {
 						fMoveY *= -1.f;
 					}
-					pSrc->SetPos(D3DXVECTOR3(fX, fY + fMoveY, 0.f));
+					pPlayer->SetPos(D3DXVECTOR3(fX + CScrollMgr::GetScroll().x,
+						(fY + fMoveY) + CScrollMgr::GetScroll().y,
+						0.f));
 				}
 				else {
-					float fX = pSrc->GetInfo().vPos.x;
-					float fY = pSrc->GetInfo().vPos.y;
+					float fX = pPlayer->GetInfo().vPos.x;
+					float fY = pPlayer->GetInfo().vPos.x;
 
-					if (pDst->GetInfo().vPos.x > fX) {
+					if (pTile->GetTilePos().x > fX) {
 						fMoveX *= -1.f;
 					}
-					pSrc->SetPos(D3DXVECTOR3(fX + fMoveX, fY, 0.f));
+					pPlayer->SetPos(D3DXVECTOR3((fX + fMoveX) + CScrollMgr::GetScroll().x,
+						fY + CScrollMgr::GetScroll().y,
+						0.f));
+				}
+			}
 		}
-
 	}
+}
+
+bool CCollisionMgr::CheckTile(CObj * pPlayer, TILE * pTile, float * pMoveX, float * pMoveY)
+{
+	float fSumSizeX = (pPlayer->GetInfo().vSize.x + pTile->GetTileSize().x) * 0.5f;
+	float fSumSizeY = (pPlayer->GetInfo().vSize.y + pTile->GetTileSize().y) * 0.5f;
+
+	float fDistX = fabs(pPlayer->GetInfo().vPos.x - pTile->GetTilePos().x);
+	float fDistY = fabs(pPlayer->GetInfo().vPos.y - pTile->GetTilePos().y);
+
+	if (fSumSizeX > fDistX && fSumSizeY > fDistY) {
+		*pMoveX = fSumSizeX - fDistX;
+		*pMoveY = fSumSizeY - fDistY;
+
+		return true;
+	}
+
+	return false;
 }
 
 bool CCollisionMgr::CheckRect(CObj * pDst, CObj * pSrc, float * pMoveX, float * pMoveY)
 {
 	float fSumSizeX = (pDst->GetInfo().vSize.x + pSrc->GetInfo().vSize.x) * 0.5f;
-	float fSUmSizeY = (pDst->GetInfo().vSize.y + pSrc->GetInfo().vSize.y) * 0.5f;
+	float fSumSizeY = (pDst->GetInfo().vSize.y + pSrc->GetInfo().vSize.y) * 0.5f;
 
 	float fDistX = fabs(pDst->GetInfo().vPos.x - pSrc->GetInfo().vPos.x);
-	float fDistY = fabs(pDst->GetInfo().vPos.y - pSrc->GetInfo().vPos.y); 
+	float fDistY = fabs(pDst->GetInfo().vPos.y - pSrc->GetInfo().vPos.y);
 
-	if (fSumSizeX > fDistX && fSUmSizeY > fDistY) {
+	if (fSumSizeX > fDistX && fSumSizeY > fDistY) {
 		*pMoveX = fSumSizeX - fDistX;
-		*pMoveY = fSUmSizeY - fDistY;
+		*pMoveY = fSumSizeY - fDistY;
 
 		return true;
 	}

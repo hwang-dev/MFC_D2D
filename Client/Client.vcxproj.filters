@@ -40,6 +40,9 @@
     <Filter Include="01.Object\01.Monster">
       <UniqueIdentifier>{7524fc25-a4c4-4716-819b-d5db1ca130e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="98.Managers\04.TileMgr">
+      <UniqueIdentifier>{2e271e48-28af-4abf-aca4-4df5490c41d4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="98.Managers\05.ScrollMgr">
       <UniqueIdentifier>{fc04c48f-6015-4159-a999-96e6d89a2f08}</UniqueIdentifier>
     </Filter>
@@ -127,14 +130,8 @@
     <Filter Include="01.Object\03.Bullet\01.ShotGunBullet">
       <UniqueIdentifier>{363183ac-c36e-4c49-8925-cd23f741abb6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Object\01.Monster\01.NormalMonster">
-      <UniqueIdentifier>{c04f3890-ecfa-43c3-9775-3d938f187618}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="95.Tile">
-      <UniqueIdentifier>{820f69d0-83f3-45c3-9060-8b7afa57bf0a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="95.Tile\04.TileMgr">
-      <UniqueIdentifier>{2e271e48-28af-4abf-aca4-4df5490c41d4}</UniqueIdentifier>
+    <Filter Include="03.Tile">
+      <UniqueIdentifier>{9da59d83-5abf-4305-b684-98ce10e7219b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -166,7 +163,7 @@
       <Filter>98.Managers\03.ObjMgr</Filter>
     </ClInclude>
     <ClInclude Include="TileMgr.h">
-      <Filter>95.Tile\04.TileMgr</Filter>
+      <Filter>98.Managers\04.TileMgr</Filter>
     </ClInclude>
     <ClInclude Include="ScrollMgr.h">
       <Filter>98.Managers\05.ScrollMgr</Filter>
@@ -289,7 +286,7 @@
       <Filter>98.Managers\03.ObjMgr</Filter>
     </ClCompile>
     <ClCompile Include="TileMgr.cpp">
-      <Filter>95.Tile\04.TileMgr</Filter>
+      <Filter>98.Managers\04.TileMgr</Filter>
     </ClCompile>
     <ClCompile Include="ScrollMgr.cpp">
       <Filter>98.Managers\05.ScrollMgr</Filter>

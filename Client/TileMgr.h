@@ -13,7 +13,10 @@ public:
 	void LateUpdate();
 	void Render();
 	void Release();
+
+public:
 	HRESULT LoadTile();
+	vector<TILE*>& GetVecTile() { return m_vecTile; }
 
 private:
 	vector<TILE*>		m_vecTile;

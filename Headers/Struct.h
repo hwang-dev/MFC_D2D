@@ -19,6 +19,7 @@ typedef struct tagTile
 
 	BYTE& GetTileOption() { return byOption; }
 	D3DXVECTOR3& GetTileSize() { return vSize; }
+	D3DXVECTOR3& GetTilePos() { return vPos; }
 }TILE;
 
 typedef struct tagInfo

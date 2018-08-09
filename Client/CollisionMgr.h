@@ -14,6 +14,7 @@ public:
 	static void CollisionTile(CObj* pPlayer, vector<TILE*> dstLst);
 
 private:
+	static bool CheckTile(CObj* pPlayer, TILE* pTile, float* pMoveX, float* pMoveY);
 	static bool CheckRect(CObj* pDst, CObj* pSrc, float* pMoveX, float* pMoveY);
 	static bool CheckSphere(CObj* pDst, CObj* pSrc);
 };
