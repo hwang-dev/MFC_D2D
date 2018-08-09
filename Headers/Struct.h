@@ -17,6 +17,8 @@ typedef struct tagTile
 	BYTE byDrawID;		// ·»´õ¸µ ¿É¼Ç.
 	BYTE byRoomNum;		// 
 
+	BYTE& GetTileOption() { return byOption; }
+	D3DXVECTOR3& GetTileSize() { return vSize; }
 }TILE;
 
 typedef struct tagInfo

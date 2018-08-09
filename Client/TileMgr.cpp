@@ -3,15 +3,9 @@
 
 IMPLEMENT_SINGLETON(CTileMgr)
 
-CTileMgr::CTileMgr()
-{
-}
+CTileMgr::CTileMgr() {}
 
-
-CTileMgr::~CTileMgr()
-{
-	Release();
-}
+CTileMgr::~CTileMgr() { Release(); }
 
 HRESULT CTileMgr::Initialize()
 {

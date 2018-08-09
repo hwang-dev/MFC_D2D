@@ -59,10 +59,36 @@ void CCollisionMgr::CollisionSphere(OBJLIST & dstLst, OBJLIST & srcLst)
 	for (CObj*& pDst : dstLst) {
 		for (CObj*& pSrc : srcLst) {
 
-			if (CheckSphere(pDst, pSrc)) {
-
-			}
 		}
+	}
+}
+
+void CCollisionMgr::CollisionTile(CObj * pPlayer, vector<TILE*> dstLst)
+{
+	float fMoveX = 0.f, fMoveY = 0.f;
+
+	for (auto& pTile : dstLst) {
+		if (pTile->GetTileOption() == 1) {
+			if (CheckRect(pTile, pPlayer, &fMoveX, &fMoveY)) {
+				if (fMoveX > fMoveY) {
+					float fX = pSrc->GetInfo().vPos.x;
+					float fY = pSrc->GetInfo().vPos.y;
+
+					if (pDst->GetInfo().vPos.y > fY) {
+						fMoveY *= -1.f;
+					}
+					pSrc->SetPos(D3DXVECTOR3(fX, fY + fMoveY, 0.f));
+				}
+				else {
+					float fX = pSrc->GetInfo().vPos.x;
+					float fY = pSrc->GetInfo().vPos.y;
+
+					if (pDst->GetInfo().vPos.x > fX) {
+						fMoveX *= -1.f;
+					}
+					pSrc->SetPos(D3DXVECTOR3(fX + fMoveX, fY, 0.f));
+		}
+
 	}
 }
 

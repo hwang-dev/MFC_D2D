@@ -15,14 +15,13 @@ HRESULT CShotGunBullet::Initialize()
 	m_tInfo.vSize = { 5.f, 5.f, 0 };
 	m_fVanishTime = 3.f;
 
-
-
 	return S_OK;
 }
 
 void CShotGunBullet::LateInit()
 {
 	// 총알 방향 = 마우스 - 플레이어
+	// 방향 랜덤
 	float fRandom = float(rand() % 100);
 	m_tInfo.vDir = (CMouse::GetInstance()->GetMousePos() - CScrollMgr::GetScroll() - D3DXVECTOR3(fRandom, fRandom, 0.f)) -
 		CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
