@@ -38,7 +38,7 @@ void CMouse::Render()
 
 	const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(
 		L"Mouse", L"Cursor", 0);
-
+	
 	NULL_CHECK(pTexInfo);
 
 	float fCenterX = pTexInfo->tImgInfo.Width * 0.5f;

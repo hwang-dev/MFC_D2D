@@ -130,6 +130,9 @@
     <Filter Include="01.Object\03.Bullet\01.ShotGunBullet">
       <UniqueIdentifier>{363183ac-c36e-4c49-8925-cd23f741abb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Object\01.Monster\01.NormalMonster">
+      <UniqueIdentifier>{c04f3890-ecfa-43c3-9775-3d938f187618}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">

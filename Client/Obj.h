@@ -8,6 +8,7 @@ public:
 public:
 	const INFO& GetInfo() { return m_tInfo; }
 	void SetPos(D3DXVECTOR3& vPos) { m_tInfo.vPos = vPos; }
+	const RECT& GetRect() { return m_tRect; }
 
 	const wstring& GetObjKey() { return m_wstrObjKey; }
 	const wstring& GetSateKey() { return m_wstrStateKey; }

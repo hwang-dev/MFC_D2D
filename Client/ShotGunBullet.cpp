@@ -23,13 +23,13 @@ HRESULT CShotGunBullet::Initialize()
 void CShotGunBullet::LateInit()
 {
 	// 총알 방향 = 마우스 - 플레이어
-	float fRandom = rand() % 100;
-	m_tInfo.vDir = (CMouse::GetInstance()->GetMousePos() - CScrollMgr::GetScroll() - D3DXVECTOR3(fRandom, fRandom,0.f)) -
+	float fRandom = float(rand() % 100);
+	m_tInfo.vDir = (CMouse::GetInstance()->GetMousePos() - CScrollMgr::GetScroll() - D3DXVECTOR3(fRandom, fRandom, 0.f)) -
 		CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
 
 	/* 샷건 속도 랜덤 조정 */
-	float fRandomSpeed = (rand() % 30) + 1;
+	float fRandomSpeed = float((rand() % 20) + 1);
 	m_fSpeed -= fRandomSpeed;
 }
 
