@@ -117,19 +117,19 @@ void CPlayer::Render()
 
 
 	// 콘솔에 위치, 스크롤 출력
-	//#ifdef _DEBUG
-	//	system("cls");
-	//	cout << "Player X: " << m_tInfo.vPos.x << endl;
-	//	cout << "Player Y: " << m_tInfo.vPos.y << endl;
-	//	cout << endl;
-	//	cout << "Scroll X: " << CScrollMgr::GetScroll().x << endl;
-	//	cout << "Scroll Y: " << CScrollMgr::GetScroll().y << endl;
-	//	cout << endl;
-	//	wcout << "ObjKey: " << m_wstrObjKey.c_str() << endl;
-	//	wcout << "StateKey: " << m_wstrStateKey.c_str() << endl;
-	//	cout << "Frame: " << m_tFrame.fFrame << endl;
-	//	cout << "Max: " << m_tFrame.fMax << endl;
-	//#endif // DEBUG
+	#ifdef _DEBUG
+		system("cls");
+		cout << "Player X: " << m_tInfo.vPos.x << endl;
+		cout << "Player Y: " << m_tInfo.vPos.y << endl;
+		cout << endl;
+		cout << "Scroll X: " << CScrollMgr::GetScroll().x << endl;
+		cout << "Scroll Y: " << CScrollMgr::GetScroll().y << endl;
+		cout << endl;
+		wcout << "ObjKey: " << m_wstrObjKey.c_str() << endl;
+		wcout << "StateKey: " << m_wstrStateKey.c_str() << endl;
+		cout << "Frame: " << m_tFrame.fFrame << endl;
+		cout << "Max: " << m_tFrame.fMax << endl;
+	#endif // DEBUG
 }
 
 void CPlayer::Release()
