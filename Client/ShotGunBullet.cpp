@@ -10,7 +10,7 @@ HRESULT CShotGunBullet::Initialize()
 {
 	m_wstrObjKey = L"Bullet";
 	m_wstrStateKey = L"Normal";
-	m_fSpeed = 200.f;
+	m_fSpeed = 300.f;
 	m_iBulletDamage = 3;
 	m_tInfo.vSize = { 10.f, 10.f, 0 };
 	m_fVanishTime = 3.f;
@@ -85,6 +85,9 @@ void CShotGunBullet::Render()
 	CDevice::GetInstance()->GetSprite()->SetTransform(&m_tInfo.matWorld);
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DXCOLOR(255, 255, 255, 255));
+
+	// 충돌 렉트
+	CObj::RenderLine();
 }
 
 void CShotGunBullet::Release()

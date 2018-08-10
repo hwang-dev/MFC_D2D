@@ -93,6 +93,12 @@ HRESULT CDevice::InitDevice()
 		return E_FAIL;
 	}
 
+	if (FAILED(D3DXCreateLine(m_pDevice, &m_pLine)))
+	{
+		ERR_MSG(L"Line Create Failed!!");
+		return E_FAIL;
+	}
+
 	return S_OK; // 성공했을 때	
 	// 실패했을때 E_FAIL을 리턴.
 }
@@ -129,6 +135,9 @@ void CDevice::Render_End(HWND hWnd/* = nullptr*/)
 void CDevice::Release()
 {
 	// 순서 주의. m_p3D를 먼저 해제할 경우 m_pDevice는 소실된다.
+	if (m_pLine)
+		m_pLine->Release();
+
 	if (m_pFont)
 		m_pFont->Release();
 

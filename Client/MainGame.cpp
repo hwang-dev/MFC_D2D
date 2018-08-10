@@ -18,7 +18,6 @@ HRESULT CMainGame::Initialize()
 
 	// TImeMgr 초기화
 	CTimeMgr::GetInstance()->InitTime();
-
 	// Device 초기화
 	if (FAILED(CDevice::GetInstance()->InitDevice())) {
 		ERR_MSG(L"Device Init Failed");
@@ -34,8 +33,6 @@ HRESULT CMainGame::Initialize()
 		ERR_MSG(L"TileMgr Init Fail");
 		return E_FAIL;
 	}
-
-	
 	// SceneMgr Init
 	if (FAILED(CSceneMgr::GetInstance()->SceneChange(CSceneMgr::LOBBY))) {
 		ERR_MSG(L"Scene Change Failed");
@@ -76,4 +73,6 @@ void CMainGame::Release()
 	CMouse::GetInstance()->DestroyInstance();
 	CObjMgr::GetInstance()->DestroyInstance();
 	CKeyMgr::GetInstance()->DestroyInstance();
+	CWeaponMgr::GetInstance()->DestroyInstance();
+	CAstarMgr::GetInstance()->DestroyInstance();
 }

@@ -16,7 +16,7 @@ HRESULT CNormalBullet::Initialize()
 {
 	m_wstrObjKey = L"Bullet";
 	m_wstrStateKey = L"Normal";
-	m_fSpeed = 200.f;
+	m_fSpeed = 300.f;
 	m_iBulletDamage = 2;
 	m_tInfo.vSize = { 10.f, 10.f, 0 };
 	m_fVanishTime = 10.f;
@@ -52,17 +52,16 @@ int CNormalBullet::Update()
 
 
 	/* Bullet ¼Ò¸ê Á¶°Ç */
-	if (m_bIsDead)
-		return DEAD_OBJ;
-	else if (m_tInfo.vPos.x < (0.f - CScrollMgr::GetScroll().x) ||
+	if (m_tInfo.vPos.x < (0.f - CScrollMgr::GetScroll().x) ||
 		m_tInfo.vPos.x >float(WINCX - CScrollMgr::GetScroll().x) ||
 		m_tInfo.vPos.y < (0.f - CScrollMgr::GetScroll().y) ||
 		m_tInfo.vPos.y >float(WINCY - CScrollMgr::GetScroll().y) ||
-		m_fVanishTimer > m_fVanishTime) {
+		m_fVanishTimer > m_fVanishTime ||
+		m_bIsDead) {
 		return DEAD_OBJ;
 	}
-
-	return NO_EVENT;
+	else
+		return NO_EVENT;
 }
 
 void CNormalBullet::LateUpdate()
@@ -85,6 +84,8 @@ void CNormalBullet::Render()
 	CDevice::GetInstance()->GetSprite()->SetTransform(&m_tInfo.matWorld);
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DXCOLOR(255, 255, 255, 255));
+
+	CObj::RenderLine();
 }
 
 void CNormalBullet::Release()

@@ -20,4 +20,3 @@ private:
 	DWORD m_dwKeyPressed;
 	DWORD m_dwKeyDown;
 };
-

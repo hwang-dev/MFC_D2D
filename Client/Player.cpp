@@ -116,6 +116,9 @@ void CPlayer::Render()
 	PlayAnimation();
 	PlayerDodge();
 
+	/* 충돌 렉트 */
+	CObj::RenderLine();
+	
 
 	// 콘솔에 위치, 스크롤 출력
 	//#ifdef _DEBUG

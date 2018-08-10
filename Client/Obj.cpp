@@ -44,3 +44,24 @@ void CObj::UpdateRect()
 	m_tRect.right	= LONG(m_tInfo.vPos.x + m_tInfo.vSize.x * 0.5f);
 	m_tRect.bottom	= LONG(m_tInfo.vPos.y + m_tInfo.vSize.y * 0.5f);
 }
+
+void CObj::RenderLine()
+{
+	D3DXVECTOR2 vPoint[5] = {
+		{ (m_tInfo.vPos.x - m_tInfo.vSize.x) + CScrollMgr::GetScroll().x, (m_tInfo.vPos.y - m_tInfo.vSize.y) + CScrollMgr::GetScroll().y},
+		{ (m_tInfo.vPos.x + m_tInfo.vSize.x) + CScrollMgr::GetScroll().x, (m_tInfo.vPos.y - m_tInfo.vSize.y) + CScrollMgr::GetScroll().y},
+		{ (m_tInfo.vPos.x + m_tInfo.vSize.x) + CScrollMgr::GetScroll().x, (m_tInfo.vPos.y + m_tInfo.vSize.y) + CScrollMgr::GetScroll().y},
+		{ (m_tInfo.vPos.x - m_tInfo.vSize.x) + CScrollMgr::GetScroll().x, (m_tInfo.vPos.y + m_tInfo.vSize.y) + CScrollMgr::GetScroll().y},
+		{ (m_tInfo.vPos.x - m_tInfo.vSize.x) + CScrollMgr::GetScroll().x, (m_tInfo.vPos.y - m_tInfo.vSize.y) + CScrollMgr::GetScroll().y},
+	};
+
+	CDevice::GetInstance()->GetLine()->SetWidth(1.f);
+
+	CDevice::GetInstance()->GetSprite()->End();
+
+	CDevice::GetInstance()->GetLine()->Begin();
+	CDevice::GetInstance()->GetLine()->Draw(vPoint, 5, D3DCOLOR_ARGB(255, 255, 255, 255));
+	CDevice::GetInstance()->GetLine()->End();
+
+	CDevice::GetInstance()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
+}

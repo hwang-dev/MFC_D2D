@@ -3,8 +3,8 @@
 #define WINCX 1280
 #define WINCY 720
 
-#define TILEX	20
-#define TILEY	20
+#define TILEX	70
+#define TILEY	70
 
 #define TILECX	36
 #define TILECY	36
@@ -49,11 +49,3 @@ private:									\
 #define IMPLEMENT_SINGLETON(ClassName)		\
 	ClassName*	ClassName::m_pInstance = nullptr;
 
-#define TILEX_INTRO 40
-#define TILEY_INTRO 40
-
-#define TILEX_NORMAL 100
-#define TILEY_NORMAL 100
-
-#define TILEX_BOSS 40
-#define TILEY_BOSS 40

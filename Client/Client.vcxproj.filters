@@ -139,6 +139,9 @@
     <Filter Include="01.Object\01.Monster\01.ShotgunMonster">
       <UniqueIdentifier>{3ac63d5c-fd84-49c8-80a1-bea61fb6dc09}</UniqueIdentifier>
     </Filter>
+    <Filter Include="98.Managers\08.AstarMgr">
+      <UniqueIdentifier>{9c13bb37-c92c-4e10-92d4-07ee797f07c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -264,6 +267,9 @@
     <ClInclude Include="Monster.h">
       <Filter>01.Object\01.Monster</Filter>
     </ClInclude>
+    <ClInclude Include="AstarMgr.h">
+      <Filter>98.Managers\08.AstarMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -379,6 +385,9 @@
     </ClCompile>
     <ClCompile Include="Monster.cpp">
       <Filter>01.Object\01.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="AstarMgr.cpp">
+      <Filter>98.Managers\08.AstarMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

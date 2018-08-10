@@ -24,6 +24,7 @@ public:
 protected:
 	void MoveFrame();
 	void UpdateRect();
+	void RenderLine();
 
 protected:
 	INFO		m_tInfo;

@@ -162,7 +162,7 @@ void CTerrain::TileChange(const D3DXVECTOR3 & vPos, const int & iDrawID, const B
 
 	m_vecTile[iIndex]->byDrawID		= iDrawID;
 	m_vecTile[iIndex]->byOption		= byOption;
-	m_vecTile[iIndex]->byRoomNum		= byRoomNum;
+	m_vecTile[iIndex]->byRoomNum	= byRoomNum;
 }
 
 int CTerrain::GetTileIndex(const D3DXVECTOR3 & vPos)

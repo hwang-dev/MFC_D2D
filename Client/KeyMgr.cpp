@@ -6,14 +6,9 @@ IMPLEMENT_SINGLETON(CKeyMgr)
 CKeyMgr::CKeyMgr()
 	: m_dwKey(0),
 	m_dwKeyPressed(0),
-	m_dwKeyDown(0)
-{
-}
+	m_dwKeyDown(0) {}
 
-
-CKeyMgr::~CKeyMgr()
-{
-}
+CKeyMgr::~CKeyMgr() {}
 
 void CKeyMgr::KeyCheck()
 {
@@ -57,7 +52,6 @@ bool CKeyMgr::KeyUp(DWORD dwKey)
 		m_dwKeyPressed ^= dwKey;
 		return true;
 	}
-
 	return false;
 }
 
@@ -73,7 +67,6 @@ bool CKeyMgr::KeyDown(DWORD dwKey)
 		m_dwKeyDown ^= dwKey;
 		return false;
 	}
-
 	return false;
 }
 

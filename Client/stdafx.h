@@ -56,6 +56,7 @@ using namespace std;
 #include "Device.h"
 #include "Mouse.h"
 #include "TextureMgr.h"
+
 #include "ObjMgr.h"
 #include "ScrollMgr.h"
 #include "TileMgr.h"
@@ -64,3 +65,4 @@ using namespace std;
 #include "AbstractFactory.h"
 #include "WeaponMgr.h"
 #include "CollisionMgr.h"
+#include "AstarMgr.h"

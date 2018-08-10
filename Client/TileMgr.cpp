@@ -38,7 +38,7 @@ void CTileMgr::Render()
 	for (int i = iCullY; i < iCullEndY + 3; ++i) {
 		for (int j = iCullX; j < iCullEndX + 2; ++j) {
 
-			int iIndex = j + (80 * i);
+			int iIndex = j + (TILEY * i);
 
 			if (0 > iIndex || m_vecTile.size() <= (size_t)iIndex)
 				continue;
@@ -103,4 +103,95 @@ HRESULT CTileMgr::LoadTile()
 
 	CloseHandle(hFile);
 	return S_OK;
+}
+
+void CTileMgr::ReadyAdjacency()
+{
+	m_vecAdjacency.resize(m_vecTile.size());
+
+	for (int i = 0; i < 80 ; ++i) {
+		for (int j = 0; j < 80; ++j) {
+			int iIndex = j + (80 * i);
+
+			/* 상 */
+			if (iIndex - TILEX >= 0 
+				&& m_vecTile[iIndex - TILEX]->byOption != 1) {
+				m_vecAdjacency[iIndex].push_back(m_vecTile[iIndex - TILEX]);
+			}
+			/* 하 */
+			if (iIndex + TILEX < (int)m_vecTile.size() &&
+				m_vecTile[iIndex + TILEX]->byOption != 1) {
+				m_vecAdjacency[iIndex].push_back(m_vecTile[iIndex + TILEX]);
+			}
+			/* 좌 */
+			if (iIndex % TILEX != 0 &&
+				m_vecTile[iIndex - 1]->byOption != 1) {
+				m_vecAdjacency[iIndex].push_back(m_vecTile[iIndex - 1]);
+			}
+			/* 우 */
+			if (iIndex & (TILEX - 1) != 0 &&
+				m_vecTile[iIndex + 1]->byOption != 1) {
+				m_vecAdjacency[iIndex].push_back(m_vecTile[iIndex + 1]);
+			}
+			
+		}
+	}
+}
+
+int CTileMgr::GetTileIndex(const D3DXVECTOR3 & vPos)
+{
+	for (size_t i = 0; i < m_vecTile.size(); ++i) {
+		if (Picking(vPos, i)) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+bool CTileMgr::Picking(const D3DXVECTOR3 & vPos, const int & iIndex)
+{
+	D3DXVECTOR3 vPoint[4] = {
+		D3DXVECTOR3(m_vecTile[iIndex]->vPos.x - (TILECX * 0.5f), m_vecTile[iIndex]->vPos.y + (TILECY * 0.5f), 0.f),
+		D3DXVECTOR3(m_vecTile[iIndex]->vPos.x + (TILECX * 0.5f), m_vecTile[iIndex]->vPos.y + (TILECY * 0.5f), 0.f),
+		D3DXVECTOR3(m_vecTile[iIndex]->vPos.x + (TILECX * 0.5f), m_vecTile[iIndex]->vPos.y - (TILECY * 0.5f), 0.f),
+		D3DXVECTOR3(m_vecTile[iIndex]->vPos.x - (TILECX * 0.5f), m_vecTile[iIndex]->vPos.y - (TILECY * 0.5f), 0.f)
+	};
+
+	// 2. 시계 방향으로 방향 벡터를 구한다.
+	D3DXVECTOR3 vDir[4] = {
+		vPoint[1] - vPoint[0],
+		vPoint[2] - vPoint[1],
+		vPoint[3] - vPoint[2],
+		vPoint[0] - vPoint[3],
+	};
+
+	// 3. 각 법선 벡터를 구한다.
+	D3DXVECTOR3 vNormal[4] = {
+		D3DXVECTOR3(-vDir[0].y, vDir[0].x, 0.f),
+		D3DXVECTOR3(-vDir[1].y, vDir[1].x, 0.f),
+		D3DXVECTOR3(-vDir[2].y, vDir[2].x, 0.f),
+		D3DXVECTOR3(-vDir[3].y, vDir[3].x, 0.f),
+	};
+
+	// 4. 구한 법선 벡터들을 단위벡터로 만들어 준다.
+	for (int i = 0; i < 4; ++i)
+		D3DXVec3Normalize(&vNormal[i], &vNormal[i]);
+
+	// 5. 각 꼭지점과 마우스 간의 방향벡터를 구한다.
+	D3DXVECTOR3 vMouseDir[4] = {
+		vPos - vPoint[0],
+		vPos - vPoint[1],
+		vPos - vPoint[2],
+		vPos - vPoint[3]
+	};
+
+	for (int i = 0; i < 4; ++i)
+		D3DXVec3Normalize(&vMouseDir[i], &vMouseDir[i]);
+
+	for (int i = 0; i < 4; ++i) {
+		// 하나라도 양수가 나오면 false
+		if (0.f < D3DXVec3Dot(&vMouseDir[i], &vNormal[i]))
+			return false;
+	}
+	return true;
 }

@@ -9,5 +9,6 @@ public:
 
 protected:
 	int		m_iMonsterHp;
+	CObj*	m_pTarget;
 };
 

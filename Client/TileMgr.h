@@ -15,11 +15,18 @@ public:
 	void Release();
 
 public:
-	HRESULT LoadTile();
 	vector<TILE*>& GetVecTile() { return m_vecTile; }
+	int	GetTileIndex(const D3DXVECTOR3& vPos);
+	bool Picking(const D3DXVECTOR3& vPos, const int& iIndex);
+	HRESULT LoadTile();
+	
+private:
+	void ReadyAdjacency();
 
 private:
 	vector<TILE*>		m_vecTile;
 	vector<TEXINFO*>	m_vecTileTexInfo;
+
+	vector<list<TILE*>> m_vecAdjacency;
 };
 

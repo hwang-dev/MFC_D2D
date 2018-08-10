@@ -8,12 +8,8 @@ CWeapon::CWeapon()
 	m_fReloadTime(0.f),
 	m_fWeaponDelay(0.f),
 	m_fWeaponDelayTime(0.f),
-	m_bCanShot(true)
-{
-}
+	m_bCanShot(true) {}
 
 
-CWeapon::~CWeapon()
-{
-}
+CWeapon::~CWeapon() {}
 

@@ -66,69 +66,126 @@ void CCollisionMgr::CollisionRectEX(OBJLIST & dstLst, OBJLIST & srcLst)
 void CCollisionMgr::CollisionTile(vector<TILE*> dstLst, CObj * pPlayer)
 {
 	float fMoveX = 0.f, fMoveY = 0.f;
+	int iIndex = CTileMgr::GetInstance()->GetTileIndex(pPlayer->GetInfo().vPos);
 
-	for (auto& pTile : dstLst) {
-		if (pTile->GetTileOption() == 1) {
-			if (CheckTile(pPlayer, pTile, &fMoveX, &fMoveY)) {
-				/* yÃà ¹Ð¾î³¿ */
-				if (fMoveX > fMoveY) {
-					float fX = pPlayer->GetInfo().vPos.x;
-					float fY = pPlayer->GetInfo().vPos.y;
-					if (pTile->GetTilePos().y > fY) {
-						fMoveY *= -1.f;
-					}
-					pPlayer->SetPos(D3DXVECTOR3(fX, (fY + fMoveY), 0.f));
+	if (dstLst[iIndex]->GetTileOption() == 1) {
+		if (CheckTile(pPlayer, dstLst[iIndex], &fMoveX, &fMoveY)) {
+			/* yÃà ¹Ð¾î³¿ */
+			if (fMoveX > fMoveY) {
+				float fX = pPlayer->GetInfo().vPos.x;
+				float fY = pPlayer->GetInfo().vPos.y;
+				if (dstLst[iIndex]->GetTilePos().y > fY) {
+					fMoveY *= -1.f;
 				}
-				/* xÃà ¹Ð¾î³¿ */
-				else {
-					float fX = pPlayer->GetInfo().vPos.x;
-					float fY = pPlayer->GetInfo().vPos.y;
+				pPlayer->SetPos(D3DXVECTOR3(fX, (fY + fMoveY), 0.f));
+			}
+			/* xÃà ¹Ð¾î³¿ */
+			else {
+				float fX = pPlayer->GetInfo().vPos.x;
+				float fY = pPlayer->GetInfo().vPos.y;
 
-					if (pTile->GetTilePos().x > fX) {
-						fMoveX *= -1.f;
-					}
-					pPlayer->SetPos(D3DXVECTOR3((fX + fMoveX), fY, 0.f));
+				if (dstLst[iIndex]->GetTilePos().x > fX) {
+					fMoveX *= -1.f;
 				}
+				pPlayer->SetPos(D3DXVECTOR3((fX + fMoveX), fY, 0.f));
 			}
 		}
 	}
+
+	//for (auto& pTile : dstLst) {
+	//	if (pTile->GetTileOption() == 1) {
+	//		int iIdex = CTileMgr::GetInstance()->GetTileIndex(pPlayer->GetInfo().vPos);
+	//		if (CheckTile(pPlayer, pTile, &fMoveX, &fMoveY)) {
+	//			/* yÃà ¹Ð¾î³¿ */
+	//			if (fMoveX > fMoveY) {
+	//				float fX = pPlayer->GetInfo().vPos.x;
+	//				float fY = pPlayer->GetInfo().vPos.y;
+	//				if (pTile->GetTilePos().y > fY) {
+	//					fMoveY *= -1.f;
+	//				}
+	//				pPlayer->SetPos(D3DXVECTOR3(fX, (fY + fMoveY), 0.f));
+	//			}
+	//			/* xÃà ¹Ð¾î³¿ */
+	//			else {
+	//				float fX = pPlayer->GetInfo().vPos.x;
+	//				float fY = pPlayer->GetInfo().vPos.y;
+
+	//				if (pTile->GetTilePos().x > fX) {
+	//					fMoveX *= -1.f;
+	//				}
+	//				pPlayer->SetPos(D3DXVECTOR3((fX + fMoveX), fY, 0.f));
+	//			}
+	//		}
+	//	}
+	//}
 }
 
 /* Tile <-> Obj Ãæµ¹ */
 void CCollisionMgr::CollisionTile(vector<TILE*> & dstLst, OBJLIST & srcLst)
 {
 	float fMoveX = 0.f, fMoveY = 0.f;
+	
+	for (auto& pSrc : srcLst) {
+		int iIndex = CTileMgr::GetInstance()->GetTileIndex(pSrc->GetInfo().vPos);
 
-	for (auto& pTile : dstLst) {
-		for (auto& pSrc : srcLst) {
-			if (pTile->GetTileOption() == 1) {
-				if (CheckTile(pSrc, pTile, &fMoveX, &fMoveY)) {
-					if (!wcscmp(pSrc->GetObjKey().c_str(), L"Bullet")) {
-						pSrc->IsDead();
+		if (dstLst[iIndex]->GetTileOption() == 1) {
+			if (CheckTile(pSrc, dstLst[iIndex], &fMoveX, &fMoveY)) {
+				if (!wcscmp(pSrc->GetObjKey().c_str(), L"Bullet")) {
+					pSrc->IsDead();
+				}
+				/* yÃà ¹Ð¾î³¿ */
+				else if (fMoveX > fMoveY) {
+					float fX = pSrc->GetInfo().vPos.x;
+					float fY = pSrc->GetInfo().vPos.y;
+					if (dstLst[iIndex]->GetTilePos().y > fY) {
+						fMoveY *= -1.f;
 					}
-					/* yÃà ¹Ð¾î³¿ */
-					else if (fMoveX > fMoveY) {
-						float fX = pSrc->GetInfo().vPos.x;
-						float fY = pSrc->GetInfo().vPos.y;
-						if (pTile->GetTilePos().y > fY) {
-							fMoveY *= -1.f;
-						}
-						pSrc->SetPos(D3DXVECTOR3(fX, (fY + fMoveY), 0.f));
-					}
-					/* xÃà ¹Ð¾î³¿ */
-					else {
-						float fX = pSrc->GetInfo().vPos.x;
-						float fY = pSrc->GetInfo().vPos.y;
+					pSrc->SetPos(D3DXVECTOR3(fX, (fY + fMoveY), 0.f));
+				}
+				/* xÃà ¹Ð¾î³¿ */
+				else {
+					float fX = pSrc->GetInfo().vPos.x;
+					float fY = pSrc->GetInfo().vPos.y;
 
-						if (pTile->GetTilePos().x > fX) {
-							fMoveX *= -1.f;
-						}
-						pSrc->SetPos(D3DXVECTOR3((fX + fMoveX), fY, 0.f));
+					if (dstLst[iIndex]->GetTilePos().x > fX) {
+						fMoveX *= -1.f;
 					}
+					pSrc->SetPos(D3DXVECTOR3((fX + fMoveX), fY, 0.f));
 				}
 			}
 		}
 	}
+
+	//for (auto& pTile : dstLst) {
+	//	for (auto& pSrc : srcLst) {
+	//		if (pTile->GetTileOption() == 1) {
+	//			if (CheckTile(pSrc, pTile, &fMoveX, &fMoveY)) {
+	//				if (!wcscmp(pSrc->GetObjKey().c_str(), L"Bullet")) {
+	//					pSrc->IsDead();
+	//				}
+	//				/* yÃà ¹Ð¾î³¿ */
+	//				else if (fMoveX > fMoveY) {
+	//					float fX = pSrc->GetInfo().vPos.x;
+	//					float fY = pSrc->GetInfo().vPos.y;
+	//					if (pTile->GetTilePos().y > fY) {
+	//						fMoveY *= -1.f;
+	//					}
+	//					pSrc->SetPos(D3DXVECTOR3(fX, (fY + fMoveY), 0.f));
+	//				}
+	//				/* xÃà ¹Ð¾î³¿ */
+	//				else {
+	//					float fX = pSrc->GetInfo().vPos.x;
+	//					float fY = pSrc->GetInfo().vPos.y;
+
+	//					if (pTile->GetTilePos().x > fX) {
+	//						fMoveX *= -1.f;
+	//					}
+	//					pSrc->SetPos(D3DXVECTOR3((fX + fMoveX), fY, 0.f));
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
 }
 
 bool CCollisionMgr::CheckTile(CObj * pDst, TILE * pTile, float * pMoveX, float * pMoveY)
