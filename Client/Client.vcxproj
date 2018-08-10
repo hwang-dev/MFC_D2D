@@ -155,7 +155,6 @@
     <ClInclude Include="AK.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="cc.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="Device.h" />
@@ -163,6 +162,7 @@
     <ClInclude Include="Lobby.h" />
     <ClInclude Include="Logo.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MultiTexture.h" />
     <ClInclude Include="Normal.h" />
@@ -204,6 +204,7 @@
     <ClCompile Include="Lobby.cpp" />
     <ClCompile Include="Logo.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MultiTexture.cpp" />
     <ClCompile Include="Normal.cpp" />

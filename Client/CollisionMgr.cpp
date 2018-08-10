@@ -23,6 +23,14 @@ void CCollisionMgr::CollisionRect(OBJLIST & dstLst, OBJLIST & srcLst)
 	}
 }
 
+void CCollisionMgr::CollisionSphere(OBJLIST & dstLst, OBJLIST & srcLst)
+{
+	for (CObj*& pDst : dstLst) {
+		for (CObj*& pSrc : srcLst) {
+
+		}
+	}
+}
 void CCollisionMgr::CollisionRectEX(OBJLIST & dstLst, OBJLIST & srcLst)
 {
 	// 밀려날 거리
@@ -54,15 +62,7 @@ void CCollisionMgr::CollisionRectEX(OBJLIST & dstLst, OBJLIST & srcLst)
 	}
 }
 
-void CCollisionMgr::CollisionSphere(OBJLIST & dstLst, OBJLIST & srcLst)
-{
-	for (CObj*& pDst : dstLst) {
-		for (CObj*& pSrc : srcLst) {
-
-		}
-	}
-}
-
+/* Tile <-> Player 충돌 */
 void CCollisionMgr::CollisionTile(vector<TILE*> dstLst, CObj * pPlayer)
 {
 	float fMoveX = 0.f, fMoveY = 0.f;
@@ -94,6 +94,7 @@ void CCollisionMgr::CollisionTile(vector<TILE*> dstLst, CObj * pPlayer)
 	}
 }
 
+/* Tile <-> Obj 충돌 */
 void CCollisionMgr::CollisionTile(vector<TILE*> & dstLst, OBJLIST & srcLst)
 {
 	float fMoveX = 0.f, fMoveY = 0.f;
@@ -102,8 +103,9 @@ void CCollisionMgr::CollisionTile(vector<TILE*> & dstLst, OBJLIST & srcLst)
 		for (auto& pSrc : srcLst) {
 			if (pTile->GetTileOption() == 1) {
 				if (CheckTile(pSrc, pTile, &fMoveX, &fMoveY)) {
-					if (pSrc->GetObjKey().c_str() == L"Bullet")
+					if (!wcscmp(pSrc->GetObjKey().c_str(), L"Bullet")) {
 						pSrc->IsDead();
+					}
 					/* y축 밀어냄 */
 					else if (fMoveX > fMoveY) {
 						float fX = pSrc->GetInfo().vPos.x;

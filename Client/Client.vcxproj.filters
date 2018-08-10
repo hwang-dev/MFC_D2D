@@ -40,9 +40,6 @@
     <Filter Include="01.Object\01.Monster">
       <UniqueIdentifier>{7524fc25-a4c4-4716-819b-d5db1ca130e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="98.Managers\04.TileMgr">
-      <UniqueIdentifier>{2e271e48-28af-4abf-aca4-4df5490c41d4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="98.Managers\05.ScrollMgr">
       <UniqueIdentifier>{fc04c48f-6015-4159-a999-96e6d89a2f08}</UniqueIdentifier>
     </Filter>
@@ -97,9 +94,6 @@
     <Filter Include="01.Object\03.Bullet">
       <UniqueIdentifier>{a27c6587-e2e1-426e-a095-3820651054f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="98.Managers\08.CollisionMgr">
-      <UniqueIdentifier>{1f007829-eaec-4359-a209-99ac93bba357}</UniqueIdentifier>
-    </Filter>
     <Filter Include="99.Default\01.etc">
       <UniqueIdentifier>{4148bfc1-4458-4b72-9376-8b347f6fd222}</UniqueIdentifier>
     </Filter>
@@ -133,6 +127,18 @@
     <Filter Include="03.Tile">
       <UniqueIdentifier>{9da59d83-5abf-4305-b684-98ce10e7219b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Tile\00.TileMgr">
+      <UniqueIdentifier>{2e271e48-28af-4abf-aca4-4df5490c41d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98.Managers\04.CollisionMgr">
+      <UniqueIdentifier>{1f007829-eaec-4359-a209-99ac93bba357}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\01.Monster\00.NormalMonster">
+      <UniqueIdentifier>{b357b4e9-e46a-4c49-9e42-6b6d5408dbb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\01.Monster\01.ShotgunMonster">
+      <UniqueIdentifier>{3ac63d5c-fd84-49c8-80a1-bea61fb6dc09}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -163,7 +169,7 @@
       <Filter>98.Managers\03.ObjMgr</Filter>
     </ClInclude>
     <ClInclude Include="TileMgr.h">
-      <Filter>98.Managers\04.TileMgr</Filter>
+      <Filter>03.Tile\00.TileMgr</Filter>
     </ClInclude>
     <ClInclude Include="ScrollMgr.h">
       <Filter>98.Managers\05.ScrollMgr</Filter>
@@ -226,7 +232,7 @@
       <Filter>99.Default\01.etc</Filter>
     </ClInclude>
     <ClInclude Include="CollisionMgr.h">
-      <Filter>98.Managers\08.CollisionMgr</Filter>
+      <Filter>98.Managers\04.CollisionMgr</Filter>
     </ClInclude>
     <ClInclude Include="AK.h">
       <Filter>01.Object\02.Weapon\00.WeaponBody\01.AK</Filter>
@@ -246,7 +252,6 @@
     <ClInclude Include="Revolver.h">
       <Filter>01.Object\02.Weapon\00.WeaponBody\00.Revolver</Filter>
     </ClInclude>
-    <ClInclude Include="cc.h" />
     <ClInclude Include="NormalBullet.h">
       <Filter>01.Object\03.Bullet\00.NormalBullet</Filter>
     </ClInclude>
@@ -255,6 +260,9 @@
     </ClInclude>
     <ClInclude Include="ShotGunBullet.h">
       <Filter>01.Object\03.Bullet\01.ShotGunBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>01.Object\01.Monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -286,7 +294,7 @@
       <Filter>98.Managers\03.ObjMgr</Filter>
     </ClCompile>
     <ClCompile Include="TileMgr.cpp">
-      <Filter>98.Managers\04.TileMgr</Filter>
+      <Filter>03.Tile\00.TileMgr</Filter>
     </ClCompile>
     <ClCompile Include="ScrollMgr.cpp">
       <Filter>98.Managers\05.ScrollMgr</Filter>
@@ -343,7 +351,7 @@
       <Filter>99.Default\01.etc</Filter>
     </ClCompile>
     <ClCompile Include="CollisionMgr.cpp">
-      <Filter>98.Managers\08.CollisionMgr</Filter>
+      <Filter>98.Managers\04.CollisionMgr</Filter>
     </ClCompile>
     <ClCompile Include="AK.cpp">
       <Filter>01.Object\02.Weapon\00.WeaponBody\01.AK</Filter>
@@ -368,6 +376,9 @@
     </ClCompile>
     <ClCompile Include="ShotGunBullet.cpp">
       <Filter>01.Object\03.Bullet\01.ShotGunBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>01.Object\01.Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
