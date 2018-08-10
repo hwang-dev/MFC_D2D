@@ -12,7 +12,7 @@ public:
 
 	const wstring& GetObjKey() { return m_wstrObjKey; }
 	const wstring& GetSateKey() { return m_wstrStateKey; }
-
+	void IsDead() { this->m_bIsDead = true; }
 public:
 	virtual HRESULT Initialize() PURE;
 	virtual void LateInit();
@@ -31,6 +31,8 @@ protected:
 	FRAME		m_tFrame;
 	float		m_fSpeed;
 	bool		m_bIsInit;
+	bool		m_bIsDead;
+
 	wstring		m_wstrObjKey;
 	wstring		m_wstrStateKey;
 };

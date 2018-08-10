@@ -37,9 +37,9 @@ using namespace std;
 //#include "vld.h"
 
 // Console
-#ifdef _DEBUG
-#pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
-#endif
+//#ifdef _DEBUG
+//#pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
+//#endif
 
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.
 #include "Extern.h"

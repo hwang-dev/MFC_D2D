@@ -4,6 +4,7 @@
 
 CObj::CObj()
 	: m_bIsInit(false),
+	m_bIsDead(false),
 	m_fSpeed(0.f),
 	m_wstrObjKey(L""),
 	m_wstrStateKey(L"")

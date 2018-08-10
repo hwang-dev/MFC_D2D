@@ -49,9 +49,11 @@ void CObjMgr::LateUpdate()
 			pObj->LateUpdate();
 	}
 
-	/* 충돌 */
-	CCollisionMgr::CollisionTile(CObjMgr::GetInstance()->GetPlayer(), 
-		CTileMgr::GetInstance()->GetVecTile());
+	/* Tile <> Obj 충돌 */
+	CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(), 
+		m_ObjLst[OBJ_PLAYER].front());
+	CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(), 
+		m_ObjLst[OBJ_BULLET]);
 }
 
 void CObjMgr::Render()

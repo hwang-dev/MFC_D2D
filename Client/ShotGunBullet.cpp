@@ -2,17 +2,17 @@
 #include "ShotGunBullet.h"
 
 
-CShotGunBullet::CShotGunBullet()
-	: m_fVanishTime(0.f),
-	m_fVanishTimer(0.f) {}
+CShotGunBullet::CShotGunBullet() {}
 
 CShotGunBullet::~CShotGunBullet() { Release(); }
 
 HRESULT CShotGunBullet::Initialize()
 {
+	m_wstrObjKey = L"Bullet";
+	m_wstrStateKey = L"Normal";
 	m_fSpeed = 150.f;
 	m_iBulletDamage = 3;
-	m_tInfo.vSize = { 5.f, 5.f, 0 };
+	m_tInfo.vSize = { 10.f, 10.f, 0 };
 	m_fVanishTime = 3.f;
 
 	return S_OK;
@@ -51,9 +51,10 @@ int CShotGunBullet::Update()
 
 	m_tInfo.matWorld = matScale * matTrans;
 
-
-	/* 화면 밖으로 나가면 소멸*/
-	if (m_tInfo.vPos.x < (0.f - CScrollMgr::GetScroll().x) ||
+	/* Bullet 소멸 조건 */
+	if (m_bIsDead)
+		return DEAD_OBJ;
+	else if (m_tInfo.vPos.x < (0.f - CScrollMgr::GetScroll().x) ||
 		m_tInfo.vPos.x >float(WINCX - CScrollMgr::GetScroll().x) ||
 		m_tInfo.vPos.y < (0.f - CScrollMgr::GetScroll().y) ||
 		m_tInfo.vPos.y >float(WINCY - CScrollMgr::GetScroll().y) ||
@@ -61,7 +62,6 @@ int CShotGunBullet::Update()
 		return DEAD_OBJ;
 	}
 
-	//
 	return NO_EVENT;
 }
 
@@ -75,7 +75,7 @@ void CShotGunBullet::Render()
 	CObj::UpdateRect();
 
 	const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(
-		L"Bullet", L"Normal", 0);
+		m_wstrObjKey.c_str(), m_wstrStateKey.c_str(), 0);
 
 	NULL_CHECK(pTexInfo);
 

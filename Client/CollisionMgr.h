@@ -11,7 +11,10 @@ public:
 	static void CollisionRect(OBJLIST& dstLst, OBJLIST& srcLst);
 	static void CollisionRectEX(OBJLIST& dstLst, OBJLIST& srcLst);
 	static void CollisionSphere(OBJLIST& dstLst, OBJLIST& srcLst);
-	static void CollisionTile(CObj* pPlayer, vector<TILE*> dstLst);
+
+	/* 타일 <> 오브젝트 충돌 */
+	static void CollisionTile(vector<TILE*>& dstLst, OBJLIST& srcLst);
+	static void CollisionTile(vector<TILE*> dstLst, CObj* pPlayer);
 
 private:
 	static bool CheckTile(CObj* pPlayer, TILE* pTile, float* pMoveX, float* pMoveY);

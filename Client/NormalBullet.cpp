@@ -14,9 +14,12 @@ CNormalBullet::~CNormalBullet()
 
 HRESULT CNormalBullet::Initialize()
 {
+	m_wstrObjKey = L"Bullet";
+	m_wstrStateKey = L"Normal";
 	m_fSpeed = 200.f;
 	m_iBulletDamage = 2;
-	m_tInfo.vSize = { 5.f, 5.f, 0 };
+	m_tInfo.vSize = { 10.f, 10.f, 0 };
+	m_fVanishTime = 10.f;
 
 	return S_OK;
 }
@@ -48,11 +51,14 @@ int CNormalBullet::Update()
 	m_tInfo.matWorld = matScale * matTrans;
 
 
-	/* 화면 밖으로 나가면 소멸*/
-	if (m_tInfo.vPos.x < (0.f - CScrollMgr::GetScroll().x) ||
+	/* Bullet 소멸 조건 */
+	if (m_bIsDead)
+		return DEAD_OBJ;
+	else if (m_tInfo.vPos.x < (0.f - CScrollMgr::GetScroll().x) ||
 		m_tInfo.vPos.x >float(WINCX - CScrollMgr::GetScroll().x) ||
 		m_tInfo.vPos.y < (0.f - CScrollMgr::GetScroll().y) ||
-		m_tInfo.vPos.y >float(WINCY - CScrollMgr::GetScroll().y)) {
+		m_tInfo.vPos.y >float(WINCY - CScrollMgr::GetScroll().y) ||
+		m_fVanishTimer > m_fVanishTime) {
 		return DEAD_OBJ;
 	}
 
@@ -61,6 +67,7 @@ int CNormalBullet::Update()
 
 void CNormalBullet::LateUpdate()
 {
+	m_fVanishTimer += CTimeMgr::GetInstance()->GetTime();
 }
 
 void CNormalBullet::Render()
@@ -68,7 +75,7 @@ void CNormalBullet::Render()
 	CObj::UpdateRect();
 
 	const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(
-		L"Bullet", L"Normal", 0);
+		m_wstrObjKey.c_str(), m_wstrStateKey.c_str(), 0);
 
 	NULL_CHECK(pTexInfo);
 

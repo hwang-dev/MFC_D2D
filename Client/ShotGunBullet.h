@@ -14,9 +14,5 @@ public:
 	virtual void LateUpdate() override;
 	virtual void Render() override;
 	virtual void Release() override;
-
-private:
-	float	m_fVanishTime;
-	float	m_fVanishTimer;
 };
 

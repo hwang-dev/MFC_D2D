@@ -9,5 +9,7 @@ public:
 
 protected:
 	int		m_iBulletDamage;
+	float	m_fVanishTime;
+	float	m_fVanishTimer;
 };
 

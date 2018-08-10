@@ -44,6 +44,7 @@ HRESULT CPlayer::Initialize()
 	);
 
 	/* 최초 설정 */
+	m_tInfo.vSize = { 15.f, 15.f, 0.f };
 	m_fAnimSpeed = 2.f;
 	m_fSpeed = 150.f;
 	m_fDodgePow = 2.f;
@@ -117,19 +118,19 @@ void CPlayer::Render()
 
 
 	// 콘솔에 위치, 스크롤 출력
-	#ifdef _DEBUG
-		system("cls");
-		cout << "Player X: " << m_tInfo.vPos.x << endl;
-		cout << "Player Y: " << m_tInfo.vPos.y << endl;
-		cout << endl;
-		cout << "Scroll X: " << CScrollMgr::GetScroll().x << endl;
-		cout << "Scroll Y: " << CScrollMgr::GetScroll().y << endl;
-		cout << endl;
-		wcout << "ObjKey: " << m_wstrObjKey.c_str() << endl;
-		wcout << "StateKey: " << m_wstrStateKey.c_str() << endl;
-		cout << "Frame: " << m_tFrame.fFrame << endl;
-		cout << "Max: " << m_tFrame.fMax << endl;
-	#endif // DEBUG
+	//#ifdef _DEBUG
+	//	system("cls");
+	//	cout << "Player X: " << m_tInfo.vPos.x << endl;
+	//	cout << "Player Y: " << m_tInfo.vPos.y << endl;
+	//	cout << endl;
+	//	cout << "Scroll X: " << CScrollMgr::GetScroll().x << endl;
+	//	cout << "Scroll Y: " << CScrollMgr::GetScroll().y << endl;
+	//	cout << endl;
+	//	wcout << "ObjKey: " << m_wstrObjKey.c_str() << endl;
+	//	wcout << "StateKey: " << m_wstrStateKey.c_str() << endl;
+	//	cout << "Frame: " << m_tFrame.fFrame << endl;
+	//	cout << "Max: " << m_tFrame.fMax << endl;
+	//#endif // DEBUG
 }
 
 void CPlayer::Release()
@@ -290,19 +291,19 @@ void CPlayer::IsOffSet()
 
 	/* 우 */
 	if (float(m_tInfo.vPos.x + vScroll.x) > WINCX * 0.5f + 70.f) {
-		CScrollMgr::SetScroll(-m_fSpeed * fTime, 0.f);
+		CScrollMgr::SetScroll(-m_fSpeed * fTime * 1.5f, 0.f);
 	}
 	/* 좌 */
 	if (float(m_tInfo.vPos.x + vScroll.x) < WINCX * 0.5f - 70.f) {
-		CScrollMgr::SetScroll(m_fSpeed * fTime, 0.f);
+		CScrollMgr::SetScroll(m_fSpeed * fTime* 1.5f, 0.f);
 	}
 	/* 하 */
 	if (float(m_tInfo.vPos.y + vScroll.y) > WINCY * 0.5f + 70.f) {
-		CScrollMgr::SetScroll(0.f, -m_fSpeed * fTime);
+		CScrollMgr::SetScroll(0.f, -m_fSpeed * fTime * 1.5f);
 	}
 	/* 상 */
 	if (float(m_tInfo.vPos.y + vScroll.y) < WINCY * 0.5f - 70.f) {
-		CScrollMgr::SetScroll(0.f, m_fSpeed * fTime);
+		CScrollMgr::SetScroll(0.f, m_fSpeed * fTime * 1.5f);
 	}
 
 }
