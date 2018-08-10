@@ -10,7 +10,7 @@ HRESULT CShotGunBullet::Initialize()
 {
 	m_wstrObjKey = L"Bullet";
 	m_wstrStateKey = L"Normal";
-	m_fSpeed = 150.f;
+	m_fSpeed = 200.f;
 	m_iBulletDamage = 3;
 	m_tInfo.vSize = { 10.f, 10.f, 0 };
 	m_fVanishTime = 3.f;
