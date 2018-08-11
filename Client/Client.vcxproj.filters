@@ -270,6 +270,9 @@
     <ClInclude Include="AstarMgr.h">
       <Filter>98.Managers\08.AstarMgr</Filter>
     </ClInclude>
+    <ClInclude Include="NormalMonster.h">
+      <Filter>01.Object\01.Monster\00.NormalMonster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -388,6 +391,9 @@
     </ClCompile>
     <ClCompile Include="AstarMgr.cpp">
       <Filter>98.Managers\08.AstarMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalMonster.cpp">
+      <Filter>01.Object\01.Monster\00.NormalMonster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

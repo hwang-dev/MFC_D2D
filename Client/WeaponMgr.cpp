@@ -72,6 +72,7 @@ void CWeaponMgr::Render()
 		CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
 		CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 			&D3DXVECTOR3(fCenterX - fGunPos, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+
 	}
 }
 

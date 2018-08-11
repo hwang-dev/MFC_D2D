@@ -91,7 +91,6 @@ void CPlayer::LateUpdate()
 
 void CPlayer::Render()
 {
-	CObj::UpdateRect();
 
 	/* 플레이어 스프라이트*/
 	if (m_tFrame.fFrame > m_tFrame.fMax)

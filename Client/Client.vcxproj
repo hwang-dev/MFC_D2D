@@ -168,6 +168,7 @@
     <ClInclude Include="MultiTexture.h" />
     <ClInclude Include="Normal.h" />
     <ClInclude Include="NormalBullet.h" />
+    <ClInclude Include="NormalMonster.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="ObjMgr.h" />
     <ClInclude Include="Player.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="MultiTexture.cpp" />
     <ClCompile Include="Normal.cpp" />
     <ClCompile Include="NormalBullet.cpp" />
+    <ClCompile Include="NormalMonster.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="ObjMgr.cpp" />
     <ClCompile Include="Player.cpp" />

@@ -36,6 +36,16 @@ int CNormalBullet::Update()
 {
 	CObj::LateInit();
 
+	/* Bullet ¼Ò¸ê Á¶°Ç */
+	if (m_tInfo.vPos.x < (0.f - CScrollMgr::GetScroll().x) ||
+		m_tInfo.vPos.x >float(WINCX - CScrollMgr::GetScroll().x) ||
+		m_tInfo.vPos.y < (0.f - CScrollMgr::GetScroll().y) ||
+		m_tInfo.vPos.y >float(WINCY - CScrollMgr::GetScroll().y) ||
+		m_fVanishTimer > m_fVanishTime ||
+		m_bIsDead) {
+		return DEAD_OBJ;
+	}
+
 	/* ÃÑ¾Ë ÀÌµ¿ */
 	m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
 
@@ -51,16 +61,7 @@ int CNormalBullet::Update()
 	m_tInfo.matWorld = matScale * matTrans;
 
 
-	/* Bullet ¼Ò¸ê Á¶°Ç */
-	if (m_tInfo.vPos.x < (0.f - CScrollMgr::GetScroll().x) ||
-		m_tInfo.vPos.x >float(WINCX - CScrollMgr::GetScroll().x) ||
-		m_tInfo.vPos.y < (0.f - CScrollMgr::GetScroll().y) ||
-		m_tInfo.vPos.y >float(WINCY - CScrollMgr::GetScroll().y) ||
-		m_fVanishTimer > m_fVanishTime ||
-		m_bIsDead) {
-		return DEAD_OBJ;
-	}
-	else
+
 		return NO_EVENT;
 }
 

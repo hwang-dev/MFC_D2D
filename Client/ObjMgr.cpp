@@ -54,6 +54,9 @@ void CObjMgr::LateUpdate()
 		m_ObjLst[OBJ_PLAYER].front());
 	CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(), 
 		m_ObjLst[OBJ_BULLET]);
+
+	/* */
+	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_MONSTER], m_ObjLst[OBJ_BULLET]);
 }
 
 void CObjMgr::Render()
