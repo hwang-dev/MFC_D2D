@@ -52,6 +52,13 @@ void CMainGame::Update()
 void CMainGame::LateUpdate()
 {
 	CSceneMgr::GetInstance()->LateUpdate();
+
+	if (CKeyMgr::GetInstance()->KeyDown(KEY_F1)) {
+		if (g_bOnRect)
+			g_bOnRect = false;
+		else
+			g_bOnRect = true;
+	}
 }
 
 void CMainGame::Render()
@@ -63,10 +70,11 @@ void CMainGame::Render()
 
 void CMainGame::Release()
 {
-	///// Manager Destory
+	/* Devcie Destroy */
 	CTextureMgr::GetInstance()->DestroyInstance();
 	CDevice::GetInstance()->DestroyInstance();
 
+	/* Manager Destroy */
 	CTileMgr::GetInstance()->DestroyInstance();
 	CTimeMgr::GetInstance()->DestroyInstance();
 	CSceneMgr::GetInstance()->DestroyInstance();

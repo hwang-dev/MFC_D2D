@@ -85,7 +85,9 @@ void CNormalBullet::Render()
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DXCOLOR(255, 255, 255, 255));
 
-	CObj::RenderLine();
+	/* 충돌 렉트 렌더 */
+	if(g_bOnRect)
+		CObj::RenderLine();
 }
 
 void CNormalBullet::Release()

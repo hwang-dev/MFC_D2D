@@ -22,3 +22,8 @@ const DWORD KEY_1		= 0x00000200;
 const DWORD KEY_2		= 0x00000400;
 const DWORD KEY_3		= 0x00000800;
 const DWORD KEY_4		= 0x00001000;
+
+
+
+// 충돌 렉트 보기용
+const DWORD KEY_F1		= 0x10000000;

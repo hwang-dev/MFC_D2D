@@ -87,7 +87,8 @@ void CShotGunBullet::Render()
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DXCOLOR(255, 255, 255, 255));
 
 	// 충돌 렉트
-	CObj::RenderLine();
+	if (g_bOnRect)
+		CObj::RenderLine();
 }
 
 void CShotGunBullet::Release()

@@ -38,6 +38,11 @@ void CKeyMgr::KeyCheck()
 		m_dwKey |= KEY_3;
 	if (GetAsyncKeyState('4') & 0x8000)
 		m_dwKey |= KEY_4;
+
+
+	//
+	if (GetAsyncKeyState(VK_F1) & 0x8000)
+		m_dwKey |= KEY_F1;
 }
 
 bool CKeyMgr::KeyUp(DWORD dwKey)
