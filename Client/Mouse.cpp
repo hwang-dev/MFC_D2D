@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "Mouse.h"
-
+#include "Obj.h"
 IMPLEMENT_SINGLETON(CMouse)
 
 CMouse::CMouse()
-	: m_vMouse {}
+	: m_vMouse{}
 {
 }
 
@@ -22,6 +22,28 @@ void CMouse::Update()
 	ScreenToClient(g_hWnd, &pt);
 
 	m_vMouse = D3DXVECTOR3((float)pt.x, (float)pt.y, 0.f);
+}
+
+void CMouse::LateUpdate()
+{
+	//if (m_vMouse.x > WINCX * 0.5f + 200.f)
+	//	CScrollMgr::SetCamera(50.f, 0.f);
+	//if (m_vMouse.x < WINCX * 0.5f - 200.f)
+	//	CScrollMgr::SetCamera(-50.f, 0.f);
+	//if (m_vMouse.y > WINCY * 0.5f + 200.f)
+	//	CScrollMgr::SetCamera(0.f, 50.f);
+	//if (m_vMouse.y < WINCY * 0.5f - 200.f)
+	//	CScrollMgr::SetCamera(0.f, -50.f);
+	//else
+	//	CScrollMgr::SetCamera(0.f, 0.f);
+	//else if(m_vMouse.x <= WINCX * 0.5f + 200.f &&
+	//	WINCX * 0.5f - 200.f <= m_vMouse.x)
+	//	CScrollMgr::SetCamera(0.f, 0.f);
+	D3DXVECTOR3 vCamera = m_vMouse + CScrollMgr::GetScroll() -
+		CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
+
+	CScrollMgr::AddScroll(vCamera * 0.3f);
+
 }
 
 void CMouse::Render()
@@ -49,14 +71,35 @@ void CMouse::Render()
 
 	/* ¸¶¿ì½º ÁÂÇ¥ */
 	TCHAR szPos[MIN_STR] = L"";
-	swprintf_s(szPos, L"%d, %d", (int)CMouse::GetInstance()->GetMousePos().x,
-		(int)CMouse::GetInstance()->GetMousePos().y);
+	swprintf_s(szPos, L"%d, %d", (int)m_vMouse.x,
+		(int)m_vMouse.x);
 	CDevice::GetInstance()->GetFont()->DrawTextW(CDevice::GetInstance()->GetSprite(),
 		szPos, lstrlen(szPos), nullptr, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	if (g_bOnRect) {
+		D3DXVECTOR2 vPoint[5] = {
+			{ (WINCX * 0.5f - 200.f), (WINCY * 0.5f - 200.f) },
+			{ (WINCX * 0.5f + 200.f), (WINCY * 0.5f - 200.f) },
+			{ (WINCX * 0.5f + 200.f), (WINCY * 0.5f + 200.f) },
+			{ (WINCX * 0.5f - 200.f), (WINCY * 0.5f + 200.f) },
+			{ (WINCX * 0.5f - 200.f), (WINCY * 0.5f - 200.f) },
+		};
+
+		CDevice::GetInstance()->GetLine()->SetWidth(2.f);
+
+		CDevice::GetInstance()->GetSprite()->End();
+
+		CDevice::GetInstance()->GetLine()->Begin();
+		CDevice::GetInstance()->GetLine()->Draw(vPoint, 5, D3DCOLOR_ARGB(255, 0, 0, 255));
+		CDevice::GetInstance()->GetLine()->End();
+
+		CDevice::GetInstance()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
+
+	}
 
 }
 
 D3DXVECTOR3& CMouse::GetMousePos()
 {
-	return m_vMouse + CScrollMgr::GetScroll();
+	return m_vMouse;
 }

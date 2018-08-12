@@ -27,8 +27,8 @@ HRESULT CNormalBullet::Initialize()
 void CNormalBullet::LateInit()
 {
 	// 총알 방향 = 마우스 - 플레이어
-	m_tInfo.vDir = CMouse::GetInstance()->GetMousePos() - CScrollMgr::GetScroll() - 
-		CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
+	m_tInfo.vDir = (CMouse::GetInstance()->GetMousePos() + CScrollMgr::GetScroll())
+		- CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
 }
 
@@ -37,10 +37,10 @@ int CNormalBullet::Update()
 	CObj::LateInit();
 
 	/* Bullet 소멸 조건 */
-	if (m_tInfo.vPos.x < (0.f - CScrollMgr::GetScroll().x) ||
-		m_tInfo.vPos.x >float(WINCX - CScrollMgr::GetScroll().x) ||
-		m_tInfo.vPos.y < (0.f - CScrollMgr::GetScroll().y) ||
-		m_tInfo.vPos.y >float(WINCY - CScrollMgr::GetScroll().y) ||
+	if (m_tInfo.vPos.x < (0.f + CScrollMgr::GetScroll().x) ||
+		m_tInfo.vPos.x >float(WINCX + CScrollMgr::GetScroll().x) ||
+		m_tInfo.vPos.y < (0.f + CScrollMgr::GetScroll().y) ||
+		m_tInfo.vPos.y >float(WINCY + CScrollMgr::GetScroll().y) ||
 		m_fVanishTimer > m_fVanishTime ||
 		m_bIsDead) {
 		return DEAD_OBJ;
@@ -62,7 +62,7 @@ int CNormalBullet::Update()
 
 
 
-		return NO_EVENT;
+	return NO_EVENT;
 }
 
 void CNormalBullet::LateUpdate()
@@ -87,7 +87,7 @@ void CNormalBullet::Render()
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DXCOLOR(255, 255, 255, 255));
 
 	/* 충돌 렉트 렌더 */
-	if(g_bOnRect)
+	if (g_bOnRect)
 		CObj::RenderLine();
 }
 

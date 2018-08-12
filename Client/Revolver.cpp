@@ -32,6 +32,8 @@ void CRevolver::LateInit()
 
 int CRevolver::Update()
 {
+	LateInit();
+
 	return NO_EVENT;
 }
 
@@ -61,6 +63,7 @@ void CRevolver::CreateBullet()
 		CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalBullet>::CreateObj(vPos),
 			OBJ_BULLET);
 
+		CScrollMgr::CameraShakeNormal();
 		m_bCanShot = false;
 	}
 }

@@ -9,11 +9,11 @@ private:
 
 public:
 	void Update();
+	void LateUpdate();
 	void Render();
 	D3DXVECTOR3& GetMousePos();
 
 private:
 	D3DXVECTOR3 m_vMouse;
-
 };
 

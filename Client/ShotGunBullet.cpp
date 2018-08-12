@@ -23,7 +23,7 @@ void CShotGunBullet::LateInit()
 	// 총알 방향 = 마우스 - 플레이어
 	// 방향 랜덤
 	float fRandom = float(rand() % 100);
-	m_tInfo.vDir = (CMouse::GetInstance()->GetMousePos() - D3DXVECTOR3(fRandom, fRandom, 0.f)) -
+	m_tInfo.vDir = (CMouse::GetInstance()->GetMousePos() + CScrollMgr::GetScroll() - D3DXVECTOR3(fRandom, fRandom, 0.f)) -
 		CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
 
@@ -37,6 +37,17 @@ int CShotGunBullet::Update()
 {
 	CObj::LateInit();
 
+	/* Bullet 소멸 조건 */
+	if (m_bIsDead)
+		return DEAD_OBJ;
+	else if (m_tInfo.vPos.x < (0.f + CScrollMgr::GetScroll().x) ||
+		m_tInfo.vPos.x >float(WINCX + CScrollMgr::GetScroll().x) ||
+		m_tInfo.vPos.y < (0.f + CScrollMgr::GetScroll().y) ||
+		m_tInfo.vPos.y >float(WINCY + CScrollMgr::GetScroll().y) ||
+		m_fVanishTimer > m_fVanishTime) {
+		return DEAD_OBJ;
+	}
+
 	/* 총알 이동 */
 	m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
 
@@ -45,22 +56,13 @@ int CShotGunBullet::Update()
 
 	D3DXMatrixScaling(&matScale, 1.3f, 1.3f, 1.f);
 	D3DXMatrixTranslation(&matTrans,
-		m_tInfo.vPos.x + CScrollMgr::GetScroll().x,
-		m_tInfo.vPos.y + CScrollMgr::GetScroll().y,
+		m_tInfo.vPos.x - CScrollMgr::GetScroll().x,
+		m_tInfo.vPos.y - CScrollMgr::GetScroll().y,
 		m_tInfo.vPos.z);
 
 	m_tInfo.matWorld = matScale * matTrans;
 
-	/* Bullet 소멸 조건 */
-	if (m_bIsDead)
-		return DEAD_OBJ;
-	else if (m_tInfo.vPos.x < (0.f - CScrollMgr::GetScroll().x) ||
-		m_tInfo.vPos.x >float(WINCX - CScrollMgr::GetScroll().x) ||
-		m_tInfo.vPos.y < (0.f - CScrollMgr::GetScroll().y) ||
-		m_tInfo.vPos.y >float(WINCY - CScrollMgr::GetScroll().y) ||
-		m_fVanishTimer > m_fVanishTime) {
-		return DEAD_OBJ;
-	}
+
 
 	return NO_EVENT;
 }
