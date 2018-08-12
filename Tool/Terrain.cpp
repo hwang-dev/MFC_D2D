@@ -18,7 +18,7 @@ CTerrain::~CTerrain()
 void CTerrain::Initialize()
 {
 	if (FAILED(CTextureMgr::GetInstance()->InsertTexture(L"../Texture/TERRAIN/TILE/Tile%d.png", L"Terrain",
-		TEX_MULTI, L"Tile", 59)))
+		TEX_MULTI, L"Tile", 79)))
 	{
 		AfxMessageBox(L"Terrain Image Insert Failed");
 		return;

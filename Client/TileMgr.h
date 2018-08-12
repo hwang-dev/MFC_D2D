@@ -16,6 +16,8 @@ public:
 
 public:
 	vector<TILE*>& GetVecTile() { return m_vecTile; }
+	vector<list<TILE*>>& GetvecAdj() { return m_vecAdjacency; }
+
 	int	GetTileIndex(const D3DXVECTOR3& vPos);
 	bool Picking(const D3DXVECTOR3& vPos, const int& iIndex);
 	HRESULT LoadTile();

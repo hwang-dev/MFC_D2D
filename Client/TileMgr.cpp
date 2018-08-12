@@ -129,7 +129,7 @@ void CTileMgr::ReadyAdjacency()
 				m_vecAdjacency[iIndex].push_back(m_vecTile[iIndex - 1]);
 			}
 			/* ¿ì */
-			if (iIndex & (TILEX - 1) != 0 &&
+			if (iIndex % (TILEX - 1) != 0 &&
 				m_vecTile[iIndex + 1]->byOption != 1) {
 				m_vecAdjacency[iIndex].push_back(m_vecTile[iIndex + 1]);
 			}

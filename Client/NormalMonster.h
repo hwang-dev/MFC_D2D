@@ -14,5 +14,8 @@ public:
 	virtual void LateUpdate() override;
 	virtual void Render() override;
 	virtual void Release() override;
+
+private:
+	void AStarMove();
 };
 

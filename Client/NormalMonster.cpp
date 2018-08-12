@@ -14,7 +14,7 @@ CNormalMonster::~CNormalMonster()
 HRESULT CNormalMonster::Initialize()
 {
 
-	m_wstrObjKey = L"NMove";
+	m_wstrObjKey = L"NMonsterMove";
 	m_wstrStateKey = L"Down_Right";
 	m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
 		m_wstrStateKey.c_str());
@@ -59,6 +59,8 @@ void CNormalMonster::LateUpdate()
 {
 	m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
 
+	//CAstarMgr::GetInstance()->StartAstar(m_tInfo.vPos, m_pTarget->GetInfo().vPos);
+	//AStarMove();
 
 	SetMonsterDir();
 	MonsterDirChange();
@@ -91,4 +93,21 @@ void CNormalMonster::Render()
 
 void CNormalMonster::Release()
 {
+}
+
+void CNormalMonster::AStarMove()
+{
+	list<TILE*> BestLst = CAstarMgr::GetInstance()->GetBestLst();
+
+	if (!BestLst.empty()) {
+		D3DXVECTOR3 vDir = BestLst.front()->vPos - m_tInfo.vPos;
+
+		float fDist = D3DXVec3Length(&vDir);
+		D3DXVec3Normalize(&vDir, &vDir);
+
+		m_tInfo.vPos += vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+
+		if (fDist < 5.f)
+			BestLst.pop_front();
+	}
 }
