@@ -27,7 +27,7 @@ HRESULT CNormalBullet::Initialize()
 void CNormalBullet::LateInit()
 {
 	// 총알 방향 = 마우스 - 플레이어
-	m_tInfo.vDir = (CMouse::GetInstance()->GetMousePos() - CScrollMgr::GetScroll()) -
+	m_tInfo.vDir = CMouse::GetInstance()->GetMousePos() - CScrollMgr::GetScroll() - 
 		CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
 }
@@ -54,8 +54,8 @@ int CNormalBullet::Update()
 
 	D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
 	D3DXMatrixTranslation(&matTrans,
-		m_tInfo.vPos.x + CScrollMgr::GetScroll().x,
-		m_tInfo.vPos.y + CScrollMgr::GetScroll().y,
+		m_tInfo.vPos.x - CScrollMgr::GetScroll().x,
+		m_tInfo.vPos.y - CScrollMgr::GetScroll().y,
 		m_tInfo.vPos.z);
 
 	m_tInfo.matWorld = matScale * matTrans;

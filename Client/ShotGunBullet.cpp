@@ -23,7 +23,7 @@ void CShotGunBullet::LateInit()
 	// 총알 방향 = 마우스 - 플레이어
 	// 방향 랜덤
 	float fRandom = float(rand() % 100);
-	m_tInfo.vDir = (CMouse::GetInstance()->GetMousePos() - CScrollMgr::GetScroll() - D3DXVECTOR3(fRandom, fRandom, 0.f)) -
+	m_tInfo.vDir = (CMouse::GetInstance()->GetMousePos() - D3DXVECTOR3(fRandom, fRandom, 0.f)) -
 		CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
 

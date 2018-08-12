@@ -52,19 +52,32 @@ void CMainGame::Update()
 void CMainGame::LateUpdate()
 {
 	CSceneMgr::GetInstance()->LateUpdate();
+	CScrollMgr::ScrollLock2();
 
+	// 충돌 렉트
 	if (CKeyMgr::GetInstance()->KeyDown(KEY_F1)) {
 		if (g_bOnRect)
 			g_bOnRect = false;
 		else
 			g_bOnRect = true;
 	}
+
+
 }
 
 void CMainGame::Render()
 {
 	CDevice::GetInstance()->Render_Begin();
 	CSceneMgr::GetInstance()->Render();
+	/* 플레이어 좌표 */
+	D3DXMATRIX matWorld;
+	D3DXMatrixIdentity(&matWorld);
+	CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
+	RECT rc = { 0, 0, 100,100 };
+	TCHAR szPos[MIN_STR] = L"";
+	swprintf_s(szPos, L"ScrollX: %d\n ScrollY: %d", (int)CScrollMgr::GetScroll().x, (int)CScrollMgr::GetScroll().y);
+	CDevice::GetInstance()->GetFont()->DrawTextW(CDevice::GetInstance()->GetSprite(),
+		szPos, lstrlen(szPos), &rc, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
 	CDevice::GetInstance()->Render_End();
 }
 

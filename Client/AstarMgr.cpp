@@ -19,6 +19,8 @@ void CAstarMgr::StartAstar(const D3DXVECTOR3 & vStart, const D3DXVECTOR3 & vGoal
 	for (auto& pTile : vecTile) {
 		if (pTile->byOption == 1)
 			continue;
+
+		pTile->byDrawID = 0;
 	}
 
 	m_OpenLst.clear();

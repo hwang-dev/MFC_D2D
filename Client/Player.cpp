@@ -73,8 +73,8 @@ int CPlayer::Update()
 	D3DXMatrixScaling(&matScale, 2.f, 2.f, 1.f);
 	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(0.f));
 	D3DXMatrixTranslation(&matTrnas,
-		m_tInfo.vPos.x + CScrollMgr::GetScroll().x,
-		m_tInfo.vPos.y + CScrollMgr::GetScroll().y,
+		m_tInfo.vPos.x - CScrollMgr::GetScroll().x,
+		m_tInfo.vPos.y - CScrollMgr::GetScroll().y,
 		m_tInfo.vPos.z);
 
 	m_tInfo.matWorld = matScale * matRotZ * matTrnas;
@@ -84,7 +84,7 @@ int CPlayer::Update()
 
 void CPlayer::LateUpdate()
 {
-	IsOffSet();
+	//IsOffSet();
 	StanceChange();
 	ChangeWeapon();
 }
@@ -115,9 +115,35 @@ void CPlayer::Render()
 	PlayAnimation();
 	PlayerDodge();
 
+	/* 플레이어 좌표 */
+	TCHAR szPos[MIN_STR] = L"";
+	swprintf_s(szPos, L"%d, %d", (int)m_tInfo.vPos.x, (int)m_tInfo.vPos.y);
+	CDevice::GetInstance()->GetFont()->DrawTextW(CDevice::GetInstance()->GetSprite(),
+		szPos, lstrlen(szPos), nullptr, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+
 	/* 충돌 렉트 */
-	if(g_bOnRect)
-		CObj::RenderLine();
+	if (g_bOnRect)
+	{
+		D3DXVECTOR2 vPoint[5] = {
+			{ (m_tInfo.vPos.x + m_tInfo.vSize.x * 0.5f) - CScrollMgr::GetScroll().x, (m_tInfo.vPos.y - m_tInfo.vSize.y * 0.5f) - CScrollMgr::GetScroll().y },
+			{ (m_tInfo.vPos.x + m_tInfo.vSize.x * 0.5f) - CScrollMgr::GetScroll().x, (m_tInfo.vPos.y + m_tInfo.vSize.y * 0.5f) - CScrollMgr::GetScroll().y },
+			{ (m_tInfo.vPos.x - m_tInfo.vSize.x * 0.5f) - CScrollMgr::GetScroll().x, (m_tInfo.vPos.y + m_tInfo.vSize.y * 0.5f) - CScrollMgr::GetScroll().y },
+			{ (m_tInfo.vPos.x - m_tInfo.vSize.x * 0.5f) - CScrollMgr::GetScroll().x, (m_tInfo.vPos.y - m_tInfo.vSize.y * 0.5f) - CScrollMgr::GetScroll().y },
+			{ (m_tInfo.vPos.x - m_tInfo.vSize.x * 0.5f) - CScrollMgr::GetScroll().x, (m_tInfo.vPos.y - m_tInfo.vSize.y * 0.5f) - CScrollMgr::GetScroll().y },
+		};
+
+		CDevice::GetInstance()->GetLine()->SetWidth(1.f);
+
+		CDevice::GetInstance()->GetSprite()->End();
+
+		CDevice::GetInstance()->GetLine()->Begin();
+		CDevice::GetInstance()->GetLine()->Draw(vPoint, 5, D3DCOLOR_ARGB(255, 255, 0, 0));
+		CDevice::GetInstance()->GetLine()->End();
+
+		CDevice::GetInstance()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
+	}
+		
 	
 
 	// 콘솔에 위치, 스크롤 출력
@@ -154,9 +180,13 @@ void CPlayer::PlayerMove()
 			m_wstrObjKey = L"Move";
 			m_ePlayerDir = UP_LEFT;
 			m_wstrStateKey = L"Up_Left";
-			m_tInfo.vPos += D3DXVECTOR3(-0.7f, -0.7f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
 
-			/* 대쉬 */
+			m_tInfo.vPos += VECTOR3(-0.7f, -0.7f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+			//CScrollMgr::SetScroll(m_tInfo.vPos.x - WINCX * 0.5f, m_tInfo.vPos.y - WINCY * 0.5f);
+
+			//CScrollMgr::SetScroll(0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed,
+			//	0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed);
+
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
 				m_bIsDodge = true;
 			}
@@ -167,7 +197,11 @@ void CPlayer::PlayerMove()
 			m_wstrObjKey = L"Move";
 			m_ePlayerDir = UP_RIGHT;
 			m_wstrStateKey = L"Up_Right";
-			m_tInfo.vPos += D3DXVECTOR3(0.7f, -0.7f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+			
+			m_tInfo.vPos += VECTOR3(0.7f, -0.7f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+
+			//CScrollMgr::SetScroll(-0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed,
+			//	0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed);
 
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
@@ -180,7 +214,9 @@ void CPlayer::PlayerMove()
 			m_wstrObjKey = L"Move";
 			m_ePlayerDir = DOWN_LEFT;
 			m_wstrStateKey = L"Down_Left";
-			m_tInfo.vPos += D3DXVECTOR3(-0.7f, 0.7f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+			m_tInfo.vPos += VECTOR3(-0.7f, 0.7f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+			//CScrollMgr::SetScroll(0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed,
+			//	-0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed);
 
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
@@ -193,7 +229,9 @@ void CPlayer::PlayerMove()
 			m_wstrObjKey = L"Move";
 			m_ePlayerDir = DOWN_RIGHT;
 			m_wstrStateKey = L"Down_Right";
-			m_tInfo.vPos += D3DXVECTOR3(0.7f, 0.7f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+			m_tInfo.vPos += VECTOR3(0.7f, 0.7f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+			//CScrollMgr::SetScroll(-0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed,
+			//	-0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed);
 
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
@@ -206,7 +244,8 @@ void CPlayer::PlayerMove()
 			m_wstrObjKey = L"Move";
 			m_ePlayerDir = UP;
 			m_wstrStateKey = L"Up";
-			m_tInfo.vPos += D3DXVECTOR3(0.f, -1.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+			m_tInfo.vPos += VECTOR3(0.f, -1.f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+			//CScrollMgr::SetScroll(0.f, 1.f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed);
 
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
@@ -219,7 +258,8 @@ void CPlayer::PlayerMove()
 			m_wstrObjKey = L"Move";
 			m_ePlayerDir = DOWN;
 			m_wstrStateKey = L"Down";
-			m_tInfo.vPos += D3DXVECTOR3(0.f, 1.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+			m_tInfo.vPos += VECTOR3(0.f, 1.f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+			//CScrollMgr::SetScroll(0.f, -1.f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed);
 
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
@@ -232,7 +272,8 @@ void CPlayer::PlayerMove()
 			m_wstrObjKey = L"Move";
 			m_ePlayerDir = LEFT;
 			m_wstrStateKey = L"Left";
-			m_tInfo.vPos += D3DXVECTOR3(-1.f, 0.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+			m_tInfo.vPos += VECTOR3(-1.f, 0.f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+			//CScrollMgr::SetScroll(1.f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed, 0.f);
 
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
@@ -245,7 +286,8 @@ void CPlayer::PlayerMove()
 			m_wstrObjKey = L"Move";
 			m_ePlayerDir = RIGHT;
 			m_wstrStateKey = L"Right";
-			m_tInfo.vPos += D3DXVECTOR3(1.f, 0.f, 0.f) * CTimeMgr::GetInstance()->GetTime() * m_fSpeed;
+			m_tInfo.vPos += VECTOR3(1.f, 0.f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+			//CScrollMgr::SetScroll(-1.f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed, 0.f);
 
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
@@ -393,6 +435,8 @@ void CPlayer::PlayerDodge()
 		}
 
 		m_tInfo.vPos += vDodge * CTimeMgr::GetInstance()->GetTime() * m_fSpeed * m_fDodgePow;
+		/*CScrollMgr::SetScroll(-vDodge.x * CTimeMgr::GetInstance()->GetTime() * m_fSpeed * m_fDodgePow,
+			-vDodge.y * CTimeMgr::GetInstance()->GetTime() * m_fSpeed * m_fDodgePow);*/
 		m_fDodgeTime += CTimeMgr::GetInstance()->GetTime();
 
 		/* 대쉬 종료 조건 */

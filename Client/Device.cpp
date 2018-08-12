@@ -79,11 +79,11 @@ HRESULT CDevice::InitDevice()
 	// D3DXFONT_DESCW: 출력할 폰트의 속성을 설정.
 	D3DXFONT_DESCW	tFontInfo;
 	
-	tFontInfo.Height = 20;	// 높이
-	tFontInfo.Width = 10;	// 너비
+	tFontInfo.Height = 15;	// 높이
+	tFontInfo.Width = 5;	// 너비
 	tFontInfo.Weight = FW_HEAVY; // 두께
 	tFontInfo.CharSet = HANGEUL_CHARSET; // 한글
-	lstrcpy(tFontInfo.FaceName, L"궁서"); // 글씨체
+	lstrcpy(tFontInfo.FaceName, L"Consolas"); // 글씨체
 
 	// D3DXFONT_DESCW 속성을 바탕으로 폰트 Com객체를 생성하고 있다.
 	// LPD3DXFONT는 폰트 텍스쳐(이미지)를 일일히 생성하여 출력하므로 느리다는 단점이 존재한다.
@@ -109,7 +109,7 @@ void CDevice::Render_Begin()
 
 	// 1. 후면 버퍼를 비운다.
 	m_pDevice->Clear(0, nullptr, D3DCLEAR_STENCIL | D3DCLEAR_ZBUFFER | D3DCLEAR_TARGET,
-		D3DCOLOR_ARGB(255, 0, 0, 255), 1.f, 0);
+		D3DCOLOR_ARGB(255, 0, 0, 0), 1.f, 0);
 
 	// 2. 후면버퍼에 그린다
 	// 여기서부터 출력할 씬(장면)의 시작 점이다.

@@ -21,6 +21,9 @@ void CTileMgr::Update()
 
 void CTileMgr::LateUpdate()
 {
+	/*for (auto& pTile : m_vecTile) {
+		pTile->vPos += m_
+	}*/
 }
 
 void CTileMgr::Render()
@@ -29,8 +32,8 @@ void CTileMgr::Render()
 
 	D3DXVECTOR3 vScroll = CScrollMgr::GetScroll();
 
-	int iCullX = -(int)vScroll.x / TILECX;
-	int iCullY = -(int)vScroll.y / TILECY;
+	int iCullX = (int)vScroll.x / TILECX;
+	int iCullY = (int)vScroll.y / TILECY;
 
 	int iCullEndX = iCullX + WINCX / TILECX;
 	int iCullEndY = iCullY + WINCY / TILECY;
@@ -46,8 +49,8 @@ void CTileMgr::Render()
 			D3DXMatrixIdentity(&matWorld);
 			D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);
 			D3DXMatrixTranslation(&matTrans,
-				(m_vecTile[iIndex]->vPos.x ) + CScrollMgr::GetScroll().x,
-				(m_vecTile[iIndex]->vPos.y ) + CScrollMgr::GetScroll().y,
+				m_vecTile[iIndex]->vPos.x - CScrollMgr::GetScroll().x ,
+				m_vecTile[iIndex]->vPos.y - CScrollMgr::GetScroll().y,
 				m_vecTile[iIndex]->vPos.z);
 
 			matWorld = matScale * matTrans;
@@ -64,6 +67,30 @@ void CTileMgr::Render()
 
 			CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 				&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+			/* 충돌 렉트 출력*/
+			if (g_bOnRect)
+			{
+				if(m_vecTile[iIndex]->byOption == 1) {
+				D3DXVECTOR2 vPoint[5] = {
+					{ (m_vecTile[iIndex]->vPos.x - m_vecTile[iIndex]->vSize.x * 0.5f - CScrollMgr::GetScroll().x ), (m_vecTile[iIndex]->vPos.y - m_vecTile[iIndex]->vSize.y * 0.5f - CScrollMgr::GetScroll().y ) },
+					{ (m_vecTile[iIndex]->vPos.x + m_vecTile[iIndex]->vSize.x * 0.5f - CScrollMgr::GetScroll().x ), (m_vecTile[iIndex]->vPos.y - m_vecTile[iIndex]->vSize.y * 0.5f - CScrollMgr::GetScroll().y ) },
+					{ (m_vecTile[iIndex]->vPos.x + m_vecTile[iIndex]->vSize.x * 0.5f - CScrollMgr::GetScroll().x ), (m_vecTile[iIndex]->vPos.y + m_vecTile[iIndex]->vSize.y * 0.5f - CScrollMgr::GetScroll().y ) },
+					{ (m_vecTile[iIndex]->vPos.x - m_vecTile[iIndex]->vSize.x * 0.5f - CScrollMgr::GetScroll().x ), (m_vecTile[iIndex]->vPos.y + m_vecTile[iIndex]->vSize.y * 0.5f - CScrollMgr::GetScroll().y ) },
+					{ (m_vecTile[iIndex]->vPos.x - m_vecTile[iIndex]->vSize.x * 0.5f - CScrollMgr::GetScroll().x ), (m_vecTile[iIndex]->vPos.y - m_vecTile[iIndex]->vSize.y * 0.5f - CScrollMgr::GetScroll().y ) },
+				};
+
+				CDevice::GetInstance()->GetLine()->SetWidth(1.f);
+
+				CDevice::GetInstance()->GetSprite()->End();
+
+				CDevice::GetInstance()->GetLine()->Begin();
+				CDevice::GetInstance()->GetLine()->Draw(vPoint, 5, D3DCOLOR_ARGB(255, 255, 0, 0));
+				CDevice::GetInstance()->GetLine()->End();
+
+				CDevice::GetInstance()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
+				}
+			}
 		}
 	}
 }

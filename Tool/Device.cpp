@@ -168,7 +168,7 @@ void CDevice::SetParemeters(D3DPRESENT_PARAMETERS & d3dpp)
 	// 장치를 사용한 윈도우 설정.
 	d3dpp.hDeviceWindow = g_hWnd;
 
-	d3dpp.Windowed = TRUE; // 창모드
+	d3dpp.Windowed = FALSE; // 창모드
 
 	// Direct가 깊이/스텐실 버퍼를 만들고 자동으로 관리하길 원하다면 TRUE
 	d3dpp.EnableAutoDepthStencil = TRUE;

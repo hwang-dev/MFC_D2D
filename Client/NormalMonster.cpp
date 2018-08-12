@@ -29,9 +29,6 @@ void CNormalMonster::LateInit()
 {
 	// 타겟 설정
 	m_pTarget = CObjMgr::GetInstance()->GetPlayer();
-	//m_tInfo.vDir = m_pTarget->GetInfo().vPos - m_tInfo.vPos;
-	//D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
-
 }
 
 int CNormalMonster::Update()
@@ -45,8 +42,8 @@ int CNormalMonster::Update()
 
 	D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
 	D3DXMatrixTranslation(&matTrans,
-		m_tInfo.vPos.x + CScrollMgr::GetScroll().x,
-		m_tInfo.vPos.y + CScrollMgr::GetScroll().y,
+		m_tInfo.vPos.x - CScrollMgr::GetScroll().x,
+		m_tInfo.vPos.y - CScrollMgr::GetScroll().y,
 		m_tInfo.vPos.z);
 
 	m_tInfo.matWorld = matScale * matTrans;
@@ -57,8 +54,6 @@ int CNormalMonster::Update()
 
 void CNormalMonster::LateUpdate()
 {
-	//m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
-
 	/* 몬스터 이동(Astar) */
 	AStarMove();
 	
@@ -108,7 +103,7 @@ void CNormalMonster::AStarMove()
 		float fDist = D3DXVec3Length(&vDir);
 		D3DXVec3Normalize(&vDir, &vDir);
 
-		m_tInfo.vPos += vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+		m_tInfo.vPos += (vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime());
 
 		if (fDist < 5.f)
 			BestLst.pop_front();

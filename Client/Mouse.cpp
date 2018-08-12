@@ -29,7 +29,7 @@ void CMouse::Render()
 	D3DXMATRIX matWorld, matScale, matTrans;
 
 	D3DXMatrixIdentity(&matWorld);
-	D3DXMatrixScaling(&matScale, 0.1f, 0.1f, 1.f);
+	D3DXMatrixScaling(&matScale, 1.5f, 1.5f, 1.f);
 	D3DXMatrixTranslation(&matTrans, m_vMouse.x, m_vMouse.y, m_vMouse.z);
 
 	matWorld = matScale * matTrans;
@@ -46,9 +46,17 @@ void CMouse::Render()
 
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	/* ¸¶¿ì½º ÁÂÇ¥ */
+	TCHAR szPos[MIN_STR] = L"";
+	swprintf_s(szPos, L"%d, %d", (int)CMouse::GetInstance()->GetMousePos().x,
+		(int)CMouse::GetInstance()->GetMousePos().y);
+	CDevice::GetInstance()->GetFont()->DrawTextW(CDevice::GetInstance()->GetSprite(),
+		szPos, lstrlen(szPos), nullptr, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
+
 }
 
 D3DXVECTOR3& CMouse::GetMousePos()
 {
-	return m_vMouse;
+	return m_vMouse + CScrollMgr::GetScroll();
 }

@@ -48,11 +48,11 @@ void CObj::UpdateRect()
 void CObj::RenderLine()
 {
 	D3DXVECTOR2 vPoint[5] = {
-		{ (m_tInfo.vPos.x - m_tInfo.vSize.x) + CScrollMgr::GetScroll().x, (m_tInfo.vPos.y - m_tInfo.vSize.y) + CScrollMgr::GetScroll().y},
-		{ (m_tInfo.vPos.x + m_tInfo.vSize.x) + CScrollMgr::GetScroll().x, (m_tInfo.vPos.y - m_tInfo.vSize.y) + CScrollMgr::GetScroll().y},
-		{ (m_tInfo.vPos.x + m_tInfo.vSize.x) + CScrollMgr::GetScroll().x, (m_tInfo.vPos.y + m_tInfo.vSize.y) + CScrollMgr::GetScroll().y},
-		{ (m_tInfo.vPos.x - m_tInfo.vSize.x) + CScrollMgr::GetScroll().x, (m_tInfo.vPos.y + m_tInfo.vSize.y) + CScrollMgr::GetScroll().y},
-		{ (m_tInfo.vPos.x - m_tInfo.vSize.x) + CScrollMgr::GetScroll().x, (m_tInfo.vPos.y - m_tInfo.vSize.y) + CScrollMgr::GetScroll().y},
+		{ (m_tInfo.vPos.x - m_tInfo.vSize.x * 0.5f) - CScrollMgr::GetScroll().x, (m_tInfo.vPos.y - m_tInfo.vSize.y*0.5f) - CScrollMgr::GetScroll().y},
+		{ (m_tInfo.vPos.x + m_tInfo.vSize.x * 0.5f) - CScrollMgr::GetScroll().x, (m_tInfo.vPos.y - m_tInfo.vSize.y*0.5f) - CScrollMgr::GetScroll().y},
+		{ (m_tInfo.vPos.x + m_tInfo.vSize.x * 0.5f) - CScrollMgr::GetScroll().x, (m_tInfo.vPos.y + m_tInfo.vSize.y*0.5f) - CScrollMgr::GetScroll().y},
+		{ (m_tInfo.vPos.x - m_tInfo.vSize.x * 0.5f) - CScrollMgr::GetScroll().x, (m_tInfo.vPos.y + m_tInfo.vSize.y*0.5f) - CScrollMgr::GetScroll().y},
+		{ (m_tInfo.vPos.x - m_tInfo.vSize.x * 0.5f) - CScrollMgr::GetScroll().x, (m_tInfo.vPos.y - m_tInfo.vSize.y*0.5f) - CScrollMgr::GetScroll().y},
 	};
 
 	CDevice::GetInstance()->GetLine()->SetWidth(1.f);
