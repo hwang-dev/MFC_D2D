@@ -26,19 +26,6 @@ void CMouse::Update()
 
 void CMouse::LateUpdate()
 {
-	//if (m_vMouse.x > WINCX * 0.5f + 200.f)
-	//	CScrollMgr::SetCamera(50.f, 0.f);
-	//if (m_vMouse.x < WINCX * 0.5f - 200.f)
-	//	CScrollMgr::SetCamera(-50.f, 0.f);
-	//if (m_vMouse.y > WINCY * 0.5f + 200.f)
-	//	CScrollMgr::SetCamera(0.f, 50.f);
-	//if (m_vMouse.y < WINCY * 0.5f - 200.f)
-	//	CScrollMgr::SetCamera(0.f, -50.f);
-	//else
-	//	CScrollMgr::SetCamera(0.f, 0.f);
-	//else if(m_vMouse.x <= WINCX * 0.5f + 200.f &&
-	//	WINCX * 0.5f - 200.f <= m_vMouse.x)
-	//	CScrollMgr::SetCamera(0.f, 0.f);
 	D3DXVECTOR3 vCamera = m_vMouse + CScrollMgr::GetScroll() -
 		CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 
@@ -67,7 +54,7 @@ void CMouse::Render()
 	float fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
 
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
-		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(200, 255, 255, 255));
 
 	/* ¸¶¿ì½º ÁÂÇ¥ */
 	TCHAR szPos[MIN_STR] = L"";

@@ -142,6 +142,12 @@
     <Filter Include="98.Managers\08.AstarMgr">
       <UniqueIdentifier>{9c13bb37-c92c-4e10-92d4-07ee797f07c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Object\04.EnemyWeapon">
+      <UniqueIdentifier>{6caecca5-d438-474e-ac55-56e84f59383f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\04.EnemyWeapon\00.EnemyRevolver">
+      <UniqueIdentifier>{68773708-1061-4268-ba6c-ccaf7aa04364}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -273,6 +279,9 @@
     <ClInclude Include="NormalMonster.h">
       <Filter>01.Object\01.Monster\00.NormalMonster</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyRevolver.h">
+      <Filter>01.Object\04.EnemyWeapon\00.EnemyRevolver</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -394,6 +403,9 @@
     </ClCompile>
     <ClCompile Include="NormalMonster.cpp">
       <Filter>01.Object\01.Monster\00.NormalMonster</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyRevolver.cpp">
+      <Filter>01.Object\04.EnemyWeapon\00.EnemyRevolver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -159,6 +159,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="Device.h" />
+    <ClInclude Include="EnemyRevolver.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Lobby.h" />
     <ClInclude Include="Logo.h" />
@@ -203,6 +204,7 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="Device.cpp" />
+    <ClCompile Include="EnemyRevolver.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="Lobby.cpp" />
     <ClCompile Include="Logo.cpp" />

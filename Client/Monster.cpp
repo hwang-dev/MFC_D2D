@@ -9,7 +9,8 @@ CMonster::CMonster()
 	m_fAttackTimer(0.f),
 	m_eCurDir(DIR_END),
 	m_ePreDir(DIR_END),
-	m_fAnimSpeed(0.f)
+	m_fAnimSpeed(0.f),
+	m_fARange(0.f)
 {}
 
 

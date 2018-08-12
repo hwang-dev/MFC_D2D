@@ -31,14 +31,16 @@ void CWeaponMgr::Update()
 	float fpos = 12.f;
 	m_fGunPos = 5.f;
 
-	MATRIX matScale, matRotZ, matTrans;
+	D3DXMATRIX matScale, matRotZ, matTrans;
 
-	VECTOR3 vDir = (CMouse::GetInstance()->GetMousePos() + CScrollMgr::GetScroll())
+	D3DXVECTOR3 vDir = (CMouse::GetInstance()->GetMousePos() + CScrollMgr::GetScroll())
 		- m_pTarget->GetInfo().vPos;
 	D3DXVec3Normalize(&vDir, &vDir); // 방향벡터 정규화
 	m_fAngle = D3DXVec3Dot(&vDir, &m_pTarget->GetInfo().vLook);
-	float fDegree = acosf(m_fAngle);
+	float fRadian = acosf(m_fAngle);
 
+	if (m_pTarget->GetInfo().vPos.y + CScrollMgr::GetScroll().y < CMouse::GetInstance()->GetMousePos().y)
+		m_fAngle *= -1.f;
 
 	/* 총구 방향 조정*/
 	//if (CMouse::GetInstance()->GetMousePos().x < m_pTarget->GetInfo().vPos.x) {
@@ -50,10 +52,10 @@ void CWeaponMgr::Update()
 
 	D3DXMatrixScaling(&matScale, 2.f, m_fScaleY, 1.f);
 	D3DXMatrixTranslation(&matTrans,
-		m_pTarget->GetInfo().vPos.x /*+ CScrollMgr::GetScroll().x*/,
-		m_pTarget->GetInfo().vPos.y /*+ CScrollMgr::GetScroll().y*/,
+		m_pTarget->GetInfo().vPos.x,
+		m_pTarget->GetInfo().vPos.y,
 		m_pTarget->GetInfo().vPos.z);
-	D3DXMatrixRotationZ(&matRotZ, -fDegree);
+	D3DXMatrixRotationZ(&matRotZ, -fRadian);
 
 	m_matWolrd = matScale * matRotZ * matTrans;
 }
@@ -61,6 +63,8 @@ void CWeaponMgr::Update()
 
 void CWeaponMgr::Render()
 {
+
+
 	/* 현재 플레이어 총 가져오기 */
 	CObj* pPlayerGun = dynamic_cast<CPlayer*>(CObjMgr::GetInstance()->GetPlayer())->GetCurGun();
 	NULL_CHECK(pPlayerGun);
@@ -78,6 +82,7 @@ void CWeaponMgr::Render()
 		CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 			&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
 
+		// 좌표 출력
 		TCHAR szPos[MIN_STR] = L"";
 		swprintf_s(szPos, L"%d, %d", (int)pPlayerGun->GetInfo().vPos.x, (int)pPlayerGun->GetInfo().vPos.y);
 		CDevice::GetInstance()->GetFont()->DrawTextW(CDevice::GetInstance()->GetSprite(),

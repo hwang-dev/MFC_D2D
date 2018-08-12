@@ -19,5 +19,6 @@ protected:
 	PLAYER_DIR	m_eCurDir;
 	PLAYER_DIR	m_ePreDir;
 	float		m_fAnimSpeed;
+	float		m_fARange;
 };
 
