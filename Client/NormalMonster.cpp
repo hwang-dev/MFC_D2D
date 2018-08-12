@@ -20,7 +20,7 @@ HRESULT CNormalMonster::Initialize()
 		m_wstrStateKey.c_str());
 	m_tInfo.vSize = { 10.f, 25.f, 0.f };
 	m_tInfo.vLook = { 1.f, 0.f, 0.f };
-	m_fSpeed = 10.f;
+	m_fSpeed = 80.f;
 	m_fAnimSpeed = 1.5f;
 	return S_OK;
 }
@@ -29,8 +29,8 @@ void CNormalMonster::LateInit()
 {
 	// 타겟 설정
 	m_pTarget = CObjMgr::GetInstance()->GetPlayer();
-	m_tInfo.vDir = m_pTarget->GetInfo().vPos - m_tInfo.vPos;
-	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
+	//m_tInfo.vDir = m_pTarget->GetInfo().vPos - m_tInfo.vPos;
+	//D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
 
 }
 
@@ -57,17 +57,20 @@ int CNormalMonster::Update()
 
 void CNormalMonster::LateUpdate()
 {
-	m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+	//m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
 
-	//CAstarMgr::GetInstance()->StartAstar(m_tInfo.vPos, m_pTarget->GetInfo().vPos);
-	//AStarMove();
-
+	/* 몬스터 이동(Astar) */
+	AStarMove();
+	
+	/* 몬스터 방향 변경 */
 	SetMonsterDir();
 	MonsterDirChange();
 
+	/* 몬스터 애니메이션 */
 	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime() * m_fAnimSpeed;
 	if (m_tFrame.fFrame > m_tFrame.fMax) {
 		m_tFrame.fFrame = 0.f;
+		CAstarMgr::GetInstance()->StartAstar(m_tInfo.vPos, m_pTarget->GetInfo().vPos);
 	}
 }
 
@@ -97,7 +100,7 @@ void CNormalMonster::Release()
 
 void CNormalMonster::AStarMove()
 {
-	list<TILE*> BestLst = CAstarMgr::GetInstance()->GetBestLst();
+	list<TILE*>& BestLst = CAstarMgr::GetInstance()->GetBestLst();
 
 	if (!BestLst.empty()) {
 		D3DXVECTOR3 vDir = BestLst.front()->vPos - m_tInfo.vPos;

@@ -17,10 +17,8 @@ void CAstarMgr::StartAstar(const D3DXVECTOR3 & vStart, const D3DXVECTOR3 & vGoal
 	vector<TILE*>& vecTile = CTileMgr::GetInstance()->GetVecTile();
 
 	for (auto& pTile : vecTile) {
-		if (1 == pTile->byOption)
+		if (pTile->byOption == 1)
 			continue;
-
-		pTile->byDrawID = 3;
 	}
 
 	m_OpenLst.clear();
@@ -40,7 +38,7 @@ void CAstarMgr::StartAstar(const D3DXVECTOR3 & vStart, const D3DXVECTOR3 & vGoal
 	if (vecTile[iGoalIdx]->byOption == 1)
 		return;
 
-	if (true == MakeRoute(iStartIdx, iGoalIdx))
+	if (MakeRoute(iStartIdx, iGoalIdx) == true)
 		MakeBestLst(iStartIdx, iGoalIdx); // 경로를 만든다.
 }
 
@@ -55,26 +53,19 @@ bool CAstarMgr::MakeRoute(int iStartIdx, int iGoalIdx)
 	// 현재 거쳐온 경로는 close에 보관.
 	m_CloseLst.push_back(iStartIdx);
 
-	for (auto& pTile : vecAdj[iStartIdx])
-	{
-		// 인접한 타일이 골지점이면 
-		if (iGoalIdx == pTile->iIndex)
-		{
+	for (auto& pTile : vecAdj[iStartIdx]) {
+		if (iGoalIdx == pTile->iIndex) {
 			pTile->iParentIdx = iStartIdx;
-			return true; // 재귀는 종료 된다.
+			return true; 
 		}
-
-		// 인접한 타일 중에 open, close에 있는지 조사.
-		if (false == CheckOpenLst(pTile->iIndex) && false == CheckCloseLst(pTile->iIndex))
-		{
+		if (CheckOpenLst(pTile->iIndex) == false &&
+			CheckCloseLst(pTile->iIndex) == false) {
 			pTile->iParentIdx = iStartIdx;
 			m_OpenLst.push_back(pTile->iIndex);
 		}
 	}
 
-	// 인접한 타일들의 거리들을 비교한다. (휴리스틱 조사)
-	m_OpenLst.sort([&vecTile, &iStartIdx, &iGoalIdx](int a, int b)
-	{
+	m_OpenLst.sort([&vecTile, &iStartIdx, &iGoalIdx](int a, int b) {
 		D3DXVECTOR3 vDir1 = vecTile[iGoalIdx]->vPos - vecTile[a]->vPos;
 		D3DXVECTOR3 vDir2 = vecTile[iStartIdx]->vPos - vecTile[a]->vPos;
 
@@ -89,7 +80,7 @@ bool CAstarMgr::MakeRoute(int iStartIdx, int iGoalIdx)
 
 	// 아무리 탐색해봐도 경로가 없을 때
 	if (m_OpenLst.empty())
-		return false; // 탐색 종료.
+		return false; 
 
 	return MakeRoute(m_OpenLst.front(), iGoalIdx);
 }
@@ -103,8 +94,7 @@ void CAstarMgr::MakeBestLst(int iStartIdx, int iGoalIdx)
 	vecTile[iGoalIdx]->byDrawID = 36;
 	int iRouteIdx = vecTile[iGoalIdx]->iParentIdx;
 
-	while (true)
-	{
+	while (true) {
 		if (iRouteIdx == iStartIdx)
 			break;
 

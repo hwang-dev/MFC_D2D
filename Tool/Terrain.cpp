@@ -146,6 +146,8 @@ void CTerrain::SetTile(int iTileX, int iTileY)
 			pTile->byOption = 0;
 			pTile->byDrawID = 0;
 			pTile->byRoomNum = 0;
+			pTile->iIndex = j + (TILEX * i);
+			pTile->iParentIdx = 0;
 
 			m_vecTile.push_back(pTile);
 		}

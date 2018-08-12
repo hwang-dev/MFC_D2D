@@ -22,7 +22,7 @@ public:
 	bool Picking(const D3DXVECTOR3& vPos, const int& iIndex);
 	HRESULT LoadTile();
 	
-private:
+public:
 	void ReadyAdjacency();
 
 private:

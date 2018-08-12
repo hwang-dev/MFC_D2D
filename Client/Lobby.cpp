@@ -20,6 +20,8 @@ HRESULT CLobby::Initialize()
 	if (FAILED(CTileMgr::GetInstance()->LoadTile())) {
 		return E_FAIL;
 	}
+	CTileMgr::GetInstance()->ReadyAdjacency();
+
 	// Player »ý¼º
 	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CPlayer>::CreateObj(D3DXVECTOR3{ WINCX * 0.5f, WINCY * 0.5, 0.f }),
 		OBJ_PLAYER);

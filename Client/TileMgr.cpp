@@ -109,13 +109,14 @@ void CTileMgr::ReadyAdjacency()
 {
 	m_vecAdjacency.resize(m_vecTile.size());
 
-	for (int i = 0; i < 80 ; ++i) {
-		for (int j = 0; j < 80; ++j) {
-			int iIndex = j + (80 * i);
+	for (int i = 0; i < TILEY ; ++i) {
+		for (int j = 0; j < TILEX; ++j) {
+
+			int iIndex = j + (TILEX * i);
 
 			/* ╩С */
-			if (iIndex - TILEX >= 0 
-				&& m_vecTile[iIndex - TILEX]->byOption != 1) {
+			if (iIndex - TILEX >= 0 &&
+				m_vecTile[iIndex - TILEX]->byOption != 1) {
 				m_vecAdjacency[iIndex].push_back(m_vecTile[iIndex - TILEX]);
 			}
 			/* го */
@@ -129,7 +130,7 @@ void CTileMgr::ReadyAdjacency()
 				m_vecAdjacency[iIndex].push_back(m_vecTile[iIndex - 1]);
 			}
 			/* ©Л */
-			if (iIndex % (TILEX - 1) != 0 &&
+			if (iIndex != (TILEX * (i + 1) - 1) &&
 				m_vecTile[iIndex + 1]->byOption != 1) {
 				m_vecAdjacency[iIndex].push_back(m_vecTile[iIndex + 1]);
 			}
