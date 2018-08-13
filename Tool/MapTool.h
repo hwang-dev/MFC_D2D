@@ -43,6 +43,7 @@ public:
 	CListBox m_TileBox;
 	CStatic m_PictureCtrl;
 	CButton m_CheckMove;
+	CButton m_ChkMiniMap;
 	CString m_strTileNum;
 	CImage*					m_pImage;
 

@@ -50,6 +50,7 @@ void CMapTool::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT9, m_iTileY);
 	DDX_Control(pDX, IDC_LIST3, m_StageListBox);
 	DDX_Text(pDX, IDC_EDIT10, m_strStageName);
+	DDX_Control(pDX, IDC_CHECK2, m_ChkMiniMap);
 }
 
 

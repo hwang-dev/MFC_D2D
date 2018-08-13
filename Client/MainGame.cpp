@@ -33,6 +33,11 @@ HRESULT CMainGame::Initialize()
 		ERR_MSG(L"TileMgr Init Fail");
 		return E_FAIL;
 	}
+	// SubTile Init
+	if (FAILED(CSubTileMgr::GetInstance()->Initialize())) {
+		ERR_MSG(L"SubTileMgr Init Fail");
+		return E_FAIL;
+	}
 	// SceneMgr Init
 	if (FAILED(CSceneMgr::GetInstance()->SceneChange(CSceneMgr::LOBBY))) {
 		ERR_MSG(L"Scene Change Failed");

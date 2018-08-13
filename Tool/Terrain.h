@@ -23,7 +23,8 @@ public:
 	void SetTile(int iTileX, int iTileY);
 
 public:
-	void TileChange(const D3DXVECTOR3& vPos, const int& iDrawID, const BYTE& byOption, const BYTE& byRoomNum);
+	void TileChange(const D3DXVECTOR3& vPos, const int& iDrawID, const BYTE& byOption, 
+		const BYTE& byRoomNum, const BYTE& byMiniMap);
 	int GetTileIndex(const D3DXVECTOR3& vPos);
 	D3DXVECTOR3& GetTilePos(int iIndex) { return m_vecTile[iIndex]->vPos; }
 

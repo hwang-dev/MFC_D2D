@@ -66,3 +66,4 @@ using namespace std;
 #include "WeaponMgr.h"
 #include "CollisionMgr.h"
 #include "AstarMgr.h"
+#include "SubTileMgr.h"

@@ -196,17 +196,26 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 
 		/* 타일옵션 저장(이동불가 유무) */
 		BYTE byOption = 0;
+		BYTE byMiniMap = 0;
 
+		// 이동 불가 옵션
 		if (pMyForm->m_MapTool.m_CheckMove.GetCheck() == TRUE)
 			byOption = 1;
 		else
 			byOption = 0;
 
+		// 미니맵 렌더링 옵션
+		if (pMyForm->m_MapTool.m_ChkMiniMap.GetCheck() == TRUE)
+			byMiniMap = 1;
+		else
+			byMiniMap = 0;
+
+
 		/* Room Number 저장 */
 		BYTE byRoomNum = 0;
 		byRoomNum = pMyForm->m_MapTool.m_byTileRoomNum;
 
-		CTerrain::GetInstance()->TileChange(D3DXVECTOR3((float)point.x, (float)point.y, 0.f), iDrawID, byOption, byRoomNum);
+		CTerrain::GetInstance()->TileChange(D3DXVECTOR3((float)point.x, (float)point.y, 0.f), iDrawID, byOption, byRoomNum, byMiniMap);
 
 		// Invalidate: WM_PAINT와 WM_ERASEBKGND 메시지를 발생.
 		Invalidate(FALSE);

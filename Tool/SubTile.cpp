@@ -17,8 +17,8 @@ CSubTile::~CSubTile()
 
 void CSubTile::Initialize()
 {
-	if (FAILED(CTextureMgr::GetInstance()->InsertTexture(L"../Texture/TERRAIN/SUBTILE/SubTile%d.png", L"Terrain",
-		TEX_MULTI, L"SubTile", 64)))
+	if (FAILED(CTextureMgr::GetInstance()->InsertTexture(L"../Texture/Terrain/SubTile/SubTile%d.png", L"Terrain",
+		TEX_MULTI, L"SubTile", 65)))
 	{
 		AfxMessageBox(L"SubTile Image Insert Failed");
 		return;
@@ -71,6 +71,6 @@ void CSubTile::AddSubTile(D3DXVECTOR3 & vPos, int& iDrawID)
 	pTile->byDrawID = iDrawID;
 	pTile->byRoomNum = 0;
 	pTile->byOption = 0;
-
+	pTile->byMiniMap = 0;
 	m_vecSubTile.push_back(pTile);
 }

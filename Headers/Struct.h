@@ -16,6 +16,7 @@ typedef struct tagTile
 	BYTE byOption;		// 鸥老狼 可记.
 	BYTE byDrawID;		// 坊歹傅 可记.
 	BYTE byRoomNum;		// 
+	BYTE byMiniMap;
 
 	int iIndex = 0;
 	int iParentIdx = 0;

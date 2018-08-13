@@ -20,8 +20,14 @@ HRESULT CLobby::Initialize()
 	if (FAILED(CTileMgr::GetInstance()->LoadTile())) {
 		return E_FAIL;
 	}
+	// 牢立 鸥老 八荤(Astar)
 	CTileMgr::GetInstance()->ReadyAdjacency();
+	// SubTileMgr Load
 
+	if (FAILED(CSubTileMgr::GetInstance()->LoadSubTile())) {
+		ERR_MSG(L"SubTile Load Fail");
+		return E_FAIL;
+	}
 	// Player 积己
 	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CPlayer>::CreateObj(D3DXVECTOR3{ WINCX * 0.5f, WINCY * 0.5, 0.f }),
 		OBJ_PLAYER);
@@ -57,9 +63,10 @@ void CLobby::LateUpdate()
 void CLobby::Render()
 {
 	CTileMgr::GetInstance()->Render();
+	CSubTileMgr::GetInstance()->Render();
 	CObjMgr::GetInstance()->Render();
-	CMouse::GetInstance()->Render();
 	CWeaponMgr::GetInstance()->Render();
+	CMouse::GetInstance()->Render();
 }
 
 void CLobby::Release()

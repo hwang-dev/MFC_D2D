@@ -17,31 +17,12 @@ CTerrain::~CTerrain()
 
 void CTerrain::Initialize()
 {
-	if (FAILED(CTextureMgr::GetInstance()->InsertTexture(L"../Texture/TERRAIN/TILE/Tile%d.png", L"Terrain",
-		TEX_MULTI, L"Tile", 79)))
+	if (FAILED(CTextureMgr::GetInstance()->InsertTexture(L"../Texture/Terrain/Tile/Tile%d.png", L"Terrain",
+		TEX_MULTI, L"Tile", 91)))
 	{
 		AfxMessageBox(L"Terrain Image Insert Failed");
 		return;
 	}
-
-	//for (int i = 0; i < TILEY; ++i)
-	//{
-	//	for (int j = 0; j < TILEX; ++j)
-	//	{
-	//		TILE* pTile = new TILE;
-
-	//		float fX = float((j * (TILECX)) + TILECX);
-	//		float fY = float((i * (TILECY)) + TILECY);
-
-	//		pTile->vPos = D3DXVECTOR3(fX, fY, 0.f);
-	//		pTile->vSize = D3DXVECTOR3((float)TILECX, (float)TILECY, 0.f);
-	//		pTile->byOption = 0;
-	//		pTile->byDrawID = 0;
-	//		pTile->byRoomNum = 0;
-
-	//		m_vecTile.push_back(pTile);
-	//	}
-	//}
 }
 
 void CTerrain::Update()
@@ -146,6 +127,8 @@ void CTerrain::SetTile(int iTileX, int iTileY)
 			pTile->byOption = 0;
 			pTile->byDrawID = 0;
 			pTile->byRoomNum = 0;
+			pTile->byMiniMap = 0;
+
 			pTile->iIndex = j + (TILEX * i);
 			pTile->iParentIdx = 0;
 
@@ -155,7 +138,7 @@ void CTerrain::SetTile(int iTileX, int iTileY)
 
 }
 
-void CTerrain::TileChange(const D3DXVECTOR3 & vPos, const int & iDrawID, const BYTE& byOption, const BYTE& byRoomNum)
+void CTerrain::TileChange(const D3DXVECTOR3 & vPos, const int & iDrawID, const BYTE& byOption, const BYTE& byRoomNum, const BYTE& byMiniMap)
 {
 	int iIndex = GetTileIndex(vPos);
 
@@ -165,6 +148,7 @@ void CTerrain::TileChange(const D3DXVECTOR3 & vPos, const int & iDrawID, const B
 	m_vecTile[iIndex]->byDrawID		= iDrawID;
 	m_vecTile[iIndex]->byOption		= byOption;
 	m_vecTile[iIndex]->byRoomNum	= byRoomNum;
+	m_vecTile[iIndex]->byMiniMap	= byMiniMap;
 }
 
 int CTerrain::GetTileIndex(const D3DXVECTOR3 & vPos)

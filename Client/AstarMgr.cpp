@@ -20,7 +20,7 @@ void CAstarMgr::StartAstar(const D3DXVECTOR3 & vStart, const D3DXVECTOR3 & vGoal
 		if (pTile->byOption == 1)
 			continue;
 
-		pTile->byDrawID = 0;
+		//pTile->byDrawID = 0;
 	}
 
 	m_OpenLst.clear();
@@ -93,14 +93,14 @@ void CAstarMgr::MakeBestLst(int iStartIdx, int iGoalIdx)
 
 	m_BestLst.push_front(vecTile[iGoalIdx]);
 
-	vecTile[iGoalIdx]->byDrawID = 36;
+	//vecTile[iGoalIdx]->byDrawID = 36;
 	int iRouteIdx = vecTile[iGoalIdx]->iParentIdx;
 
 	while (true) {
 		if (iRouteIdx == iStartIdx)
 			break;
 
-		vecTile[iRouteIdx]->byDrawID = 36;
+		//vecTile[iRouteIdx]->byDrawID = 36;
 		m_BestLst.push_front(vecTile[iRouteIdx]);
 		iRouteIdx = vecTile[iRouteIdx]->iParentIdx;
 	}
