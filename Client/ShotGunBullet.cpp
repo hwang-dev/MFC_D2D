@@ -10,7 +10,7 @@ HRESULT CShotGunBullet::Initialize()
 {
 	m_wstrObjKey = L"Bullet";
 	m_wstrStateKey = L"Normal";
-	m_fSpeed = 300.f;
+	m_fSpeed = 450.f;
 	m_iBulletDamage = 3;
 	m_tInfo.vSize = { 10.f, 10.f, 0 };
 	m_fVanishTime = 3.f;
@@ -22,7 +22,7 @@ void CShotGunBullet::LateInit()
 {
 	// 총알 방향 = 마우스 - 플레이어
 	// 방향 랜덤
-	float fRandom = float(rand() % 100);
+	float fRandom = float(rand() % 100) - 100.f;
 	m_tInfo.vDir = (CMouse::GetInstance()->GetMousePos() + CScrollMgr::GetScroll() - D3DXVECTOR3(fRandom, fRandom, 0.f)) -
 		CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);

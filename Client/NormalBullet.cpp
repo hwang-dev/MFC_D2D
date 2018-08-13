@@ -16,7 +16,7 @@ HRESULT CNormalBullet::Initialize()
 {
 	m_wstrObjKey = L"Bullet";
 	m_wstrStateKey = L"Normal";
-	m_fSpeed = 300.f;
+	m_fSpeed = 500.f;
 	m_iBulletDamage = 2;
 	m_tInfo.vSize = { 10.f, 10.f, 0 };
 	m_fVanishTime = 10.f;

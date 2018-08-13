@@ -59,8 +59,10 @@ void CRevolver::Release()
 void CRevolver::CreateBullet()
 {
 	if(m_bCanShot) {
+		D3DXVECTOR3 vLength = CMouse::GetInstance()->GetMousePos() + CScrollMgr::GetScroll() - CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
+		D3DXVec3Normalize(&vLength, &vLength);
 		D3DXVECTOR3 vPos = CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
-		CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalBullet>::CreateObj(vPos),
+		CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalBullet>::CreateObj(vPos + vLength * 40.f),
 			OBJ_BULLET);
 		/* 카메라 흔들림 */
 		CScrollMgr::CameraShakeNormal();

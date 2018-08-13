@@ -43,9 +43,6 @@ void CWeaponMgr::Update()
 	m_fAngle = D3DXVec3Dot(&vDir, &m_pTarget->GetInfo().vLook);
 	float fRadian = acosf(m_fAngle);
 
-
-
-
 	D3DXMATRIX matScale, matRotZ, matTrans;
 
 	if (CMouse::GetInstance()->GetMousePos().x + CScrollMgr::GetScroll().x > m_pTarget->GetInfo().vPos.x)

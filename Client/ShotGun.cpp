@@ -61,11 +61,12 @@ void CShotGun::Release()
 void CShotGun::CreateBullet()
 {
 	if (m_bCanShot) {
-
+		D3DXVECTOR3 vLength = CMouse::GetInstance()->GetMousePos() + CScrollMgr::GetScroll() - CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
+		D3DXVec3Normalize(&vLength, &vLength);
 		D3DXVECTOR3 vPos = CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 
 		for (int i = 0; i < m_iShotGunCount; ++i) {
-			CObjMgr::GetInstance()->AddObject(CAbstractFactory<CShotGunBullet>::CreateObj(vPos),
+			CObjMgr::GetInstance()->AddObject(CAbstractFactory<CShotGunBullet>::CreateObj(vPos + vLength * 50),
 				OBJ_BULLET);
 			CScrollMgr::CameraShakeNormal();
 		}
