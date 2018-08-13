@@ -4,7 +4,9 @@
 
 D3DXVECTOR3 CScrollMgr::m_vScroll = {};
 D3DXVECTOR3 CScrollMgr::m_vCamera = {};
-
+float CScrollMgr::m_fShakeTime = 0.f;
+int CScrollMgr::m_iRandom = 0;
+bool CScrollMgr::m_bIsShaking = false;
 CScrollMgr::CScrollMgr()
 {
 }
@@ -37,8 +39,22 @@ void CScrollMgr::ScrollLock2()
 {
 	CObj* pPlayer = CObjMgr::GetInstance()->GetPlayer();
 
-	m_vScroll.x = pPlayer->GetInfo().vPos.x - WINCX * 0.5f;
-	m_vScroll.y = pPlayer->GetInfo().vPos.y - WINCY * 0.5f;
+	if (m_bIsShaking)
+	{
+		m_iRandom = (rand() % 12) - 6;
+	}
+	m_vScroll.x = pPlayer->GetInfo().vPos.x - WINCX * 0.5f + m_iRandom;
+	m_vScroll.y = pPlayer->GetInfo().vPos.y - WINCY * 0.5f + m_iRandom;
+
+	if (m_bIsShaking)
+	{
+		m_fShakeTime += 18.f * CTimeMgr::GetInstance()->GetTime();
+		if (m_fShakeTime > 1.f) {
+			m_fShakeTime = 0.f;
+			m_iRandom = 0;
+			m_bIsShaking = false;
+		}
+	}
 }
 
 void CScrollMgr::SetCamera(float x, float y)
@@ -54,12 +70,6 @@ void CScrollMgr::AddScroll(D3DXVECTOR3 & vPos)
 
 void CScrollMgr::CameraShakeNormal()
 {
-	VECTOR3 vTemp = m_vScroll;
-
-	int iRandomX = rand() % 200;
-	int iRandomY = rand() % 200;
-
-	m_vScroll += VECTOR3((float)iRandomX, (float)iRandomY, 0.f);
-
-	m_vScroll = vTemp;
+	srand((unsigned int)time(NULL));
+	m_bIsShaking = true;
 }

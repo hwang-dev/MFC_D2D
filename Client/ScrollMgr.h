@@ -21,5 +21,10 @@ public:
 private:
 	static D3DXVECTOR3 m_vScroll;
 	static D3DXVECTOR3 m_vCamera;
+
+	static float m_fShakeTime;
+
+	static int	m_iRandom;
+	static bool m_bIsShaking;
 };
 

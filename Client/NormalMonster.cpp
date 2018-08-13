@@ -23,7 +23,7 @@ HRESULT CNormalMonster::Initialize()
 	m_fSpeed = 80.f;
 	m_fAnimSpeed = 1.5f;
 	m_iAlpha = 255;
-	m_iMonsterHp = 10.f;
+	m_iMonsterHp = 10;
 
 	return S_OK;
 }

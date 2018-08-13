@@ -62,9 +62,10 @@ void CRevolver::CreateBullet()
 		D3DXVECTOR3 vPos = CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 		CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalBullet>::CreateObj(vPos),
 			OBJ_BULLET);
-
+		/* 카메라 흔들림 */
 		CScrollMgr::CameraShakeNormal();
 		m_bCanShot = false;
+
 	}
 }
 

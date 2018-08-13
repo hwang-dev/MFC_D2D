@@ -37,7 +37,7 @@ void CShotGun::LateUpdate()
 {
 	/* 일정 시간이 지나면 총알 발사 가능*/
 	m_fWeaponDelayTime += CTimeMgr::GetInstance()->GetTime();
-
+	
 	if (m_fWeaponDelayTime > m_fWeaponDelay) {
 		m_bCanShot = true;
 		m_fWeaponDelayTime = 0.f;
@@ -61,6 +61,7 @@ void CShotGun::CreateBullet()
 		for (int i = 0; i < m_iShotGunCount; ++i) {
 			CObjMgr::GetInstance()->AddObject(CAbstractFactory<CShotGunBullet>::CreateObj(vPos),
 				OBJ_BULLET);
+			CScrollMgr::CameraShakeNormal();
 		}
 
 		m_bCanShot = false;
