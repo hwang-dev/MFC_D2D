@@ -65,4 +65,5 @@ public:
 
 	CString m_strStageName;
 	afx_msg void OnBnClickedInit();
+	BYTE m_byMiniMap;
 };

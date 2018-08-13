@@ -283,6 +283,8 @@ void CToolView::OnMouseMove(UINT nFlags, CPoint point)
 		pMyForm->m_MapTool.m_byCursorDrawID = vecTile[iTileIndex]->byDrawID;
 		pMyForm->m_MapTool.m_byTileOption = vecTile[iTileIndex]->byOption;
 		pMyForm->m_MapTool.m_byCursorRoomNum = vecTile[iTileIndex]->byRoomNum;
+		pMyForm->m_MapTool.m_byMiniMap = vecTile[iTileIndex]->byMiniMap;
+
 		pMyForm->m_MapTool.UpdateData(FALSE);
 	}
 

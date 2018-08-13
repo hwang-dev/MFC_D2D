@@ -25,6 +25,7 @@ CMapTool::CMapTool(CWnd* pParent /*=NULL*/)
 	, m_iTileX(0)
 	, m_iTileY(0)
 	, m_strStageName(_T(""))
+	, m_byMiniMap(0)
 {
 
 }
@@ -51,6 +52,7 @@ void CMapTool::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_LIST3, m_StageListBox);
 	DDX_Text(pDX, IDC_EDIT10, m_strStageName);
 	DDX_Control(pDX, IDC_CHECK2, m_ChkMiniMap);
+	DDX_Text(pDX, IDC_EDIT11, m_byMiniMap);
 }
 
 

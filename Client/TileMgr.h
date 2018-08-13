@@ -12,6 +12,7 @@ public:
 	void Update();
 	void LateUpdate();
 	void Render();
+	void MiniMapRender(float fRatio);
 	void Release();
 
 public:

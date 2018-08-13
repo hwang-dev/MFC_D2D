@@ -87,7 +87,12 @@ void CMainGame::Render()
 		(int)CScrollMgr::GetCamera().y);
 	CDevice::GetInstance()->GetFont()->DrawTextW(CDevice::GetInstance()->GetSprite(),
 		szPos, lstrlen(szPos), &rc, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	CTileMgr::GetInstance()->MiniMapRender(0.1f);
 	CDevice::GetInstance()->Render_End();
+
+	/* ¹Ì´Ï¸Ê ·»´õ ¸¶Áö¸· */
+	
 }
 
 void CMainGame::Release()

@@ -95,6 +95,56 @@ void CTileMgr::Render()
 	}
 }
 
+void CTileMgr::MiniMapRender(float fRatio)
+{
+	D3DXMATRIX matWorld, matScale, matTrans;
+
+	D3DXVECTOR3 vScroll = CScrollMgr::GetScroll();
+
+	int iCullX = (int)vScroll.x / TILECX;
+	int iCullY = (int)vScroll.y / TILECY;
+
+	int iCullEndX = iCullX + WINCX / TILECX;
+	int iCullEndY = iCullY + WINCY / TILECY;
+
+	for (int i = iCullY; i < iCullEndY + 3; ++i) {
+		for (int j = iCullX; j < iCullEndX + 2; ++j) {
+
+			int iIndex = j + (TILEY * i);
+
+			if (0 > iIndex || m_vecTile.size() <= (size_t)iIndex)
+				continue;
+
+			if (m_vecTile[iIndex]->byMiniMap == 0)
+				continue;
+
+			D3DXMatrixIdentity(&matWorld);
+			D3DXMatrixScaling(&matScale, fRatio, fRatio, 0.f);
+			D3DXMatrixTranslation(&matTrans,
+				(m_vecTile[iIndex]->vPos.x + CScrollMgr::GetScroll().x) * fRatio + WINCX - 200,
+				(m_vecTile[iIndex]->vPos.y + CScrollMgr::GetScroll().y) * fRatio,
+				m_vecTile[iIndex]->vPos.z);
+
+			matWorld = matScale * matTrans;
+
+			CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
+
+			const TEXINFO* pTexInfo = m_vecTileTexInfo[90];
+
+			if (nullptr == pTexInfo)
+				continue;
+
+			float fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
+			float fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
+
+			CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
+				&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(100, 255, 255, 255));
+
+		}
+	}
+}
+
+
 void CTileMgr::Release()
 {
 	for_each(m_vecTile.begin(), m_vecTile.end(), SafeDelete<TILE*>);
