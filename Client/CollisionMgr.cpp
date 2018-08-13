@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "CollisionMgr.h"
 #include "Obj.h"
-
+#include "Bullet.h"
+#include "Monster.h"
 CCollisionMgr::CCollisionMgr() {}
 
 
@@ -17,8 +18,12 @@ void CCollisionMgr::CollisionRect(OBJLIST & dstLst, OBJLIST & srcLst)
 			const RECT& srcRect = pSrc->GetRect();
 
 			if (IntersectRect(&rc, &dstRect, &srcRect)) {
-				pSrc->IsDead();
-				pDst->IsDead();
+				if (!wcscmp(pSrc->GetObjKey().c_str(), L"Bullet")
+					&& !wcscmp(pDst->GetObjKey().c_str(), L"NMonsterMove")) {
+					int iDamage = dynamic_cast<CBullet*>(pSrc)->GetBulletDamage();
+					dynamic_cast<CMonster*>(pDst)->SetMonsterHP(iDamage);
+					pSrc->IsDead();
+				}
 			}
 		}
 	}

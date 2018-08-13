@@ -15,7 +15,8 @@ CMonster::CMonster()
 	m_fDeadAnimTimer(0.f),
 	m_eCurStance(MON_END),
 	m_ePreStance(MON_END),
-	m_iAlpha(0)
+	m_iAlpha(0),
+	m_fJumpPow(0.f)
 {}
 
 

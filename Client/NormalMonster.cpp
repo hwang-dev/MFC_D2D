@@ -23,7 +23,8 @@ HRESULT CNormalMonster::Initialize()
 	m_fSpeed = 80.f;
 	m_fAnimSpeed = 1.5f;
 	m_iAlpha = 255;
-	m_iMonsterHp = 10;
+	m_iMonsterHp = 4;
+	m_fJumpPow = 200.f;
 
 	return S_OK;
 }
@@ -38,8 +39,28 @@ int CNormalMonster::Update()
 {
 	LateInit();
 
-	if (m_bIsDead)
-		return DEAD_OBJ;
+	if (m_iMonsterHp < 0) {
+		m_bMonsterJump = true;
+		m_wstrObjKey = L"NMonster";
+		m_wstrStateKey = L"NMonsterDead";
+		m_tFrame.fFrame = 0.f;
+		m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
+			m_wstrStateKey.c_str());
+
+		m_fDeadAnimTime += CTimeMgr::GetInstance()->GetTime();
+		m_iAlpha -= 3;
+		m_fJumpPow -= 2.f;
+		if (m_iAlpha < 0) {
+			m_iAlpha = 0;
+			return DEAD_OBJ;
+		}
+
+		if (m_fDeadAnimTime > 1.f)
+			m_bMonsterJump = false;
+
+		if (m_fDeadAnimTime > 2.f)
+			return DEAD_OBJ;
+	}
 
 	D3DXMATRIX matScale, matTrans;
 
@@ -58,7 +79,8 @@ int CNormalMonster::Update()
 void CNormalMonster::LateUpdate()
 {
 	/* 몬스터 이동(Astar) */
-	AStarMove();
+	if(!wcscmp(m_wstrObjKey.c_str(), L"NMonsterMove"))
+		AStarMove();
 	
 	/* 몬스터 방향 변경 */
 	SetMonsterDir();
@@ -70,6 +92,9 @@ void CNormalMonster::LateUpdate()
 		m_tFrame.fFrame = 0.f;
 		CAstarMgr::GetInstance()->StartAstar(m_tInfo.vPos, m_pTarget->GetInfo().vPos);
 	}
+
+	/* 몬스터 밀려남 */
+	MonsterJump();
 }
 
 void CNormalMonster::Render()
@@ -94,6 +119,17 @@ void CNormalMonster::Render()
 
 void CNormalMonster::Release()
 {
+}
+
+void CNormalMonster::MonsterJump()
+{
+	if (m_bMonsterJump) {
+		D3DXVECTOR3 vJump = m_tInfo.vPos - CScrollMgr::GetScroll()
+			- CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
+		D3DXVec3Normalize(&vJump, &vJump);
+
+		m_tInfo.vPos += vJump * CTimeMgr::GetInstance()->GetTime() * m_fJumpPow;
+	}
 }
 
 void CNormalMonster::AStarMove()

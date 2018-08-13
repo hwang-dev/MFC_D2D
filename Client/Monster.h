@@ -7,11 +7,14 @@ public:
 	CMonster();
 	virtual ~CMonster();
 
+public:
+	void SetMonsterHP(int iDamage) { m_iMonsterHp -= iDamage; }
+
 protected:
 	void MonsterDirChange();
 	void SetMonsterDir();
 	void MonsterDead();
-
+	
 protected:
 	int			m_iMonsterHp;
 	CObj*		m_pTarget;
@@ -30,5 +33,7 @@ protected:
 	MONSTER_STANCE	m_ePreStance;
 
 	int			m_iAlpha;
+	bool		m_bMonsterJump;
+	float		m_fJumpPow;
 };
 

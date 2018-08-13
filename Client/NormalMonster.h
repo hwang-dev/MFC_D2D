@@ -16,6 +16,9 @@ public:
 	virtual void Release() override;
 
 private:
+	void MonsterJump();
+
+private:
 	void AStarMove();
 };
 

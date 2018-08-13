@@ -62,8 +62,6 @@ int CShotGunBullet::Update()
 
 	m_tInfo.matWorld = matScale * matTrans;
 
-
-
 	return NO_EVENT;
 }
 
