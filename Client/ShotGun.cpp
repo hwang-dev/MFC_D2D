@@ -3,9 +3,15 @@
 #include "ShotGunBullet.h"
 
 CShotGun::CShotGun()
-	: m_iShotGunCount(0) {}
+	: m_iShotGunCount(0) 
+{
 
-CShotGun::~CShotGun() { Release(); }
+}
+
+CShotGun::~CShotGun() 
+{ 
+	Release();
+}
 
 HRESULT CShotGun::Initialize()
 {

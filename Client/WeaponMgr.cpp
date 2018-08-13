@@ -8,7 +8,7 @@ IMPLEMENT_SINGLETON(CWeaponMgr)
 
 CWeaponMgr::CWeaponMgr()
 	: m_fAngle(0.f),
-	m_fScaleY(0.f),
+	m_fScaleX(0.f),
 	m_fGunPos(0.f)
 {
 	D3DXMatrixIdentity(&m_matWorld);
@@ -24,7 +24,8 @@ HRESULT CWeaponMgr::Initialize()
 {
 	// m_pTarget : 플레이어
 	m_pTarget = CObjMgr::GetInstance()->GetPlayer();
-
+	m_fScaleX = 2.f;
+	m_fGunPos = 28.f;
 	return S_OK;
 }
 
@@ -34,24 +35,33 @@ void CWeaponMgr::Release()
 
 void CWeaponMgr::Update()
 {
-	float fpos = 12.f;
-	m_fGunPos = 5.f;
-
-
-	/* 총구 방향: 마우스 - 플레이어 */
-	D3DXVECTOR3 vDir = (CMouse::GetInstance()->GetMousePos() + CScrollMgr::GetScroll()) - m_pTarget->GetInfo().vPos;
-	D3DXVec3Normalize(&vDir, &vDir); // 방향벡터 정규화
+	
+	/* 총구방향 = Mouse - Player */
+	D3DXVECTOR3 vDir = (CMouse::GetInstance()->GetMousePos() + CScrollMgr::GetScroll())
+		- m_pTarget->GetInfo().vPos;
+	D3DXVec3Normalize(&vDir, &vDir);
 	m_fAngle = D3DXVec3Dot(&vDir, &m_pTarget->GetInfo().vLook);
 	float fRadian = acosf(m_fAngle);
 
+
+
+
 	D3DXMATRIX matScale, matRotZ, matTrans;
 
-	D3DXMatrixScaling(&matScale, 2.f, m_fScaleY, 1.f);
+	if (CMouse::GetInstance()->GetMousePos().x + CScrollMgr::GetScroll().x > m_pTarget->GetInfo().vPos.x)
+		m_fScaleX = 2.f;
+	else if (CMouse::GetInstance()->GetMousePos().x + CScrollMgr::GetScroll().x < m_pTarget->GetInfo().vPos.x)
+		m_fScaleX = -2.f;
+
+	if (CMouse::GetInstance()->GetMousePos().y + CScrollMgr::GetScroll().y < m_pTarget->GetInfo().vPos.y)
+		fRadian *= -1;
+
+	D3DXMatrixScaling(&matScale, 2.f, m_fScaleX, 1.f);
 	D3DXMatrixTranslation(&matTrans,
-		m_pTarget->GetInfo().vPos.x,
-		m_pTarget->GetInfo().vPos.y,
+		m_pTarget->GetInfo().vPos.x - CScrollMgr::GetScroll().x,
+		m_pTarget->GetInfo().vPos.y - CScrollMgr::GetScroll().y,
 		m_pTarget->GetInfo().vPos.z);
-	D3DXMatrixRotationZ(&matRotZ, -fRadian);
+	D3DXMatrixRotationZ(&matRotZ, fRadian);
 
 	m_matWorld = matScale * matRotZ * matTrans;
 }
@@ -59,10 +69,10 @@ void CWeaponMgr::Update()
 
 void CWeaponMgr::Render()
 {
-	CObj* pPlayerGun = dynamic_cast<CPlayer*>(CObjMgr::GetInstance()->GetPlayer())->GetCurGun();
-	NULL_CHECK(pPlayerGun);
-
 	if (dynamic_cast<CPlayer*>(m_pTarget)->GetPlayerStance() != DODGE) {
+		CObj* pPlayerGun = dynamic_cast<CPlayer*>(CObjMgr::GetInstance()->GetPlayer())->GetCurGun();
+		NULL_CHECK(pPlayerGun);
+
 		const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(pPlayerGun->GetObjKey().c_str(),
 			pPlayerGun->GetSateKey().c_str(), 0);
 
@@ -73,7 +83,7 @@ void CWeaponMgr::Render()
 
 		CDevice::GetInstance()->GetSprite()->SetTransform(&m_matWorld);
 		CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
-			&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+			&D3DXVECTOR3(fCenterX - 15.f, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
 	}
 }
 

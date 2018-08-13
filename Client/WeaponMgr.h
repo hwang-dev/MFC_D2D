@@ -25,7 +25,7 @@ private:
 
 	D3DXMATRIX		m_matWorld;
 	float			m_fAngle;
-	float			m_fScaleY;
+	float			m_fScaleX;
 	float			m_fGunPos;
 	
 };
