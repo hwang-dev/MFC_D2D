@@ -29,7 +29,7 @@ void CMouse::LateUpdate()
 	D3DXVECTOR3 vCamera = m_vMouse + CScrollMgr::GetScroll() -
 		CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 
-	CScrollMgr::AddScroll(vCamera * 0.3f);
+	CScrollMgr::AddScroll(vCamera * 0.2f);
 
 }
 

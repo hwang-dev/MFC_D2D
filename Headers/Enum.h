@@ -42,3 +42,9 @@ enum MONSTER_TYPE {
 	TYPE_END
 };
 
+enum MONSTER_STANCE {
+	MON_MOVE,
+	MON_DEAD,
+	MON_END
+};
+

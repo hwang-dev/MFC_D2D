@@ -44,7 +44,7 @@ HRESULT CPlayer::Initialize()
 	);
 
 	/* 최초 설정 */
-	m_tInfo.vSize = { 15.f, 15.f, 0.f };
+	m_tInfo.vSize = { 20.f, 30.f, 0.f };
 	m_fAnimSpeed = 2.f;
 	m_fSpeed = 150.f;
 	m_fDodgePow = 2.f;
@@ -180,12 +180,7 @@ void CPlayer::PlayerMove()
 			m_wstrObjKey = L"Move";
 			m_ePlayerDir = UP_LEFT;
 			m_wstrStateKey = L"Up_Left";
-
 			m_tInfo.vPos += VECTOR3(-0.7f, -0.7f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
-			//CScrollMgr::SetScroll(m_tInfo.vPos.x - WINCX * 0.5f, m_tInfo.vPos.y - WINCY * 0.5f);
-
-			//CScrollMgr::SetScroll(0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed,
-			//	0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed);
 
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
 				m_bIsDodge = true;
@@ -197,11 +192,7 @@ void CPlayer::PlayerMove()
 			m_wstrObjKey = L"Move";
 			m_ePlayerDir = UP_RIGHT;
 			m_wstrStateKey = L"Up_Right";
-			
 			m_tInfo.vPos += VECTOR3(0.7f, -0.7f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
-
-			//CScrollMgr::SetScroll(-0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed,
-			//	0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed);
 
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
@@ -215,8 +206,6 @@ void CPlayer::PlayerMove()
 			m_ePlayerDir = DOWN_LEFT;
 			m_wstrStateKey = L"Down_Left";
 			m_tInfo.vPos += VECTOR3(-0.7f, 0.7f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
-			//CScrollMgr::SetScroll(0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed,
-			//	-0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed);
 
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
@@ -230,8 +219,6 @@ void CPlayer::PlayerMove()
 			m_ePlayerDir = DOWN_RIGHT;
 			m_wstrStateKey = L"Down_Right";
 			m_tInfo.vPos += VECTOR3(0.7f, 0.7f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
-			//CScrollMgr::SetScroll(-0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed,
-			//	-0.7f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed);
 
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
@@ -245,7 +232,6 @@ void CPlayer::PlayerMove()
 			m_ePlayerDir = UP;
 			m_wstrStateKey = L"Up";
 			m_tInfo.vPos += VECTOR3(0.f, -1.f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
-			//CScrollMgr::SetScroll(0.f, 1.f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed);
 
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
@@ -259,7 +245,6 @@ void CPlayer::PlayerMove()
 			m_ePlayerDir = DOWN;
 			m_wstrStateKey = L"Down";
 			m_tInfo.vPos += VECTOR3(0.f, 1.f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
-			//CScrollMgr::SetScroll(0.f, -1.f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed);
 
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
@@ -273,7 +258,6 @@ void CPlayer::PlayerMove()
 			m_ePlayerDir = LEFT;
 			m_wstrStateKey = L"Left";
 			m_tInfo.vPos += VECTOR3(-1.f, 0.f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
-			//CScrollMgr::SetScroll(1.f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed, 0.f);
 
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
@@ -287,7 +271,6 @@ void CPlayer::PlayerMove()
 			m_ePlayerDir = RIGHT;
 			m_wstrStateKey = L"Right";
 			m_tInfo.vPos += VECTOR3(1.f, 0.f, 0.f) * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
-			//CScrollMgr::SetScroll(-1.f * CTimeMgr::GetInstance()->GetTime() * m_fSpeed, 0.f);
 
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
@@ -435,8 +418,6 @@ void CPlayer::PlayerDodge()
 		}
 
 		m_tInfo.vPos += vDodge * CTimeMgr::GetInstance()->GetTime() * m_fSpeed * m_fDodgePow;
-		/*CScrollMgr::SetScroll(-vDodge.x * CTimeMgr::GetInstance()->GetTime() * m_fSpeed * m_fDodgePow,
-			-vDodge.y * CTimeMgr::GetInstance()->GetTime() * m_fSpeed * m_fDodgePow);*/
 		m_fDodgeTime += CTimeMgr::GetInstance()->GetTime();
 
 		/* 대쉬 종료 조건 */
@@ -450,8 +431,6 @@ void CPlayer::PlayerDodge()
 void CPlayer::MakeBullet()
 {
 	dynamic_cast<CWeapon*>(m_pCurGun)->CreateBullet();
-	//CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalBullet>::CreateObj(m_tInfo.vPos),
-	//	OBJ_BULLET);
 }
 
 void CPlayer::ChangeWeapon()
@@ -462,8 +441,13 @@ void CPlayer::ChangeWeapon()
 	if (CKeyMgr::GetInstance()->KeyDown(KEY_1)) {
 		m_pCurGun = vecWeapon[0];
 	}
-	if (CKeyMgr::GetInstance()->KeyDown(KEY_2)) {
+	else if (CKeyMgr::GetInstance()->KeyDown(KEY_2)) {
 		m_pCurGun = vecWeapon[1];
+	}
+	else if (vecWeapon.size() == 3) {
+		if (CKeyMgr::GetInstance()->KeyDown(KEY_3)) {
+			m_pCurGun = vecWeapon[2];
+		}
 	}
 }
 

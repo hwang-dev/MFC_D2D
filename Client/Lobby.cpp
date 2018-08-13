@@ -30,6 +30,7 @@ HRESULT CLobby::Initialize()
 		ERR_MSG(L"WeaponMgr Init Fail");
 		return E_FAIL;
 	}
+	// 임시 Monster 생성
 	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalMonster>::CreateObj(D3DXVECTOR3{ WINCX * 0.5f - 300.f, WINCY * 0.5, 0.f }),
 		OBJ_MONSTER);
 
@@ -39,9 +40,9 @@ HRESULT CLobby::Initialize()
 void CLobby::Update()
 {
 	CTileMgr::GetInstance()->Update();
-	CWeaponMgr::GetInstance()->Update();
-	CMouse::GetInstance()->Update();
 	CObjMgr::GetInstance()->Update();
+	CMouse::GetInstance()->Update();
+	CWeaponMgr::GetInstance()->Update();
 }
 
 
@@ -51,15 +52,14 @@ void CLobby::LateUpdate()
 	CObjMgr::GetInstance()->LateUpdate();
 	CMouse::GetInstance()->LateUpdate();
 	CWeaponMgr::GetInstance()->LateUpdate();
-	//CScrollMgr::ScrollLock();
 }
 
 void CLobby::Render()
 {
 	CTileMgr::GetInstance()->Render();
+	CObjMgr::GetInstance()->Render();
 	CMouse::GetInstance()->Render();
 	CWeaponMgr::GetInstance()->Render();
-	CObjMgr::GetInstance()->Render();
 }
 
 void CLobby::Release()

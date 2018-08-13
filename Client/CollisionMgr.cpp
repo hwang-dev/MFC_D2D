@@ -17,8 +17,8 @@ void CCollisionMgr::CollisionRect(OBJLIST & dstLst, OBJLIST & srcLst)
 			const RECT& srcRect = pSrc->GetRect();
 
 			if (IntersectRect(&rc, &dstRect, &srcRect)) {
-				pDst->IsDead();
 				pSrc->IsDead();
+				pDst->IsDead();
 			}
 		}
 	}

@@ -10,7 +10,12 @@ CMonster::CMonster()
 	m_eCurDir(DIR_END),
 	m_ePreDir(DIR_END),
 	m_fAnimSpeed(0.f),
-	m_fARange(0.f)
+	m_fARange(0.f),
+	m_fDeadAnimTime(0.f),
+	m_fDeadAnimTimer(0.f),
+	m_eCurStance(MON_END),
+	m_ePreStance(MON_END),
+	m_iAlpha(0)
 {}
 
 
@@ -62,3 +67,14 @@ void CMonster::SetMonsterDir()
 	else
 		return;
 }
+
+void CMonster::MonsterDead()
+{
+	if (m_iMonsterHp < 0) {
+		m_wstrStateKey = L"NMonsterDead";
+		m_tFrame.fFrame = 0.f;
+		m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
+			m_wstrStateKey.c_str());
+	}
+}
+

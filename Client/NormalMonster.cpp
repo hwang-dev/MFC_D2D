@@ -18,10 +18,13 @@ HRESULT CNormalMonster::Initialize()
 	m_wstrStateKey = L"Down_Right";
 	m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
 		m_wstrStateKey.c_str());
-	m_tInfo.vSize = { 10.f, 25.f, 0.f };
+	m_tInfo.vSize = { 20.f, 50.f, 0.f };
 	m_tInfo.vLook = { 1.f, 0.f, 0.f };
 	m_fSpeed = 80.f;
 	m_fAnimSpeed = 1.5f;
+	m_iAlpha = 255;
+	m_iMonsterHp = 10.f;
+
 	return S_OK;
 }
 
@@ -83,10 +86,10 @@ void CNormalMonster::Render()
 
 	CDevice::GetInstance()->GetSprite()->SetTransform(&m_tInfo.matWorld);
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
-		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(m_iAlpha, 255, 255, 255));
 
 	if (g_bOnRect)
-		CObj::RenderLine();
+		RenderLine();
 }
 
 void CNormalMonster::Release()

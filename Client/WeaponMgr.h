@@ -9,18 +9,24 @@ private:
 
 public:
 	HRESULT Initialize();
+	void Release();
 	void Update();
 	void LateUpdate();
 	void Render();
+
+public:
 	void AddWeapon(CObj* pObj);
 	vector<CObj*>&	GetVecWeapon() { return m_vecWeapon; }
 
 private:
 	vector<CObj*>	m_vecWeapon;
 	CObj*			m_pTarget;
-	MATRIX			m_matWolrd;
+	CObj*			m_pPlayerGun;
+
+	D3DXMATRIX		m_matWorld;
 	float			m_fAngle;
 	float			m_fScaleY;
 	float			m_fGunPos;
+	
 };
 
