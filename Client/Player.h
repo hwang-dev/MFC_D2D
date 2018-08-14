@@ -44,5 +44,6 @@ private:
 	float			m_fDodgeTime;
 	CObj*			m_pCurGun;
 	int				m_iHp;
+
 };
 

@@ -50,6 +50,7 @@ private:
 public:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnRButtonDown(UINT nFlagVs, CPoint point);
 
 	/////////////////////
 	bool	m_bIsMapTool;
@@ -58,7 +59,6 @@ public:
 	bool	m_bOnTriggerTool;
 	bool	m_bOnMonsterTool;
 	bool	m_bOnBossTool;
-	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // ToolView.cpp의 디버그 버전

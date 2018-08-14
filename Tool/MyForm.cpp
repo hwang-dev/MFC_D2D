@@ -72,6 +72,7 @@ void CMyForm::OnInitialUpdate()
 	GetDlgItem(IDC_BUTTON5)->SetFont(&m_Font);
 	GetDlgItem(IDC_BUTTON6)->SetFont(&m_Font);
 	GetDlgItem(IDC_BUTTON7)->SetFont(&m_Font);
+
 }
 
 

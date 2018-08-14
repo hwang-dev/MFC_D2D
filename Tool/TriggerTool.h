@@ -20,4 +20,12 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 
 	DECLARE_MESSAGE_MAP()
+public:
+	BYTE m_byRoomNumer;
+	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
+	BYTE m_byCursorRoomNum;
+	afx_msg void OnBnClickedClear();
+	afx_msg void OnBnClickedCancel();
+	afx_msg void OnBnClickedLoad();
+	afx_msg void OnBnClickedSave();
 };

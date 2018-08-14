@@ -26,6 +26,7 @@ HRESULT CNormalMonster::Initialize()
 	m_iMonsterHp = 4;
 	m_fJumpPow = 200.f;
 
+	m_tInfo.byRoomNum = 1;
 	return S_OK;
 }
 
@@ -79,8 +80,10 @@ int CNormalMonster::Update()
 void CNormalMonster::LateUpdate()
 {
 	/* 몬스터 이동(Astar) */
-	if(!wcscmp(m_wstrObjKey.c_str(), L"NMonsterMove"))
-		AStarMove();
+	if (m_pTarget->GetInfo().byRoomNum == m_tInfo.byRoomNum) {
+		if (!wcscmp(m_wstrObjKey.c_str(), L"NMonsterMove"))
+			AStarMove();
+	}
 	
 	/* 몬스터 방향 변경 */
 	SetMonsterDir();

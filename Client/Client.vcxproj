@@ -179,6 +179,7 @@
     <ClInclude Include="PlayerMoveIMP.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Revolver.h" />
+    <ClInclude Include="RoomTrigger.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="ScrollMgr.h" />
@@ -224,6 +225,7 @@
     <ClCompile Include="PlayerIMP.cpp" />
     <ClCompile Include="PlayerMoveIMP.cpp" />
     <ClCompile Include="Revolver.cpp" />
+    <ClCompile Include="RoomTrigger.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="ScrollMgr.cpp" />

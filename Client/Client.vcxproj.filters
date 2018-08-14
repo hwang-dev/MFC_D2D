@@ -151,6 +151,9 @@
     <Filter Include="94.Tile\00.TileMgr">
       <UniqueIdentifier>{2e271e48-28af-4abf-aca4-4df5490c41d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.RoomTrigger">
+      <UniqueIdentifier>{ad5efef6-5c12-4448-89b4-b2c3025f1f59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -288,6 +291,9 @@
     <ClInclude Include="SubTileMgr.h">
       <Filter>95.SubTile</Filter>
     </ClInclude>
+    <ClInclude Include="RoomTrigger.h">
+      <Filter>03.RoomTrigger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -415,6 +421,9 @@
     </ClCompile>
     <ClCompile Include="SubTileMgr.cpp">
       <Filter>95.SubTile</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomTrigger.cpp">
+      <Filter>03.RoomTrigger</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

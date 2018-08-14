@@ -214,6 +214,7 @@
     <ClInclude Include="Tool.h" />
     <ClInclude Include="ToolDoc.h" />
     <ClInclude Include="ToolView.h" />
+    <ClInclude Include="TriggerMgr.h" />
     <ClInclude Include="TriggerTool.h" />
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +244,7 @@
     <ClCompile Include="Tool.cpp" />
     <ClCompile Include="ToolDoc.cpp" />
     <ClCompile Include="ToolView.cpp" />
+    <ClCompile Include="TriggerMgr.cpp" />
     <ClCompile Include="TriggerTool.cpp" />
   </ItemGroup>
   <ItemGroup>

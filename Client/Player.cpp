@@ -48,6 +48,9 @@ HRESULT CPlayer::Initialize()
 	m_fAnimSpeed = 2.f;
 	m_fSpeed = 150.f;
 	m_fDodgePow = 2.f;
+	m_iHp = 6;
+	m_tInfo.byRoomNum = 0;
+
 
 	/* 플레이어 기본 무기 */
 	CWeaponMgr::GetInstance()->AddWeapon(CAbstractFactory<CRevolver>::CreateObj());

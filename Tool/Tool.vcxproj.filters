@@ -73,6 +73,9 @@
     <Filter Include="05.Terrain\01.SubTile">
       <UniqueIdentifier>{12aa4dbc-7f84-45fa-927b-6556979cc9fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="95.Trigger">
+      <UniqueIdentifier>{35a4d6fb-e763-42dd-9341-05b329adb518}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainFrm.h">
@@ -147,6 +150,9 @@
     <ClInclude Include="BossTool.h">
       <Filter>04.Dialog\05.BossTool</Filter>
     </ClInclude>
+    <ClInclude Include="TriggerMgr.h">
+      <Filter>95.Trigger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -214,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="BossTool.cpp">
       <Filter>04.Dialog\05.BossTool</Filter>
+    </ClCompile>
+    <ClCompile Include="TriggerMgr.cpp">
+      <Filter>95.Trigger</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

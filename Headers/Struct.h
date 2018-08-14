@@ -33,7 +33,7 @@ typedef struct tagInfo
 	D3DXVECTOR3 vDir;
 	D3DXVECTOR3 vLook;
 	D3DXMATRIX  matWorld;
-
+	BYTE		byRoomNum;
 
 	BYTE byOption;		// 鸥老狼 可记.
 	BYTE byDrawID;		// 坊歹傅 可记.
