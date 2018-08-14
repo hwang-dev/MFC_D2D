@@ -88,7 +88,7 @@ void CMainGame::Render()
 	CDevice::GetInstance()->GetFont()->DrawTextW(CDevice::GetInstance()->GetSprite(),
 		szPos, lstrlen(szPos), &rc, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
 
-	CTileMgr::GetInstance()->MiniMapRender(0.1f);
+
 	CDevice::GetInstance()->Render_End();
 
 	/* 미니맵 렌더 마지막 */

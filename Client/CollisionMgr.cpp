@@ -161,37 +161,6 @@ void CCollisionMgr::CollisionTile(vector<TILE*> & dstLst, OBJLIST & srcLst)
 			}
 		}
 	}
-
-	//for (auto& pTile : dstLst) {
-	//	for (auto& pSrc : srcLst) {
-	//		if (pTile->GetTileOption() == 1) {
-	//			if (CheckTile(pSrc, pTile, &fMoveX, &fMoveY)) {
-	//				if (!wcscmp(pSrc->GetObjKey().c_str(), L"Bullet")) {
-	//					pSrc->IsDead();
-	//				}
-	//				/* yÃà ¹Ð¾î³¿ */
-	//				else if (fMoveX > fMoveY) {
-	//					float fX = pSrc->GetInfo().vPos.x;
-	//					float fY = pSrc->GetInfo().vPos.y;
-	//					if (pTile->GetTilePos().y > fY) {
-	//						fMoveY *= -1.f;
-	//					}
-	//					pSrc->SetPos(D3DXVECTOR3(fX, (fY + fMoveY), 0.f));
-	//				}
-	//				/* xÃà ¹Ð¾î³¿ */
-	//				else {
-	//					float fX = pSrc->GetInfo().vPos.x;
-	//					float fY = pSrc->GetInfo().vPos.y;
-
-	//					if (pTile->GetTilePos().x > fX) {
-	//						fMoveX *= -1.f;
-	//					}
-	//					pSrc->SetPos(D3DXVECTOR3((fX + fMoveX), fY, 0.f));
-	//				}
-	//			}
-	//		}
-	//	}
-	//}
 }
 
 bool CCollisionMgr::CheckTile(CObj * pDst, TILE * pTile, float * pMoveX, float * pMoveY)

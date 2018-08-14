@@ -99,21 +99,12 @@ void CTileMgr::MiniMapRender(float fRatio)
 {
 	D3DXMATRIX matWorld, matScale, matTrans;
 
-	D3DXVECTOR3 vScroll = CScrollMgr::GetScroll();
 
-	int iCullX = (int)vScroll.x / TILECX;
-	int iCullY = (int)vScroll.y / TILECY;
 
-	int iCullEndX = iCullX + WINCX / TILECX;
-	int iCullEndY = iCullY + WINCY / TILECY;
-
-	for (int i = iCullY; i < iCullEndY + 3; ++i) {
-		for (int j = iCullX; j < iCullEndX + 2; ++j) {
+	for (int i = 0; i < TILEY; ++i) {
+		for (int j = 0; j < TILEX; ++j) {
 
 			int iIndex = j + (TILEY * i);
-
-			if (0 > iIndex || m_vecTile.size() <= (size_t)iIndex)
-				continue;
 
 			if (m_vecTile[iIndex]->byMiniMap == 0)
 				continue;
@@ -121,8 +112,8 @@ void CTileMgr::MiniMapRender(float fRatio)
 			D3DXMatrixIdentity(&matWorld);
 			D3DXMatrixScaling(&matScale, fRatio, fRatio, 0.f);
 			D3DXMatrixTranslation(&matTrans,
-				(m_vecTile[iIndex]->vPos.x + CScrollMgr::GetScroll().x) * fRatio + WINCX - 200,
-				(m_vecTile[iIndex]->vPos.y + CScrollMgr::GetScroll().y) * fRatio,
+				(m_vecTile[iIndex]->vPos.x ) * fRatio + WINCX - 200,
+				(m_vecTile[iIndex]->vPos.y ) * fRatio + 50.f,
 				m_vecTile[iIndex]->vPos.z);
 
 			matWorld = matScale * matTrans;

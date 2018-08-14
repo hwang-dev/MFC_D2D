@@ -29,7 +29,7 @@ HRESULT CLobby::Initialize()
 		return E_FAIL;
 	}
 	// Player »ý¼º
-	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CPlayer>::CreateObj(D3DXVECTOR3{ WINCX * 0.5f, WINCY * 0.5, 0.f }),
+	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CPlayer>::CreateObj(D3DXVECTOR3{ 445.f, 360.f, 0.f }),
 		OBJ_PLAYER);
 	//	WeaponMgr Init
 	if (FAILED(CWeaponMgr::GetInstance()->Initialize())) {
@@ -67,6 +67,9 @@ void CLobby::Render()
 	CObjMgr::GetInstance()->Render();
 	CWeaponMgr::GetInstance()->Render();
 	CMouse::GetInstance()->Render();
+
+	// ¹Ì´Ï¸Ê
+	CTileMgr::GetInstance()->MiniMapRender(0.05f);
 }
 
 void CLobby::Release()
