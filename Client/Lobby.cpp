@@ -3,7 +3,7 @@
 
 #include "Player.h"
 #include "NormalMonster.h"
-
+#include "Trigger.h"
 CLobby::CLobby()
 {
 }
@@ -36,6 +36,12 @@ HRESULT CLobby::Initialize()
 		ERR_MSG(L"WeaponMgr Init Fail");
 		return E_FAIL;
 	}
+	// 
+	CTrigger temp;
+	if (FAILED(temp.LoadTrigger())) {
+		E_FAIL;
+	}
+
 	// 임시 Monster 생성
 	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalMonster>::CreateObj(D3DXVECTOR3{ WINCX * 0.5f - 300.f, WINCY * 0.5, 0.f }),
 		OBJ_MONSTER);

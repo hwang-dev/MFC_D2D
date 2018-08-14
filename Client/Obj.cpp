@@ -7,7 +7,8 @@ CObj::CObj()
 	m_bIsDead(false),
 	m_fSpeed(0.f),
 	m_wstrObjKey(L""),
-	m_wstrStateKey(L"")
+	m_wstrStateKey(L""),
+	m_eObjectID(OBJ_END)
 {
 	ZeroMemory(&m_tInfo, sizeof(INFO));
 	ZeroMemory(&m_tFrame, sizeof(FRAME));

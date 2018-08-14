@@ -26,7 +26,7 @@ HRESULT CNormalMonster::Initialize()
 	m_iMonsterHp = 4;
 	m_fJumpPow = 200.f;
 
-	m_tInfo.byRoomNum = 1;
+	m_tInfo.byRoomNum = 2;
 	return S_OK;
 }
 

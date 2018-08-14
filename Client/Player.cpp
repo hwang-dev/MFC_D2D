@@ -36,6 +36,7 @@ CPlayer::~CPlayer()
 HRESULT CPlayer::Initialize()
 {
 	/* 최초 상태 */
+	m_eObjectID = OBJ_PLAYER;
 	m_eCurStance = IDLE;
 	m_wstrObjKey = L"Idle";
 	m_wstrStateKey = L"Down";
@@ -94,7 +95,7 @@ void CPlayer::LateUpdate()
 
 void CPlayer::Render()
 {
-
+	UpdateRect();
 	/* 플레이어 스프라이트*/
 	if (m_tFrame.fFrame > m_tFrame.fMax)
 		m_tFrame.fFrame = 0.f;

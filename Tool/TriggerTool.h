@@ -28,4 +28,5 @@ public:
 	afx_msg void OnBnClickedCancel();
 	afx_msg void OnBnClickedLoad();
 	afx_msg void OnBnClickedSave();
+	afx_msg void OnEnChangeRoomNumber();
 };

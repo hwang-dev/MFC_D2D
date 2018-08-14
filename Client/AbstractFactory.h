@@ -28,4 +28,17 @@ public:
 		pObj->SetPos(vPos);
 		return pObj;
 	}
+
+	static CObj* CreateObj(INFO& tInfo)
+	{
+		CObj* pObj = new T;
+
+		if (FAILED(pObj->Initialize()))
+		{
+			SafeDelete(pObj);
+		}
+
+		pObj->SetInfo(tInfo);
+		return pObj;
+	}
 };

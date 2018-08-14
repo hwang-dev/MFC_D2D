@@ -20,6 +20,7 @@ public:
 	virtual void Release() override;
 
 public:
+	void SetRoomNumber(BYTE& byRoom) { m_tInfo.byRoomNum = byRoom; }
 	PLAYER_DIR GetPlayerDir() { return m_ePlayerDir; }
 	PLAYER_STANCE GetPlayerStance() { return m_eCurStance; }
 	CObj*& GetCurGun() { return m_pCurGun; }

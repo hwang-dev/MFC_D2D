@@ -165,6 +165,7 @@
     <ClInclude Include="Logo.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="MonsterIMP.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MultiTexture.h" />
     <ClInclude Include="Normal.h" />
@@ -179,7 +180,6 @@
     <ClInclude Include="PlayerMoveIMP.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Revolver.h" />
-    <ClInclude Include="RoomTrigger.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="ScrollMgr.h" />
@@ -194,6 +194,7 @@
     <ClInclude Include="TextureMgr.h" />
     <ClInclude Include="TileMgr.h" />
     <ClInclude Include="TimeMgr.h" />
+    <ClInclude Include="Trigger.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="WeaponIMP.h" />
     <ClInclude Include="WeaponMgr.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="Logo.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="MonsterIMP.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MultiTexture.cpp" />
     <ClCompile Include="Normal.cpp" />
@@ -225,7 +227,6 @@
     <ClCompile Include="PlayerIMP.cpp" />
     <ClCompile Include="PlayerMoveIMP.cpp" />
     <ClCompile Include="Revolver.cpp" />
-    <ClCompile Include="RoomTrigger.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="ScrollMgr.cpp" />
@@ -244,6 +245,7 @@
     <ClCompile Include="TextureMgr.cpp" />
     <ClCompile Include="TileMgr.cpp" />
     <ClCompile Include="TimeMgr.cpp" />
+    <ClCompile Include="Trigger.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="WeaponIMP.cpp" />
     <ClCompile Include="WeaponMgr.cpp" />

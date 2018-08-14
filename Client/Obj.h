@@ -9,10 +9,14 @@ public:
 	const INFO& GetInfo() { return m_tInfo; }
 	void SetPos(D3DXVECTOR3& vPos) { m_tInfo.vPos = vPos; }
 	const RECT& GetRect() { return m_tRect; }
+	void SetInfo(INFO& tInfo) { m_tInfo = tInfo; }
 
 	const wstring& GetObjKey() { return m_wstrObjKey; }
 	const wstring& GetSateKey() { return m_wstrStateKey; }
 	void IsDead() { this->m_bIsDead = true; }
+	
+	const OBJID& GetObjectID() { return m_eObjectID; }
+
 public:
 	virtual HRESULT Initialize() PURE;
 	virtual void LateInit();
@@ -36,5 +40,6 @@ protected:
 
 	wstring		m_wstrObjKey;
 	wstring		m_wstrStateKey;
+	OBJID		m_eObjectID;
 };
 

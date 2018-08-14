@@ -151,8 +151,14 @@
     <Filter Include="94.Tile\00.TileMgr">
       <UniqueIdentifier>{2e271e48-28af-4abf-aca4-4df5490c41d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.RoomTrigger">
+    <Filter Include="03.Trigger">
       <UniqueIdentifier>{ad5efef6-5c12-4448-89b4-b2c3025f1f59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\01.Monster\99.MonsterMgr">
+      <UniqueIdentifier>{219a1289-ae85-4b48-b72d-0150b16fdaec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\01.Monster\98.MonsterIMP">
+      <UniqueIdentifier>{1a78fd22-5caf-4a6c-97f5-9e94b9737eaf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -291,8 +297,11 @@
     <ClInclude Include="SubTileMgr.h">
       <Filter>95.SubTile</Filter>
     </ClInclude>
-    <ClInclude Include="RoomTrigger.h">
-      <Filter>03.RoomTrigger</Filter>
+    <ClInclude Include="Trigger.h">
+      <Filter>03.Trigger</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterIMP.h">
+      <Filter>01.Object\01.Monster\98.MonsterIMP</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -422,8 +431,11 @@
     <ClCompile Include="SubTileMgr.cpp">
       <Filter>95.SubTile</Filter>
     </ClCompile>
-    <ClCompile Include="RoomTrigger.cpp">
-      <Filter>03.RoomTrigger</Filter>
+    <ClCompile Include="Trigger.cpp">
+      <Filter>03.Trigger</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterIMP.cpp">
+      <Filter>01.Object\01.Monster\98.MonsterIMP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,8 @@
 #include "Obj.h"
 #include "Bullet.h"
 #include "Monster.h"
+#include "Player.h"
+
 CCollisionMgr::CCollisionMgr() {}
 
 
@@ -17,12 +19,21 @@ void CCollisionMgr::CollisionRect(OBJLIST & dstLst, OBJLIST & srcLst)
 			const RECT& dstRect = pDst->GetRect();
 			const RECT& srcRect = pSrc->GetRect();
 
-			if (IntersectRect(&rc, &dstRect, &srcRect)) {
+			if (IntersectRect(&rc, &dstRect, &srcRect)) 
+			{
 				if (!wcscmp(pSrc->GetObjKey().c_str(), L"Bullet")
-					&& !wcscmp(pDst->GetObjKey().c_str(), L"NMonsterMove")) {
+					&& !wcscmp(pDst->GetObjKey().c_str(), L"NMonsterMove")) 
+				{
 					int iDamage = dynamic_cast<CBullet*>(pSrc)->GetBulletDamage();
 					dynamic_cast<CMonster*>(pDst)->SetMonsterHP(iDamage);
 					pSrc->IsDead();
+				}
+				if (pSrc->GetObjectID() == OBJ_PLAYER &&
+					pDst->GetObjectID() == OBJ_TRIGGER) 
+				{
+					BYTE byRoom = pDst->GetInfo().byDrawID;
+					dynamic_cast<CPlayer*>(pSrc)->SetRoomNumber(byRoom);
+					pDst->IsDead();
 				}
 			}
 		}
