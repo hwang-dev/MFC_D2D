@@ -2,6 +2,8 @@
 #include "NormalMonster.h"
 
 #include "MonsterIMP.h"
+#include "MonsterBullet.h"
+
 CNormalMonster::CNormalMonster()
 {
 }
@@ -9,6 +11,7 @@ CNormalMonster::CNormalMonster()
 
 CNormalMonster::~CNormalMonster()
 {
+	Release();
 }
 
 HRESULT CNormalMonster::Initialize()
@@ -27,6 +30,7 @@ HRESULT CNormalMonster::Initialize()
 	m_fJumpPow = 200.f;
 
 	m_tInfo.byRoomNum = 2;
+	m_fAttackTime = 2.f;
 	return S_OK;
 }
 
@@ -81,8 +85,8 @@ void CNormalMonster::LateUpdate()
 {
 	/* 몬스터 이동(Astar) */
 	if (m_pTarget->GetInfo().byRoomNum == m_tInfo.byRoomNum) {
-		if (!wcscmp(m_wstrObjKey.c_str(), L"NMonsterMove"))
-			AStarMove();
+		AStarMove();
+		MonsterAttack();	// 몬스터 공격
 	}
 	
 	/* 몬스터 방향 변경 */
@@ -96,8 +100,9 @@ void CNormalMonster::LateUpdate()
 		CAstarMgr::GetInstance()->StartAstar(m_tInfo.vPos, m_pTarget->GetInfo().vPos);
 	}
 
-	/* 몬스터 밀려남 */
-	MonsterJump();
+	MonsterJump();	// 몬스터 밀려남
+	
+
 }
 
 void CNormalMonster::Render()
@@ -173,6 +178,16 @@ void CNormalMonster::MonsterJump()
 		D3DXVec3Normalize(&vJump, &vJump);
 
 		m_tInfo.vPos += vJump * CTimeMgr::GetInstance()->GetTime() * m_fJumpPow;
+	}
+}
+
+void CNormalMonster::MonsterAttack()
+{
+	m_fAttackTimer += CTimeMgr::GetInstance()->GetTime();
+	if (m_fAttackTimer > m_fAttackTime) {
+		CObjMgr::GetInstance()->AddObject(CAbstractFactory<CMonsterBullet>::CreateObj(m_tInfo.vPos),
+			OBJ_MOSTERBULLET);
+		m_fAttackTimer = 0;
 	}
 }
 

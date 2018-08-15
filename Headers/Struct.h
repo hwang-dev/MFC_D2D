@@ -62,3 +62,10 @@ typedef struct tagFrame
 	float fMax;	// 최대 재생 길이.
 
 } FRAME;
+
+typedef struct tagData {
+	int iMoney;
+	int iMp;
+	int iHp;
+	int iKey;
+} DATA;

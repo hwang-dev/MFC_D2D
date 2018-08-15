@@ -22,9 +22,9 @@ CPlayer::CPlayer()
 	m_fDodgePow(0.f),
 	m_bIsDodge(false),
 	m_fDodgeTime(0.f),
-	m_pCurGun(nullptr),
-	m_iHp(6)
+	m_pCurGun(nullptr)
 {
+	ZeroMemory(&m_tData, sizeof(DATA));
 }
 
 
@@ -49,8 +49,10 @@ HRESULT CPlayer::Initialize()
 	m_fAnimSpeed = 2.f;
 	m_fSpeed = 150.f;
 	m_fDodgePow = 2.f;
-	m_iHp = 6;
 	m_tInfo.byRoomNum = 0;
+
+	m_tData.iHp = 6;
+	m_tData.iMp = 2;
 
 
 	/* 플레이어 기본 무기 */
@@ -64,6 +66,10 @@ void CPlayer::LateInit()
 {
 	/* 최초 무기*/
 	m_pCurGun = CWeaponMgr::GetInstance()->GetVecWeapon().front();
+
+	/* 옵저버 */
+	CDataSubejct::GetInstance()->AddData(PLAYER_DATA, &m_tData);
+	CDataSubejct::GetInstance()->Notify(PLAYER_DATA, &m_tData);
 }
 
 int CPlayer::Update()

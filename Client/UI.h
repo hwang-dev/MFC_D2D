@@ -1,14 +1,13 @@
 #pragma once
-#include "Monster.h"
-class CMonsterIMP;
-class CNormalMonster :
-	public CMonster
+#include "UserInterface.h"
+class CUI :
+	public CUserInterface
 {
 public:
-	CNormalMonster();
-	virtual ~CNormalMonster();
+	CUI();
+	virtual ~CUI();
 
-	// CMonster을(를) 통해 상속됨
+	// CUserInterface을(를) 통해 상속됨
 	virtual HRESULT Initialize() override;
 	virtual void LateInit() override;
 	virtual int Update() override;
@@ -17,10 +16,6 @@ public:
 	virtual void Release() override;
 
 private:
-	void MonsterJump();
-	void MonsterAttack();
-
-private:
-	void AStarMove();
+	int		m_iHp = 0;
 };
 

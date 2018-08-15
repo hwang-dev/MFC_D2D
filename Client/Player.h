@@ -44,7 +44,8 @@ private:
 	bool			m_bIsDodge;
 	float			m_fDodgeTime;
 	CObj*			m_pCurGun;
-	int				m_iHp;
+
+	DATA			m_tData;
 
 };
 

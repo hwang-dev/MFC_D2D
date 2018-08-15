@@ -46,9 +46,6 @@
     <Filter Include="98.Managers\06.KeyMgr">
       <UniqueIdentifier>{abe69b7c-6f28-4450-bec4-1e5ec589c007}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.DesignPattern">
-      <UniqueIdentifier>{14e4587b-6b18-4671-a7eb-bac651501e03}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01.Object\00.Player\01.Implementor">
       <UniqueIdentifier>{1411c249-3399-4cbc-94e0-77e29a7b7ecd}</UniqueIdentifier>
     </Filter>
@@ -162,6 +159,39 @@
     </Filter>
     <Filter Include="01.Object\01.Monster\98.MonsterIMP\MonsterShotIMP">
       <UniqueIdentifier>{2d56b8c6-d9bb-46b0-bbff-5af1e53f60ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\03.Bullet\02.MonsterBullet">
+      <UniqueIdentifier>{60428565-6f1a-4707-8756-b6640fd47a0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Observer">
+      <UniqueIdentifier>{14e4587b-6b18-4671-a7eb-bac651501e03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Observer\00.Subject">
+      <UniqueIdentifier>{616d81c5-5155-40d0-ab3b-8d00ede99264}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Observer\01.Observer">
+      <UniqueIdentifier>{0a3c9e87-273d-448f-84cb-e7962d585e65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Observer\01.Observer\00.UIObserver">
+      <UniqueIdentifier>{59bca5b3-0870-4a1d-9543-e37630c22251}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Observer\00.Subject\01.DataSubject">
+      <UniqueIdentifier>{1ae9c480-07dc-4197-98c1-2a01e4bb66af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.UI">
+      <UniqueIdentifier>{dab769e6-beb3-41ea-bdb9-5a9a441eedcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.UI\00.HP">
+      <UniqueIdentifier>{c429346e-6e46-40af-812f-ca1075d9d193}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.UI\01.MP">
+      <UniqueIdentifier>{3b8015e8-747d-4c0a-9f81-22814c2b404b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.UI\02.Key">
+      <UniqueIdentifier>{89f5e67e-4a48-4ad7-ab49-41e2a6c9d1e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.UI\03.Money">
+      <UniqueIdentifier>{fc6b7ee2-e87e-4fef-b11d-4c89440fead1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -309,6 +339,27 @@
     <ClInclude Include="MonsterShotIMP.h">
       <Filter>01.Object\01.Monster\98.MonsterIMP\MonsterShotIMP</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterBullet.h">
+      <Filter>01.Object\03.Bullet\02.MonsterBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>97.Observer\01.Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="UIObserver.h">
+      <Filter>97.Observer\01.Observer\00.UIObserver</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>97.Observer\00.Subject</Filter>
+    </ClInclude>
+    <ClInclude Include="DataSubejct.h">
+      <Filter>97.Observer\00.Subject\01.DataSubject</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface.h">
+      <Filter>04.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>04.UI\00.HP</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -445,6 +496,27 @@
     </ClCompile>
     <ClCompile Include="MonsterShotIMP.cpp">
       <Filter>01.Object\01.Monster\98.MonsterIMP\MonsterShotIMP</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterBullet.cpp">
+      <Filter>01.Object\03.Bullet\02.MonsterBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>97.Observer\01.Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="UIObserver.cpp">
+      <Filter>97.Observer\01.Observer\00.UIObserver</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>97.Observer\00.Subject</Filter>
+    </ClCompile>
+    <ClCompile Include="DataSubejct.cpp">
+      <Filter>97.Observer\00.Subject\01.DataSubject</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface.cpp">
+      <Filter>04.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>04.UI\00.HP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

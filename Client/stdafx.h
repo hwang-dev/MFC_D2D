@@ -67,3 +67,4 @@ using namespace std;
 #include "CollisionMgr.h"
 #include "AstarMgr.h"
 #include "SubTileMgr.h"
+#include "DataSubejct.h"

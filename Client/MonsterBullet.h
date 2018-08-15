@@ -1,14 +1,13 @@
 #pragma once
-#include "Monster.h"
-class CMonsterIMP;
-class CNormalMonster :
-	public CMonster
+#include "Bullet.h"
+class CMonsterBullet :
+	public CBullet
 {
 public:
-	CNormalMonster();
-	virtual ~CNormalMonster();
+	CMonsterBullet();
+	virtual ~CMonsterBullet();
 
-	// CMonster을(를) 통해 상속됨
+	// CBullet을(를) 통해 상속됨
 	virtual HRESULT Initialize() override;
 	virtual void LateInit() override;
 	virtual int Update() override;
@@ -17,10 +16,6 @@ public:
 	virtual void Release() override;
 
 private:
-	void MonsterJump();
-	void MonsterAttack();
-
-private:
-	void AStarMove();
+	float	m_fAnimSpeed = 0.f;
 };
 

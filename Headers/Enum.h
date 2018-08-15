@@ -14,6 +14,7 @@ enum OBJID {
 	OBJ_MOSTERBULLET,
 	OBJ_TRIGGER,
 	OBJ_EFFECT,
+	OBJ_UI,
 	OBJ_END 
 };
 
@@ -49,3 +50,7 @@ enum MONSTER_STANCE {
 	MON_END
 };
 
+enum DATAID {
+	PLAYER_DATA,
+	DATA_END
+};
