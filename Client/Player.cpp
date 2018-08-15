@@ -16,6 +16,10 @@
 
 /* UI */
 #include "UI.h"
+#include "MpUI.h"
+#include "CkeyUI.h"
+#include "MoneyUI.h"
+
 CPlayer::CPlayer()
 	: m_ePlayerDir(DOWN),
 	m_eCurStance(STANCE_END),
@@ -55,8 +59,8 @@ HRESULT CPlayer::Initialize()
 
 	m_tData.iHp = 6;
 	m_tData.iMp = 2;
-
-
+	m_tData.iKey = 100;
+	m_tData.iMoney = 100;
 	/* 플레이어 기본 무기 */
 	CWeaponMgr::GetInstance()->AddWeapon(CAbstractFactory<CRevolver>::CreateObj());
 	CWeaponMgr::GetInstance()->AddWeapon(CAbstractFactory<CShotGun>::CreateObj());
@@ -69,8 +73,14 @@ void CPlayer::LateInit()
 	/* 최초 무기*/
 	m_pCurGun = CWeaponMgr::GetInstance()->GetVecWeapon().front();
 
-	/* 옵저버 */
+	/* HP Observer */
 	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CUI>::CreateObj(), OBJ_UI);
+	/* MP Observer */
+	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CMpUI>::CreateObj(), OBJ_UI);
+	/* Key Observer */
+	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CkeyUI>::CreateObj(), OBJ_UI);
+	/* Money Observer */
+	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CMoneyUI>::CreateObj(), OBJ_UI);
 	CDataSubejct::GetInstance()->AddData(PLAYER_DATA, &m_tData);
 	CDataSubejct::GetInstance()->Notify(PLAYER_DATA, &m_tData);
 }
@@ -129,16 +139,15 @@ void CPlayer::Render()
 	PlayerDodge();
 
 	/* 플레이어 좌표 */
-	if(g_bOnRect) {
-	TCHAR szPos[MIN_STR] = L"";
-	swprintf_s(szPos, L"%d, %d", (int)m_tInfo.vPos.x, (int)m_tInfo.vPos.y);
-	CDevice::GetInstance()->GetFont()->DrawTextW(CDevice::GetInstance()->GetSprite(),
-		szPos, lstrlen(szPos), nullptr, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
-	}
-
 	/* 충돌 렉트 */
 	if (g_bOnRect)
 	{
+		TCHAR szPos[MIN_STR] = L"";
+		swprintf_s(szPos, L"%d, %d", (int)m_tInfo.vPos.x, (int)m_tInfo.vPos.y);
+		CDevice::GetInstance()->GetFont()->DrawTextW(CDevice::GetInstance()->GetSprite(),
+			szPos, lstrlen(szPos), nullptr, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+
 		D3DXVECTOR2 vPoint[5] = {
 			{ (m_tInfo.vPos.x + m_tInfo.vSize.x * 0.5f) - CScrollMgr::GetScroll().x, (m_tInfo.vPos.y - m_tInfo.vSize.y * 0.5f) - CScrollMgr::GetScroll().y },
 			{ (m_tInfo.vPos.x + m_tInfo.vSize.x * 0.5f) - CScrollMgr::GetScroll().x, (m_tInfo.vPos.y + m_tInfo.vSize.y * 0.5f) - CScrollMgr::GetScroll().y },
@@ -168,6 +177,12 @@ void CPlayer::Release()
 void CPlayer::PlayerMove()
 {
 	if (!m_bIsDodge) {
+		/* 섬광탄 */
+		if (CKeyMgr::GetInstance()->KeyDown(KEY_SPACE)) {
+			CObjMgr::GetInstance()->GetBulletList().clear();
+			--m_tData.iMp;
+			CDataSubejct::GetInstance()->Notify(PLAYER_DATA, &m_tData);
+		}
 		/* 공격 */
 		if (CKeyMgr::GetInstance()->KeyPressing(KEY_LBUTTON)) {
 			MakeBullet();
@@ -234,6 +249,8 @@ void CPlayer::PlayerMove()
 			/* 대쉬 */
 			if (CKeyMgr::GetInstance()->KeyDown(KEY_RBUTTON)) {
 				m_bIsDodge = true;
+				//m_tData.iHp++;
+				//CDataSubejct::GetInstance()->Notify(PLAYER_DATA, &m_tData);
 			}
 		}
 		/* 하 */

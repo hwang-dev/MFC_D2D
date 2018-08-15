@@ -360,6 +360,15 @@
     <ClInclude Include="UI.h">
       <Filter>04.UI\00.HP</Filter>
     </ClInclude>
+    <ClInclude Include="MpUI.h">
+      <Filter>04.UI\01.MP</Filter>
+    </ClInclude>
+    <ClInclude Include="CkeyUI.h">
+      <Filter>04.UI\02.Key</Filter>
+    </ClInclude>
+    <ClInclude Include="MoneyUI.h">
+      <Filter>04.UI\03.Money</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -517,6 +526,15 @@
     </ClCompile>
     <ClCompile Include="UI.cpp">
       <Filter>04.UI\00.HP</Filter>
+    </ClCompile>
+    <ClCompile Include="MpUI.cpp">
+      <Filter>04.UI\01.MP</Filter>
+    </ClCompile>
+    <ClCompile Include="CkeyUI.cpp">
+      <Filter>04.UI\02.Key</Filter>
+    </ClCompile>
+    <ClCompile Include="MoneyUI.cpp">
+      <Filter>04.UI\03.Money</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

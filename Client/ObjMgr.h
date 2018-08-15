@@ -17,7 +17,7 @@ public:
 	void Release();
 
 	CObj* GetPlayer() { return m_ObjLst[OBJ_PLAYER].front(); }
-
+	OBJLIST& GetBulletList() { return m_ObjLst[OBJ_MOSTERBULLET]; }
 private:
 	OBJLIST	m_ObjLst[OBJ_END];
 };

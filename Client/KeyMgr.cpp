@@ -38,6 +38,8 @@ void CKeyMgr::KeyCheck()
 		m_dwKey |= KEY_3;
 	if (GetAsyncKeyState('4') & 0x8000)
 		m_dwKey |= KEY_4;
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+		m_dwKey |= KEY_SPACE;
 
 
 	//
