@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "NormalMonster.h"
 
-
+#include "MonsterIMP.h"
 CNormalMonster::CNormalMonster()
 {
 }
@@ -104,6 +104,7 @@ void CNormalMonster::Render()
 {
 	UpdateRect();
 
+	/* 몬스터 몸체 */
 	const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(
 		m_wstrObjKey.c_str(), m_wstrStateKey.c_str(), (int)m_tFrame.fFrame);
 
@@ -116,6 +117,46 @@ void CNormalMonster::Render()
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(m_iAlpha, 255, 255, 255));
 
+	/* 몬스터 무기 */
+	D3DXMATRIX matWorld, matScale, matTrans, matRot;
+
+	D3DXVECTOR3 vGunDir = m_pTarget->GetInfo().vPos - (m_tInfo.vPos);
+	D3DXVec3Normalize(&vGunDir, &vGunDir);
+	float fRadian = acosf(D3DXVec3Dot(&vGunDir, &m_tInfo.vLook));
+
+	/* 총구 회전 */
+	if (m_pTarget->GetInfo().vPos.y < (m_tInfo.vPos.y)) {
+		fRadian *= -1;
+	}
+
+	float fScaleY = 0.f;
+
+	if (m_pTarget->GetInfo().vPos.x > m_tInfo.vPos.x)
+		fScaleY = 2.f;
+	else if (m_pTarget->GetInfo().vPos.x < m_tInfo.vPos.x)
+		fScaleY = -2.f;
+
+	D3DXMatrixIdentity(&matWorld);
+	D3DXMatrixScaling(&matScale, 2.f, fScaleY, 1.f);
+	D3DXMatrixRotationZ(&matRot, fRadian);
+	D3DXMatrixTranslation(&matTrans,
+		m_tInfo.vPos.x - CScrollMgr::GetScroll().x,
+		m_tInfo.vPos.y - CScrollMgr::GetScroll().y,
+		m_tInfo.vPos.z);
+
+	matWorld = matScale * matRot * matTrans;
+
+	pTexInfo = CTextureMgr::GetInstance()->GetTexture(L"Revolver", L"Stance", 0);
+	NULL_CHECK(pTexInfo);
+
+	fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
+	fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
+
+	CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
+	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
+		&D3DXVECTOR3(fCenterX - 12.f, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	/* 충돌 렉트 */
 	if (g_bOnRect)
 		RenderLine();
 }

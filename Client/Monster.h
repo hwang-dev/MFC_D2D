@@ -1,5 +1,6 @@
 #pragma once
 #include "Obj.h"
+class CMonsterIMP;
 class CMonster :
 	public CObj
 {
@@ -35,5 +36,6 @@ protected:
 	int			m_iAlpha;
 	bool		m_bMonsterJump;
 	float		m_fJumpPow;
+	CMonsterIMP* m_pBridge = nullptr;
 };
 

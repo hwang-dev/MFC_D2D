@@ -166,6 +166,7 @@
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="MonsterIMP.h" />
+    <ClInclude Include="MonsterShotIMP.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MultiTexture.h" />
     <ClInclude Include="Normal.h" />
@@ -214,6 +215,7 @@
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="MonsterIMP.cpp" />
+    <ClCompile Include="MonsterShotIMP.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MultiTexture.cpp" />
     <ClCompile Include="Normal.cpp" />

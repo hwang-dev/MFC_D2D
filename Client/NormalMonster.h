@@ -1,5 +1,6 @@
 #pragma once
 #include "Monster.h"
+class CMonsterIMP;
 class CNormalMonster :
 	public CMonster
 {

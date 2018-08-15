@@ -160,6 +160,9 @@
     <Filter Include="01.Object\01.Monster\98.MonsterIMP">
       <UniqueIdentifier>{1a78fd22-5caf-4a6c-97f5-9e94b9737eaf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Object\01.Monster\98.MonsterIMP\MonsterShotIMP">
+      <UniqueIdentifier>{2d56b8c6-d9bb-46b0-bbff-5af1e53f60ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -303,6 +306,9 @@
     <ClInclude Include="MonsterIMP.h">
       <Filter>01.Object\01.Monster\98.MonsterIMP</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterShotIMP.h">
+      <Filter>01.Object\01.Monster\98.MonsterIMP\MonsterShotIMP</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -436,6 +442,9 @@
     </ClCompile>
     <ClCompile Include="MonsterIMP.cpp">
       <Filter>01.Object\01.Monster\98.MonsterIMP</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterShotIMP.cpp">
+      <Filter>01.Object\01.Monster\98.MonsterIMP\MonsterShotIMP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

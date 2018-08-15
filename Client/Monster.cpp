@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Monster.h"
 
+#include "MonsterIMP.h"
 
 CMonster::CMonster()
 	: m_iMonsterHp(0),

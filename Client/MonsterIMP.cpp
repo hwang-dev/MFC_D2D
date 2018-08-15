@@ -4,6 +4,7 @@
 
 MonsterIMP::MonsterIMP()
 {
+	ZeroMemory(&m_tFrame, sizeof(FRAME));
 }
 
 
