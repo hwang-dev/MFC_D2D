@@ -14,6 +14,8 @@
 /* Bullet */
 #include "NormalBullet.h"
 
+/* UI */
+#include "UI.h"
 CPlayer::CPlayer()
 	: m_ePlayerDir(DOWN),
 	m_eCurStance(STANCE_END),
@@ -68,6 +70,7 @@ void CPlayer::LateInit()
 	m_pCurGun = CWeaponMgr::GetInstance()->GetVecWeapon().front();
 
 	/* 옵저버 */
+	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CUI>::CreateObj(), OBJ_UI);
 	CDataSubejct::GetInstance()->AddData(PLAYER_DATA, &m_tData);
 	CDataSubejct::GetInstance()->Notify(PLAYER_DATA, &m_tData);
 }
@@ -126,11 +129,12 @@ void CPlayer::Render()
 	PlayerDodge();
 
 	/* 플레이어 좌표 */
+	if(g_bOnRect) {
 	TCHAR szPos[MIN_STR] = L"";
 	swprintf_s(szPos, L"%d, %d", (int)m_tInfo.vPos.x, (int)m_tInfo.vPos.y);
 	CDevice::GetInstance()->GetFont()->DrawTextW(CDevice::GetInstance()->GetSprite(),
 		szPos, lstrlen(szPos), nullptr, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
-
+	}
 
 	/* 충돌 렉트 */
 	if (g_bOnRect)
@@ -153,23 +157,7 @@ void CPlayer::Render()
 
 		CDevice::GetInstance()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
 	}
-		
-	
 
-	// 콘솔에 위치, 스크롤 출력
-	//#ifdef _DEBUG
-	//	system("cls");
-	//	cout << "Player X: " << m_tInfo.vPos.x << endl;
-	//	cout << "Player Y: " << m_tInfo.vPos.y << endl;
-	//	cout << endl;
-	//	cout << "Scroll X: " << CScrollMgr::GetScroll().x << endl;
-	//	cout << "Scroll Y: " << CScrollMgr::GetScroll().y << endl;
-	//	cout << endl;
-	//	wcout << "ObjKey: " << m_wstrObjKey.c_str() << endl;
-	//	wcout << "StateKey: " << m_wstrStateKey.c_str() << endl;
-	//	cout << "Frame: " << m_tFrame.fFrame << endl;
-	//	cout << "Max: " << m_tFrame.fMax << endl;
-	//#endif // DEBUG
 }
 
 void CPlayer::Release()
