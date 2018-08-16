@@ -94,7 +94,8 @@ int CPlayer::Update()
 {
 	CObj::LateInit();
 	PlayerMove();
-
+	MakeStep();
+	
 	/* 플레이어 좌표 */
 	D3DXMATRIX matScale, matRotZ, matTrnas;
 
@@ -115,6 +116,10 @@ void CPlayer::LateUpdate()
 	//IsOffSet();
 	StanceChange();
 	ChangeWeapon();
+
+	/* 플레이어 애니메이션 */
+	PlayAnimation();
+	PlayerDodge();
 }
 
 void CPlayer::Render()
@@ -140,9 +145,7 @@ void CPlayer::Render()
 	/* 플레이어 방향 벡터 */
 	D3DXVec3TransformNormal(&m_tInfo.vDir, &m_tInfo.vLook, &m_tInfo.matWorld);
 
-	/* 플레이어 애니메이션 */
-	PlayAnimation();
-	PlayerDodge();
+
 
 	/* 플레이어 좌표 */
 	/* 충돌 렉트 */
@@ -401,9 +404,7 @@ void CPlayer::PlayAnimation()
 	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime() * m_fAnimSpeed;
 	if (m_tFrame.fFrame > m_tFrame.fMax) {
 		m_tFrame.fFrame = 0.f;
-		CObj* pEffect = CEffectFactory<CEffect, CAnimEffect>::CreateEffect(m_tInfo.vPos,
-			L"Step", { 0.f, 7.f });
-		CObjMgr::GetInstance()->AddObject(pEffect, OBJ_EFFECT);
+	
 	}
 }
 
@@ -475,6 +476,20 @@ void CPlayer::ChangeWeapon()
 	else if (vecWeapon.size() == 3) {
 		if (CKeyMgr::GetInstance()->KeyDown(KEY_3)) {
 			m_pCurGun = vecWeapon[2];
+		}
+	}
+}
+
+void CPlayer::MakeStep()
+{
+	m_fStepTime += CTimeMgr::GetInstance()->GetTime();
+
+	if (m_eCurStance == MOVE) {
+		if (m_fStepTime > 0.7f) {
+			CObj* pEffect = CEffectFactory<CEffect, CAnimEffect>::CreateEffect(
+				D3DXVECTOR3(m_tInfo.vPos.x, m_tInfo.vPos.y + 20.f, 0.f), L"Step", { 0.f, 7.f });
+			CObjMgr::GetInstance()->AddObject(pEffect, OBJ_EFFECT);
+			m_fStepTime = 0.f;
 		}
 	}
 }

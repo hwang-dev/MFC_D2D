@@ -1,5 +1,7 @@
 Bullet|MonsterBullet|2|..\Texture\Bullet\MonsterBullet\%d.png
 Bullet|Normal|1|..\Texture\Bullet\Normal\%d.png
+Effect|Portal|14|..\Texture\Effect\Portal\%d.png
+Effect|Step|7|..\Texture\Effect\Step\%d.png
 Mouse|Cursor|1|..\Texture\Mouse\Cursor\%d.png
 NMonster|NMonsterDead|5|..\Texture\NMonster\NMonsterDead\%d.png
 NMonsterIdle|Down|1|..\Texture\NMonster\NMonsterIdle\Down\%d.png

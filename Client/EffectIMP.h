@@ -23,6 +23,5 @@ protected:
 	CObj*		m_pObj = nullptr;
 	bool		m_bIsInit = false;
 	wstring		m_wstrStateKey = L"";
-
 };
 

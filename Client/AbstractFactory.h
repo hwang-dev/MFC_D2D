@@ -41,17 +41,6 @@ public:
 		pObj->SetInfo(tInfo);
 		return pObj;
 	}
-
-	static CObj* Createobj(D3DXVECTOR3& vPos)
-	{
-		CObj* pObj = new T;
-
-		if (FAILED(pObj->Initialize())) {
-			return E_FAIL;
-		}
-		pObj->SetPos(vPos);
-		return pObj;
-	}
 };
 
 template <typename T1, typename T2>

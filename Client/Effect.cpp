@@ -25,7 +25,18 @@ void CEffect::LateInit()
 
 int CEffect::Update()
 {
-	LateInit();
+	CObj::LateInit();
+
+	D3DXMATRIX matScale, matTrans;
+
+	D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
+	D3DXMatrixTranslation(&matTrans,
+		m_tInfo.vPos.x - CScrollMgr::GetScroll().x,
+		m_tInfo.vPos.y - CScrollMgr::GetScroll().y,
+		m_tInfo.vPos.z);
+
+	m_tInfo.matWorld = matScale * matTrans;
+
 
 	return m_pBridge->Update();
 }

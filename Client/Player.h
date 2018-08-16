@@ -38,6 +38,7 @@ private:
 	void PlayerDodge();
 	void MakeBullet();
 	void ChangeWeapon();
+	void MakeStep();
 
 private:
 	PLAYER_DIR		m_ePlayerDir;
@@ -51,6 +52,7 @@ private:
 	CObj*			m_pCurGun;
 
 	DATA			m_tData;
+	float			m_fStepTime = 0.f;
 
 };
 

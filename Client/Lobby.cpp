@@ -45,6 +45,12 @@ HRESULT CLobby::Initialize()
 	// 임시 Monster 생성
 	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalMonster>::CreateObj(D3DXVECTOR3{ WINCX * 0.5f - 300.f, WINCY * 0.5, 0.f }),
 		OBJ_MONSTER);
+	// 임시 Monster 생성
+	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalMonster>::CreateObj(D3DXVECTOR3{ WINCX * 0.5f - 100.f, WINCY * 0.5 + 100.f, 0.f }),
+		OBJ_MONSTER);
+	// 임시 Monster 생성
+	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalMonster>::CreateObj(D3DXVECTOR3{ WINCX * 0.5f - 200.f, WINCY * 0.5, 0.f }),
+		OBJ_MONSTER);
 
 	return S_OK;
 }
@@ -70,8 +76,8 @@ void CLobby::Render()
 {
 	CTileMgr::GetInstance()->Render();
 	CSubTileMgr::GetInstance()->Render();
-	CObjMgr::GetInstance()->Render();
 	CWeaponMgr::GetInstance()->Render();
+	CObjMgr::GetInstance()->Render();
 	CMouse::GetInstance()->Render();
 
 	// 미니맵
