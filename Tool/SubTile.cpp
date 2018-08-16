@@ -18,7 +18,7 @@ CSubTile::~CSubTile()
 void CSubTile::Initialize()
 {
 	if (FAILED(CTextureMgr::GetInstance()->InsertTexture(L"../Texture/Terrain/SubTile/SubTile%d.png", L"Terrain",
-		TEX_MULTI, L"SubTile", 65)))
+		TEX_MULTI, L"SubTile", 66)))
 	{
 		AfxMessageBox(L"SubTile Image Insert Failed");
 		return;

@@ -44,7 +44,7 @@ Move|Right|6|..\Texture\Player\Move\Right\%d.png
 Move|Up|6|..\Texture\Player\Move\Up\%d.png
 Move|Up_Left|6|..\Texture\Player\Move\Up_Left\%d.png
 Move|Up_Right|6|..\Texture\Player\Move\Up_Right\%d.png
-Terrain|SubTile|65|..\Texture\Terrain\SubTile\SubTile%d.png
+Terrain|SubTile|66|..\Texture\Terrain\SubTile\SubTile%d.png
 Terrain|Tile|107|..\Texture\Terrain\Tile\Tile%d.png
 Terrain|Trigger|3|..\Texture\Terrain\Trigger\%d.png
 UI|Hp|3|..\Texture\UI\Hp\%d.png

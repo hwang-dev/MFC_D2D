@@ -8,6 +8,7 @@ CShotGunBullet::~CShotGunBullet() { Release(); }
 
 HRESULT CShotGunBullet::Initialize()
 {
+	m_eObjectID = OBJ_BULLET;
 	m_wstrObjKey = L"Bullet";
 	m_wstrStateKey = L"Normal";
 	m_fSpeed = 450.f;
