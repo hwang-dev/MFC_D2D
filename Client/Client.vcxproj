@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h" />
     <ClInclude Include="AK.h" />
+    <ClInclude Include="AnimEffect.h" />
     <ClInclude Include="AstarMgr.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Bullet.h" />
@@ -161,6 +162,8 @@
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="DataSubejct.h" />
     <ClInclude Include="Device.h" />
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="EffectIMP.h" />
     <ClInclude Include="EnemyRevolver.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Lobby.h" />
@@ -212,6 +215,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AK.cpp" />
+    <ClCompile Include="AnimEffect.cpp" />
     <ClCompile Include="AstarMgr.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -220,6 +224,8 @@
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="DataSubejct.cpp" />
     <ClCompile Include="Device.cpp" />
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="EffectIMP.cpp" />
     <ClCompile Include="EnemyRevolver.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="Lobby.cpp" />

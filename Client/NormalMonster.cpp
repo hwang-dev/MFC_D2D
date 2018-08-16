@@ -45,6 +45,7 @@ int CNormalMonster::Update()
 	LateInit();
 
 	if (m_iMonsterHp < 0) {
+		m_eCurStance = MON_DEAD;
 		m_bMonsterJump = true;
 		m_wstrObjKey = L"NMonster";
 		m_wstrStateKey = L"NMonsterDead";
@@ -184,10 +185,12 @@ void CNormalMonster::MonsterJump()
 void CNormalMonster::MonsterAttack()
 {
 	m_fAttackTimer += CTimeMgr::GetInstance()->GetTime();
-	if (m_fAttackTimer > m_fAttackTime) {
-		CObjMgr::GetInstance()->AddObject(CAbstractFactory<CMonsterBullet>::CreateObj(m_tInfo.vPos),
-			OBJ_MOSTERBULLET);
-		m_fAttackTimer = 0;
+	if (m_eCurStance != MON_DEAD) {
+		if (m_fAttackTimer > m_fAttackTime) {
+			CObjMgr::GetInstance()->AddObject(CAbstractFactory<CMonsterBullet>::CreateObj(m_tInfo.vPos),
+				OBJ_MOSTERBULLET);
+			m_fAttackTimer = 0;
+		}
 	}
 }
 

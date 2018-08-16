@@ -41,4 +41,32 @@ public:
 		pObj->SetInfo(tInfo);
 		return pObj;
 	}
+
+	static CObj* Createobj(D3DXVECTOR3& vPos)
+	{
+		CObj* pObj = new T;
+
+		if (FAILED(pObj->Initialize())) {
+			return E_FAIL;
+		}
+		pObj->SetPos(vPos);
+		return pObj;
+	}
+};
+
+template <typename T1, typename T2>
+class CEffectFactory 
+{
+public:
+	static CObj* CreateEffect(D3DXVECTOR3& vPos, const TCHAR* szStateKey, const FRAME& tFrame)
+	{
+		T2* pAnim = new T2;
+		pAnim->SetStateKey(szStateKey);
+		pAnim->SetFrame(tFrame);
+
+		CObj* pEffect = CAbstractFactory<T1>::CreateObj(vPos);
+		dynamic_cast<T1*>(pEffect)->SetBridge(pAnim);
+
+		return pEffect;
+	}
 };

@@ -193,6 +193,21 @@
     <Filter Include="04.UI\03.Money">
       <UniqueIdentifier>{fc6b7ee2-e87e-4fef-b11d-4c89440fead1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="94.Effect">
+      <UniqueIdentifier>{8cf3fa7a-66ac-45cc-8862-a913c3cc752e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="94.Effect\00.Abstraction">
+      <UniqueIdentifier>{0b26d23a-665e-41b8-923c-d85af85b78ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="94.Effect\01Implementor">
+      <UniqueIdentifier>{7a0d3f87-698c-46e7-98eb-e9acf2d8569e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="94.Effect\00.Abstraction\00.Effect">
+      <UniqueIdentifier>{673dc64b-3f92-44f7-9dc8-0259b9825640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="94.Effect\01Implementor\00.AnimEffect">
+      <UniqueIdentifier>{95949cf7-d358-4c0b-96bb-8be22ccd6e8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -369,6 +384,15 @@
     <ClInclude Include="MoneyUI.h">
       <Filter>04.UI\03.Money</Filter>
     </ClInclude>
+    <ClInclude Include="EffectIMP.h">
+      <Filter>94.Effect\01Implementor</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimEffect.h">
+      <Filter>94.Effect\01Implementor\00.AnimEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>94.Effect\00.Abstraction\00.Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -535,6 +559,15 @@
     </ClCompile>
     <ClCompile Include="MoneyUI.cpp">
       <Filter>04.UI\03.Money</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectIMP.cpp">
+      <Filter>94.Effect\01Implementor</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimEffect.cpp">
+      <Filter>94.Effect\01Implementor\00.AnimEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>94.Effect\00.Abstraction\00.Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

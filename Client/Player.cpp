@@ -20,6 +20,11 @@
 #include "CkeyUI.h"
 #include "MoneyUI.h"
 
+/* Effect*/
+#include "Effect.h"
+#include "AnimEffect.h"
+
+
 CPlayer::CPlayer()
 	: m_ePlayerDir(DOWN),
 	m_eCurStance(STANCE_END),
@@ -396,6 +401,9 @@ void CPlayer::PlayAnimation()
 	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime() * m_fAnimSpeed;
 	if (m_tFrame.fFrame > m_tFrame.fMax) {
 		m_tFrame.fFrame = 0.f;
+		CObj* pEffect = CEffectFactory<CEffect, CAnimEffect>::CreateEffect(m_tInfo.vPos,
+			L"Step", { 0.f, 7.f });
+		CObjMgr::GetInstance()->AddObject(pEffect, OBJ_EFFECT);
 	}
 }
 
