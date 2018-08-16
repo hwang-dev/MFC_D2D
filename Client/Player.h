@@ -24,6 +24,11 @@ public:
 	PLAYER_DIR GetPlayerDir() { return m_ePlayerDir; }
 	PLAYER_STANCE GetPlayerStance() { return m_eCurStance; }
 	CObj*& GetCurGun() { return m_pCurGun; }
+	void SetPlayerHp() 
+	{ 
+		m_tData.iHp--; 
+		CDataSubejct::GetInstance()->Notify(PLAYER_DATA, &m_tData);
+	}
 
 private:
 	void PlayerMove();

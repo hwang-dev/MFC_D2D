@@ -62,6 +62,8 @@ void CObjMgr::LateUpdate()
 
 	/* */
 	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_TRIGGER], m_ObjLst[OBJ_PLAYER]);
+
+	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_PLAYER], m_ObjLst[OBJ_MOSTERBULLET]);
 }
 
 void CObjMgr::Render()

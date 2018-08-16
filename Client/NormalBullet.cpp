@@ -14,12 +14,13 @@ CNormalBullet::~CNormalBullet()
 
 HRESULT CNormalBullet::Initialize()
 {
+	m_eObjectID = OBJ_BULLET;
 	m_wstrObjKey = L"Bullet";
 	m_wstrStateKey = L"Normal";
 	m_fSpeed = 500.f;
 	m_iBulletDamage = 2;
 	m_tInfo.vSize = { 10.f, 10.f, 0 };
-	m_fVanishTime = 10.f;
+	m_fVanishTime = 2.f;
 
 	return S_OK;
 }
@@ -37,12 +38,7 @@ int CNormalBullet::Update()
 	CObj::LateInit();
 
 	/* Bullet ¼Ò¸ê Á¶°Ç */
-	if (m_tInfo.vPos.x < (0.f + CScrollMgr::GetScroll().x) ||
-		m_tInfo.vPos.x >float(WINCX + CScrollMgr::GetScroll().x) ||
-		m_tInfo.vPos.y < (0.f + CScrollMgr::GetScroll().y) ||
-		m_tInfo.vPos.y >float(WINCY + CScrollMgr::GetScroll().y) ||
-		m_fVanishTimer > m_fVanishTime ||
-		m_bIsDead) {
+	if (m_fVanishTimer > m_fVanishTime || m_bIsDead) {
 		return DEAD_OBJ;
 	}
 

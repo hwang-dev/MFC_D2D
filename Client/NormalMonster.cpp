@@ -16,7 +16,7 @@ CNormalMonster::~CNormalMonster()
 
 HRESULT CNormalMonster::Initialize()
 {
-
+	m_eObjectID = OBJ_MONSTER;
 	m_wstrObjKey = L"NMonsterMove";
 	m_wstrStateKey = L"Down_Right";
 	m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),

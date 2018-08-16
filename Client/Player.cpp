@@ -114,7 +114,8 @@ void CPlayer::LateUpdate()
 
 void CPlayer::Render()
 {
-	UpdateRect();
+		UpdateRect();
+
 	/* 플레이어 스프라이트*/
 	if (m_tFrame.fFrame > m_tFrame.fMax)
 		m_tFrame.fFrame = 0.f;
@@ -142,6 +143,7 @@ void CPlayer::Render()
 	/* 충돌 렉트 */
 	if (g_bOnRect)
 	{
+		if (m_eCurStance != DODGE) {
 		TCHAR szPos[MIN_STR] = L"";
 		swprintf_s(szPos, L"%d, %d", (int)m_tInfo.vPos.x, (int)m_tInfo.vPos.y);
 		CDevice::GetInstance()->GetFont()->DrawTextW(CDevice::GetInstance()->GetSprite(),
@@ -165,6 +167,7 @@ void CPlayer::Render()
 		CDevice::GetInstance()->GetLine()->End();
 
 		CDevice::GetInstance()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
+		}
 	}
 
 }
@@ -179,9 +182,11 @@ void CPlayer::PlayerMove()
 	if (!m_bIsDodge) {
 		/* 섬광탄 */
 		if (CKeyMgr::GetInstance()->KeyDown(KEY_SPACE)) {
-			CObjMgr::GetInstance()->GetBulletList().clear();
-			--m_tData.iMp;
-			CDataSubejct::GetInstance()->Notify(PLAYER_DATA, &m_tData);
+			if (m_tData.iMp > 0) {
+				CObjMgr::GetInstance()->GetBulletList().clear();
+				--m_tData.iMp;
+				CDataSubejct::GetInstance()->Notify(PLAYER_DATA, &m_tData);
+			}
 		}
 		/* 공격 */
 		if (CKeyMgr::GetInstance()->KeyPressing(KEY_LBUTTON)) {
@@ -436,7 +441,7 @@ void CPlayer::PlayerDodge()
 		m_fDodgeTime += CTimeMgr::GetInstance()->GetTime();
 
 		/* 대쉬 종료 조건 */
-		if (m_fDodgeTime > 0.3f) {
+		if (m_fDodgeTime > 0.4f) {
 			m_fDodgeTime = 0.f;
 			m_bIsDodge = false;
 		}

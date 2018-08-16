@@ -19,8 +19,8 @@ HRESULT CMonsterBullet::Initialize()
 
 	m_fSpeed = 300.f;
 	m_iBulletDamage = 1;
-	m_tInfo.vSize = { 16.f, 16.f, 16.f };
-	m_fVanishTime = 5.f;
+	m_tInfo.vSize = { 16.f, 16.f, 0.f };
+	m_fVanishTime = 3.f;
 	m_fAnimSpeed = 3.f;
 	m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(
 		m_wstrObjKey.c_str(), m_wstrStateKey.c_str()
@@ -41,7 +41,7 @@ int CMonsterBullet::Update()
 	CObj::LateInit();
 
 	/* ¼Ò¸ê Á¶°Ç */
-	if (m_fVanishTimer > m_fVanishTime)
+	if (m_fVanishTimer > m_fVanishTime || m_bIsDead)
 		return DEAD_OBJ;
 
 
@@ -65,7 +65,7 @@ void CMonsterBullet::LateUpdate()
 	/* ÃÑ¾Ë ÀÌµ¿ */
 	m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
 
-	m_fVanishTime += CTimeMgr::GetInstance()->GetTime();
+	m_fVanishTimer += CTimeMgr::GetInstance()->GetTime();
 	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime() * m_fAnimSpeed;
 	if (m_tFrame.fFrame > m_tFrame.fMax) {
 		m_tFrame.fFrame = 0.f;
@@ -75,6 +75,7 @@ void CMonsterBullet::LateUpdate()
 void CMonsterBullet::Render()
 {
 	UpdateRect();
+
 	const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(
 		m_wstrObjKey.c_str(), m_wstrStateKey.c_str(), (int)m_tFrame.fFrame);
 
