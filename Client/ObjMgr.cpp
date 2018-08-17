@@ -52,7 +52,7 @@ void CObjMgr::LateUpdate()
 	/* Tile <> Obj Ãæµ¹ */
 	CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(), 
 		m_ObjLst[OBJ_PLAYER].front());
-	CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(), 
+	CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(),
 		m_ObjLst[OBJ_BULLET]);
 	CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(),
 		m_ObjLst[OBJ_MONSTER]);
@@ -65,6 +65,8 @@ void CObjMgr::LateUpdate()
 	/* */
 	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_TRIGGER], m_ObjLst[OBJ_PLAYER]);
 	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_PLAYER], m_ObjLst[OBJ_MOSTERBULLET]);
+
+	CCollisionMgr::CollisionRectEX(m_ObjLst[OBJ_PLAYER], m_ObjLst[OBJ_MONSTER]);
 }
 
 void CObjMgr::Render()

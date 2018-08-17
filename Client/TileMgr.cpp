@@ -46,6 +46,9 @@ void CTileMgr::Render()
 			if (0 > iIndex || m_vecTile.size() <= (size_t)iIndex)
 				continue;
 
+			if (m_vecTile[iIndex]->byDrawID == 0)
+				continue;
+
 			D3DXMatrixIdentity(&matWorld);
 			D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);
 			D3DXMatrixTranslation(&matTrans,
@@ -67,6 +70,14 @@ void CTileMgr::Render()
 
 			CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 				&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+			//if (m_vecCurlingTile.empty() == false) 
+			//{
+			//	for_each(m_vecCurlingTile.begin(), m_vecCurlingTile.end(), SafeDelete<TILE*>);
+			//	m_vecCurlingTile.clear();
+			//	m_vecCurlingTile.shrink_to_fit();
+			//}
+			//m_vecCurlingTile.push_back(m_vecTile[iIndex]);
 
 			/* 충돌 렉트 출력*/
 			if (g_bOnRect)
@@ -141,6 +152,10 @@ void CTileMgr::Release()
 	for_each(m_vecTile.begin(), m_vecTile.end(), SafeDelete<TILE*>);
 	m_vecTile.clear();
 	m_vecTile.shrink_to_fit();
+
+	for_each(m_vecCurlingTile.begin(), m_vecCurlingTile.end(), SafeDelete<TILE*>);
+	m_vecCurlingTile.clear();
+	m_vecCurlingTile.shrink_to_fit();
 }
 
 HRESULT CTileMgr::LoadTile()

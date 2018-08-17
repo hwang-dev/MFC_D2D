@@ -30,7 +30,7 @@ HRESULT CNormalMonster::Initialize()
 	m_fJumpPow = 200.f;
 
 	m_tInfo.byRoomNum = 2;
-	m_fAttackTime = 2.f;
+	m_fAttackTime = 1.f;
 	return S_OK;
 }
 
@@ -42,7 +42,7 @@ void CNormalMonster::LateInit()
 
 int CNormalMonster::Update()
 {
-	LateInit();
+	CObj::LateInit();
 
 	if (m_iMonsterHp < 0) {
 		m_eCurStance = MON_DEAD;
@@ -82,18 +82,17 @@ int CNormalMonster::Update()
 	return NO_EVENT;
 }
 
-void CNormalMonster::LateUpdate()
+void CNormalMonster::LateUpdate() 
 {
 	/* 몬스터 이동(Astar) */
-	if (m_pTarget->GetInfo().byRoomNum == m_tInfo.byRoomNum) {
+	
 		AStarMove();
 		MonsterAttack();	// 몬스터 공격
-	}
-	
-	/* 몬스터 방향 변경 */
-	SetMonsterDir();
-	MonsterDirChange();
 
+	/* 몬스터 방향 변경 */
+		SetMonsterDir();
+		MonsterDirChange();
+	
 	/* 몬스터 애니메이션 */
 	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime() * m_fAnimSpeed;
 	if (m_tFrame.fFrame > m_tFrame.fMax) {
@@ -126,7 +125,11 @@ void CNormalMonster::Render()
 	/* 몬스터 무기 */
 	D3DXMATRIX matWorld, matScale, matTrans, matRot;
 
+	if (m_pTarget == nullptr)
+		return;
+
 	D3DXVECTOR3 vGunDir = m_pTarget->GetInfo().vPos - (m_tInfo.vPos);
+
 	D3DXVec3Normalize(&vGunDir, &vGunDir);
 	float fRadian = acosf(D3DXVec3Dot(&vGunDir, &m_tInfo.vLook));
 
@@ -174,7 +177,7 @@ void CNormalMonster::Release()
 void CNormalMonster::MonsterJump()
 {
 	if (m_bMonsterJump) {
-		D3DXVECTOR3 vJump = m_tInfo.vPos - CScrollMgr::GetScroll()
+		D3DXVECTOR3 vJump = m_tInfo.vPos + CScrollMgr::GetScroll()
 			- CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 		D3DXVec3Normalize(&vJump, &vJump);
 

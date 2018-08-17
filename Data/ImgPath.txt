@@ -1,3 +1,12 @@
+BMove|BDown|1|..\Texture\Boss\BMove\BDown\%d.png
+BMove|BDown_Left|1|..\Texture\Boss\BMove\BDown_Left\%d.png
+BMove|BDown_Right|1|..\Texture\Boss\BMove\BDown_Right\%d.png
+BMove|BLeft|1|..\Texture\Boss\BMove\BLeft\%d.png
+BMove|BRight|1|..\Texture\Boss\BMove\BRight\%d.png
+BMove|BUp|1|..\Texture\Boss\BMove\BUp\%d.png
+BMove|BUp_Left|1|..\Texture\Boss\BMove\BUp_Left\%d.png
+BMove|BUp_Right|1|..\Texture\Boss\BMove\BUp_Right\%d.png
+Boss|BSkill|6|..\Texture\Boss\BSkill\%d.png
 Bullet|MonsterBullet|2|..\Texture\Bullet\MonsterBullet\%d.png
 Bullet|Normal|1|..\Texture\Bullet\Normal\%d.png
 Effect|Portal|14|..\Texture\Effect\Portal\%d.png

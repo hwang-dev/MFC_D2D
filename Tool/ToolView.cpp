@@ -238,7 +238,7 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 		pMiniView->Invalidate(FALSE);
 
 	}
-	if (m_bOnSubTileTool)
+	else if (m_bOnSubTileTool)
 	{
 		int iIndex = CTerrain::GetInstance()->GetTileIndex(D3DXVECTOR3((float)point.x, (float)point.y, 0.f));
 
@@ -252,7 +252,7 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 		CSubTile::GetInstance()->AddSubTile(vPos, iDrawID);
 		Invalidate(FALSE);
 	}
-	if (m_bOnTriggerTool) {
+	else if (m_bOnTriggerTool) {
 
 		BYTE byRoom = pMyForm->m_TriggerTool.m_byRoomNumer;
 		int iIndex = CTerrain::GetInstance()->GetTileIndex(D3DXVECTOR3((float)point.x, (float)point.y, 0.f));

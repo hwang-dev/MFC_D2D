@@ -156,6 +156,7 @@
     <ClInclude Include="AnimEffect.h" />
     <ClInclude Include="AstarMgr.h" />
     <ClInclude Include="Boss.h" />
+    <ClInclude Include="Boss2.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CkeyUI.h" />
     <ClInclude Include="Client.h" />
@@ -190,6 +191,7 @@
     <ClInclude Include="PlayerMoveIMP.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Revolver.h" />
+    <ClInclude Include="RoomMgr.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="ScrollMgr.h" />
@@ -218,6 +220,7 @@
     <ClCompile Include="AnimEffect.cpp" />
     <ClCompile Include="AstarMgr.cpp" />
     <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="Boss2.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CkeyUI.cpp" />
     <ClCompile Include="Client.cpp" />
@@ -251,6 +254,7 @@
     <ClCompile Include="PlayerIMP.cpp" />
     <ClCompile Include="PlayerMoveIMP.cpp" />
     <ClCompile Include="Revolver.cpp" />
+    <ClCompile Include="RoomMgr.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="ScrollMgr.cpp" />

@@ -52,7 +52,12 @@ void CMonster::MonsterDirChange()
 
 void CMonster::SetMonsterDir()
 {
+	if (m_pTarget == nullptr)
+		return;
 	const D3DXVECTOR3 vTargetPos = m_pTarget->GetInfo().vPos;
+	
+	
+	
 
 	/* аб╩С */
 	if (vTargetPos.x < m_tInfo.vPos.x && vTargetPos.y < m_tInfo.vPos.y)

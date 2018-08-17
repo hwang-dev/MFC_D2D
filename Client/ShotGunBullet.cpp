@@ -39,13 +39,10 @@ int CShotGunBullet::Update()
 	CObj::LateInit();
 
 	/* Bullet ¼Ò¸ê Á¶°Ç */
-	if (m_bIsDead)
+	if (m_bIsDead) {
 		return DEAD_OBJ;
-	else if (m_tInfo.vPos.x < (0.f + CScrollMgr::GetScroll().x) ||
-		m_tInfo.vPos.x >float(WINCX + CScrollMgr::GetScroll().x) ||
-		m_tInfo.vPos.y < (0.f + CScrollMgr::GetScroll().y) ||
-		m_tInfo.vPos.y >float(WINCY + CScrollMgr::GetScroll().y) ||
-		m_fVanishTimer > m_fVanishTime) {
+	}
+	else if (m_fVanishTimer > m_fVanishTime) {
 		return DEAD_OBJ;
 	}
 

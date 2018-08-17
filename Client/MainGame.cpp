@@ -112,4 +112,5 @@ void CMainGame::Release()
 	CKeyMgr::GetInstance()->DestroyInstance();
 	CWeaponMgr::GetInstance()->DestroyInstance();
 	CAstarMgr::GetInstance()->DestroyInstance();
+	CRoomMgr::GetInstance()->DestroyInstance();
 }

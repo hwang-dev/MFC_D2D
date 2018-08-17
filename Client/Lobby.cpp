@@ -4,6 +4,8 @@
 #include "Player.h"
 #include "NormalMonster.h"
 #include "Trigger.h"
+#include "Boss2.h"
+
 CLobby::CLobby()
 {
 }
@@ -36,21 +38,16 @@ HRESULT CLobby::Initialize()
 		ERR_MSG(L"WeaponMgr Init Fail");
 		return E_FAIL;
 	}
-	// 
+	// 트리거 불러오기
 	CTrigger temp;
 	if (FAILED(temp.LoadTrigger())) {
 		E_FAIL;
 	}
+	// 
+	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CBoss2>::CreateObj(D3DXVECTOR3{ 445.f, 300.f, 0.f }),
+		OBJ_MONSTER);
 
-	// 임시 Monster 생성
-	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalMonster>::CreateObj(D3DXVECTOR3{ WINCX * 0.5f - 300.f, WINCY * 0.5, 0.f }),
-		OBJ_MONSTER);
-	// 임시 Monster 생성
-	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalMonster>::CreateObj(D3DXVECTOR3{ WINCX * 0.5f - 100.f, WINCY * 0.5 + 100.f, 0.f }),
-		OBJ_MONSTER);
-	// 임시 Monster 생성
-	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalMonster>::CreateObj(D3DXVECTOR3{ WINCX * 0.5f - 200.f, WINCY * 0.5, 0.f }),
-		OBJ_MONSTER);
+	CRoomMgr::GetInstance()->Initialize();
 
 	return S_OK;
 }
@@ -61,6 +58,8 @@ void CLobby::Update()
 	CObjMgr::GetInstance()->Update();
 	CMouse::GetInstance()->Update();
 	CWeaponMgr::GetInstance()->Update();
+	CRoomMgr::GetInstance()->Update();
+	
 }
 
 

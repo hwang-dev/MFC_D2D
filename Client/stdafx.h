@@ -34,7 +34,7 @@ using namespace std;
 #pragma comment(lib, "d3dx9.lib")
 
 // Memory Leak
-// #include "vld.h"
+#include "vld.h"
 
 // Console
 //#ifdef _DEBUG
@@ -68,3 +68,4 @@ using namespace std;
 #include "AstarMgr.h"
 #include "SubTileMgr.h"
 #include "DataSubejct.h"
+#include "RoomMgr.h"

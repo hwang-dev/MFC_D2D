@@ -208,6 +208,12 @@
     <Filter Include="94.Effect\01Implementor\00.AnimEffect">
       <UniqueIdentifier>{95949cf7-d358-4c0b-96bb-8be22ccd6e8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="98.Managers\09.RoomMgr">
+      <UniqueIdentifier>{0fc81001-4834-4709-a5de-7149eb1cef2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\01.Monster\02.Boss">
+      <UniqueIdentifier>{e8552541-534c-4bdf-adbb-56917522d752}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -393,6 +399,12 @@
     <ClInclude Include="Effect.h">
       <Filter>94.Effect\00.Abstraction\00.Effect</Filter>
     </ClInclude>
+    <ClInclude Include="RoomMgr.h">
+      <Filter>98.Managers\09.RoomMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss2.h">
+      <Filter>01.Object\01.Monster\02.Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -568,6 +580,12 @@
     </ClCompile>
     <ClCompile Include="Effect.cpp">
       <Filter>94.Effect\00.Abstraction\00.Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomMgr.cpp">
+      <Filter>98.Managers\09.RoomMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss2.cpp">
+      <Filter>01.Object\01.Monster\02.Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

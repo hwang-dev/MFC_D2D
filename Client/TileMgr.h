@@ -17,6 +17,7 @@ public:
 
 public:
 	vector<TILE*>& GetVecTile() { return m_vecTile; }
+	vector<TILE*>& GetVecCurlingTile() { return m_vecCurlingTile; }
 	vector<list<TILE*>>& GetvecAdj() { return m_vecAdjacency; }
 
 	int	GetTileIndex(const D3DXVECTOR3& vPos);
@@ -29,7 +30,9 @@ public:
 private:
 	vector<TILE*>		m_vecTile;
 	vector<TEXINFO*>	m_vecTileTexInfo;
-
+	
 	vector<list<TILE*>> m_vecAdjacency;
+
+	vector<TILE*>		m_vecCurlingTile;
 };
 

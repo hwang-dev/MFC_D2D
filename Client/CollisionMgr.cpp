@@ -34,7 +34,7 @@ void CCollisionMgr::CollisionRect(OBJLIST & dstLst, OBJLIST & srcLst)
 					pSrc->IsDead();
 				}
 				else if (pSrc->GetObjectID() == OBJ_PLAYER && pDst->GetObjectID() == OBJ_TRIGGER) {
-					BYTE byRoom = pDst->GetInfo().byDrawID;
+					BYTE byRoom = pDst->GetInfo().byRoomNum;
 					dynamic_cast<CPlayer*>(pSrc)->SetRoomNumber(byRoom);
 					pDst->IsDead();
 				}
@@ -92,8 +92,13 @@ void CCollisionMgr::CollisionRectEX(OBJLIST & dstLst, OBJLIST & srcLst)
 /* Tile <-> Player Ãæµ¹ */
 void CCollisionMgr::CollisionTile(vector<TILE*> dstLst, CObj * pPlayer)
 {
+
+
 	float fMoveX = 0.f, fMoveY = 0.f;
 	int iIndex = CTileMgr::GetInstance()->GetTileIndex(pPlayer->GetInfo().vPos);
+
+	if (dstLst[iIndex]->GetTileOption() == 0)
+		return;
 
 	if (dstLst[iIndex]->GetTileOption() == 1) {
 		if (CheckTile(pPlayer, dstLst[iIndex], &fMoveX, &fMoveY)) {
@@ -151,9 +156,13 @@ void CCollisionMgr::CollisionTile(vector<TILE*> dstLst, CObj * pPlayer)
 void CCollisionMgr::CollisionTile(vector<TILE*> & dstLst, OBJLIST & srcLst)
 {
 	float fMoveX = 0.f, fMoveY = 0.f;
-	
+
 	for (auto& pSrc : srcLst) {
 		int iIndex = CTileMgr::GetInstance()->GetTileIndex(pSrc->GetInfo().vPos);
+
+		if (dstLst[iIndex]->GetTileOption() == 0)
+			return;
+
 
 		if (dstLst[iIndex]->GetTileOption() == 1) {
 			if (CheckTile(pSrc, dstLst[iIndex], &fMoveX, &fMoveY)) {
@@ -206,7 +215,7 @@ bool CCollisionMgr::CheckRect(CObj * pDst, CObj * pSrc, float * pMoveX, float * 
 {
 	float fSumSizeX = (pDst->GetInfo().vSize.x + pSrc->GetInfo().vSize.x) * 0.5f;
 	float fSumSizeY = (pDst->GetInfo().vSize.y + pSrc->GetInfo().vSize.y) * 0.5f;
-
+													   
 	float fDistX = fabs(pDst->GetInfo().vPos.x - pSrc->GetInfo().vPos.x);
 	float fDistY = fabs(pDst->GetInfo().vPos.y - pSrc->GetInfo().vPos.y);
 
