@@ -52,6 +52,7 @@ CToolView::~CToolView()
 	CSubTile::GetInstance()->DestroyInstance();
 	CTerrain::GetInstance()->DestroyInstance();
 	CTriggerMgr::GetInstance()->DestroyInstance();
+	CBox::GetInstance()->DestroyInstance();
 
 	CTextureMgr::GetInstance()->DestroyInstance();
 	CDevice::GetInstance()->DestroyInstance();
@@ -76,10 +77,10 @@ void CToolView::OnDraw(CDC* /*pDC*/)
 
 	CDevice::GetInstance()->Render_Begin();
 
-	
 	CTerrain::GetInstance()->Render();
 	CSubTile::GetInstance()->Render();
 	CTriggerMgr::GetInstance()->Render();
+	CBox::GetInstance()->Render();
 
 	CDevice::GetInstance()->Render_End();
 
@@ -175,6 +176,11 @@ void CToolView::OnInitialUpdate()
 	CTriggerMgr::GetInstance()->Initialize();
 	CTriggerMgr::GetInstance()->SetMainView(this);
 
+	//
+	CBox::GetInstance()->Initialize();
+	CBox::GetInstance()->SetMainView(this);
+
+
 	m_bIsMapTool = false;
 	m_bOnSubTileTool = false;
 	m_bOnObjectTool = false;
@@ -265,7 +271,17 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 		CTriggerMgr::GetInstance()->AddTrigger(vPos, byRoom);
 		Invalidate(FALSE);
 	}
+	else if (m_bOnObjectTool) {
+		int iIndex = CTerrain::GetInstance()->GetTileIndex(D3DXVECTOR3((float)point.x, (float)point.y, 0.f));
 
+		// 타일 인덱스에서 벗어나면 종료
+		if (iIndex < 0 || (size_t)iIndex > CTerrain::GetInstance()->GetVecTile().size())
+			return;
+		D3DXVECTOR3 vPos = CTerrain::GetInstance()->GetTilePos(iIndex);
+
+		CBox::GetInstance()->AddTrigger(vPos);
+		Invalidate(FALSE);
+	}
 	UpdateData(FALSE);
 
 	CScrollView::OnLButtonDown(nFlags, point);

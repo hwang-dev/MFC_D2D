@@ -50,14 +50,20 @@ void CObjMgr::LateUpdate()
 	}
 
 	/* Tile <> Obj Ãæµ¹ */
-	CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(), 
-		m_ObjLst[OBJ_PLAYER].front());
-	CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(),
-		m_ObjLst[OBJ_BULLET]);
-	CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(),
-		m_ObjLst[OBJ_MONSTER]);
-	CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(),
-		m_ObjLst[OBJ_MOSTERBULLET]);
+	//CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(), 
+	//	m_ObjLst[OBJ_PLAYER].front());
+	//CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(),
+	//	m_ObjLst[OBJ_BULLET]);
+	//CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(),
+	//	m_ObjLst[OBJ_MONSTER]);
+	//CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(),
+	//	m_ObjLst[OBJ_MOSTERBULLET]);
+
+	CCollisionMgr::CollisionRectEX(m_ObjLst[OBJ_OBSTACLE], m_ObjLst[OBJ_PLAYER]);
+	CCollisionMgr::CollisionRectEX(m_ObjLst[OBJ_OBSTACLE], m_ObjLst[OBJ_MONSTER]);
+	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_OBSTACLE], m_ObjLst[OBJ_BULLET]);
+	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_OBSTACLE], m_ObjLst[OBJ_MOSTERBULLET]);
+
 
 	/* */
 	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_MONSTER], m_ObjLst[OBJ_BULLET]);

@@ -42,8 +42,69 @@ void CUI::Render()
 {
 	D3DXMATRIX matTrans;
 
-	
-	if (m_iHp == 1) {
+	if (m_iHp < 0)
+	{
+		/* ù° ĭ */
+		D3DXMatrixTranslation(&matTrans,
+			m_tInfo.vPos.x,
+			m_tInfo.vPos.y,
+			m_tInfo.vPos.z);
+
+		m_tInfo.matWorld = matTrans;
+
+		const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(L"UI",
+			L"Hp", 2);
+
+		NULL_CHECK(pTexInfo);
+
+		float fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
+		float fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
+
+		CDevice::GetInstance()->GetSprite()->SetTransform(&m_tInfo.matWorld);
+		CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
+			&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+		/* ��° ĭ */
+		D3DXMatrixTranslation(&matTrans,
+			m_tInfo.vPos.x + 30.f,
+			m_tInfo.vPos.y,
+			m_tInfo.vPos.z);
+
+		m_tInfo.matWorld = matTrans;
+
+		pTexInfo = CTextureMgr::GetInstance()->GetTexture(L"UI",
+			L"Hp", 2);
+
+		NULL_CHECK(pTexInfo);
+
+		fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
+		fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
+
+		CDevice::GetInstance()->GetSprite()->SetTransform(&m_tInfo.matWorld);
+		CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
+			&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+		/* ��° ĭ */
+		D3DXMatrixTranslation(&matTrans,
+			m_tInfo.vPos.x + 60.f,
+			m_tInfo.vPos.y,
+			m_tInfo.vPos.z);
+
+		m_tInfo.matWorld = matTrans;
+
+		pTexInfo = CTextureMgr::GetInstance()->GetTexture(L"UI",
+			L"Hp", 2);
+
+		NULL_CHECK(pTexInfo);
+
+		fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
+		fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
+
+		CDevice::GetInstance()->GetSprite()->SetTransform(&m_tInfo.matWorld);
+		CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
+			&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
+	else if (m_iHp == 1) {
 
 		/* ù° ĭ */
 		D3DXMatrixTranslation(&matTrans,

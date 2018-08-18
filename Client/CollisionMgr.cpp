@@ -28,12 +28,14 @@ void CCollisionMgr::CollisionRect(OBJLIST & dstLst, OBJLIST & srcLst)
 				//	dynamic_cast<CMonster*>(pDst)->SetMonsterHP(iDamage);
 				//	pSrc->IsDead();
 				//}
-				if (pSrc->GetObjectID() == OBJ_BULLET && pDst->GetObjectID() == OBJ_MONSTER) {
+				if (pSrc->GetObjectID() == OBJ_BULLET && pDst->GetObjectID() == OBJ_MONSTER) 
+				{
 					int iDamage = dynamic_cast<CBullet*>(pSrc)->GetBulletDamage();
 					dynamic_cast<CMonster*>(pDst)->SetMonsterHP(iDamage);
 					pSrc->IsDead();
 				}
-				else if (pSrc->GetObjectID() == OBJ_PLAYER && pDst->GetObjectID() == OBJ_TRIGGER) {
+				else if (pSrc->GetObjectID() == OBJ_PLAYER && pDst->GetObjectID() == OBJ_TRIGGER) 
+				{
 					BYTE byRoom = pDst->GetInfo().byRoomNum;
 					dynamic_cast<CPlayer*>(pSrc)->SetRoomNumber(byRoom);
 					pDst->IsDead();
@@ -44,6 +46,14 @@ void CCollisionMgr::CollisionRect(OBJLIST & dstLst, OBJLIST & srcLst)
 						dynamic_cast<CPlayer*>(pDst)->SetPlayerHp();
 						pSrc->IsDead();
 					}
+				}
+				else if (pSrc->GetObjectID() == OBJ_BULLET && pDst->GetObjectID() == OBJ_OBSTACLE)
+				{
+					pSrc->IsDead();
+				}
+				else if (pSrc->GetObjectID() == OBJ_MOSTERBULLET && pDst->GetObjectID() == OBJ_OBSTACLE)
+				{
+					pSrc->IsDead();
 				}
 			}
 		}

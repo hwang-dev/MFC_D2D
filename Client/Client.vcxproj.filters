@@ -214,6 +214,9 @@
     <Filter Include="01.Object\01.Monster\02.Boss">
       <UniqueIdentifier>{e8552541-534c-4bdf-adbb-56917522d752}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.Box">
+      <UniqueIdentifier>{56505137-98f8-43f4-84dc-f0ca378fc194}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -405,6 +408,9 @@
     <ClInclude Include="Boss2.h">
       <Filter>01.Object\01.Monster\02.Boss</Filter>
     </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>05.Box</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -586,6 +592,9 @@
     </ClCompile>
     <ClCompile Include="Boss2.cpp">
       <Filter>01.Object\01.Monster\02.Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>05.Box</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

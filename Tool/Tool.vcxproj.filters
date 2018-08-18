@@ -76,6 +76,9 @@
     <Filter Include="95.Trigger">
       <UniqueIdentifier>{35a4d6fb-e763-42dd-9341-05b329adb518}</UniqueIdentifier>
     </Filter>
+    <Filter Include="94.Box">
+      <UniqueIdentifier>{988ce082-f751-499b-b663-bc48d01aabe2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainFrm.h">
@@ -153,6 +156,9 @@
     <ClInclude Include="TriggerMgr.h">
       <Filter>95.Trigger</Filter>
     </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>94.Box</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -223,6 +229,9 @@
     </ClCompile>
     <ClCompile Include="TriggerMgr.cpp">
       <Filter>95.Trigger</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>94.Box</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

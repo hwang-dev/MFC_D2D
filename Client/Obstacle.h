@@ -1,21 +1,21 @@
 #pragma once
-#include "Monster.h"
-class CBoss2 :
-	public CMonster
+#include "Obj.h"
+class CObstacle :
+	public CObj
 {
 public:
-	CBoss2();
-	virtual ~CBoss2();
+	CObstacle();
+	virtual ~CObstacle();
 
-	// CMonster을(를) 통해 상속됨
+	// CObj을(를) 통해 상속됨
 	virtual HRESULT Initialize() override;
-	virtual void LateInit() override;
 	virtual int Update() override;
 	virtual void LateUpdate() override;
 	virtual void Render() override;
 	virtual void Release() override;
 
-private:
-	void AstarMove();
+public:
+	HRESULT LoadObstacle();
+
 };
 

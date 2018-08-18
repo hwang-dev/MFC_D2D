@@ -16,11 +16,14 @@ HRESULT CBoss2::Initialize()
 	m_eObjectID = OBJ_MONSTER;
 	m_wstrObjKey = L"BMove";
 	m_wstrStateKey = L"BDown";
-	m_tInfo.vSize = { 100.f, 100.f, 0.f };
+	m_tInfo.vSize = { 70.f, 70.f, 0.f };
 	m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
 		m_wstrStateKey.c_str());
 	m_iMonsterHp = 50;
+	m_iAlpha = 255;
 	m_tInfo.vLook = { 1.f, 0.f, 0.f };
+	m_fSpeed = 100.f;
+	//m_f
 
 	return S_OK;
 }
@@ -33,6 +36,8 @@ void CBoss2::LateInit()
 int CBoss2::Update()
 {
 	// 행렬 계산
+	LateInit();
+
 	D3DXMATRIX matScale, matTrans;
 	
 	D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
@@ -49,6 +54,14 @@ int CBoss2::Update()
 
 void CBoss2::LateUpdate()
 {
+
+	// 방향 구하기
+	m_tInfo.vDir = m_pTarget->GetInfo().vPos - m_tInfo.vPos;
+	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
+
+	// 이동
+	m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+	
 }
 
 void CBoss2::Render()
@@ -75,4 +88,9 @@ void CBoss2::Render()
 
 void CBoss2::Release()
 {
+}
+
+void CBoss2::AstarMove()
+{
+
 }

@@ -85,14 +85,14 @@ int CNormalMonster::Update()
 void CNormalMonster::LateUpdate() 
 {
 	/* 몬스터 이동(Astar) */
-	
-		AStarMove();
-		MonsterAttack();	// 몬스터 공격
 
-	/* 몬스터 방향 변경 */
-		SetMonsterDir();
-		MonsterDirChange();
-	
+	AStarMove();
+	MonsterAttack();	// 몬스터 공격
+
+/* 몬스터 방향 변경 */
+	SetMonsterDir();
+	MonsterDirChange();
+
 	/* 몬스터 애니메이션 */
 	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime() * m_fAnimSpeed;
 	if (m_tFrame.fFrame > m_tFrame.fMax) {
@@ -101,7 +101,7 @@ void CNormalMonster::LateUpdate()
 	}
 
 	MonsterJump();	// 몬스터 밀려남
-	
+
 
 }
 

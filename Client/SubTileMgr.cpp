@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "SubTileMgr.h"
+#include "Obj.h"
 
 IMPLEMENT_SINGLETON(CSubTileMgr)
 
@@ -55,31 +56,38 @@ void CSubTileMgr::Render()
 	D3DXMATRIX matWorld, matScale, matTrans;
 
 	D3DXVECTOR3 vScroll = CScrollMgr::GetScroll();
+	D3DXVECTOR3 vPlayerPos = CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 
 	for (size_t i = 0; i < m_vecSubTile.size(); ++i) {
 
-		D3DXMatrixIdentity(&matWorld);
-		D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);
-		D3DXMatrixTranslation(&matTrans,
-			m_vecSubTile[i]->vPos.x - CScrollMgr::GetScroll().x,
-			m_vecSubTile[i]->vPos.y - CScrollMgr::GetScroll().y,
-			m_vecSubTile[i]->vPos.z);
+		if (m_vecSubTile[i]->vPos.x > vPlayerPos.x - WINCX * 0.5f &&
+			m_vecSubTile[i]->vPos.x < vPlayerPos.x + WINCX * 0.5f &&
+			m_vecSubTile[i]->vPos.y > vPlayerPos.y - WINCY * 0.5f &&
+			m_vecSubTile[i]->vPos.y < vPlayerPos.y + WINCY * 0.5f)
+		{
 
-		matWorld = matScale * matTrans;
+			D3DXMatrixIdentity(&matWorld);
+			D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);
+			D3DXMatrixTranslation(&matTrans,
+				m_vecSubTile[i]->vPos.x - CScrollMgr::GetScroll().x,
+				m_vecSubTile[i]->vPos.y - CScrollMgr::GetScroll().y,
+				m_vecSubTile[i]->vPos.z);
 
-		CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
+			matWorld = matScale * matTrans;
 
-		const TEXINFO* pTexInfo = m_vecSubTileTexInfo[m_vecSubTile[i]->byDrawID];
+			CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
 
-		if (nullptr == pTexInfo)
-			continue;
+			const TEXINFO* pTexInfo = m_vecSubTileTexInfo[m_vecSubTile[i]->byDrawID];
 
-		float fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
-		float fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
+			if (nullptr == pTexInfo)
+				continue;
 
-		CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
-			&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+			float fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
+			float fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
 
+			CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
+				&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+		}
 	}
 }
 

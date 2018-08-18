@@ -84,4 +84,5 @@ using namespace std;
 #include "FileInfo.h"
 #include "SubTile.h"
 #include "TriggerMgr.h"
+#include "Box.h"
 #include <afxdlgs.h>

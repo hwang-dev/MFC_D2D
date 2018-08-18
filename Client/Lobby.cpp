@@ -5,6 +5,7 @@
 #include "NormalMonster.h"
 #include "Trigger.h"
 #include "Boss2.h"
+#include "Obstacle.h"
 
 CLobby::CLobby()
 {
@@ -41,9 +42,13 @@ HRESULT CLobby::Initialize()
 	// 트리거 불러오기
 	CTrigger temp;
 	if (FAILED(temp.LoadTrigger())) {
-		E_FAIL;
+		return E_FAIL;
 	}
-	// 
+	// 장애물 불러오기
+	CObstacle temp2;
+	if (FAILED(temp2.LoadObstacle())) {
+		return E_FAIL;
+	}
 	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CBoss2>::CreateObj(D3DXVECTOR3{ 445.f, 300.f, 0.f }),
 		OBJ_MONSTER);
 
