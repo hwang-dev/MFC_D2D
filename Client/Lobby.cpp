@@ -19,6 +19,8 @@ CLobby::~CLobby()
 
 HRESULT CLobby::Initialize()
 {
+	CSoundMgr::GetInstance()->PlayBGM(L"Lobby.wav");
+
 	// Tile 불러오기
 	if (FAILED(CTileMgr::GetInstance()->LoadTile())) {
 		return E_FAIL;
@@ -70,6 +72,7 @@ void CLobby::Update()
 
 void CLobby::LateUpdate()
 {
+	CScrollMgr::ScrollLock2();
 	CTileMgr::GetInstance()->LateUpdate();
 	CObjMgr::GetInstance()->LateUpdate();
 	CMouse::GetInstance()->LateUpdate();

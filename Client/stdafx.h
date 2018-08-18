@@ -25,7 +25,11 @@
 #include <string>
 #include <iostream>
 #include <ctime>
+#include <io.h>
 using namespace std;
+
+#include "fmod.h"
+#pragma comment(lib, "fmodex_vc.lib")
 
 #include <d3d9.h>
 #pragma comment(lib, "d3d9.lib")
@@ -35,6 +39,7 @@ using namespace std;
 
 // Memory Leak
 #include "vld.h"
+
 
 // Console
 //#ifdef _DEBUG
@@ -69,3 +74,4 @@ using namespace std;
 #include "SubTileMgr.h"
 #include "DataSubejct.h"
 #include "RoomMgr.h"
+#include "SoundMgr.h"

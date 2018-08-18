@@ -93,6 +93,8 @@ HRESULT CDevice::InitDevice()
 		return E_FAIL;
 	}
 
+	//tFontInfo.Height
+
 	return S_OK; // 성공했을 때	
 	// 실패했을때 E_FAIL을 리턴.
 }
@@ -129,6 +131,9 @@ void CDevice::Render_End(HWND hWnd)
 void CDevice::Release()
 {
 	// 순서 주의. m_p3D를 먼저 해제할 경우 m_pDevice는 소실된다.
+	if (m_pMyFont)
+		m_pMyFont->Release();
+
 	if (m_pFont)
 		m_pFont->Release();
 

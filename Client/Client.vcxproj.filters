@@ -217,6 +217,9 @@
     <Filter Include="05.Box">
       <UniqueIdentifier>{56505137-98f8-43f4-84dc-f0ca378fc194}</UniqueIdentifier>
     </Filter>
+    <Filter Include="98.Managers\09.SoundMgr">
+      <UniqueIdentifier>{86fafe62-1bb0-43e5-9046-420100721f73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -411,6 +414,9 @@
     <ClInclude Include="Obstacle.h">
       <Filter>05.Box</Filter>
     </ClInclude>
+    <ClInclude Include="SoundMgr.h">
+      <Filter>98.Managers\09.SoundMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -595,6 +601,9 @@
     </ClCompile>
     <ClCompile Include="Obstacle.cpp">
       <Filter>05.Box</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMgr.cpp">
+      <Filter>98.Managers\09.SoundMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

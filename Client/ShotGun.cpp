@@ -71,6 +71,7 @@ void CShotGun::CreateBullet()
 			CScrollMgr::CameraShakeNormal();
 		}
 
+		CSoundMgr::GetInstance()->PlaySound(L"Shotgun.wav", CSoundMgr::EFFECT);
 		m_bCanShot = false;
 	}
 }

@@ -22,8 +22,8 @@ HRESULT CBoss2::Initialize()
 	m_iMonsterHp = 50;
 	m_iAlpha = 255;
 	m_tInfo.vLook = { 1.f, 0.f, 0.f };
-	m_fSpeed = 100.f;
-	//m_f
+	m_fSpeed = 50.f;
+	m_fAttackTime = 0.2f;
 
 	return S_OK;
 }
@@ -54,6 +54,8 @@ int CBoss2::Update()
 
 void CBoss2::LateUpdate()
 {
+	SetMonsterDir();
+	MonsterDirChange();
 
 	// 방향 구하기
 	m_tInfo.vDir = m_pTarget->GetInfo().vPos - m_tInfo.vPos;
@@ -62,6 +64,8 @@ void CBoss2::LateUpdate()
 	// 이동
 	m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
 	
+	//
+	m_fAttackTimer += CTimeMgr::GetInstance()->GetTime();
 }
 
 void CBoss2::Render()
@@ -91,6 +95,10 @@ void CBoss2::Release()
 }
 
 void CBoss2::AstarMove()
+{
+}
+
+void CBoss2::BossAttack()
 {
 
 }

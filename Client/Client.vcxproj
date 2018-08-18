@@ -203,6 +203,7 @@
     <ClInclude Include="ShotGun.h" />
     <ClInclude Include="ShotGunBullet.h" />
     <ClInclude Include="SingleTexture.h" />
+    <ClInclude Include="SoundMgr.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="SubTileMgr.h" />
@@ -267,6 +268,7 @@
     <ClCompile Include="ShotGun.cpp" />
     <ClCompile Include="ShotGunBullet.cpp" />
     <ClCompile Include="SingleTexture.cpp" />
+    <ClCompile Include="SoundMgr.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

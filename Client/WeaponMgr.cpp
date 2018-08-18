@@ -71,7 +71,7 @@ void CWeaponMgr::Render()
 		NULL_CHECK(pPlayerGun);
 
 		const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(pPlayerGun->GetObjKey().c_str(),
-			pPlayerGun->GetSateKey().c_str(), 0);
+			pPlayerGun->GetSateKey().c_str(), (int)pPlayerGun->GetFrame().fFrame);
 
 		NULL_CHECK(pTexInfo);
 
@@ -82,6 +82,77 @@ void CWeaponMgr::Render()
 		CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 			&D3DXVECTOR3(fCenterX - 15.f, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
 	}
+
+	// UI ½½·Ô 
+	D3DXMATRIX matWorld, matScale, matTrans;
+
+	D3DXMatrixIdentity(&matWorld);
+	D3DXMatrixScaling(&matScale, 1.5f, 1.5f, 1.f);
+	D3DXMatrixTranslation(&matTrans,
+		WINCX - 100.f,
+		WINCY - 50.f,
+		0.f);
+
+	matWorld = matScale * matTrans;
+
+	const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(L"UI", L"Slot", 0);
+
+	NULL_CHECK(pTexInfo);
+
+	float fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
+	float fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
+
+	CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
+	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
+		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	// UI ½½·Ô -> ÃÑ
+	D3DXMatrixIdentity(&matWorld);
+	D3DXMatrixScaling(&matScale, 3.f, 3.f, 1.f);
+	D3DXMatrixTranslation(&matTrans,
+		WINCX - 100.f,
+		WINCY - 50.f,
+		0.f);
+
+	matWorld = matScale * matTrans;
+
+	CObj* pPlayerGun = dynamic_cast<CPlayer*>(CObjMgr::GetInstance()->GetPlayer())->GetCurGun();
+	NULL_CHECK(pPlayerGun);
+
+	pTexInfo = CTextureMgr::GetInstance()->GetTexture(pPlayerGun->GetObjKey().c_str(),
+		pPlayerGun->GetSateKey().c_str(), (int)pPlayerGun->GetFrame().fFrame);
+
+	NULL_CHECK(pTexInfo);
+
+	fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
+	fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
+
+	CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
+	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
+		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	// ÃÑ¾Ë °¹¼ö
+	//D3DXMatrixIdentity(&matWorld);
+	//D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
+	//D3DXMatrixTranslation(&matTrans,
+	//	WINCX - 100.f,
+	//	WINCY - 50.f,
+	//	0.f);
+
+	//matWorld = matScale * matTrans;
+
+
+
+	//NULL_CHECK(pTexInfo);
+
+	//fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
+	//fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
+
+	//CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
+	//CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
+	//	&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+
 }
 
 void CWeaponMgr::LateUpdate()

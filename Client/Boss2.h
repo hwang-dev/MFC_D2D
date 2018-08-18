@@ -17,5 +17,6 @@ public:
 
 private:
 	void AstarMove();
+	void BossAttack();
 };
 

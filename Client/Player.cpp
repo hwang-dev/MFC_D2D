@@ -187,6 +187,11 @@ void CPlayer::Release()
 
 void CPlayer::PlayerMove()
 {
+	if (CKeyMgr::GetInstance()->KeyDown(KEY_R)) {
+		CSoundMgr::GetInstance()->PlaySound(L"Reload.wav", CSoundMgr::EFFECT);
+		dynamic_cast<CWeapon*>(m_pCurGun)->WeaponReload();
+	}
+
 	if (!m_bIsDodge) {
 		/* ¼¶±¤Åº */
 		if (CKeyMgr::GetInstance()->KeyDown(KEY_SPACE)) {
@@ -411,6 +416,7 @@ void CPlayer::PlayAnimation()
 void CPlayer::PlayerDodge()
 {
 	if (m_bIsDodge) {
+		CSoundMgr::GetInstance()->PlaySound(L"Dodge.wav", CSoundMgr::EFFECT);
 		m_eCurStance = DODGE;
 		m_wstrObjKey = L"Dodge";
 

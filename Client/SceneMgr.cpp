@@ -60,6 +60,7 @@ void CSceneMgr::Update()
 
 void CSceneMgr::LateUpdate()
 {
+	
 	m_pScene->LateUpdate();
 }
 

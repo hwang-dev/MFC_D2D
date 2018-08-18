@@ -19,4 +19,5 @@ public:
 	virtual void CreateBullet() override;
 	virtual void WeaponReload() override;
 
+
 };

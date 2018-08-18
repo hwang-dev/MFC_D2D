@@ -34,6 +34,7 @@ private:
 
 	// LPD3DXFONT: 폰트를 출력하는 Com객체
 	LPD3DXFONT			m_pFont;
+	LPD3DXFONT			m_pMyFont;
 
 	// I로 시작하는 인터페이스들을 COM객체라 부른다.
 	// COM(Component Object Model)

@@ -18,6 +18,7 @@ HRESULT CMainGame::Initialize()
 
 	// TImeMgr 초기화
 	CTimeMgr::GetInstance()->InitTime();
+	CSoundMgr::GetInstance()->Initialize();
 	// Device 초기화
 	if (FAILED(CDevice::GetInstance()->InitDevice())) {
 		ERR_MSG(L"Device Init Failed");
@@ -39,7 +40,7 @@ HRESULT CMainGame::Initialize()
 		return E_FAIL;
 	}
 	// SceneMgr Init
-	if (FAILED(CSceneMgr::GetInstance()->SceneChange(CSceneMgr::LOBBY))) {
+	if (FAILED(CSceneMgr::GetInstance()->SceneChange(CSceneMgr::LOGO))) {
 		ERR_MSG(L"Scene Change Failed");
 		return E_FAIL;
 	}
@@ -56,7 +57,7 @@ void CMainGame::Update()
 
 void CMainGame::LateUpdate()
 {
-	CScrollMgr::ScrollLock2();
+	
 	CSceneMgr::GetInstance()->LateUpdate();
 
 	// 충돌 렉트
@@ -113,4 +114,5 @@ void CMainGame::Release()
 	CWeaponMgr::GetInstance()->DestroyInstance();
 	CAstarMgr::GetInstance()->DestroyInstance();
 	CRoomMgr::GetInstance()->DestroyInstance();
+	CSoundMgr::GetInstance()->DestroyInstance();
 }

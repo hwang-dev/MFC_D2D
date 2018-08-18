@@ -50,10 +50,12 @@ void CCollisionMgr::CollisionRect(OBJLIST & dstLst, OBJLIST & srcLst)
 				else if (pSrc->GetObjectID() == OBJ_BULLET && pDst->GetObjectID() == OBJ_OBSTACLE)
 				{
 					pSrc->IsDead();
+					CSoundMgr::GetInstance()->PlaySound(L"Crash.wav", CSoundMgr::EFFECT);
 				}
 				else if (pSrc->GetObjectID() == OBJ_MOSTERBULLET && pDst->GetObjectID() == OBJ_OBSTACLE)
 				{
 					pSrc->IsDead();
+					CSoundMgr::GetInstance()->PlaySound(L"Crash.wav", CSoundMgr::EFFECT);
 				}
 			}
 		}

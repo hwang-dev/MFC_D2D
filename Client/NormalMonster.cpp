@@ -85,11 +85,10 @@ int CNormalMonster::Update()
 void CNormalMonster::LateUpdate() 
 {
 	/* 몬스터 이동(Astar) */
-
 	AStarMove();
 	MonsterAttack();	// 몬스터 공격
 
-/* 몬스터 방향 변경 */
+	/* 몬스터 방향 변경 */
 	SetMonsterDir();
 	MonsterDirChange();
 

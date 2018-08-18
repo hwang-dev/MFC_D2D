@@ -10,6 +10,9 @@ public:
 	void SetPos(D3DXVECTOR3& vPos) { m_tInfo.vPos = vPos; }
 	const RECT& GetRect() { return m_tRect; }
 	void SetInfo(INFO& tInfo) { m_tInfo = tInfo; }
+	
+	const FRAME& GetFrame() { return m_tFrame; }
+
 
 	const wstring& GetObjKey() { return m_wstrObjKey; }
 	const wstring& GetSateKey() { return m_wstrStateKey; }
@@ -41,5 +44,6 @@ protected:
 	wstring		m_wstrObjKey;
 	wstring		m_wstrStateKey;
 	OBJID		m_eObjectID;
+	float		m_fAnimSpeed = 0.f;
 };
 
