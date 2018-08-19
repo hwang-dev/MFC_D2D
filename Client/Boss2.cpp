@@ -54,6 +54,7 @@ int CBoss2::Update()
 
 void CBoss2::LateUpdate()
 {
+	//방향 변경
 	SetMonsterDir();
 	MonsterDirChange();
 
@@ -64,13 +65,12 @@ void CBoss2::LateUpdate()
 	// 이동
 	m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
 	
-	//
 	m_fAttackTimer += CTimeMgr::GetInstance()->GetTime();
 }
 
 void CBoss2::Render()
 {
-	// 렉트
+	// 렉트 업데이트
 	UpdateRect();
 
 	// 이미지 렌더
@@ -86,6 +86,7 @@ void CBoss2::Render()
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(m_iAlpha, 255, 255, 255));
 
+	// 충돌 렉트
 	if (g_bOnRect)
 		RenderLine();
 }

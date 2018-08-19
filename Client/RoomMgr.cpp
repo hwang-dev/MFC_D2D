@@ -25,6 +25,7 @@ void CRoomMgr::Update()
 
 	if (m_byPlayerRoomNumber == 1) {
 		if (m_bEnterRoom1 == false) {
+			CSoundMgr::GetInstance()->PlaySound(L"Monster_Appear.wav", CSoundMgr::EFFECT);
 			// 룸1 몬스터 생성
 			// 임시 Monster 생성
 			CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalMonster>::CreateObj(D3DXVECTOR3{ 2000.f, 300.f, 0.f}),

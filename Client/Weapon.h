@@ -10,11 +10,11 @@ public:
 public:
 	virtual void CreateBullet() PURE;	// 총알 발사
 	virtual void WeaponReload() PURE;	// 재장전
+	
+	GUN_DATA& GetGunData() { return m_tGunData; }
 
 protected:
-	int			m_iMaxBullet;		// 최대 총알
-	int			m_iMagazine;		// 탄창의 총알 갯수
-
+	GUN_DATA	m_tGunData;
 	float		m_fReloadTime;		// 재장전 시간
 	float		m_fWeaponDelay;		// 연사 속도
 	float		m_fWeaponDelayTime;

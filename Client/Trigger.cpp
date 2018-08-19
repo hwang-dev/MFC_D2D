@@ -34,9 +34,8 @@ void CTrigger::Render()
 {
 	CObj::UpdateRect();
 
-	if (g_bOnRect) {
+	if (g_bOnRect) 
 		RenderLine();
-	}
 }
 
 void CTrigger::Release()

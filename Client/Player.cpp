@@ -113,6 +113,35 @@ int CPlayer::Update()
 
 void CPlayer::LateUpdate()
 {
+	// ¿òÁ÷ÀÌÁö ¾ÊÀ»¶§ ¹æÇâ º¯°æ
+	if(m_bIsMove == false) 
+	{
+		if ((CMouse::GetInstance()->GetMousePos().y + CScrollMgr::GetScroll().y) > m_tInfo.vPos.y &&
+			(CMouse::GetInstance()->GetMousePos().x + CScrollMgr::GetScroll().x) > m_tInfo.vPos.x)
+
+		{
+			m_wstrStateKey = L"Down_Right";
+		}
+		if ((CMouse::GetInstance()->GetMousePos().y + CScrollMgr::GetScroll().y) > m_tInfo.vPos.y &&
+			(CMouse::GetInstance()->GetMousePos().x + CScrollMgr::GetScroll().x) < m_tInfo.vPos.x)
+
+		{
+			m_wstrStateKey = L"Down_Left";
+		}
+		if ((CMouse::GetInstance()->GetMousePos().y + CScrollMgr::GetScroll().y) < m_tInfo.vPos.y &&
+			(CMouse::GetInstance()->GetMousePos().x + CScrollMgr::GetScroll().x) < m_tInfo.vPos.x)
+
+		{
+			m_wstrStateKey = L"Up_Left";
+		}
+		if ((CMouse::GetInstance()->GetMousePos().y + CScrollMgr::GetScroll().y) < m_tInfo.vPos.y &&
+			(CMouse::GetInstance()->GetMousePos().x + CScrollMgr::GetScroll().x) > m_tInfo.vPos.x)
+
+		{
+			m_wstrStateKey = L"Up_Right";
+		}
+
+	}
 	//IsOffSet();
 	StanceChange();
 	ChangeWeapon();
@@ -193,6 +222,7 @@ void CPlayer::PlayerMove()
 	}
 
 	if (!m_bIsDodge) {
+		m_bIsMove = true;
 		/* ¼¶±¤Åº */
 		if (CKeyMgr::GetInstance()->KeyDown(KEY_SPACE)) {
 			if (m_tData.iMp > 0) {
@@ -311,6 +341,7 @@ void CPlayer::PlayerMove()
 			}
 		}
 		else {
+			m_bIsMove = false;
 			m_eCurStance = IDLE;
 			m_wstrObjKey = L"Idle";
 			switch (m_ePlayerDir) {

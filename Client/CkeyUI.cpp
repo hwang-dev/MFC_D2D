@@ -71,7 +71,7 @@ void CkeyUI::Render()
 	TCHAR szKey[MIN_STR] = L"";
 	swprintf_s(szKey,L"%d", m_iKey);
 	CDevice::GetInstance()->GetSprite()->SetTransform(&m_tInfo.matWorld);
-	CDevice::GetInstance()->GetFont()->DrawTextW(CDevice::GetInstance()->GetSprite(),
+	CDevice::GetInstance()->GetFont2()->DrawTextW(CDevice::GetInstance()->GetSprite(),
 		szKey, lstrlen(szKey), nullptr, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
 }
 

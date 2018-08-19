@@ -160,6 +160,7 @@
     <ClInclude Include="AstarMgr.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Boss2.h" />
+    <ClInclude Include="BossIMP.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CkeyUI.h" />
     <ClInclude Include="Client.h" />
@@ -226,6 +227,7 @@
     <ClCompile Include="AstarMgr.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Boss2.cpp" />
+    <ClCompile Include="BossIMP.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CkeyUI.cpp" />
     <ClCompile Include="Client.cpp" />

@@ -69,3 +69,12 @@ typedef struct tagData {
 	int iHp;
 	int iKey;
 } DATA;
+
+typedef struct tagGun
+{
+	int iMaxBullet;
+	int iCurBullet;
+	int iMagazine;
+	int	iMagazineMax;
+
+} GUN_DATA;

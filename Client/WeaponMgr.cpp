@@ -132,25 +132,45 @@ void CWeaponMgr::Render()
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
 
 	// ÃÑ¾Ë °¹¼ö
-	//D3DXMatrixIdentity(&matWorld);
-	//D3DXMatrixScaling(&matScale, 1.f, 1.f, 1.f);
-	//D3DXMatrixTranslation(&matTrans,
-	//	WINCX - 100.f,
-	//	WINCY - 50.f,
-	//	0.f);
+	D3DXMatrixIdentity(&matWorld);
+	D3DXMatrixScaling(&matScale, 1.5f, 1.5f, 1.f);
+	D3DXMatrixTranslation(&matTrans,
+		WINCX - 155.f,
+		WINCY - 125.f,
+		0.f);
 
-	//matWorld = matScale * matTrans;
+	matWorld = matScale * matTrans;
+
+	NULL_CHECK(pTexInfo);
+	
+	TCHAR szBullet[MID_STR] = L"";
+	swprintf_s(szBullet, L"%d / %d",
+		dynamic_cast<CWeapon*>(pPlayerGun)->GetGunData().iCurBullet,
+		dynamic_cast<CWeapon*>(pPlayerGun)->GetGunData().iMaxBullet);
 
 
+	CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
+	CDevice::GetInstance()->GetFont2()->DrawTextW(CDevice::GetInstance()->GetSprite(),
+		szBullet, lstrlen(szBullet), nullptr, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
 
-	//NULL_CHECK(pTexInfo);
+	// fdsajfklsdjfklsdjf
+	D3DXMatrixIdentity(&matWorld);
+	D3DXMatrixScaling(&matScale, 1.5f, 1.5f, 1.f);
+	D3DXMatrixTranslation(&matTrans,
+		WINCX - 25.f,
+		WINCY - 70.f,
+		0.f);
 
-	//fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
-	//fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
+	matWorld = matScale * matTrans;
 
-	//CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
-	//CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
-	//	&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+	swprintf_s(szBullet, L"%d",
+		dynamic_cast<CWeapon*>(pPlayerGun)->GetGunData().iMagazine);
+
+
+	CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
+	CDevice::GetInstance()->GetFont2()->DrawTextW(CDevice::GetInstance()->GetSprite(),
+		szBullet, lstrlen(szBullet), nullptr, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
+
 
 
 }

@@ -93,6 +93,20 @@ HRESULT CDevice::InitDevice()
 		return E_FAIL;
 	}
 
+	AddFontResourceEx(L"../Font/digital-7.ttf", FR_PRIVATE, 0);
+	tFontInfo.Height = 16;	// 높이
+	tFontInfo.Width = 8;	// 너비
+	tFontInfo.Weight = FW_HEAVY; // 두께
+	tFontInfo.Italic = FALSE;
+	tFontInfo.CharSet = DEFAULT_CHARSET; // 한글
+	lstrcpy(tFontInfo.FaceName, L"Digital-7"); // 글씨체
+
+	if (FAILED(D3DXCreateFontIndirect(m_pDevice, &tFontInfo, &m_pMyFont)))
+	{
+		ERR_MSG(L"Font Create Failed!!");
+		return E_FAIL;
+	}
+
 	if (FAILED(D3DXCreateLine(m_pDevice, &m_pLine)))
 	{
 		ERR_MSG(L"Line Create Failed!!");
@@ -137,6 +151,9 @@ void CDevice::Release()
 	// 순서 주의. m_p3D를 먼저 해제할 경우 m_pDevice는 소실된다.
 	if (m_pLine)
 		m_pLine->Release();
+
+	if (m_pMyFont)
+		m_pMyFont->Release();
 
 	if (m_pFont)
 		m_pFont->Release();

@@ -57,12 +57,16 @@ int CNormalMonster::Update()
 		m_iAlpha -= 3;
 		m_fJumpPow -= 2.f;
 		if (m_iAlpha < 0) {
+			
 			m_iAlpha = 0;
 			return DEAD_OBJ;
 		}
 
 		if (m_fDeadAnimTime > 1.f)
+		{
 			m_bMonsterJump = false;
+			//CSoundMgr::GetInstance()->PlaySound(L"Monster_Dead.wav", CSoundMgr::EFFECT);
+		}
 
 		if (m_fDeadAnimTime > 2.f)
 			return DEAD_OBJ;
@@ -176,6 +180,7 @@ void CNormalMonster::Release()
 void CNormalMonster::MonsterJump()
 {
 	if (m_bMonsterJump) {
+		
 		D3DXVECTOR3 vJump = m_tInfo.vPos + CScrollMgr::GetScroll()
 			- CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 		D3DXVec3Normalize(&vJump, &vJump);

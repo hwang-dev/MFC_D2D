@@ -56,14 +56,14 @@ void CMouse::Render()
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(200, 255, 255, 255));
 
+	if (g_bOnRect) {
 	/* ¸¶¿ì½º ÁÂÇ¥ */
 	TCHAR szPos[MIN_STR] = L"";
 	swprintf_s(szPos, L"%d, %d", (int)m_vMouse.x,
 		(int)m_vMouse.x);
-	CDevice::GetInstance()->GetFont()->DrawTextW(CDevice::GetInstance()->GetSprite(),
+	CDevice::GetInstance()->GetFont2()->DrawTextW(CDevice::GetInstance()->GetSprite(),
 		szPos, lstrlen(szPos), nullptr, 0, D3DCOLOR_ARGB(255, 255, 255, 255));
 
-	if (g_bOnRect) {
 		D3DXVECTOR2 vPoint[5] = {
 			{ (WINCX * 0.5f - 200.f), (WINCY * 0.5f - 200.f) },
 			{ (WINCX * 0.5f + 200.f), (WINCY * 0.5f - 200.f) },

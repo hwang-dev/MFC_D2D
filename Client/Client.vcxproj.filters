@@ -220,6 +220,12 @@
     <Filter Include="98.Managers\09.SoundMgr">
       <UniqueIdentifier>{86fafe62-1bb0-43e5-9046-420100721f73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Object\01.Monster\02.Boss\01.BossIMP">
+      <UniqueIdentifier>{2d8486ff-cd7e-4d2b-b13d-692de1dd154f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\01.Monster\02.Boss\00.BossImplement">
+      <UniqueIdentifier>{11786c02-e6fa-4e6a-80b0-2c9f976ad98e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -408,14 +414,17 @@
     <ClInclude Include="RoomMgr.h">
       <Filter>98.Managers\09.RoomMgr</Filter>
     </ClInclude>
-    <ClInclude Include="Boss2.h">
-      <Filter>01.Object\01.Monster\02.Boss</Filter>
-    </ClInclude>
     <ClInclude Include="Obstacle.h">
       <Filter>05.Box</Filter>
     </ClInclude>
     <ClInclude Include="SoundMgr.h">
       <Filter>98.Managers\09.SoundMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="BossIMP.h">
+      <Filter>01.Object\01.Monster\02.Boss\01.BossIMP</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss2.h">
+      <Filter>01.Object\01.Monster\02.Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -596,14 +605,17 @@
     <ClCompile Include="RoomMgr.cpp">
       <Filter>98.Managers\09.RoomMgr</Filter>
     </ClCompile>
-    <ClCompile Include="Boss2.cpp">
-      <Filter>01.Object\01.Monster\02.Boss</Filter>
-    </ClCompile>
     <ClCompile Include="Obstacle.cpp">
       <Filter>05.Box</Filter>
     </ClCompile>
     <ClCompile Include="SoundMgr.cpp">
       <Filter>98.Managers\09.SoundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="BossIMP.cpp">
+      <Filter>01.Object\01.Monster\02.Boss\01.BossIMP</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss2.cpp">
+      <Filter>01.Object\01.Monster\02.Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

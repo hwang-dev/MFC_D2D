@@ -60,10 +60,10 @@ void CSubTileMgr::Render()
 
 	for (size_t i = 0; i < m_vecSubTile.size(); ++i) {
 
-		if (m_vecSubTile[i]->vPos.x > vPlayerPos.x - WINCX * 0.5f &&
-			m_vecSubTile[i]->vPos.x < vPlayerPos.x + WINCX * 0.5f &&
-			m_vecSubTile[i]->vPos.y > vPlayerPos.y - WINCY * 0.5f &&
-			m_vecSubTile[i]->vPos.y < vPlayerPos.y + WINCY * 0.5f)
+		if (m_vecSubTile[i]->vPos.x > (vPlayerPos.x - WINCX * 0.5f) - 50.f &&
+			m_vecSubTile[i]->vPos.x < (vPlayerPos.x + WINCX * 0.5f) + 50.f&&
+			m_vecSubTile[i]->vPos.y > (vPlayerPos.y - WINCY * 0.5f) - 50.f&&
+			m_vecSubTile[i]->vPos.y < (vPlayerPos.y + WINCY * 0.5f) + 50.f)
 		{
 
 			D3DXMatrixIdentity(&matWorld);

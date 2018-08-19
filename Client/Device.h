@@ -17,6 +17,7 @@ public:
 	LPDIRECT3DDEVICE9 GetDevice() { return m_pDevice; }
 	LPD3DXSPRITE GetSprite() { return m_pSprite; }
 	LPD3DXFONT GetFont() { return m_pFont; }
+	LPD3DXFONT GetFont2() { return m_pMyFont; }
 	LPD3DXLINE GetLine() { return m_pLine; }
 
 private:
@@ -27,6 +28,7 @@ private:
 	LPDIRECT3DDEVICE9	m_pDevice;
 	LPD3DXSPRITE		m_pSprite;
 	LPD3DXFONT			m_pFont;
+	LPD3DXFONT			m_pMyFont;
 	LPD3DXLINE			m_pLine;
 };
 

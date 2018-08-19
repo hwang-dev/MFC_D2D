@@ -53,6 +53,7 @@ private:
 
 	DATA			m_tData;
 	float			m_fStepTime = 0.f;
+	bool			m_bIsMove = false;
 
 };
 
