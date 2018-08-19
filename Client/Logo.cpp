@@ -20,23 +20,25 @@ HRESULT CLogo::Initialize()
 
 void CLogo::Update()
 {
-
+	CMouse::GetInstance()->Update();
 }
 
 void CLogo::LateUpdate()
 {
 	
-
-
 	if (CKeyMgr::GetInstance()->KeyUp(KEY_LBUTTON))
 	{
+
 		CSoundMgr::GetInstance()->StopAll();
+		CSoundMgr::GetInstance()->PlaySound(L"Click.wav", CSoundMgr::EFFECT);
 		CSceneMgr::GetInstance()->SceneChange(CSceneMgr::LOBBY);
 	}
 }
 
 void CLogo::Render()
 {
+	CMouse::GetInstance()->Render();
+
 	D3DXMATRIX matWorld, matScale, matTrans;
 
 	D3DXMatrixIdentity(&matWorld);

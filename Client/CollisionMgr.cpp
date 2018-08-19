@@ -38,7 +38,7 @@ void CCollisionMgr::CollisionRect(OBJLIST & dstLst, OBJLIST & srcLst)
 				{
 					BYTE byRoom = pDst->GetInfo().byRoomNum;
 					dynamic_cast<CPlayer*>(pSrc)->SetRoomNumber(byRoom);
-					pDst->IsDead();
+					//pDst->IsDead();
 				}
 				else if (pSrc->GetObjectID() == OBJ_MOSTERBULLET && pDst->GetObjectID() == OBJ_PLAYER)
 				{

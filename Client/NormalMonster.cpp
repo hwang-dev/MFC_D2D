@@ -30,7 +30,7 @@ HRESULT CNormalMonster::Initialize()
 	m_fJumpPow = 200.f;
 
 	m_tInfo.byRoomNum = 2;
-	m_fAttackTime = 1.f;
+	m_fAttackTime = 0.7f;
 	return S_OK;
 }
 
@@ -197,6 +197,7 @@ void CNormalMonster::MonsterAttack()
 			CObjMgr::GetInstance()->AddObject(CAbstractFactory<CMonsterBullet>::CreateObj(m_tInfo.vPos),
 				OBJ_MOSTERBULLET);
 			m_fAttackTimer = 0;
+			CSoundMgr::GetInstance()->PlaySound(L"Revolver.wav", CSoundMgr::EFFECT);
 		}
 	}
 }

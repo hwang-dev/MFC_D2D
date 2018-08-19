@@ -6,7 +6,7 @@
 #include "Trigger.h"
 #include "Boss2.h"
 #include "Obstacle.h"
-
+#include "Dark2.h"
 CLobby::CLobby()
 {
 }
@@ -51,8 +51,13 @@ HRESULT CLobby::Initialize()
 	if (FAILED(temp2.LoadObstacle())) {
 		return E_FAIL;
 	}
-	CObjMgr::GetInstance()->AddObject(CAbstractFactory<CBoss2>::CreateObj(D3DXVECTOR3{ 445.f, 300.f, 0.f }),
-		OBJ_MONSTER);
+
+	CDark2 temp3;
+	if (FAILED(temp3.LoadDark())) {
+		return E_FAIL;
+	}
+
+
 
 	CRoomMgr::GetInstance()->Initialize();
 

@@ -170,6 +170,7 @@
     <ClInclude Include="CkeyUI.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="CollisionMgr.h" />
+    <ClInclude Include="Dark2.h" />
     <ClInclude Include="DataSubejct.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="Effect.h" />
@@ -242,6 +243,7 @@
     <ClCompile Include="CkeyUI.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
+    <ClCompile Include="Dark2.cpp" />
     <ClCompile Include="DataSubejct.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Effect.cpp" />

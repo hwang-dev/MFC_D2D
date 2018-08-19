@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "AnimEffect.h"
 #include "Obj.h"
+#include "NormalMonster.h"
 
 CAnimEffect::CAnimEffect()
 {
@@ -15,21 +16,36 @@ CAnimEffect::~CAnimEffect()
 
 HRESULT CAnimEffect::Initialize()
 {
+	
 	return S_OK;
 }
 
 void CAnimEffect::LateInit()
 {
+	if (!wcscmp(L"Portal", m_wstrStateKey.c_str()))
+		CSoundMgr::GetInstance()->PlaySound(L"Monster_Appear.wav", CSoundMgr::EFFECT);
 }
 
 int CAnimEffect::Update()
 {
 	CEffectIMP::LateInit();
 
-	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime() * 3.f;
+	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime() * 1.f;
 
 	if (m_tFrame.fFrame > m_tFrame.fMax)
-		return DEAD_OBJ;
+	{
+		if (!wcscmp(L"Portal", m_wstrStateKey.c_str())) {
+			D3DXVECTOR3 vPos = m_pObj->GetInfo().vPos;
+			CObjMgr::GetInstance()->AddObject(CAbstractFactory<CNormalMonster>::CreateObj(vPos),
+				OBJ_MONSTER);
+			return DEAD_OBJ;
+		}
+		else if (!wcscmp(L"Book", m_wstrStateKey.c_str())) {
+			m_tFrame.fFrame = 42.f;
+		}
+		else
+			return DEAD_OBJ;
+	}
 
 
 	return NO_EVENT;

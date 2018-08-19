@@ -43,15 +43,21 @@ int CEffect::Update()
 
 void CEffect::LateUpdate()
 {
+	CObj::LateInit();
+
 	m_pBridge->LateUpdate();
 }
 
 void CEffect::Render()
 {
+	CObj::LateInit();
+
 	m_pBridge->Render();
 }
 
 void CEffect::Release()
 {
+	CObj::LateInit();
+
 	SafeDelete(m_pBridge);
 }

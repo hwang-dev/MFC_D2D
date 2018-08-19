@@ -193,6 +193,7 @@
   <ItemGroup>
     <ClInclude Include="BossTool.h" />
     <ClInclude Include="Box.h" />
+    <ClInclude Include="Dark.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="FileInfo.h" />
     <ClInclude Include="FilePath.h" />
@@ -221,6 +222,7 @@
   <ItemGroup>
     <ClCompile Include="BossTool.cpp" />
     <ClCompile Include="Box.cpp" />
+    <ClCompile Include="Dark.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="FileInfo.cpp" />
     <ClCompile Include="FilePath.cpp" />

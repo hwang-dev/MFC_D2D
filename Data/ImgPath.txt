@@ -10,6 +10,7 @@ Boss|BSkill|6|..\Texture\Boss\BSkill\%d.png
 Bullet|BossBullet|2|..\Texture\Bullet\BossBullet\%d.png
 Bullet|MonsterBullet|2|..\Texture\Bullet\MonsterBullet\%d.png
 Bullet|Normal|1|..\Texture\Bullet\Normal\%d.png
+Effect|Book|42|..\Texture\Effect\Book\%d.png
 Effect|Portal|14|..\Texture\Effect\Portal\%d.png
 Effect|Step|7|..\Texture\Effect\Step\%d.png
 Main|Logo|1|..\Texture\Main\Logo\%d.png
@@ -56,6 +57,7 @@ Move|Up|6|..\Texture\Player\Move\Up\%d.png
 Move|Up_Left|6|..\Texture\Player\Move\Up_Left\%d.png
 Move|Up_Right|6|..\Texture\Player\Move\Up_Right\%d.png
 Terrain|Box|1|..\Texture\Terrain\Box\%d.png
+Terrain|Dark|1|..\Texture\Terrain\Dark\%d.png
 Terrain|SubTile|66|..\Texture\Terrain\SubTile\SubTile%d.png
 Terrain|Tile|107|..\Texture\Terrain\Tile\Tile%d.png
 Terrain|Trigger|3|..\Texture\Terrain\Trigger\%d.png

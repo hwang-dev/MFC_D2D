@@ -53,6 +53,7 @@ CToolView::~CToolView()
 	CTerrain::GetInstance()->DestroyInstance();
 	CTriggerMgr::GetInstance()->DestroyInstance();
 	CBox::GetInstance()->DestroyInstance();
+	CDark::GetInstance()->DestroyInstance();
 
 	CTextureMgr::GetInstance()->DestroyInstance();
 	CDevice::GetInstance()->DestroyInstance();
@@ -81,6 +82,7 @@ void CToolView::OnDraw(CDC* /*pDC*/)
 	CSubTile::GetInstance()->Render();
 	CTriggerMgr::GetInstance()->Render();
 	CBox::GetInstance()->Render();
+	CDark::GetInstance()->Render();
 
 	CDevice::GetInstance()->Render_End();
 
@@ -180,6 +182,8 @@ void CToolView::OnInitialUpdate()
 	CBox::GetInstance()->Initialize();
 	CBox::GetInstance()->SetMainView(this);
 
+	CDark::GetInstance()->Initialize();
+	CDark::GetInstance()->SetMainView(this);
 
 	m_bIsMapTool = false;
 	m_bOnSubTileTool = false;
@@ -280,6 +284,19 @@ void CToolView::OnLButtonDown(UINT nFlags, CPoint point)
 		D3DXVECTOR3 vPos = CTerrain::GetInstance()->GetTilePos(iIndex);
 
 		CBox::GetInstance()->AddTrigger(vPos);
+		Invalidate(FALSE);
+	}
+	else if (m_bOnBossTool)
+	{
+		int iIndex = CTerrain::GetInstance()->GetTileIndex(D3DXVECTOR3((float)point.x, (float)point.y, 0.f));
+
+		// 타일 인덱스에서 벗어나면 종료
+		if (iIndex < 0 || (size_t)iIndex > CTerrain::GetInstance()->GetVecTile().size())
+			return;
+		D3DXVECTOR3 vPos = CTerrain::GetInstance()->GetTilePos(iIndex);
+
+		BYTE byRoom = pMyForm->m_BossTool.m_byRoom;
+		CDark::GetInstance()->AddDark(vPos, byRoom);
 		Invalidate(FALSE);
 	}
 	UpdateData(FALSE);

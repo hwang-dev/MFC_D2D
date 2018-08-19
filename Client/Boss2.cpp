@@ -7,6 +7,9 @@
 #include "BossSkillIMP.h"
 #include "BossHalfIMP.h"
 
+#include "Effect.h"
+#include "AnimEffect.h"
+
 CBoss2::CBoss2()
 {
 }
@@ -54,6 +57,9 @@ int CBoss2::Update()
 {
 	if (m_iMonsterHp < 0)
 	{
+		CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(D3DXVECTOR3(WINCX*0.5f + CScrollMgr::GetScroll().x, 
+			WINCY*0.5f + CScrollMgr::GetScroll().y, 0.f), L"Book", { 0.f, 42.f })
+			, OBJ_EFFECT);
 		m_iMonsterHp = 0;
 		return DEAD_OBJ;
 	}

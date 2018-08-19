@@ -79,6 +79,9 @@
     <Filter Include="94.Box">
       <UniqueIdentifier>{988ce082-f751-499b-b663-bc48d01aabe2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="93.Dark">
+      <UniqueIdentifier>{e2daf48a-ba2b-44a3-b552-530df9ce84af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainFrm.h">
@@ -159,6 +162,9 @@
     <ClInclude Include="Box.h">
       <Filter>94.Box</Filter>
     </ClInclude>
+    <ClInclude Include="Dark.h">
+      <Filter>93.Dark</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -232,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="Box.cpp">
       <Filter>94.Box</Filter>
+    </ClCompile>
+    <ClCompile Include="Dark.cpp">
+      <Filter>93.Dark</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

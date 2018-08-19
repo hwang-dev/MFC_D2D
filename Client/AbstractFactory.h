@@ -57,7 +57,7 @@ public:
 		dynamic_cast<T1*>(pEffect)->SetBridge(pAnim);
 
 		return pEffect;
-	}
+ 	}
 };
 
 //template <typename T>

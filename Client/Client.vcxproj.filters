@@ -241,6 +241,9 @@
     <Filter Include="01.Object\03.Bullet\04.BossBullet2">
       <UniqueIdentifier>{6cef7b17-744b-49b2-9806-4093751679d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06.Dark">
+      <UniqueIdentifier>{8eaef267-f2b5-43ea-b88b-8215b39178f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -456,6 +459,9 @@
     <ClInclude Include="BossBullet2.h">
       <Filter>01.Object\03.Bullet\04.BossBullet2</Filter>
     </ClInclude>
+    <ClInclude Include="Dark2.h">
+      <Filter>06.Dark</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -661,6 +667,9 @@
     </ClCompile>
     <ClCompile Include="BossBullet2.cpp">
       <Filter>01.Object\03.Bullet\04.BossBullet2</Filter>
+    </ClCompile>
+    <ClCompile Include="Dark2.cpp">
+      <Filter>06.Dark</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

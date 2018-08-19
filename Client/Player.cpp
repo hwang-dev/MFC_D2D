@@ -507,6 +507,7 @@ void CPlayer::PlayerDodge()
 void CPlayer::MakeBullet()
 {
 	dynamic_cast<CWeapon*>(m_pCurGun)->CreateBullet();
+
 }
 
 void CPlayer::ChangeWeapon()
