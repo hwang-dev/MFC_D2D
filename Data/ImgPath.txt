@@ -7,6 +7,7 @@ BMove|Up|1|..\Texture\Boss\BMove\Up\%d.png
 BMove|Up_Left|1|..\Texture\Boss\BMove\Up_Left\%d.png
 BMove|Up_Right|1|..\Texture\Boss\BMove\Up_Right\%d.png
 Boss|BSkill|6|..\Texture\Boss\BSkill\%d.png
+Bullet|BossBullet|2|..\Texture\Bullet\BossBullet\%d.png
 Bullet|MonsterBullet|2|..\Texture\Bullet\MonsterBullet\%d.png
 Bullet|Normal|1|..\Texture\Bullet\Normal\%d.png
 Effect|Portal|14|..\Texture\Effect\Portal\%d.png
@@ -69,4 +70,5 @@ Revolver|Attack|3|..\Texture\Weapon\Revolver\Attack\%d.png
 Revolver|Reload|3|..\Texture\Weapon\Revolver\Reload\%d.png
 Revolver|Stance|1|..\Texture\Weapon\Revolver\Stance\%d.png
 Shotgun|Attack|4|..\Texture\Weapon\Shotgun\Attack\%d.png
+Shotgun|Reload|3|..\Texture\Weapon\Shotgun\Reload\%d.png
 Shotgun|Stance|1|..\Texture\Weapon\Shotgun\Stance\%d.png

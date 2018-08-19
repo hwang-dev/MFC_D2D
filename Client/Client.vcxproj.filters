@@ -223,8 +223,20 @@
     <Filter Include="01.Object\01.Monster\02.Boss\01.BossIMP">
       <UniqueIdentifier>{2d8486ff-cd7e-4d2b-b13d-692de1dd154f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Object\01.Monster\02.Boss\00.BossImplement">
+    <Filter Include="01.Object\01.Monster\02.Boss\01.BossIMP\00.Noraml">
+      <UniqueIdentifier>{c7765924-45df-4bac-b29d-7cdbcc53e989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\01.Monster\02.Boss\00.BossAbstraction">
       <UniqueIdentifier>{11786c02-e6fa-4e6a-80b0-2c9f976ad98e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\03.Bullet\03.BossBullet">
+      <UniqueIdentifier>{93be775f-1008-44ff-ba99-4e6124033bce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\01.Monster\02.Boss\01.BossIMP\02.Skill">
+      <UniqueIdentifier>{e303693a-b7d9-44d6-9219-4ca1df2aadd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Object\01.Monster\02.Boss\01.BossIMP\01.Half">
+      <UniqueIdentifier>{7e4568b2-80f4-4a8f-9646-dc9d17473c86}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -423,8 +435,20 @@
     <ClInclude Include="BossIMP.h">
       <Filter>01.Object\01.Monster\02.Boss\01.BossIMP</Filter>
     </ClInclude>
+    <ClInclude Include="BossNormalIMP.h">
+      <Filter>01.Object\01.Monster\02.Boss\01.BossIMP\00.Noraml</Filter>
+    </ClInclude>
     <ClInclude Include="Boss2.h">
-      <Filter>01.Object\01.Monster\02.Boss</Filter>
+      <Filter>01.Object\01.Monster\02.Boss\00.BossAbstraction</Filter>
+    </ClInclude>
+    <ClInclude Include="BossBullet.h">
+      <Filter>01.Object\03.Bullet\03.BossBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BossSkillIMP.h">
+      <Filter>01.Object\01.Monster\02.Boss\01.BossIMP\02.Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="BossHalfIMP.h">
+      <Filter>01.Object\01.Monster\02.Boss\01.BossIMP\01.Half</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -614,8 +638,20 @@
     <ClCompile Include="BossIMP.cpp">
       <Filter>01.Object\01.Monster\02.Boss\01.BossIMP</Filter>
     </ClCompile>
+    <ClCompile Include="BossNormalIMP.cpp">
+      <Filter>01.Object\01.Monster\02.Boss\01.BossIMP\00.Noraml</Filter>
+    </ClCompile>
     <ClCompile Include="Boss2.cpp">
-      <Filter>01.Object\01.Monster\02.Boss</Filter>
+      <Filter>01.Object\01.Monster\02.Boss\00.BossAbstraction</Filter>
+    </ClCompile>
+    <ClCompile Include="BossBullet.cpp">
+      <Filter>01.Object\03.Bullet\03.BossBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BossSkillIMP.cpp">
+      <Filter>01.Object\01.Monster\02.Boss\01.BossIMP\02.Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="BossHalfIMP.cpp">
+      <Filter>01.Object\01.Monster\02.Boss\01.BossIMP\01.Half</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

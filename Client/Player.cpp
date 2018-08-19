@@ -149,6 +149,16 @@ void CPlayer::LateUpdate()
 	/* 플레이어 애니메이션 */
 	PlayAnimation();
 	PlayerDodge();
+
+	if (m_eCurStance == MOVE)
+	{
+		if(m_fWalkSoundDelay > 0.2f)
+		{
+			CSoundMgr::GetInstance()->PlaySound(L"Walk.wav", CSoundMgr::EFFECT);
+			m_fWalkSoundDelay = 0.f;
+		}
+	}
+	m_fWalkSoundDelay += CTimeMgr::GetInstance()->GetTime();
 }
 
 void CPlayer::Render()

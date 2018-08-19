@@ -1,11 +1,11 @@
 #pragma once
 
 class CObj;
-class BossIMP
+class CBossIMP
 {
 public:
-	BossIMP();
-	virtual ~BossIMP();
+	CBossIMP();
+	virtual ~CBossIMP();
 
 public:
 	void SetObj(CObj* pObj) { m_pObj = pObj; }
@@ -21,6 +21,9 @@ public:
 protected:
 	CObj*		m_pObj = nullptr;
 	bool		m_bIsInit = nullptr;
-	
+	float		m_fSpeed = 0.f;
+	float		m_fPatternTime = 0.f;
+	float		m_fPatternDelay = 0.f;
+	float		m_fAttackTime = 0.f;
 };
 

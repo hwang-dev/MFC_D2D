@@ -30,7 +30,7 @@ HRESULT CRevolver::Initialize()
 	m_tGunData.iCurBullet = m_tGunData.iMaxBullet;
 	m_tGunData.iMagazineMax = 10;
 	m_tGunData.iMagazine = m_tGunData.iMagazineMax;
-	m_fAnimSpeed = 2.f;
+	m_fAnimSpeed = 4.f;
 
 	return S_OK;
 }
@@ -56,9 +56,25 @@ void CRevolver::LateUpdate()
 		m_bCanShot = true;
 	}
 
-	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime();
+	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime() * m_fAnimSpeed;
 	if (m_tFrame.fFrame > m_tFrame.fMax) {
-		m_tFrame.fFrame = 0.f;
+		
+		if (!wcscmp(L"Attack", m_wstrStateKey.c_str()))
+		{
+			m_wstrStateKey = L"Stance";
+			m_tFrame.fFrame = 0.f;
+			m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
+				m_wstrStateKey.c_str());
+		}
+		else if (!wcscmp(L"Reload", m_wstrStateKey.c_str()))
+		{
+			m_wstrStateKey = L"Stance";
+			m_tFrame.fFrame = 0.f;
+			m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
+				m_wstrStateKey.c_str());
+		}
+		else
+			m_tFrame.fFrame = 0.f;
 
 	}
 }
@@ -85,6 +101,10 @@ void CRevolver::CreateBullet()
 			m_tGunData.iMagazine--;
 			m_tGunData.iCurBullet--;
 
+			m_tFrame.fFrame = 0;
+			m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
+				m_wstrStateKey.c_str());
+
 			/* 카메라 흔들림 */
 			CScrollMgr::CameraShakeNormal();
 			CSoundMgr::GetInstance()->PlaySound(L"Revolver.wav", CSoundMgr::EFFECT);
@@ -96,6 +116,12 @@ void CRevolver::CreateBullet()
 
 void CRevolver::WeaponReload()
 {
+	m_wstrStateKey = L"Reload";
+	m_tFrame.fFrame = 0;
+	m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
+		m_wstrStateKey.c_str());
+
+
 	int iReloadCount = m_tGunData.iMagazineMax - m_tGunData.iMagazine;
 
 	m_tGunData.iMagazine += iReloadCount;

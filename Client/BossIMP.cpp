@@ -2,16 +2,16 @@
 #include "BossIMP.h"
 
 
-BossIMP::BossIMP()
+CBossIMP::CBossIMP()
 {
 }
 
 
-BossIMP::~BossIMP()
+CBossIMP::~CBossIMP()
 {
 }
 
-void BossIMP::LateInit()
+void CBossIMP::LateInit()
 {
 	if (m_bIsInit == false) {
 		this->LateInit();

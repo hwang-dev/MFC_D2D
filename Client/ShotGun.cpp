@@ -30,6 +30,8 @@ HRESULT CShotGun::Initialize()
 	m_tGunData.iMagazineMax = 5;
 	m_tGunData.iMagazine = m_tGunData.iMagazineMax;
 
+	//
+	m_fAnimSpeed = 4.f;
 	return S_OK;
 }
 
@@ -52,6 +54,29 @@ void CShotGun::LateUpdate()
 		m_fWeaponDelayTime = 0.f;
 		m_bCanShot = true;
 	}
+
+	// 총 애니메이션
+	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime() * m_fAnimSpeed;
+	if (m_tFrame.fFrame > m_tFrame.fMax) {
+
+		if (!wcscmp(L"Attack", m_wstrStateKey.c_str()))
+		{
+			m_wstrStateKey = L"Stance";
+			m_tFrame.fFrame = 0.f;
+			m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
+				m_wstrStateKey.c_str());
+		}
+		else if (!wcscmp(L"Reload", m_wstrStateKey.c_str()))
+		{
+			m_wstrStateKey = L"Stance";
+			m_tFrame.fFrame = 0.f;
+			m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
+				m_wstrStateKey.c_str());
+		}
+		else
+			m_tFrame.fFrame = 0.f;
+
+	}
 }
 
 void CShotGun::Render()
@@ -65,6 +90,7 @@ void CShotGun::Release()
 void CShotGun::CreateBullet()
 {
 	if (m_bCanShot) {
+		m_wstrStateKey = L"Attack";
 		if (m_tGunData.iMagazine > 0) {
 			D3DXVECTOR3 vLength = CMouse::GetInstance()->GetMousePos() + CScrollMgr::GetScroll() - CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 			D3DXVec3Normalize(&vLength, &vLength);
@@ -77,6 +103,10 @@ void CShotGun::CreateBullet()
 				CScrollMgr::CameraShakeNormal();
 			}
 
+			m_tFrame.fFrame = 0;
+			m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
+				m_wstrStateKey.c_str());
+
 			CSoundMgr::GetInstance()->PlaySound(L"Shotgun.wav", CSoundMgr::EFFECT);
 			m_bCanShot = false;
 		}
@@ -85,8 +115,12 @@ void CShotGun::CreateBullet()
 
 void CShotGun::WeaponReload()
 {
-	int iReloadCount = m_tGunData.iMagazineMax - m_tGunData.iMagazine;
+	m_wstrStateKey = L"Reload";
+	m_tFrame.fFrame = 0;
+	m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
+		m_wstrStateKey.c_str());
 
+	int iReloadCount = m_tGunData.iMagazineMax - m_tGunData.iMagazine;
 	m_tGunData.iMagazine += iReloadCount;
 	m_tGunData.iCurBullet -= iReloadCount;
 }

@@ -160,7 +160,11 @@
     <ClInclude Include="AstarMgr.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Boss2.h" />
+    <ClInclude Include="BossBullet.h" />
+    <ClInclude Include="BossHalfIMP.h" />
     <ClInclude Include="BossIMP.h" />
+    <ClInclude Include="BossNormalIMP.h" />
+    <ClInclude Include="BossSkillIMP.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CkeyUI.h" />
     <ClInclude Include="Client.h" />
@@ -227,7 +231,11 @@
     <ClCompile Include="AstarMgr.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Boss2.cpp" />
+    <ClCompile Include="BossBullet.cpp" />
+    <ClCompile Include="BossHalfIMP.cpp" />
     <ClCompile Include="BossIMP.cpp" />
+    <ClCompile Include="BossNormalIMP.cpp" />
+    <ClCompile Include="BossSkillIMP.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CkeyUI.cpp" />
     <ClCompile Include="Client.cpp" />

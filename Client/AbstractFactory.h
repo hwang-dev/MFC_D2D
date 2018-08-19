@@ -59,3 +59,13 @@ public:
 		return pEffect;
 	}
 };
+
+//template <typename T>
+//class IMPFactory
+//{
+//public:
+//	static CBossIMP* CreateIMP()
+//	{
+//		T = new T
+//	}
+//};

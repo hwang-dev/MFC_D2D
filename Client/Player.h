@@ -54,6 +54,7 @@ private:
 	DATA			m_tData;
 	float			m_fStepTime = 0.f;
 	bool			m_bIsMove = false;
+	float			m_fWalkSoundDelay = 0;
 
 };
 
