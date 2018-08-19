@@ -12,7 +12,7 @@ public:
 	void SetInfo(INFO& tInfo) { m_tInfo = tInfo; }
 	
 	const FRAME& GetFrame() { return m_tFrame; }
-
+	void SetDir(const D3DXVECTOR3 _vDir) { m_tInfo.vDir = _vDir; }
 
 	const wstring& GetObjKey() { return m_wstrObjKey; }
 	const wstring& GetSateKey() { return m_wstrStateKey; }

@@ -31,7 +31,7 @@ void CCollisionMgr::CollisionRect(OBJLIST & dstLst, OBJLIST & srcLst)
 				if (pSrc->GetObjectID() == OBJ_BULLET && pDst->GetObjectID() == OBJ_MONSTER) 
 				{
 					int iDamage = dynamic_cast<CBullet*>(pSrc)->GetBulletDamage();
-					dynamic_cast<CMonster*>(pDst)->SetMonsterHP(iDamage);
+					dynamic_cast<CMonster*>(pDst)->SetMonsterHP(/*true, */iDamage);
 					pSrc->IsDead();
 				}
 				else if (pSrc->GetObjectID() == OBJ_PLAYER && pDst->GetObjectID() == OBJ_TRIGGER) 

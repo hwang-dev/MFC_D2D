@@ -7,6 +7,7 @@ D3DXVECTOR3 CScrollMgr::m_vCamera = {};
 float CScrollMgr::m_fShakeTime = 0.f;
 int CScrollMgr::m_iRandom = 0;
 bool CScrollMgr::m_bIsShaking = false;
+
 CScrollMgr::CScrollMgr()
 {
 }

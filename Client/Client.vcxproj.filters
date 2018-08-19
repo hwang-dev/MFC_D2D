@@ -238,6 +238,9 @@
     <Filter Include="01.Object\01.Monster\02.Boss\01.BossIMP\01.Half">
       <UniqueIdentifier>{7e4568b2-80f4-4a8f-9646-dc9d17473c86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Object\03.Bullet\04.BossBullet2">
+      <UniqueIdentifier>{6cef7b17-744b-49b2-9806-4093751679d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device.h">
@@ -450,6 +453,9 @@
     <ClInclude Include="BossHalfIMP.h">
       <Filter>01.Object\01.Monster\02.Boss\01.BossIMP\01.Half</Filter>
     </ClInclude>
+    <ClInclude Include="BossBullet2.h">
+      <Filter>01.Object\03.Bullet\04.BossBullet2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -652,6 +658,9 @@
     </ClCompile>
     <ClCompile Include="BossHalfIMP.cpp">
       <Filter>01.Object\01.Monster\02.Boss\01.BossIMP\01.Half</Filter>
+    </ClCompile>
+    <ClCompile Include="BossBullet2.cpp">
+      <Filter>01.Object\03.Bullet\04.BossBullet2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

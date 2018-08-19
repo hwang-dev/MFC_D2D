@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "BossHalfIMP.h"
 #include "Obj.h"
+#include "BossBullet2.h"
 
 CBossHalfIMP::CBossHalfIMP()
 {
@@ -23,6 +24,15 @@ void CBossHalfIMP::LateInit()
 int CBossHalfIMP::Update()
 {
 	LateInit();
+
+	// ÃÑ¾Ë ¹ß»ç
+	for (int i = 10; i < 10; ++i)
+	{
+		CObjMgr::GetInstance()->AddObject(CAbstractFactory<CBossBullet2>::CreateObj(),
+			OBJ_MOSTERBULLET);
+	}
+
+
 	return NO_EVENT;
 }
 

@@ -25,14 +25,13 @@ public:
 
 private:
 	void AstarMove();
-	void BossAttack();
 	void PatternChange();
-	void PatternRandom();
 	
 private:
 	CBossIMP*	m_pBridge = nullptr;
 	PATTERN		m_eCurPattern = END;
 	PATTERN		m_ePrePattern = END;
 	float		m_fPatternTime = 0.f;
+	int			m_iCurHp = 0;
 };
 

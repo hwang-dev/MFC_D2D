@@ -161,6 +161,7 @@
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Boss2.h" />
     <ClInclude Include="BossBullet.h" />
+    <ClInclude Include="BossBullet2.h" />
     <ClInclude Include="BossHalfIMP.h" />
     <ClInclude Include="BossIMP.h" />
     <ClInclude Include="BossNormalIMP.h" />
@@ -232,6 +233,7 @@
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Boss2.cpp" />
     <ClCompile Include="BossBullet.cpp" />
+    <ClCompile Include="BossBullet2.cpp" />
     <ClCompile Include="BossHalfIMP.cpp" />
     <ClCompile Include="BossIMP.cpp" />
     <ClCompile Include="BossNormalIMP.cpp" />

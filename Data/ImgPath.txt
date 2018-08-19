@@ -59,6 +59,7 @@ Terrain|Box|1|..\Texture\Terrain\Box\%d.png
 Terrain|SubTile|66|..\Texture\Terrain\SubTile\SubTile%d.png
 Terrain|Tile|107|..\Texture\Terrain\Tile\Tile%d.png
 Terrain|Trigger|3|..\Texture\Terrain\Trigger\%d.png
+UI|Boss|2|..\Texture\UI\Boss\%d.png
 UI|Hp|3|..\Texture\UI\Hp\%d.png
 UI|Key|1|..\Texture\UI\Key\%d.png
 UI|Money|1|..\Texture\UI\Money\%d.png

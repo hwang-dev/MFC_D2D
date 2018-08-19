@@ -9,7 +9,15 @@ public:
 	virtual ~CMonster();
 
 public:
-	void SetMonsterHP(int iDamage) { m_iMonsterHp -= iDamage; }
+	void SetMonsterHP(/*bool _bDamage, */int iDamage) 
+	{
+		//m_bIsDamage = _bDamage;
+		//if (m_bIsDamage)
+		//{
+			m_iMonsterHp -= iDamage;
+		//	m_bIsDamage = false;
+		//}
+	}
 
 protected:
 	void MonsterDirChange();
@@ -37,5 +45,6 @@ protected:
 	bool		m_bMonsterJump;
 	float		m_fJumpPow;
 	CMonsterIMP* m_pBridge = nullptr;
+	bool		m_bIsDamage = false;
 };
 

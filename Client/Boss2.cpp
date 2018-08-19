@@ -27,6 +27,7 @@ HRESULT CBoss2::Initialize()
 	m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
 		m_wstrStateKey.c_str());
 	m_iMonsterHp = 50;
+	m_iCurHp = m_iMonsterHp;
 	m_iAlpha = 255;
 	m_tInfo.vLook = { 1.f, 0.f, 0.f };
 	m_fSpeed = 30.f;
@@ -40,7 +41,8 @@ void CBoss2::LateInit()
 	m_pTarget = CObjMgr::GetInstance()->GetPlayer();
 
 	// 처음 브릿지
-	m_pBridge = new CBossNormalIMP;
+	//m_pBridge = new CBossNormalIMP;
+	m_pBridge = new CBossHalfIMP;
 	m_pBridge->Initialize();
 	
 	m_pBridge->SetObj(this);
@@ -50,6 +52,12 @@ void CBoss2::LateInit()
 
 int CBoss2::Update()
 {
+	if (m_iMonsterHp < 0)
+	{
+		m_iMonsterHp = 0;
+		return DEAD_OBJ;
+	}
+
 	PatternChange();
 
 	// 행렬 계산
@@ -76,13 +84,15 @@ void CBoss2::LateUpdate()
 	//방향 변경
 	if (m_eCurPattern != SKILL)
 	{
-		SetMonsterDir();
-		MonsterDirChange();
 
 		m_tInfo.vDir = m_pTarget->GetInfo().vPos - m_tInfo.vPos;
 		D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
 
 		m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+
+		SetMonsterDir();
+		m_wstrObjKey = L"BMove";
+		MonsterDirChange();
 	}
 	m_fAttackTimer += CTimeMgr::GetInstance()->GetTime();
 
@@ -107,6 +117,49 @@ void CBoss2::Render()
 	if (g_bOnRect)
 		RenderLine();
 
+	// 보스 UI
+	D3DXMATRIX matWorld, matScale, matTrans;
+	
+	D3DXMatrixIdentity(&matWorld);
+	D3DXMatrixScaling(&matScale, 0.7f, 0.7f, 1.f);
+	D3DXMatrixTranslation(&matTrans,
+		WINCX * 0.4f,
+		(float)WINCY - 100.f,
+		0.f);
+
+	matWorld = matScale * matTrans;
+
+	const TEXINFO* pTexInfo = CTextureMgr::GetInstance()->GetTexture(L"UI", L"Boss", 1);
+
+	NULL_CHECK(pTexInfo);
+
+	float fCenterX = pTexInfo->tImgInfo.Width * 0.5f;
+	float fCenterY = pTexInfo->tImgInfo.Height * 0.5f;
+
+	CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
+	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
+		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	// HP Bar
+	D3DXMatrixIdentity(&matWorld);
+	D3DXMatrixScaling(&matScale, (float)m_iMonsterHp / (float)m_iCurHp, 1.5f, 1.f);
+	D3DXMatrixTranslation(&matTrans,
+		WINCX * 0.4f,
+		(float)WINCY + 100.f,
+		0.f);
+
+	matWorld = matScale * matTrans;
+
+	pTexInfo = CTextureMgr::GetInstance()->GetTexture(L"UI", L"Boss", 0);
+
+	NULL_CHECK(pTexInfo);
+
+	CDevice::GetInstance()->GetSprite()->SetTransform(&matWorld);
+	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
+		&D3DXVECTOR3(0.f, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+
+
 	m_pBridge->Render();
 }
 
@@ -119,10 +172,7 @@ void CBoss2::AstarMove()
 {
 }
 
-void CBoss2::BossAttack()
-{
 
-}
 
 void CBoss2::PatternChange()
 {
@@ -140,7 +190,8 @@ void CBoss2::PatternChange()
 			switch (m_eCurPattern)
 			{
 			case NORMAL:
-				m_pBridge = new CBossNormalIMP;
+				//m_pBridge = new CBossNormalIMP;
+				m_pBridge = new CBossHalfIMP;
 				m_pBridge->Initialize();
 				m_wstrObjKey = L"BMove";
 				m_wstrStateKey = L"BDown";
@@ -169,6 +220,3 @@ void CBoss2::PatternChange()
 	}
 }
 
-void CBoss2::PatternRandom()
-{
-}
