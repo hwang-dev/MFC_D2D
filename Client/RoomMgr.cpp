@@ -63,8 +63,9 @@ void CRoomMgr::Update()
 	{
 		if (m_bEnterRoom3 == false) 
 		{
-			CObjMgr::GetInstance()->AddObject(CAbstractFactory<CBoss2>::CreateObj(D3DXVECTOR3{ 591.f, 1378.f, 0.f }),
-				OBJ_MONSTER);
+			D3DXVECTOR3 vPos = CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
+			CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(vPos, L"Boss", { 0.f, 12.f })
+				, OBJ_EFFECT);
 			m_bEnterRoom3 = true;
 		}
 	}

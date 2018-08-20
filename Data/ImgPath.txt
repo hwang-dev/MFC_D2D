@@ -11,6 +11,7 @@ Bullet|BossBullet|2|..\Texture\Bullet\BossBullet\%d.png
 Bullet|MonsterBullet|2|..\Texture\Bullet\MonsterBullet\%d.png
 Bullet|Normal|1|..\Texture\Bullet\Normal\%d.png
 Effect|Book|42|..\Texture\Effect\Book\%d.png
+Effect|Boss|12|..\Texture\Effect\Boss\%d.png
 Effect|Portal|14|..\Texture\Effect\Portal\%d.png
 Effect|Step|7|..\Texture\Effect\Step\%d.png
 Main|Logo|1|..\Texture\Main\Logo\%d.png

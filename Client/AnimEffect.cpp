@@ -2,7 +2,7 @@
 #include "AnimEffect.h"
 #include "Obj.h"
 #include "NormalMonster.h"
-
+#include "Boss2.h"
 CAnimEffect::CAnimEffect()
 {
 	ZeroMemory(&m_tFrame, sizeof(FRAME));
@@ -41,7 +41,12 @@ int CAnimEffect::Update()
 			return DEAD_OBJ;
 		}
 		else if (!wcscmp(L"Book", m_wstrStateKey.c_str())) {
-			m_tFrame.fFrame = 42.f;
+			m_tFrame.fFrame = 41.f;
+		}
+		if (!wcscmp(L"Boss", m_wstrStateKey.c_str())) {
+			CObjMgr::GetInstance()->AddObject(CAbstractFactory<CBoss2>::CreateObj(D3DXVECTOR3{ 591.f, 1378.f, 0.f }),
+				OBJ_MONSTER);
+			return DEAD_OBJ;
 		}
 		else
 			return DEAD_OBJ;

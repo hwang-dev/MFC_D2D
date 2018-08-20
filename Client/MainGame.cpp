@@ -58,8 +58,8 @@ void CMainGame::Update()
 void CMainGame::LateUpdate()
 {
 	
+	CSoundMgr::GetInstance()->UpdateSound();
 	CSceneMgr::GetInstance()->LateUpdate();
-
 	// 충돌 렉트
 	if (CKeyMgr::GetInstance()->KeyDown(KEY_F1)) {
 		if (g_bOnRect)

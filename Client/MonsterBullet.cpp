@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "MonsterBullet.h"
 
+#include "Effect.h"
+#include "AnimEffect.h"
 
 CMonsterBullet::CMonsterBullet()
 {

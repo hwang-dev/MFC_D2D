@@ -4,7 +4,6 @@
 #include "Bullet.h"
 #include "Monster.h"
 #include "Player.h"
-
 CCollisionMgr::CCollisionMgr() {}
 
 
@@ -45,6 +44,7 @@ void CCollisionMgr::CollisionRect(OBJLIST & dstLst, OBJLIST & srcLst)
 					if (dynamic_cast<CPlayer*>(pDst)->GetPlayerStance() != DODGE) {
 						dynamic_cast<CPlayer*>(pDst)->SetPlayerHp();
 						pSrc->IsDead();
+						CScrollMgr::CameraShakeNormal();
 					}
 				}
 				else if (pSrc->GetObjectID() == OBJ_BULLET && pDst->GetObjectID() == OBJ_OBSTACLE)

@@ -45,7 +45,7 @@ void CDark2::Render()
 
 	if (m_tInfo.byRoomNum == byPlayerRoom)
 	{
-		m_iAlpha = 100;
+		m_iAlpha = 80;
 	}
 	else
 		m_iAlpha = 230;

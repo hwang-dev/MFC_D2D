@@ -41,6 +41,21 @@ public:
 		pObj->SetInfo(tInfo);
 		return pObj;
 	}
+
+	static CObj* CreateObj(D3DXVECTOR3& vPos, float _fAngle)
+	{
+		CObj* pObj = new T;
+
+		if (FAILED(pObj->Initialize()))
+		{
+			SafeDelete(pObj);
+		}
+
+
+		pObj->SetPos(vPos);
+		pObj->SetAngle(_fAngle);
+		return pObj;
+	}
 };
 
 template <typename T1, typename T2>

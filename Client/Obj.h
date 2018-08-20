@@ -19,7 +19,7 @@ public:
 	void IsDead() { this->m_bIsDead = true; }
 	
 	const OBJID& GetObjectID() { return m_eObjectID; }
-
+	void SetAngle(float _fAngle) { m_fAngle = _fAngle; }
 public:
 	virtual HRESULT Initialize() PURE;
 	virtual void LateInit();
@@ -40,7 +40,7 @@ protected:
 	float		m_fSpeed;
 	bool		m_bIsInit;
 	bool		m_bIsDead;
-
+	float		m_fAngle = 0.f;
 	wstring		m_wstrObjKey;
 	wstring		m_wstrStateKey;
 	OBJID		m_eObjectID;

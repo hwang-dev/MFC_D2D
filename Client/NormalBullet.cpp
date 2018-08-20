@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "NormalBullet.h"
 
+#include "AnimEffect.h"
+#include "Effect.h"
 
 CNormalBullet::CNormalBullet()
 {
@@ -39,6 +41,9 @@ int CNormalBullet::Update()
 
 	/* Bullet ¼Ò¸ê Á¶°Ç */
 	if (m_fVanishTimer > m_fVanishTime || m_bIsDead) {
+		CObj* pEffect = CEffectFactory<CEffect, CAnimEffect>::CreateEffect(
+			m_tInfo.vPos, L"Step", { 0.f, 7.f });
+		CObjMgr::GetInstance()->AddObject(pEffect, OBJ_EFFECT);
 		return DEAD_OBJ;
 	}
 

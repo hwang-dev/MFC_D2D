@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "ShotGunBullet.h"
 
-
+#include "Effect.h"
+#include "AnimEffect.h"
 CShotGunBullet::CShotGunBullet() {}
 
 CShotGunBullet::~CShotGunBullet() { Release(); }
@@ -23,7 +24,7 @@ void CShotGunBullet::LateInit()
 {
 	// 총알 방향 = 마우스 - 플레이어
 	// 방향 랜덤
-	float fRandom = float(rand() % 100) - 100.f;
+	float fRandom = float(rand() % 200) - 100.f;
 	m_tInfo.vDir = (CMouse::GetInstance()->GetMousePos() + CScrollMgr::GetScroll() - D3DXVECTOR3(fRandom, fRandom, 0.f)) -
 		CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
@@ -40,6 +41,9 @@ int CShotGunBullet::Update()
 
 	/* Bullet 소멸 조건 */
 	if (m_bIsDead) {
+		CObj* pEffect = CEffectFactory<CEffect, CAnimEffect>::CreateEffect(
+			m_tInfo.vPos, L"Step", { 0.f, 7.f });
+		CObjMgr::GetInstance()->AddObject(pEffect, OBJ_EFFECT);
 		return DEAD_OBJ;
 	}
 	else if (m_fVanishTimer > m_fVanishTime) {

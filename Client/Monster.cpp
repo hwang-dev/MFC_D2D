@@ -52,8 +52,6 @@ void CMonster::MonsterDirChange()
 		case LEFT:
 			m_wstrStateKey = L"Left";
 			break;
-		default:
-			break;
 		}
 		m_tFrame.fFrame = 0.f;
 		m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
@@ -82,7 +80,7 @@ void CMonster::SetMonsterDir()
 	else if (vTargetPos.x == m_tInfo.vPos.x && vTargetPos.y > m_tInfo.vPos.y)
 		m_eCurDir = DOWN;
 	/* 좌상 */
-	else  if (vTargetPos.x < m_tInfo.vPos.x && vTargetPos.y < m_tInfo.vPos.y)
+	else if (vTargetPos.x < m_tInfo.vPos.x && vTargetPos.y < m_tInfo.vPos.y)
 		m_eCurDir = UP_LEFT;
 	/* 우상 */
 	else if (vTargetPos.x > m_tInfo.vPos.x && vTargetPos.y < m_tInfo.vPos.y)
@@ -93,8 +91,8 @@ void CMonster::SetMonsterDir()
 	/* 우하 */
 	else if (vTargetPos.x < m_tInfo.vPos.x && vTargetPos.y > m_tInfo.vPos.y)
 		m_eCurDir = DOWN_RIGHT;
-	else
-		return;
+	//else
+	//	return;
 }
 
 void CMonster::MonsterDead()

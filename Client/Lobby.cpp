@@ -57,7 +57,8 @@ HRESULT CLobby::Initialize()
 		return E_FAIL;
 	}
 
-
+	//CObjMgr::GetInstance()->AddObject(CAbstractFactory<CBoss2>::CreateObj(D3DXVECTOR3{ 300.f, 200.f, 0.f }),
+	//	OBJ_MONSTER);
 
 	CRoomMgr::GetInstance()->Initialize();
 
@@ -88,9 +89,9 @@ void CLobby::Render()
 {
 	CTileMgr::GetInstance()->Render();
 	CSubTileMgr::GetInstance()->Render();
-	CWeaponMgr::GetInstance()->Render();
-	CObjMgr::GetInstance()->Render();
 	CMouse::GetInstance()->Render();
+	CObjMgr::GetInstance()->Render();
+	CWeaponMgr::GetInstance()->Render();
 
 	// ¹Ì´Ï¸Ê
 	CTileMgr::GetInstance()->MiniMapRender(0.05f);

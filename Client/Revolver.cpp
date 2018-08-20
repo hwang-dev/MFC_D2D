@@ -23,7 +23,7 @@ HRESULT CRevolver::Initialize()
 	/* 초기 상태 */
 	m_fSpeed = 10.f;
 	m_fReloadTime = 1.f;
-	m_fWeaponDelay = 0.7f;
+	m_fWeaponDelay = 0.5f;
 
 	// 총알 세팅
 	m_tGunData.iMaxBullet = 500;
@@ -52,7 +52,6 @@ void CRevolver::LateUpdate()
 	m_fWeaponDelayTime += CTimeMgr::GetInstance()->GetTime();
 
 	if (m_fWeaponDelayTime > m_fWeaponDelay) {
-		m_fWeaponDelayTime = 0.f;
 		m_bCanShot = true;
 	}
 
@@ -89,7 +88,7 @@ void CRevolver::Release()
 
 void CRevolver::CreateBullet()
 {
-	if(m_bCanShot) {
+	if(m_bCanShot == true) {
 		if(m_tGunData.iMagazine > 0)
 		{
 			m_wstrStateKey = L"Attack";
@@ -109,6 +108,7 @@ void CRevolver::CreateBullet()
 			CScrollMgr::CameraShakeNormal();
 			CSoundMgr::GetInstance()->PlaySound(L"Revolver.wav", CSoundMgr::EFFECT);
 			m_bCanShot = false;
+			m_fWeaponDelayTime = 0.f;
 		}
 
 	}

@@ -60,6 +60,7 @@ int CBoss2::Update()
 		CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(D3DXVECTOR3(WINCX*0.5f + CScrollMgr::GetScroll().x, 
 			WINCY*0.5f + CScrollMgr::GetScroll().y, 0.f), L"Book", { 0.f, 42.f })
 			, OBJ_EFFECT);
+		CSoundMgr::GetInstance()->PlaySound(L"Book.wav", CSoundMgr::EFFECT);
 		m_iMonsterHp = 0;
 		return DEAD_OBJ;
 	}
@@ -97,7 +98,6 @@ void CBoss2::LateUpdate()
 		m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
 
 		SetMonsterDir();
-		m_wstrObjKey = L"BMove";
 		MonsterDirChange();
 	}
 	m_fAttackTimer += CTimeMgr::GetInstance()->GetTime();
@@ -123,7 +123,7 @@ void CBoss2::Render()
 	if (g_bOnRect)
 		RenderLine();
 
-	// 보스 UI
+	////////////// 보스 UI
 	D3DXMATRIX matWorld, matScale, matTrans;
 	
 	D3DXMatrixIdentity(&matWorld);
@@ -146,7 +146,7 @@ void CBoss2::Render()
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(255, 255, 255, 255));
 
-	// HP Bar
+	//////////// HP Bar
 	D3DXMatrixIdentity(&matWorld);
 	D3DXMatrixScaling(&matScale, (float)m_iMonsterHp / (float)m_iCurHp, 1.5f, 1.f);
 	D3DXMatrixTranslation(&matTrans,
@@ -184,7 +184,7 @@ void CBoss2::PatternChange()
 {
 	m_fPatternTime += CTimeMgr::GetInstance()->GetTime();
 
-	if (m_fPatternTime > 5.f)
+	if (m_fPatternTime > 3.f)
 	{
 		int iRandom = rand() % 3;
 		m_eCurPattern = (PATTERN)iRandom;
@@ -197,16 +197,16 @@ void CBoss2::PatternChange()
 			{
 			case NORMAL:
 				//m_pBridge = new CBossNormalIMP;
-				m_pBridge = new CBossHalfIMP;
+				m_pBridge = new CBossNormalIMP;
 				m_pBridge->Initialize();
 				m_wstrObjKey = L"BMove";
-				m_wstrStateKey = L"BDown";
+				m_wstrStateKey = L"Down";
 				break;
 			case HALF:
 				m_pBridge = new CBossHalfIMP;
 				m_pBridge->Initialize();
 				m_wstrObjKey = L"BMove";
-				m_wstrStateKey = L"BDown";
+				m_wstrStateKey = L"Down";
 				break;
 			case SKILL:
 				m_pBridge = new CBossSkillIMP;

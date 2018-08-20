@@ -51,7 +51,7 @@ void CShotGun::LateUpdate()
 	m_fWeaponDelayTime += CTimeMgr::GetInstance()->GetTime();
 	
 	if (m_fWeaponDelayTime > m_fWeaponDelay) {
-		m_fWeaponDelayTime = 0.f;
+		
 		m_bCanShot = true;
 	}
 
@@ -108,6 +108,7 @@ void CShotGun::CreateBullet()
 				m_wstrStateKey.c_str());
 
 			CSoundMgr::GetInstance()->PlaySound(L"Shotgun.wav", CSoundMgr::EFFECT);
+			m_fWeaponDelayTime = 0.f;
 			m_bCanShot = false;
 		}
 	}

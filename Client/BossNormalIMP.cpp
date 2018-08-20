@@ -30,7 +30,7 @@ int CBossNormalIMP::Update()
 
 	if (m_fPatternDelay < 5.f)
 	{
-		if (m_fAttackTime > 0.2f)
+		if (m_fAttackTime > 0.1f)
 		{
 			D3DXVECTOR3 vPos = m_pObj->GetInfo().vPos;
 			CObjMgr::GetInstance()->AddObject(CAbstractFactory<CBossBullet>::CreateObj(vPos),

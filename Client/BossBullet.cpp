@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "BossBullet.h"
 
+#include "Effect.h"
+#include "AnimEffect.h"
 
 CBossBullet::CBossBullet()
 {
@@ -17,7 +19,7 @@ HRESULT CBossBullet::Initialize()
 	m_wstrObjKey = L"Bullet";
 	m_wstrStateKey = L"MonsterBullet";
 
-	m_fSpeed = 300.f;
+	m_fSpeed = 350.f;
 	m_iBulletDamage = 1;
 	m_tInfo.vSize = { 32.f, 32.f, 0.f };
 	m_fVanishTime = 3.f;
@@ -40,7 +42,12 @@ int CBossBullet::Update()
 	CObj::LateInit();
 
 	if (m_fVanishTimer > m_fVanishTime || m_bIsDead)
+	{
+		CObj* pEffect = CEffectFactory<CEffect, CAnimEffect>::CreateEffect(
+			m_tInfo.vPos, L"Step", { 0.f, 7.f });
+		CObjMgr::GetInstance()->AddObject(pEffect, OBJ_EFFECT);
 		return DEAD_OBJ;
+	}
 
 	D3DXMATRIX matScale, matTrans;
 

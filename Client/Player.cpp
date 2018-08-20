@@ -236,9 +236,11 @@ void CPlayer::PlayerMove()
 		/* ¼¶±¤Åº */
 		if (CKeyMgr::GetInstance()->KeyDown(KEY_SPACE)) {
 			if (m_tData.iMp > 0) {
+				CScrollMgr::CameraShakeNormal();
 				CObjMgr::GetInstance()->GetBulletList().clear();
 				--m_tData.iMp;
 				CDataSubejct::GetInstance()->Notify(PLAYER_DATA, &m_tData);
+				CSoundMgr::GetInstance()->PlaySound(L"Flash.wav", CSoundMgr::EFFECT);
 			}
 		}
 		/* °ø°Ý */

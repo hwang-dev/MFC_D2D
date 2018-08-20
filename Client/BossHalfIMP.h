@@ -14,5 +14,9 @@ public:
 	virtual void LateUpdate() override;
 	virtual void Render() override;
 	virtual void Release() override;
+
+private:
+	bool m_bPattern1 = false;
+	bool m_bPattern2 = false;
 };
 
