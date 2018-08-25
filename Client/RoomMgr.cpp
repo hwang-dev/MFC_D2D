@@ -33,24 +33,24 @@ void CRoomMgr::Update()
 			// 룸1 몬스터 생성
 			// 임시 Monster 생성
 			
-			CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(D3DXVECTOR3(1700.f, 300.f, 0.f), L"Portal", { 0.f, 14.f })
+			CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(D3DXVECTOR3(1600.f, 145.f, 0.f), L"Portal", { 0.f, 14.f })
 				, OBJ_EFFECT);
-			CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(D3DXVECTOR3(1700.f, 500.f, 0.f), L"Portal", { 0.f, 14.f })
+			CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(D3DXVECTOR3(1600.f, 480.f, 0.f), L"Portal", { 0.f, 14.f })
 				, OBJ_EFFECT);
-			CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(D3DXVECTOR3(1700.f, 700.f, 0.f), L"Portal", { 0.f, 14.f })
+			CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(D3DXVECTOR3(1600.f, 860.f, 0.f), L"Portal", { 0.f, 14.f })
 				, OBJ_EFFECT);
-			CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(D3DXVECTOR3(2000.f, 300.f, 0.f), L"Portal", { 0.f, 14.f })
+			CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(D3DXVECTOR3(2300.f, 145.f, 0.f), L"Portal", { 0.f, 14.f })
 				, OBJ_EFFECT);
-			CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(D3DXVECTOR3(2000.f, 500.f, 0.f), L"Portal", { 0.f, 14.f })
+			CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(D3DXVECTOR3(2300.f, 480.f, 0.f), L"Portal", { 0.f, 14.f })
 				, OBJ_EFFECT);
-			CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(D3DXVECTOR3(2000.f, 700.f, 0.f), L"Portal", { 0.f, 14.f })
+			CObjMgr::GetInstance()->AddObject(CEffectFactory<CEffect, CAnimEffect>::CreateEffect(D3DXVECTOR3(2300.f, 860.f, 0.f), L"Portal", { 0.f, 14.f })
 				, OBJ_EFFECT);
 			CSoundMgr::GetInstance()->PlaySound(L"Monster_Appear2.wav", CSoundMgr::EFFECT);
 			m_bEnterRoom1 = true;
 		}
 	}
 
-	else if (m_byPlayerRoomNumber == 4)
+	if (m_byPlayerRoomNumber == 4)
 	{
 		if (m_bEnterRoom2 == false)
 		{

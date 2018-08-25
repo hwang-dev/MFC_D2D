@@ -78,6 +78,7 @@ void CLobby::Update()
 
 void CLobby::LateUpdate()
 {
+	CSoundMgr::GetInstance()->UpdateSound();
 	CScrollMgr::ScrollLock2();
 	CTileMgr::GetInstance()->LateUpdate();
 	CObjMgr::GetInstance()->LateUpdate();

@@ -20,13 +20,6 @@ void CCollisionMgr::CollisionRect(OBJLIST & dstLst, OBJLIST & srcLst)
 
 			if (IntersectRect(&rc, &dstRect, &srcRect)) 
 			{
-				//if (!wcscmp(pSrc->GetObjKey().c_str(), L"Bullet")
-				//	&& !wcscmp(pDst->GetObjKey().c_str(), L"NMonsterMove")) 
-				//{
-				//	int iDamage = dynamic_cast<CBullet*>(pSrc)->GetBulletDamage();
-				//	dynamic_cast<CMonster*>(pDst)->SetMonsterHP(iDamage);
-				//	pSrc->IsDead();
-				//}
 				if (pSrc->GetObjectID() == OBJ_BULLET && pDst->GetObjectID() == OBJ_MONSTER) 
 				{
 					int iDamage = dynamic_cast<CBullet*>(pSrc)->GetBulletDamage();
@@ -49,13 +42,31 @@ void CCollisionMgr::CollisionRect(OBJLIST & dstLst, OBJLIST & srcLst)
 				}
 				else if (pSrc->GetObjectID() == OBJ_BULLET && pDst->GetObjectID() == OBJ_OBSTACLE)
 				{
-					pSrc->IsDead();
 					CSoundMgr::GetInstance()->PlaySound(L"Crash.wav", CSoundMgr::EFFECT);
+					pSrc->IsDead();
 				}
 				else if (pSrc->GetObjectID() == OBJ_MOSTERBULLET && pDst->GetObjectID() == OBJ_OBSTACLE)
 				{
-					pSrc->IsDead();
 					CSoundMgr::GetInstance()->PlaySound(L"Crash.wav", CSoundMgr::EFFECT);
+					pSrc->IsDead();
+				}
+				else if (pSrc->GetObjectID() == OBJ_BOSSBULLET && pDst->GetObjectID() == OBJ_OBSTACLE) {
+					pSrc->IsDead();
+				}
+				else if (pSrc->GetObjectID() == OBJ_BOSSBULLET && pDst->GetObjectID() == OBJ_PLAYER) {
+					if (dynamic_cast<CPlayer*>(pDst)->GetPlayerStance() != DODGE) {
+						dynamic_cast<CPlayer*>(pDst)->SetPlayerHp();
+						pSrc->IsDead();
+						CScrollMgr::CameraShakeNormal();
+					}
+					else
+						return;
+				}
+				else if (pSrc->GetObjectID() == OBJ_BULLET && pDst->GetObjectID() == OBJ_BOSS)
+				{
+					int iDamage = dynamic_cast<CBullet*>(pSrc)->GetBulletDamage();
+					dynamic_cast<CMonster*>(pDst)->SetMonsterHP(/*true, */iDamage);
+					pSrc->IsDead();
 				}
 			}
 		}

@@ -49,31 +49,22 @@ void CObjMgr::LateUpdate()
 			pObj->LateUpdate();
 	}
 
-	/* Tile <> Obj 충돌 */
-	//CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(), 
-	//	m_ObjLst[OBJ_PLAYER].front());
-	//CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(),
-	//	m_ObjLst[OBJ_BULLET]);
-	//CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(),
-	//	m_ObjLst[OBJ_MONSTER]);
-	//CCollisionMgr::CollisionTile(CTileMgr::GetInstance()->GetVecTile(),
-	//	m_ObjLst[OBJ_MOSTERBULLET]);
-
+	// 밀어내기
 	CCollisionMgr::CollisionRectEX(m_ObjLst[OBJ_OBSTACLE], m_ObjLst[OBJ_PLAYER]);
 	CCollisionMgr::CollisionRectEX(m_ObjLst[OBJ_OBSTACLE], m_ObjLst[OBJ_MONSTER]);
+	CCollisionMgr::CollisionRectEX(m_ObjLst[OBJ_PLAYER], m_ObjLst[OBJ_MONSTER]);
+
+	// 충돌
 	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_OBSTACLE], m_ObjLst[OBJ_BULLET]);
 	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_OBSTACLE], m_ObjLst[OBJ_MOSTERBULLET]);
-
-
-	/* */
 	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_MONSTER], m_ObjLst[OBJ_BULLET]);
-
-	/* */
 	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_TRIGGER], m_ObjLst[OBJ_PLAYER]);
 	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_PLAYER], m_ObjLst[OBJ_MOSTERBULLET]);
+	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_OBSTACLE], m_ObjLst[OBJ_BOSSBULLET]);
+	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_PLAYER], m_ObjLst[OBJ_BOSSBULLET]);
+	CCollisionMgr::CollisionRect(m_ObjLst[OBJ_BOSS], m_ObjLst[OBJ_BULLET]);
 
-	CCollisionMgr::CollisionRectEX(m_ObjLst[OBJ_PLAYER], m_ObjLst[OBJ_MONSTER]);
-	//CCollisionMgr::CollisionRectEX(m_ObjLst[OBJ_MONSTER], m_ObjLst[OBJ_MONSTER]);
+
 }
 
 void CObjMgr::Render()

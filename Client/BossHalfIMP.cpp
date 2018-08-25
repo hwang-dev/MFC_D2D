@@ -36,7 +36,7 @@ int CBossHalfIMP::Update()
 			for (int i = 0; i < 13; ++i)
 			{
 				CObjMgr::GetInstance()->AddObject(CAbstractFactory<CBossBullet2>::CreateObj(vPos, float(30 * i)),
-					OBJ_MOSTERBULLET);
+					OBJ_BOSSBULLET);
 				m_fAttackTime = 0.f;
 			}
 		}

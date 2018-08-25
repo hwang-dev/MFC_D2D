@@ -71,8 +71,7 @@ void CDark2::Render()
 	CDevice::GetInstance()->GetSprite()->Draw(pTexInfo->pTexture, nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f), nullptr, D3DCOLOR_ARGB(m_iAlpha, 255, 255, 255));
 	}
-	if (g_bOnRect)
-		RenderLine();
+
 }
 
 void CDark2::Release()

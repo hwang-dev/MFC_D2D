@@ -22,7 +22,7 @@ CBoss2::~CBoss2()
 
 HRESULT CBoss2::Initialize()
 {
-	m_eObjectID = OBJ_MONSTER;
+	m_eObjectID = OBJ_BOSS;
 	m_eCurPattern = NORMAL;
 	m_wstrObjKey = L"BMove";
 	m_wstrStateKey = L"BDown";
@@ -33,7 +33,7 @@ HRESULT CBoss2::Initialize()
 	m_iCurHp = m_iMonsterHp;
 	m_iAlpha = 255;
 	m_tInfo.vLook = { 1.f, 0.f, 0.f };
-	m_fSpeed = 30.f;
+	m_fSpeed = 50.f;
 	m_fAttackTime = 0.2f;
 
 	return S_OK;
@@ -44,9 +44,7 @@ void CBoss2::LateInit()
 	m_pTarget = CObjMgr::GetInstance()->GetPlayer();
 
 	// Ã³À½ ºê¸´Áö
-	//m_pBridge = new CBossNormalIMP;
-	m_pBridge = new CBossHalfIMP;
-	m_pBridge->Initialize();
+	m_pBridge = new CBossNormalIMP;
 	
 	m_pBridge->SetObj(this);
 	//SetBridge(m_pBridge);
@@ -92,11 +90,11 @@ void CBoss2::LateUpdate()
 	if (m_eCurPattern != SKILL)
 	{
 
-		m_tInfo.vDir = m_pTarget->GetInfo().vPos - m_tInfo.vPos;
-		D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
+		//m_tInfo.vDir = m_pTarget->GetInfo().vPos - m_tInfo.vPos;
+		//D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
 
-		m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
-
+		//m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+		AstarMove();
 		SetMonsterDir();
 		MonsterDirChange();
 	}
@@ -176,6 +174,22 @@ void CBoss2::Release()
 
 void CBoss2::AstarMove()
 {
+	{
+		list<TILE*>& BestLst = CAstarMgr::GetInstance()->GetBestLst();
+
+		if (!BestLst.empty()) {
+			D3DXVECTOR3 vDir = BestLst.front()->vPos - m_tInfo.vPos;
+
+			float fDist = D3DXVec3Length(&vDir);
+			D3DXVec3Normalize(&vDir, &vDir);
+
+			m_tInfo.vPos += (vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime());
+
+			if (fDist < 5.f)
+				BestLst.pop_front();
+
+		}
+	}
 }
 
 
@@ -196,33 +210,32 @@ void CBoss2::PatternChange()
 			switch (m_eCurPattern)
 			{
 			case NORMAL:
-				//m_pBridge = new CBossNormalIMP;
 				m_pBridge = new CBossNormalIMP;
-				m_pBridge->Initialize();
 				m_wstrObjKey = L"BMove";
 				m_wstrStateKey = L"Down";
 				break;
 			case HALF:
 				m_pBridge = new CBossHalfIMP;
-				m_pBridge->Initialize();
 				m_wstrObjKey = L"BMove";
 				m_wstrStateKey = L"Down";
 				break;
 			case SKILL:
 				m_pBridge = new CBossSkillIMP;
-				m_pBridge->Initialize();
 				m_wstrObjKey = L"Boss";
 				m_wstrStateKey = L"BSkill";
 				break;
 
 			}
 			m_pBridge->SetObj(this);
+
+
 			m_ePrePattern = m_eCurPattern;
 		}
 		m_tFrame.fFrame = 0.f;
 		m_tFrame.fMax = CTextureMgr::GetInstance()->GetTextureCount(m_wstrObjKey.c_str(),
 			m_wstrStateKey.c_str());
 		m_fPatternTime = 0.f;
+		CAstarMgr::GetInstance()->StartAstar(m_tInfo.vPos, m_pTarget->GetInfo().vPos);
 	}
 }
 

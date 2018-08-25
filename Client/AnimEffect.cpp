@@ -45,7 +45,7 @@ int CAnimEffect::Update()
 		}
 		if (!wcscmp(L"Boss", m_wstrStateKey.c_str())) {
 			CObjMgr::GetInstance()->AddObject(CAbstractFactory<CBoss2>::CreateObj(D3DXVECTOR3{ 591.f, 1378.f, 0.f }),
-				OBJ_MONSTER);
+				OBJ_BOSS);
 			return DEAD_OBJ;
 		}
 		else

@@ -15,7 +15,7 @@ CBossBullet2::~CBossBullet2()
 
 HRESULT CBossBullet2::Initialize()
 {
-	m_eObjectID = OBJ_MOSTERBULLET;
+	m_eObjectID = OBJ_BOSSBULLET;
 	m_wstrObjKey = L"Bullet";
 	m_wstrStateKey = L"MonsterBullet";
 
@@ -39,11 +39,11 @@ int CBossBullet2::Update()
 {
 	CObj::LateInit();
 
-	if (m_fVanishTimer > m_fVanishTime || m_bIsDead)
+	if (m_bIsDead)
 	{
-		CObj* pEffect = CEffectFactory<CEffect, CAnimEffect>::CreateEffect(
-			m_tInfo.vPos, L"Step", { 0.f, 7.f });
-		CObjMgr::GetInstance()->AddObject(pEffect, OBJ_EFFECT);
+		//CObj* pEffect = CEffectFactory<CEffect, CAnimEffect>::CreateEffect(
+		//	m_tInfo.vPos, L"Step", { 0.f, 7.f });
+		//CObjMgr::GetInstance()->AddObject(pEffect, OBJ_EFFECT);
 		return DEAD_OBJ;
 	}
 

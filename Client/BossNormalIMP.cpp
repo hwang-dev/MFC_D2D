@@ -34,7 +34,7 @@ int CBossNormalIMP::Update()
 		{
 			D3DXVECTOR3 vPos = m_pObj->GetInfo().vPos;
 			CObjMgr::GetInstance()->AddObject(CAbstractFactory<CBossBullet>::CreateObj(vPos),
-				OBJ_MOSTERBULLET);
+				OBJ_BOSSBULLET);
 			m_fAttackTime = 0.f;
 		}
 	}

@@ -23,14 +23,14 @@ HRESULT CNormalMonster::Initialize()
 		m_wstrStateKey.c_str());
 	m_tInfo.vSize = { 20.f, 50.f, 0.f };
 	m_tInfo.vLook = { 1.f, 0.f, 0.f };
-	m_fSpeed = 80.f;
+	m_fSpeed = 50.f;
 	m_fAnimSpeed = 1.5f;
 	m_iAlpha = 255;
 	m_iMonsterHp = 4;
-	m_fJumpPow = 200.f;
+	m_fJumpPow = 300.f;
 
 	m_tInfo.byRoomNum = 2;
-	m_fAttackTime = 0.7f;
+	m_fAttackTime = 0.5f;
 	return S_OK;
 }
 
@@ -54,7 +54,7 @@ int CNormalMonster::Update()
 			m_wstrStateKey.c_str());
 
 		m_fDeadAnimTime += CTimeMgr::GetInstance()->GetTime();
-		m_iAlpha -= 3;
+		m_iAlpha -= 1;
 		m_fJumpPow -= 2.f;
 		if (m_iAlpha < 0) {
 			
@@ -89,8 +89,19 @@ int CNormalMonster::Update()
 void CNormalMonster::LateUpdate() 
 {
 	/* 몬스터 이동(Astar) */
-	AStarMove();
+	//AStarMove();
 	MonsterAttack();	// 몬스터 공격
+
+	// 몬스터 이동
+	if (m_pTarget == nullptr)
+		return;
+
+	m_tInfo.vDir = m_pTarget->GetInfo().vPos - m_tInfo.vPos;
+	D3DXVec3Normalize(&m_tInfo.vDir, &m_tInfo.vDir);
+
+	m_tInfo.vPos += m_tInfo.vDir * m_fSpeed * CTimeMgr::GetInstance()->GetTime();
+
+
 
 	/* 몬스터 방향 변경 */
 	SetMonsterDir();
@@ -100,7 +111,7 @@ void CNormalMonster::LateUpdate()
 	m_tFrame.fFrame += m_tFrame.fMax * CTimeMgr::GetInstance()->GetTime() * m_fAnimSpeed;
 	if (m_tFrame.fFrame > m_tFrame.fMax) {
 		m_tFrame.fFrame = 0.f;
-		CAstarMgr::GetInstance()->StartAstar(m_tInfo.vPos, m_pTarget->GetInfo().vPos);
+		//CAstarMgr::GetInstance()->StartAstar(m_tInfo.vPos, m_pTarget->GetInfo().vPos);
 	}
 
 	MonsterJump();	// 몬스터 밀려남
@@ -185,7 +196,7 @@ void CNormalMonster::MonsterJump()
 			- CObjMgr::GetInstance()->GetPlayer()->GetInfo().vPos;
 		D3DXVec3Normalize(&vJump, &vJump);
 
-		m_tInfo.vPos += vJump * CTimeMgr::GetInstance()->GetTime() * m_fJumpPow;
+		m_tInfo.vPos -= vJump * CTimeMgr::GetInstance()->GetTime() * m_fJumpPow;
 	}
 }
 
